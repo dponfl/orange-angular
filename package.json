@@ -1,5 +1,5 @@
 {
-  "name": "Project",
+  "name": "Orange Project",
   "private": true,
   "version": "0.0.0",
   "description": "a Sails application",
@@ -30,7 +30,7 @@
   "main": "app.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/dponfl/angular-setup.git"
+    "url": "git://github.com/dponfl/orange-angular.git"
   },
   "author": "Dmitry Ponomarev dponfl@gmail.com",
   "license": "",
