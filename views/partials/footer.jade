@@ -1,8 +1,51 @@
 //
-   Created by DSch on 09.02.2017.
+  Footer
+  =============
+
+  Author:  iStudioDTD.com
+  Updated: January 2017
+  Notes:	 Hand coded for Orange Holiday Villas
 
 footer
   .container
     .row
       .col-sm-4
-        h4 Copyright &copy; 2017 by iStudioDTD.com
+        h6 О нас
+        p
+          | Лорем ипсум долор сит амет, не дицит легере еос, еос еу волутпат цомпрехенсам,
+          | не хас долор омиттам! При утамур сингулис адиписцинг не, не алии ехерци дуо.
+          | Тота игнота алияуандо ан яуо, хабео яуидам хендрерит те яуо.
+      .col-sm-2
+        h6 Навигация
+        ul.list-unstyled
+          -
+            var nav = [
+            {href:'#main', text: 'Главная'},
+            {href:'#exclusive', text: 'Эксклюзив'},
+            {href:'#shortterm', text: 'Посуточная аренда'},
+            {href:'#longterm', text: 'Долгосрочная аренда'},
+            {href:'#sale', text: 'Продажа'},
+            {href:'#qa', text: 'Вопросы'},
+            {href:'#services', text: 'Доп. услуги'},
+            {href:'#contacts', text: 'Контакты'}
+            ]
+          each elem in nav
+            li
+              a(href="#{elem.href}") #{elem.text}
+      .col-sm-2
+        h6 Подпишись на наши новости
+        ul.list-unstyled
+          -
+            var links = [
+            {href:'http://www.youtube.com', text: 'YouTube'},
+            {href:'http://www.facebook.com', text: 'Facebook'},
+            {href:'http://www.twitter.com', text: 'Tweeter'},
+            {href:'http://plus.google.com', text: 'Google Plus'},
+            ]
+          each elem in links
+            li
+              a(href="#{elem.href}", target="_blank") #{elem.text}
+      .col-sm-3.developer
+        h6 Copyright &copy; 2017
+        span Разработано
+        a(href="http://www.studiodtd.com", target="_blank")#developer iStudioDTD.com

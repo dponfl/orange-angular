@@ -19,6 +19,7 @@
 var cssFilesToInject = [
   'vendor/bootstrap/dist/css/bootstrap.css',
   'vendor/bootstrap/dist/css/bootstrap-theme.css',
+  'styles/libs/**/*.css',
   'styles/**/*.css'
 ];
 
@@ -31,6 +32,9 @@ var jsModFilesToInject = [
 // (uses Grunt-style wildcard/glob/splat expressions)
 var jsFilesToInject = [
 
+  // Load sails.io before everything else
+  'js/dependencies/sails.io.js',
+
   // Load jQuery first
   'vendor/jquery/dist/jquery.js',
 
@@ -42,10 +46,7 @@ var jsFilesToInject = [
   'vendor/angular-resource/angular-resource.js',
   'vendor/angular-route/angular-route.js',
 
-  // Load sails.io before everything else
-  'js/dependencies/sails.io.js',
-
-  'js/dependencies/**/*.js',
+  'js/dependencies/Other/**/*.js',
 
   // Load application modules
   'js/app/**/module.js',
@@ -73,11 +74,6 @@ var templateFilesToInject = [
   'templates/**/*.html',
   'templates/**/*.jade'
 ];
-
-
-
-
-
 
 
 // Default path for public folder (see documentation for more information)

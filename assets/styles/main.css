@@ -1,0 +1,118 @@
+/*
+
+Main section CSS
+=============
+
+Author:  iStudioDTD.com
+Updated: January 2017
+Notes:	 Hand coded for Orange Holiday Villas
+
+*/
+
+#main-block {
+    margin-top: 50px;
+}
+
+/* --------------------------------------
+   Carousel
+   -------------------------------------- */
+
+#mainCarousel .item {
+    height: 400px;
+}
+
+#mainCarousel {
+    margin-top: 20px;
+}
+
+.carousel-caption {
+    font-size: 18px;
+    color: midnightblue;
+    background-color: white;
+    opacity: 0.8;
+}
+
+.carousel-caption h4 {
+    font-size: 24px;
+    color: darkblue;
+}
+
+#slide01 {
+    background: url("../images/main_carousel_medium_01.jpg") top center no-repeat;
+}
+
+#slide02 {
+    background: url("../images/main_carousel_medium_02.jpg") top center no-repeat;
+}
+
+#slide03 {
+    background: url("../images/main_carousel_medium_03.jpg") top center no-repeat;
+}
+
+/* --------------------------------------
+   Media Queries
+   -------------------------------------- */
+
+/* Portrait & landscape phone */
+@media (max-width: 480px) {
+
+    #mainCarousel .item {
+        height: 300px;
+    }
+
+    #slide01 {
+        background: url("../images/main_carousel_small_01.jpg") top center no-repeat;
+    }
+
+    #slide02 {
+        background: url("../images/main_carousel_small_02.jpg") top center no-repeat;
+    }
+
+    #slide03 {
+        background: url("../images/main_carousel_small_03.jpg") top center no-repeat;
+    }
+
+}
+
+
+/* Landscape phone to portrait tablet */
+@media (max-width: 768px) {
+
+    #mainCarousel .item {
+        height: 600px;
+    }
+
+    #slide01 {
+        background: url("../images/main_carousel_medium_01.jpg") top center no-repeat;
+    }
+
+    #slide02 {
+        background: url("../images/main_carousel_medium_02.jpg") top center no-repeat;
+    }
+
+    #slide03 {
+        background: url("../images/main_carousel_medium_03.jpg") top center no-repeat;
+    }
+
+}
+
+/* Large desktop */
+@media (min-width: 1200px) {
+
+    #mainCarousel .item {
+        height: 800px;
+    }
+
+    #slide01 {
+        background: url("../images/main_carousel_large_01.jpg") top center no-repeat;
+    }
+
+    #slide02 {
+        background: url("../images/main_carousel_large_02.jpg") top center no-repeat;
+    }
+
+    #slide03 {
+        background: url("../images/main_carousel_large_03.jpg") top center no-repeat;
+    }
+
+}

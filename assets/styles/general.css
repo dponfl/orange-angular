@@ -1,0 +1,205 @@
+/*
+
+General CSS
+=============
+
+Author:  iStudioDTD.com
+Updated: January 2017
+Notes:	 Hand coded for Orange Holiday Villas
+
+*/
+
+/* --------------------------------------
+   Global Styles
+   -------------------------------------- */
+
+.panel.panel-info {
+    position: relative;
+}
+
+.badge.badge-object {
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    padding: 10px;
+}
+
+.glyphicon-tag:before {
+    margin-right: 10px;
+}
+
+h1 > small {
+    margin-left: 30px;
+}
+
+.slideanim {visibility:hidden;}
+.slide {
+    /* The name of the animation */
+    animation-name: slide;
+    -webkit-animation-name: slide;
+    /* The duration of the animation */
+    animation-duration: 1s;
+    -webkit-animation-duration: 1s;
+    /* Make the element visible */
+    visibility: visible;
+}
+
+/* Go from 0% to 100% opacity (see-through) and specify the percentage from when to slide in the element along the Y-axis */
+@keyframes slide {
+    0% {
+        opacity: 0;
+        transform: translateY(70%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0%);
+    }
+}
+@-webkit-keyframes slide {
+    0% {
+        opacity: 0;
+        -webkit-transform: translateY(70%);
+    }
+    100% {
+        opacity: 1;
+        -webkit-transform: translateY(0%);
+    }
+}
+
+
+/* --------------------------------------
+   Typography
+   -------------------------------------- */
+
+body {
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizelegibility;
+}
+
+.well {
+    margin: 20px 0;
+    padding: 0;
+}
+.well .page-body {
+    padding: 19px;
+}
+
+.well .page-header.page-primary {
+    margin-top: 0;
+    background-color: #2e6da4;
+}
+
+.well .page-header.page-primary h1 {
+    padding: 19px;
+    margin-top: 0;
+    color: white;
+}
+
+.well .page-header.page-primary h1 small {
+    color: gainsboro;
+}
+
+/* --------------------------------------
+   Media Queries
+   -------------------------------------- */
+
+/* Portrait & landscape phone */
+@media (max-width: 480px) {
+
+    .panel-heading {
+        font-size: 14px;
+        color: white;
+    }
+
+    .panel-body {
+        font-size: 10px;
+    }
+
+    .badge.badge-object {
+        font-size: small;
+    }
+
+}
+
+/* --------------------------------------
+   Buttons
+   -------------------------------------- */
+
+.btn-margin-header {
+    margin: 7px 5px;
+}
+
+.btn-margin {
+    margin: 7px 10px;
+}
+
+/* --------------------------------------
+   Badges
+   -------------------------------------- */
+
+.badge-object {
+    background-color: #C9302C !important;
+    font-size: large;
+}
+
+
+/* --------------------------------------
+   Images
+   -------------------------------------- */
+
+.img-main {
+    width: 100%;
+    height: 100%;
+}
+
+.img-gallery {
+    width: 110px;
+    height: 80px;
+}
+
+
+
+/* Landscape phone to portrait tablet */
+@media (max-width: 768px) {
+
+    .carousel-caption {
+        font-size: 14px;
+    }
+
+    .carousel-caption h4 {
+        font-size: 20px;
+    }
+
+    .panel-heading {
+        font-size: 24px;
+        color: white;
+    }
+
+    .panel-body {
+        font-size: 12px;
+    }
+
+}
+
+/* Large desktop */
+@media (min-width: 1200px) {
+
+    .carousel-caption {
+        font-size: 24px;
+    }
+
+    .carousel-caption h4 {
+        font-size: 32px;
+    }
+
+    .panel-heading {
+        font-size: 26px;
+        color: white;
+    }
+
+    .panel-body {
+        font-size: 18px;
+    }
+
+
+}

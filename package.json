@@ -35,10 +35,11 @@
   "author": "Dmitry Ponomarev dponfl@gmail.com",
   "license": "",
   "devDependencies": {
-    "async": "^2.1.4",
+    "async": "^2.1.5",
     "grunt-contrib-jade": "^1.0.0",
     "jade": "^1.11.0",
     "lodash": "^4.17.4",
-    "sails-hook-autoreload": "^0.13.2"
+    "sails-hook-autoreload": "^0.13.2",
+    "sails-mysql": "^0.11.5"
   }
 }

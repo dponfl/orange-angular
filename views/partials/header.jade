@@ -1,0 +1,137 @@
+//
+  Header
+  =============
+
+  Author:  iStudioDTD.com
+  Updated: January 2017
+  Notes:	 Hand coded for Orange Holiday Villas
+
+.row.header-block
+
+  a.header-block-logo.pull-left.navbar-collapse.collapse(href="/")
+    img(src="../../images/logo-orange.png", alt="Orange Holiday Villas logo").logo-img
+
+  .row.header-block-contacts.pull-right
+
+    #contacts-header
+      .row.block-contacts__details Office: +357 26 102728
+      .row.block-contacts__details Mob: +357 99 828 886
+      .row.block-contacts__details Skype: prolat.natalia
+
+    button(type="button").btn.btn-success#message Отправить</br>сообщение
+
+    form(role="search")#object-find
+      .form-group.pull-left
+        input(type="text", placeholder="№ объекта").form-control#object-find_input
+      button(type="submit").btn.btn-info.pull-left#object-find_button Найти
+
+nav(data-spy="affix", data-offset-top="200").navbar.navbar-default
+
+  .container
+
+    button(data-target=".navbar-responsive-collapse", data-toggle="collapse", type="button").navbar-toggle
+      span.icon-bar
+      span.icon-bar
+      span.icon-bar
+
+    a(href="/").navbar-brand
+      img(src="../../images/logo-orange.png", alt="Orange Holiday Villas logo", height="50px")
+
+    .navbar-collapse.collapse.navbar-responsive-collapse
+
+      -
+        var navbar_menu = [
+          {href:'/main', text: 'Главная', active: 'active'},
+          {href:'/exclusive', text: 'Эксклюзив', active: ''},
+          {href:'shortterm', text: 'Посуточная аренда', active: ''},
+          {href:'longterm', text: 'Долгосрочная аренда', active: ''},
+          {href:'sale', text: 'Продажа', active: ''},
+          {href:'qa', text: 'Вопросы', active: ''},
+          {href:'services', text: 'Доп. услуги', active: ''},
+          {href:'contacts', text: 'Контакты', active: ''}
+          ]
+
+      ul.nav.navbar-nav
+        each element in navbar_menu
+          if element.active == 'active'
+            li.active
+              a(href="#{element.href}") #{element.text}
+          else
+            li
+              a(href="#{element.href}") #{element.text}
+
+        li.dropdown
+          button(data-toggle="dropdown").dropdown-toggle.btn.btn-danger.btn-margin-header
+            | Оставить заявку
+            strong.caret
+
+          -
+            var dropdown_menu = [
+            {href: '#dailyRequest',       text: 'Снять недв. посуточно'},
+            {href: '#longtermRequest',    text: 'Снять недв. долгосрочно'},
+            {href: '',      text: 'Сдать недвижимость'},
+            {href: '',      text: 'Купить недвижимость'},
+            {href: '',      text: 'Продать недвижимость'}
+            ]
+
+          ul.dropdown-menu
+            //li.dropdown-header Снять недвижимость
+            each el in dropdown_menu
+              li
+                a(href="#{el.href}", role="button", data-toggle="modal") #{el.text}
+
+          .modal.fade#dailyRequest
+            .modal-dialog
+              .modal-content
+                .panel.panel-info
+                  .panel-heading
+                    button(data-dismiss="modal").close &times;
+                    h4.modal-title.text-center Снять недвижимость: Посуточно
+                  .panel-body
+                    h4.text-center Заполните форму
+                    form.form-horizontal
+                      -
+                        var longTerm = [
+                        {label: 'Имя:', id: 'inputNameDaily', type: 'text', placeholder: 'Ваше имя'},
+                        {label: 'Телефон:', id: 'inputPhoneDaily', type: 'phone', placeholder: 'Телефон для связи'},
+                        {label: 'Email:', id: 'inputEmailDaily', type: 'email', placeholder: 'Ваш email'},
+                        {label: 'Цена:', id: 'inputPriceDaily', type: 'text', placeholder: 'Интересующая вас цена'},
+                        {label: 'Город:', id: 'inputCityDaily', type: 'text', placeholder: 'Какой город вас интересует'}
+                        ]
+                      each elem in longTerm
+                        .form-group.clearfix
+                          label(for="#{elem.id}").col-sm-3.control-label.text-right #{elem.label}
+                          .col-sm-7
+                            input(type="#{elem.type}", id="#{elem.id}" placeholder="#{elem.placeholder}").form-control
+                      .form-group.clearfix
+                        .col-lg-9.col-lg-offset-3.col-md-offset-3.col-sm-offset-3
+                          button.btn.btn-success.btn-lg.btn-margin Отправить
+                          button.btn.btn-warning.btn-lg.btn-margin Очистить
+
+          .modal.fade#longtermRequest
+            .modal-dialog
+              .modal-content
+                .panel.panel-info
+                  .panel-heading
+                    button(data-dismiss="modal").close &times;
+                    h4.modal-title.text-center Снять недвижимость: Долгосрочно
+                  .panel-body
+                    h4.text-center Заполните форму
+                    form.form-horizontal
+                      -
+                        var longTerm = [
+                        {label: 'Имя:', id: 'inputNameLongterm', type: 'text', placeholder: 'Ваше имя'},
+                        {label: 'Телефон:', id: 'inputPhoneLongterm', type: 'phone', placeholder: 'Телефон для связи'},
+                        {label: 'Email:', id: 'inputEmailLongterm', type: 'email', placeholder: 'Ваш email'},
+                        {label: 'Цена:', id: 'inputPriceLongterm', type: 'text', placeholder: 'Интересующая вас цена'},
+                        {label: 'Город:', id: 'inputCityLongterm', type: 'text', placeholder: 'Какой город вас интересует'}
+                        ]
+                      each elem in longTerm
+                        .form-group.clearfix
+                          label(for="#{elem.id}").col-sm-3.control-label.text-right #{elem.label}
+                          .col-sm-7
+                            input(type="#{elem.type}", id="#{elem.id}" placeholder="#{elem.placeholder}").form-control
+                      .form-group.clearfix
+                        .col-lg-9.col-lg-offset-3.col-md-offset-3.col-sm-offset-3
+                          button(type="submit").btn.btn-success.btn-lg.btn-margin Отправить
+                          button(type="cancel").btn.btn-warning.btn-lg.btn-margin Очистить
