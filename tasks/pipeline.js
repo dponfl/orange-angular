@@ -44,7 +44,7 @@ var jsFilesToInject = [
   // Load Angular
   'vendor/angular/angular.js',
   'vendor/angular-resource/angular-resource.js',
-  'vendor/angular-route/angular-route.js',
+  'vendor/angular-ui-router/release/angular-ui-router.js',
 
   'js/dependencies/Other/**/*.js',
 

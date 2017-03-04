@@ -41,24 +41,20 @@ nav(data-spy="affix", data-offset-top="200").navbar.navbar-default
 
       -
         var navbar_menu = [
-          {href:'/main', text: 'Главная', active: 'active'},
-          {href:'/exclusive', text: 'Эксклюзив', active: ''},
-          {href:'/shortterm', text: 'Посуточная аренда', active: ''},
-          {href:'/longterm', text: 'Долгосрочная аренда', active: ''},
-          {href:'/sale', text: 'Продажа', active: ''},
-          {href:'/qa', text: 'Вопросы', active: ''},
-          {href:'/services', text: 'Доп. услуги', active: ''},
-          {href:'/contacts', text: 'Контакты', active: ''}
+          {href:'main', text: 'Главная'},
+          {href:'exclusive', text: 'Эксклюзив'},
+          {href:'shortterm', text: 'Посуточная аренда'},
+          {href:'longterm', text: 'Долгосрочная аренда'},
+          {href:'sale', text: 'Продажа'},
+          {href:'qa', text: 'Вопросы'},
+          {href:'services', text: 'Доп. услуги'},
+          {href:'contacts', text: 'Контакты'}
           ]
 
       ul.nav.navbar-nav
         each element in navbar_menu
-          if element.active == 'active'
-            li.active
-              a(href="#{element.href}") #{element.text}
-          else
-            li
-              a(href="#{element.href}") #{element.text}
+          li
+            a(data-ui-sref="#{element.href}" data-ui-sref-active="menu-active") #{element.text}
 
         li.dropdown
           button(data-toggle="dropdown").dropdown-toggle.btn.btn-danger.btn-margin-header

@@ -2,28 +2,49 @@
 
 (function () {
 
-  angular.module('Project', [
-    'ngRoute',
-    'ngResource'
-  ]).config(ProjectConfig);
+  angular.module('Orange', [
+    'ngResource',
+    'ui.router'
+  ]).config(OrangeConfig);
 
-  ProjectConfig.$inject = ['$routeProvider','$locationProvider'];
-  function ProjectConfig($routeProvider, $locationProvider) {
-    $routeProvider
-      .when('/', {
-      // templateUrl: 'templates/view/home.html',
-      // controller: 'HomeController'
-      templateUrl: 'templates/view/page.html',
-    })
-      .when('/test', {
-        templateUrl: 'templates/view/test.html'
+  OrangeConfig.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider'];
+  function OrangeConfig($stateProvider, $urlRouterProvider, $locationProvider) {
+
+    $stateProvider
+      .state('main', {
+        url: '/',
+        templateUrl: 'templates/view/page.html'
       })
-      .when('/404', {
-        templateUrl: 'templates/view/404.html'
+      .state('exclusive', {
+        url: '/exclusive',
+        templateUrl: 'templates/view/exclusive.html'
       })
-      .otherwise({
-      redirectTo: '/404'
-    });
+      .state('shortterm', {
+        url: '/shortterm',
+        templateUrl: 'templates/view/shortterm.html'
+      })
+      .state('longterm', {
+        url: '/longterm',
+        templateUrl: 'templates/view/longterm.html'
+      })
+      .state('sale', {
+        url: '/sale',
+        templateUrl: 'templates/view/sale.html'
+      })
+      .state('qa', {
+        url: '/qa',
+        templateUrl: 'templates/view/qa.html'
+      })
+      .state('services', {
+        url: '/services',
+        templateUrl: 'templates/view/services.html'
+      })
+      .state('contacts', {
+        url: '/contacts',
+        templateUrl: 'templates/view/contacts.html'
+      });
+
+    $urlRouterProvider.otherwise('/');
 
     $locationProvider.hashPrefix('');
   }

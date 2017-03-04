@@ -1,0 +1,185 @@
+//
+  Exclusive
+  =============
+
+  Author:  iStudioDTD.com
+  Updated: March 2017
+  Notes:   Hand coded for Orange Holiday Villas
+
+#exclusive
+  .row#exclusiveCallout
+    .cal-12
+      .well
+        .page-header.page-primary
+          h1 Эксклюзивные объекты
+            small Несколько слов...
+        .page-body#block-exclusive
+          h1.text-center Эксклюзивные объекты недвижимости
+          h2.text-center Аренда вилл и аппартаментов на Кипре
+          .alert.alert-info#exclusiveAlert
+            h3.text-center
+              | Здесь представлена недвижимость, которая находится в эксклюзивном управлении компании
+              | Orange Holliday villas.
+
+          .row#block-exclusive_filter
+            .col-sm-6.col-sm-offset-3#exclusiveFilterWrapper
+              .panel.panel-info#exclusiveFilter
+                .panel-heading
+                  h3 Задайте условия поиска
+                .panel-body
+                  form.form-horisontal
+                    .form-group.clearfix
+                      label.col-sm-4.control-label.text-right Тип сделки:
+                      .col-sm-8
+                        select.form-control#dealType
+                          -
+                            var dealType = [
+                            {val: 1, text: 'Аренда посуточная'},
+                            {val: 2, text: 'Аренда долгосрочная'},
+                            {val: 3, text: 'Продажа'}
+                            ]
+                          each elem in dealType
+                            option(value="#{elem.val}") #{elem.text}
+
+                    .form-group.clearfix
+                      label.col-sm-4.control-label.text-right Тип объекта:
+                      .col-sm-8
+                        select.form-control#objectType
+                          -
+                            var objectType = [
+                            {val: 1, text: 'Дом'},
+                            {val: 2, text: 'Таунхаус'},
+                            {val: 3, text: 'Квартира'}
+                            ]
+                          each elem in objectType
+                            option(value="#{elem.val}") #{elem.text}
+
+                    .form-group.clearfix
+                      label.col-sm-4.control-label.text-right Город
+                      .col-sm-8
+                        select.form-control#city
+                          -
+                            var city = [
+                            {val: 1, text: 'Пафос'},
+                            {val: 2, text: 'Лимассол'},
+                            {val: 3, text: 'Ларнака'},
+                            {val: 4, text: 'Айа-Напа'},
+                            {val: 5, text: 'Никоссия'}
+                            ]
+                          each elem in city
+                            option(value="#{elem.val}") #{elem.text}
+
+                    .form-group.clearfix
+                      label.col-sm-4.control-label.text-right Кол-во комнат:
+                      .col-sm-8
+                        select.form-control#rooms
+                          -
+                            var rooms = [
+                            {val: 1, text: '1'},
+                            {val: 2, text: '2'},
+                            {val: 3, text: '3'},
+                            {val: 4, text: '4'},
+                            {val: 5, text: '5 и более'}
+                            ]
+                          each elem in rooms
+                            option(value="#{elem.val}") #{elem.text}
+
+                    .form-group.clearfix
+                      label.col-sm-4.control-label.text-right Номер объекта:
+                      .col-sm-8
+                        input(type="text", placeholder="№ объекта").form-control#objectNumber
+
+                    .form-group.clearfix
+                      .col-lg-7.col-lg-offset-5.col-md-offset-3.col-sm-offset-1
+                        button.btn.btn-success.btn-lg.btn-margin Найти
+                        button.btn.btn-warning.btn-lg.btn-margin Очистить
+
+
+
+          .row
+            .col-sm-12
+              .panel.panel-info
+                .badge.badge-object
+                  span.glyphicon.glyphicon-tag Хит продаж
+                .panel-heading
+                  h3 Объект № 30595
+
+                .panel.panel-body
+                  .col-sm-5
+                    a(href="../../images/30593_700x500.jpg", data-lightbox="30593_300x200", data-title="Комментарий к фото")
+                      img(src="../../images/30593_700x500.jpg").thumbnail.img-main
+                    .col-lg-12.col-lg-offset-0.col-md-offset-0.col-sm-offset-0
+                      button.btn.btn-success.btn-lg.btn-margin Стоимость
+                      button.btn.btn-warning.btn-lg.btn-margin Календарь занятости
+
+                  .col-sm-7
+                    -
+                      var exclusive_object_1 = [
+                      { label: 'Адрес:',
+                      text: 'Lorem ipsum dolor sit amet.'},
+                      { label: 'Посуточная аренда:',
+                      text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.' +
+                      'A dolorem ducimus error eveniet ex ipsam itaque nemo omnis' +
+                      'quas ullam?'},
+                      { label: 'Кол. комнат:',
+                      text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.' +
+                      'Accusantium, aliquid, animi atque consequatur consequuntur' +
+                      'delectus eos expedita fugit laborum minima odio perferendis' +
+                      'provident quia rem repellat sed sunt, veniam voluptatem.'},
+                      { label: 'Сан. узел:',
+                      text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.' +
+                      'Accusantium, aliquid, animi atque consequatur consequuntur'},
+                      { label: 'Бассейн:',
+                      text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.' +
+                      'Accusantium, aliquid, animi atque consequatur consequuntur'}
+                      ]
+                    each elem in exclusive_object_1
+                      .col-sm-12.form-group.clearfix
+                        label.col-sm-3.control-label.text-right #{elem.label}
+                        .col-sm-9.clearfix #{elem.text}
+
+                  .col-sm-12
+                    -
+                      var exclusive_object_2 = [
+                      { label: 'Дополнительно:',
+                      text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.' +
+                      'Accusantium, aliquid, animi atque consequatur consequuntur' +
+                      'delectus eos expedita fugit laborum minima odio perferendis' +
+                      'provident quia rem repellat sed sunt, veniam voluptatem.' +
+                      'Lorem ipsum dolor sit amet, consectetur adipisicing elit.' +
+                      'Accusantium, aliquid, animi atque consequatur consequuntur' +
+                      'delectus eos expedita fugit laborum minima odio perferendis' +
+                      'provident quia rem repellat sed sunt, veniam voluptatem.' +
+                      'Lorem ipsum dolor sit amet, consectetur adipisicing elit.' +
+                      'Accusantium, aliquid, animi atque consequatur consequuntur' +
+                      'delectus eos expedita fugit laborum minima odio perferendis' +
+                      'provident quia rem repellat sed sunt, veniam voluptatem.'}
+                      ]
+                    each elem in exclusive_object_2
+                      .col-sm-12.form-group.clearfix
+                        label.col-sm-2.control-label.text-right #{elem.label}
+                        .col-sm-10 #{elem.text}
+
+                  -
+                    var photogallery = [
+                    {href: '../../images/gallery_30593_1.jpg'},
+                    {href: '../../images/gallery_30593_2.jpg'},
+                    {href: '../../images/gallery_30593_3.jpg'},
+                    {href: '../../images/gallery_30593_1.jpg'},
+                    {href: '../../images/gallery_30593_2.jpg'},
+                    {href: '../../images/gallery_30593_3.jpg'},
+                    {href: '../../images/gallery_30593_1.jpg'},
+                    {href: '../../images/gallery_30593_2.jpg'},
+                    {href: '../../images/gallery_30593_3.jpg'},
+                    {href: '../../images/gallery_30593_1.jpg'},
+                    {href: '../../images/gallery_30593_2.jpg'},
+                    {href: '../../images/gallery_30593_3.jpg'}
+                    ]
+
+                  .col-sm-12
+                    h2.text-center Фотогалерея
+                    ul.col-sm-10.col-sm-offset-1.list-inline.text-center#gallery-30593
+                      each elem in photogallery
+                        li
+                          a(href="#{elem.href}", data-lightbox="roadtrip")
+                            img(src="#{elem.href}").thumbnail.img-gallery

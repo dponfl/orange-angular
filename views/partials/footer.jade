@@ -20,18 +20,19 @@ footer
         ul.list-unstyled
           -
             var nav = [
-            {href:'#main', text: 'Главная'},
-            {href:'#exclusive', text: 'Эксклюзив'},
-            {href:'#shortterm', text: 'Посуточная аренда'},
-            {href:'#longterm', text: 'Долгосрочная аренда'},
-            {href:'#sale', text: 'Продажа'},
-            {href:'#qa', text: 'Вопросы'},
-            {href:'#services', text: 'Доп. услуги'},
-            {href:'#contacts', text: 'Контакты'}
+            {href:'main', text: 'Главная'},
+            {href:'exclusive', text: 'Эксклюзив'},
+            {href:'shortterm', text: 'Посуточная аренда'},
+            {href:'longterm', text: 'Долгосрочная аренда'},
+            {href:'sale', text: 'Продажа'},
+            {href:'qa', text: 'Вопросы'},
+            {href:'services', text: 'Доп. услуги'},
+            {href:'contacts', text: 'Контакты'}
             ]
           each elem in nav
             li
-              a(href="#{elem.href}") #{elem.text}
+              a(data-ui-sref="#{elem.href}") #{elem.text}
+
       .col-sm-2
         h6 Подпишись на наши новости
         ul.list-unstyled

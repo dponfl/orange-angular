@@ -28,6 +28,7 @@ $(document).ready(function() {
 });
 */
 
+/*
 $(window).scroll(function() {
   $(".slideanim").each(function(){
     var pos = $(this).offset().top;
@@ -36,5 +37,19 @@ $(window).scroll(function() {
     if (pos < winTop + 600) {
       $(this).addClass("slide");
     }
+  });
+});
+*/
+
+$(document).ready(function() {
+  $(".navbar a, footer a").on('click', function(event) {
+
+    // $('html, body').scrollTop(0);
+
+    $('html, body').animate({
+      scrollTop: 0
+    }, 900);
+
+    $('.navbar-collapse').removeClass('in');
   });
 });
