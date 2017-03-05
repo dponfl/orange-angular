@@ -7,15 +7,23 @@
   Notes:	 Hand coded for Orange Holiday Villas
 
 #main
-  .carousel#mainCarousel
+  div(data-ng-controller='CarouselCtrl as carousel', data-ride="carousel").carousel.slide#mainCarousel
     //- Indicators
     ol.carousel-indicators
       li(data-slide-to="0", data-target="#mainCarousel").active
       li(data-slide-to="1", data-target="#mainCarousel")
-      li(data-slide-to="2" data-target="#mainCarousel")
+      li(data-slide-to="2", data-target="#mainCarousel")
 
-    //- Wrapper for slides
+    //- New carousel
     .carousel-inner
+      div(data-ng-repeat='slide in carousel.slides', data-ng-class="{'active': slide.active}").item
+        img(data-ng-src='{{slide.image}}').carousel-img
+        .carousel-caption
+          h4 {{slide.title}}
+          p {{slide.text}}
+
+    //-  for slides
+    //.carousel-inner
       .item.active#slide01
         .carousel-caption
           h4 Slide 01 message
@@ -37,10 +45,14 @@
             | Тота игнота алияуандо ан яуо, хабео яуидам хендрерит те яуо.
 
     //- Controls
-    a(data-slide="prev", href="#mainCarousel").left.carousel-control
-      span.icon-prev
-    a(data-slide="next", href="#mainCarousel").right.carousel-control
-      span.icon-next
+    a(data-slide="prev", href="#mainCarousel", role="button").left.carousel-control
+      //span.icon-prev
+      span(aria-hidden="true").glyphicon.glyphicon-chevron-left
+      span.sr-only Previous
+    a(data-slide="next", href="#mainCarousel", role="button").right.carousel-control
+      //span.icon-next
+      span(aria-hidden="true").glyphicon.glyphicon-chevron-right
+      span.sr-only Next
 
   .row#mainCallout
     .cal-12
@@ -85,50 +97,52 @@
           h1 Эксклюзивные объекты
             small Несколько слов...
         .page-body#block-exclusive
-          h1.text-center Эксклюзивные объекты недвижимости
-          h2.text-center Аренда вилл и аппартаментов на Кипре
+          .row
+            .col-sm-12
+              h1.text-center Эксклюзивные объекты недвижимости
+              h2.text-center Аренда вилл и аппартаментов на Кипре
 
           .row
-            .col-sm-6
+            .col-sm-4
               .panel.panel-info
                 .badge.badge-object
                   span.glyphicon.glyphicon-tag Хит продаж
                 .panel-heading
                   h3 Объект № 30595
 
-                .panel.panel-body
-                  .col-sm-5
+                .panel.panel-body.panel-main-exclusive
+                  .col-sm-12
                     a(href="../../images/30593_700x500.jpg", data-lightbox="30593_300x200", data-title="Комментарий к фото")
                       img(src="../../images/30593_700x500.jpg").thumbnail.img-main
-                    .col-lg-12.col-lg-offset-0.col-md-offset-0.col-sm-offset-0
-                      button.btn.btn-success.btn-sm.btn-margin Подробная информация по объекту
 
-                  .col-sm-7
+                  .col-sm-12
+                    button.btn.btn-success.btn-sm.btn-margin.center-block Подробнее...
+
+
                     -
                       var exclusive_object_1 = [
-                      { label: 'Тип объекта:',
-                      text: 'Lorem ipsum'},
-                      { label: 'Тип сделки:',
-                      text: 'Lorem ipsum dolor sit amet.'},
                       { label: 'Адрес:',
                         text: 'Lorem ipsum dolor sit amet.'},
-                      { label: 'Стоимость:',
-                        text: 'Lorem ipsum dolor'},
+                      { label: 'Тип объекта:',
+                        text: 'Lorem ipsum'},
                       { label: 'Кол. комнат:',
                         text: '3'},
-                      { label: 'Сан. узел:',
-                        text: 'Lorem ipsum dolor sit amet'},
-                      { label: 'Бассейн:',
-                        text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.'}
+                      { label: 'Тип сделки:',
+                        text: 'Lorem ipsum dolor sit amet.'},
+                      { label: 'Стоимость:',
+                        text: 'Lorem ipsum dolor'}
                       ]
                     each elem in exclusive_object_1
-                      .col-sm-12.form-group.clearfix
-                        label.col-sm-3.control-label.text-right #{elem.label}
-                        .col-sm-9.clearfix #{elem.text}
+                      //.form-group.clearfix
+                        label.col-sm-7.control-label.text-right #{elem.label}
+                        .col-sm-5.clearfix #{elem.text}
+                      div
+                        b #{elem.label}
+                        | &nbsp;#{elem.text}
 
           .row
-            .col-sm-12.col-sm-offset-4
-              button.btn.btn-info.btn-lg.btn-margin Подробная информация о доступных объектах
+            .col-sm-12.center-block
+              button.btn.btn-info.btn-lg.btn-margin.center-block Подробная информация о доступных объектах
 
 #shortterm
   .row#shorttermCallout

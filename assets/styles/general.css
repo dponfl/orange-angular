@@ -18,6 +18,10 @@ Notes:	 Hand coded for Orange Holiday Villas
     background-color: #e7e7e7 !important;
 }
 
+.panel {
+    margin-top: 30px;
+}
+
 .panel.panel-info {
     position: relative;
 }
@@ -120,10 +124,49 @@ body {
         font-size: 10px;
     }
 
+    .panel-main-exclusive {
+        font-size: 8px;
+    }
+
     .badge.badge-object {
         font-size: small;
     }
 
+}
+
+/* Landscape phone to portrait tablet */
+@media (max-width: 768px) {
+
+    .panel-heading {
+        font-size: 18px;
+        color: white;
+    }
+
+    .panel-body {
+        font-size: 12px;
+    }
+
+    .panel-main-exclusive {
+        font-size: 10px;
+    }
+
+}
+
+/* Large desktop */
+@media (max-width: 1200px) {
+
+    .panel-heading {
+        font-size: 20px;
+        color: white;
+    }
+
+    .panel-body {
+        font-size: 14px;
+    }
+
+    .panel-main-exclusive {
+        font-size: 12px;
+    }
 }
 
 /* --------------------------------------
@@ -164,47 +207,4 @@ body {
 
 
 
-/* Landscape phone to portrait tablet */
-@media (max-width: 768px) {
 
-    .carousel-caption {
-        font-size: 14px;
-    }
-
-    .carousel-caption h4 {
-        font-size: 20px;
-    }
-
-    .panel-heading {
-        font-size: 24px;
-        color: white;
-    }
-
-    .panel-body {
-        font-size: 12px;
-    }
-
-}
-
-/* Large desktop */
-@media (min-width: 1200px) {
-
-    .carousel-caption {
-        font-size: 24px;
-    }
-
-    .carousel-caption h4 {
-        font-size: 32px;
-    }
-
-    .panel-heading {
-        font-size: 26px;
-        color: white;
-    }
-
-    .panel-body {
-        font-size: 18px;
-    }
-
-
-}

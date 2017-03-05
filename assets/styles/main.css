@@ -13,13 +13,13 @@ Notes:	 Hand coded for Orange Holiday Villas
     margin-top: 50px;
 }
 
+.nav, .pagination, .carousel, .panel-title a {
+    cursor: pointer;
+}
+
 /* --------------------------------------
    Carousel
    -------------------------------------- */
-
-#mainCarousel .item {
-    height: 400px;
-}
 
 #mainCarousel {
     margin-top: 20px;
@@ -37,16 +37,8 @@ Notes:	 Hand coded for Orange Holiday Villas
     color: darkblue;
 }
 
-#slide01 {
-    background: url("../images/main_carousel_medium_01.jpg") top center no-repeat;
-}
-
-#slide02 {
-    background: url("../images/main_carousel_medium_02.jpg") top center no-repeat;
-}
-
-#slide03 {
-    background: url("../images/main_carousel_medium_03.jpg") top center no-repeat;
+.carousel-img {
+    width: 100%;
 }
 
 /* --------------------------------------
@@ -56,63 +48,63 @@ Notes:	 Hand coded for Orange Holiday Villas
 /* Portrait & landscape phone */
 @media (max-width: 480px) {
 
-    #mainCarousel .item {
-        height: 300px;
+    /*
+    #mainCarousel .carousel-inner .item {
+        width: 400px;
+    }
+    */
+
+    /*
+    .carousel-caption {
+        font-size: 10px;
     }
 
-    #slide01 {
-        background: url("../images/main_carousel_small_01.jpg") top center no-repeat;
+    .carousel-caption h4 {
+        font-size: 14px;
     }
+    */
 
-    #slide02 {
-        background: url("../images/main_carousel_small_02.jpg") top center no-repeat;
-    }
-
-    #slide03 {
-        background: url("../images/main_carousel_small_03.jpg") top center no-repeat;
-    }
 
 }
-
 
 /* Landscape phone to portrait tablet */
 @media (max-width: 768px) {
 
-    #mainCarousel .item {
-        height: 600px;
+    /*
+    #mainCarousel .carousel-inner .item {
+        width: 700px;
+    }
+    */
+
+    /*
+    .carousel-caption {
+        font-size: 14px;
     }
 
-    #slide01 {
-        background: url("../images/main_carousel_medium_01.jpg") top center no-repeat;
+    .carousel-caption h4 {
+        font-size: 20px;
     }
-
-    #slide02 {
-        background: url("../images/main_carousel_medium_02.jpg") top center no-repeat;
-    }
-
-    #slide03 {
-        background: url("../images/main_carousel_medium_03.jpg") top center no-repeat;
-    }
+    */
 
 }
 
 /* Large desktop */
-@media (min-width: 1200px) {
+@media (max-width: 1200px) {
 
-    #mainCarousel .item {
-        height: 800px;
+    /*
+    #mainCarousel .carousel-inner .item {
+        width: 1100px;
+    }
+    */
+
+    /*
+    .carousel-caption {
+        font-size: 24px;
     }
 
-    #slide01 {
-        background: url("../images/main_carousel_large_01.jpg") top center no-repeat;
+    .carousel-caption h4 {
+        font-size: 32px;
     }
-
-    #slide02 {
-        background: url("../images/main_carousel_large_02.jpg") top center no-repeat;
-    }
-
-    #slide03 {
-        background: url("../images/main_carousel_large_03.jpg") top center no-repeat;
-    }
+    */
 
 }
