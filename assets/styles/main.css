@@ -42,6 +42,19 @@ Notes:	 Hand coded for Orange Holiday Villas
 }
 
 /* --------------------------------------
+   Main Page
+   -------------------------------------- */
+.main-panel {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.form-control-static-text {
+    height: auto !important;
+}
+
+
+/* --------------------------------------
    Media Queries
    -------------------------------------- */
 

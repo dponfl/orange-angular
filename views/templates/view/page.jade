@@ -104,41 +104,11 @@
 
           .row
             .col-sm-4
-              .panel.panel-info
-                .badge.badge-object
-                  span.glyphicon.glyphicon-tag Хит продаж
-                .panel-heading
-                  h3 Объект № 30595
-
-                .panel.panel-body.panel-main-exclusive
-                  .col-sm-12
-                    a(href="../../images/30593_700x500.jpg", data-lightbox="30593_300x200", data-title="Комментарий к фото")
-                      img(src="../../images/30593_700x500.jpg").thumbnail.img-main
-
-                  .col-sm-12
-                    button.btn.btn-success.btn-sm.btn-margin.center-block Подробнее...
-
-
-                    -
-                      var exclusive_object_1 = [
-                      { label: 'Адрес:',
-                        text: 'Lorem ipsum dolor sit amet.'},
-                      { label: 'Тип объекта:',
-                        text: 'Lorem ipsum'},
-                      { label: 'Кол. комнат:',
-                        text: '3'},
-                      { label: 'Тип сделки:',
-                        text: 'Lorem ipsum dolor sit amet.'},
-                      { label: 'Стоимость:',
-                        text: 'Lorem ipsum dolor'}
-                      ]
-                    each elem in exclusive_object_1
-                      //.form-group.clearfix
-                        label.col-sm-7.control-label.text-right #{elem.label}
-                        .col-sm-5.clearfix #{elem.text}
-                      div
-                        b #{elem.label}
-                        | &nbsp;#{elem.text}
+              main-exclusive-panel
+            .col-sm-4
+              main-exclusive-panel
+            .col-sm-4
+              main-exclusive-panel
 
           .row
             .col-sm-12.center-block
