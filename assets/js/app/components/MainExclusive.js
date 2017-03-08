@@ -8,7 +8,7 @@
         hit: true,
         img: {
           href: '../../images/30593_700x500.jpg',
-          dataLightbox: '30593_300x200',
+          dataLightbox: '1',
           dataTitle: 'Комментарий к фото',
           src: '../../images/30593_700x500.jpg'
         },
@@ -29,7 +29,7 @@
         hit: false,
         img: {
           href: '../../images/30593_700x500.jpg',
-          dataLightbox: '30593_300x200',
+          dataLightbox: '2',
           dataTitle: 'Комментарий к фото',
           src: '../../images/30593_700x500.jpg'
         },
@@ -50,7 +50,7 @@
         hit: true,
         img: {
           href: '../../images/30593_700x500.jpg',
-          dataLightbox: '30593_300x200',
+          dataLightbox: '3',
           dataTitle: 'Комментарий к фото',
           src: '../../images/30593_700x500.jpg'
         },
@@ -58,13 +58,13 @@
           { label: 'Адрес:',
             text: '55555555555'},
           { label: 'Тип объекта:',
-            text: '666666666666'},
+            text: '7777777777777'},
           { label: 'Кол. комнат:',
             text: '3'},
           { label: 'Тип сделки:',
-            text: '777777777777.'},
+            text: '888888888888.'},
           { label: 'Стоимость:',
-            text: '88888888888888'}
+            text: '99999999999999'}
         ]
       }
     ]
@@ -78,7 +78,7 @@
         img: '<',
         content: '<'
       },
-      controller: 'MainExclusiveCtrl as excl',
+      // controller: 'MainExclusiveCtrl as excl',
       templateUrl: 'templates/view/main/exclusivePanel.html'
     })
 })();
