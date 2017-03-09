@@ -12,10 +12,10 @@
         img(data-ng-src='{{$ctrl.img.src}}').thumbnail.img-main
 
     .col-sm-12
-      button.btn.btn-success.btn-sm.btn-margin.center-block Подробнее...
-
       form.form-horizontal
           div(data-ng-repeat='elem in $ctrl.content').form-group.form-group-sm.main-panel
             label.col-sm-4.control-label {{elem.label}}
             .col-sm-8
               p.form-control-static.form-control-static-text {{elem.text}}
+      hr
+      button.col-xs-12.btn.btn-success.btn-sm Подробнее...

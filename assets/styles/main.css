@@ -17,6 +17,10 @@ Notes:	 Hand coded for Orange Holiday Villas
     cursor: pointer;
 }
 
+.panel {
+    margin-bottom: 0;
+}
+
 /* --------------------------------------
    Carousel
    -------------------------------------- */

@@ -22,28 +22,6 @@
           h4 {{slide.title}}
           p {{slide.text}}
 
-    //-  for slides
-    //.carousel-inner
-      .item.active#slide01
-        .carousel-caption
-          h4 Slide 01 message
-          p
-            | Лорем ипсум долор сит амет, не дицит легере еос, еос еу волутпат цомпрехенсам,
-            | не хас долор омиттам!
-      .item#slide02
-        .carousel-caption
-          h4 Slide 02 message
-          p
-            | Лорем ипсум долор сит амет, не дицит легере еос, еос еу волутпат цомпрехенсам,
-            | не хас долор омиттам! При утамур сингулис адиписцинг не, не алии ехерци дуо.
-      .item#slide03
-        .carousel-caption
-          h4 Slide 03 message
-          p
-            | Лорем ипсум долор сит амет, не дицит легере еос, еос еу волутпат цомпрехенсам,
-            | не хас долор омиттам! При утамур сингулис адиписцинг не, не алии ехерци дуо.
-            | Тота игнота алияуандо ан яуо, хабео яуидам хендрерит те яуо.
-
     //- Controls
     a(data-slide="prev", href="#mainCarousel", role="button").left.carousel-control
       //span.icon-prev
@@ -101,16 +79,17 @@
             .col-sm-12
               h1.text-center Эксклюзивные объекты недвижимости
               h2.text-center Аренда вилл и аппартаментов на Кипре
-
-          div(data-ng-controller='MainExclusiveCtrl as mainExclCtrl').row
-            .col-sm-4(data-ng-repeat='panel in mainExclCtrl.panels')
-              main-exclusive-panel(hit='panel.hit',
-              img='panel.img',
-              content='panel.content')
-
           .row
-            .col-sm-12.center-block
-              button.btn.btn-info.btn-lg.btn-margin.center-block Подробная информация о доступных объектах
+            .col-sm-12
+              div(data-ng-controller='MainExclusiveCtrl as mainExclCtrl').row
+                div(data-ng-repeat='group in mainExclCtrl.panelGroups').row
+                  .col-sm-4(data-ng-repeat='panel in group')
+                    small-panel(hit='panel.hit',
+                    img='panel.img',
+                    content='panel.content')
+              hr
+              button.col-xs-12.btn.btn-info.btn-lg.btn-margin.center-block
+                | Подробная информация об этих и других эксклюзивных объектах
 
 #shortterm
   .row#shorttermCallout
