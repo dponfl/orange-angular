@@ -59,13 +59,7 @@
           { label: 'Адрес:',
             text: '55555555555'},
           { label: 'Тип объекта:',
-            text: '7777777777777'},
-          /*{ label: 'Кол. комнат:',
-            text: '3'},
-          { label: 'Тип сделки:',
-            text: '888888888888.'},
-          { label: 'Стоимость:',
-            text: '99999999999999'}*/
+            text: '7777777777777'}
         ]
       },
       {
@@ -109,32 +103,9 @@
           { label: 'Стоимость:',
             text: '444444444444'}
         ]
-      },
-/*
-      {
-        hit: true,
-        img: {
-          href: '../../images/30593_700x500.jpg',
-          dataLightbox: '3',
-          dataTitle: 'Комментарий к фото',
-          src: '../../images/30593_700x500.jpg'
-        },
-        content: [
-          { label: 'Адрес:',
-            text: '55555555555'},
-          { label: 'Тип объекта:',
-            text: '7777777777777'},
-          { label: 'Кол. комнат:',
-           text: '3'},
-           { label: 'Тип сделки:',
-           text: '888888888888.'},
-           { label: 'Стоимость:',
-           text: '99999999999999'}
-        ]
       }
-*/
     ];
-    for (let i = 1; i < this.panels.length+1; i++) {
+    for (var i = 1; i < this.panels.length+1; i++) {
       this.innerGroup.push(this.panels[i-1]);
       if (i % 3 == 0) {
         this.panelGroups.push(this.innerGroup);
