@@ -6,6 +6,13 @@
   Updated: January 2017
   Notes:	 Hand coded for Orange Holiday Villas
 
+div(data-ng-controller='TestCtrl as test').row
+  .col-sm-12
+    button(data-ng-click='test.showTest()').btn.btn-info Log config...
+    p Selected language: {{ test.test.lang }}
+    p {{ test.showTestPhrase() }}
+    button(data-ng-click='test.showCities()').btn.btn-info Show cities...
+
 #main
   div(data-ng-controller='CarouselCtrl as carousel', data-ride="carousel").carousel.slide#mainCarousel
     //- Indicators

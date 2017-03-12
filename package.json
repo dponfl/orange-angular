@@ -36,6 +36,7 @@
   "license": "",
   "devDependencies": {
     "async": "^2.1.5",
+    "bluebird": "^3.5.0",
     "grunt-contrib-jade": "^1.0.0",
     "jade": "^1.11.0",
     "lodash": "^4.17.4",

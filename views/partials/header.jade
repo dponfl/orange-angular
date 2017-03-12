@@ -25,7 +25,9 @@
         input(type="text", placeholder="№ объекта").form-control#object-find_input
       button(type="submit").btn.btn-info.pull-left#object-find_button Найти
 
-nav(data-spy="affix", data-offset-top="200").navbar.navbar-default
+nav(data-spy="affix",
+data-offset-top="200",
+data-ng-controller='TestCtrl as test').navbar.navbar-default
 
   .container
 
@@ -131,3 +133,6 @@ nav(data-spy="affix", data-offset-top="200").navbar.navbar-default
                         .col-lg-9.col-lg-offset-3.col-md-offset-3.col-sm-offset-3
                           button(type="submit").btn.btn-success.btn-lg.btn-margin Отправить
                           button(type="cancel").btn.btn-warning.btn-lg.btn-margin Очистить
+        li
+          button(data-ng-click='test.setupLang("en")').btn.btn-link En
+          button(data-ng-click='test.setupLang("ru")').btn.btn-link Ru
