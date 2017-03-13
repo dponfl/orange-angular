@@ -4,26 +4,14 @@
   angular.module('Orange')
     .controller('TestCtrl', TestCtrl);
 
-  TestCtrl.$inject = ['GeneralConfigService', 'City'];
-  function TestCtrl(GeneralConfigService, City) {
+  TestCtrl.$inject = ['GeneralConfigService'];
+  function TestCtrl(GeneralConfigService) {
 
     this.test = GeneralConfigService.orangeConfig;
 
     this.showCities = function () {
       console.log('showCities:City.query');
-        City.query(function (data) {
-        })
-          .$promise
-          .then(function (data) {
-          console.log('!!! Success...');
-          console.dir(data);
-          return;
-        })
-          .catch(function (err) {
-            console.log('Error...');
-            console.dir(err);
-            return;
-          });
+      GeneralConfigService.getCities();
     };
 
     this.showTest = function () {
