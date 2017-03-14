@@ -4,8 +4,10 @@
   angular.module('Orange')
     .controller('TestCtrl', TestCtrl);
 
-  TestCtrl.$inject = ['GeneralConfigService'];
-  function TestCtrl(GeneralConfigService) {
+  TestCtrl.$inject = ['GeneralConfigService', 'lodash'];
+  function TestCtrl(GeneralConfigService, lodash) {
+
+    _ = lodash;
 
     this.test = GeneralConfigService.orangeConfig;
 

@@ -46,6 +46,9 @@ var jsFilesToInject = [
   'vendor/angular-resource/angular-resource.js',
   'vendor/angular-ui-router/release/angular-ui-router.js',
 
+  // Load Lodash
+  'vendor/ng-lodash/build/ng-lodash.js',
+
   'js/dependencies/Other/**/*.js',
 
   // Load application modules

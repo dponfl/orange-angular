@@ -4,7 +4,8 @@
 
   angular.module('Orange', [
     'ngResource',
-    'ui.router'
+    'ui.router',
+    'ngLodash'
   ]).config(OrangeConfig);
 
   OrangeConfig.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider'];

@@ -6,12 +6,22 @@
   Updated: January 2017
   Notes:	 Hand coded for Orange Holiday Villas
 
-div(data-ng-controller='TestCtrl as test').row
+div(data-ng-controller='TestCtrl as tc').row
   .col-sm-12
-    button(data-ng-click='test.showTest()').btn.btn-info Log config...
-    p Selected language: {{ test.test.lang }}
-    p {{ test.showTestPhrase() }}
-    button(data-ng-click='test.showCities()').btn.btn-info Show cities...
+    button(data-ng-click='tc.showTest()').btn.btn-info Log config...
+    p Selected language: {{ tc.test.lang }}
+    p {{ tc.showTestPhrase() }}
+    ul
+      li(data-ng-repeat='elem in tc.test.cityList[tc.test.lang]') {{elem.key}} => {{elem.val}}
+
+    .form-group.clearfix
+      label.col-sm-4.control-label.text-right Город
+      .col-sm-8
+        select.form-control#city
+          option(data-ng-repeat='elem in tc.test.cityList[tc.test.lang]',
+            value="elem.key") {{elem.val}}
+
+    button(data-ng-click='tc.showCities()').btn.btn-info Show cities...
 
 #main
   div(data-ng-controller='CarouselCtrl as carousel', data-ride="carousel").carousel.slide#mainCarousel
