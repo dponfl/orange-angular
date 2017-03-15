@@ -8,13 +8,15 @@
   /**
    * Service to manage main application params
    */
-  GeneralConfigService.$inject = ['City', 'lodash'];
-  function GeneralConfigService(City, lodash) {
+  GeneralConfigService.$inject = ['City', 'Deal', 'Obj', 'lodash'];
+  function GeneralConfigService(City, Deal, Obj, lodash) {
     _ = lodash;
     let self = {
       orangeConfig: {},
       setLang: _setLang,
-      getCities: _getCities
+      getCities: _getCities,
+      getDeals: _getDeals,
+      getObj: _getObj
     };
 
     function _setLang(lang = '') {
@@ -22,11 +24,31 @@
       self.orangeConfig.lang = lang || 'en';
     } // _setLang
 
+    /**
+     * Exclude elements wish show = 0 from select list
+     */
+    function _excludeEmptyElem(arr) {
+      _.forEach(arr, function (elem) {
+        _.remove(elem, function (innerElem) {
+          return innerElem == -1;
+        })
+      })
+    } // _excludeEmptyElem
+
+    /**
+     * City
+     */
+
     function _mapCityData(elem) {
       if (!_.isArray(self.orangeConfig.cityList[elem.lang])) self.orangeConfig.cityList[elem.lang] = [];
-      self.orangeConfig.cityList[elem.lang][elem.order] = {};
-      self.orangeConfig.cityList[elem.lang][elem.order]['key'] = elem.key;
-      self.orangeConfig.cityList[elem.lang][elem.order]['val'] = elem.city;
+      if (elem.show == 0) {
+        self.orangeConfig.cityList[elem.lang][elem.order] = -1;
+      } else {
+        self.orangeConfig.cityList[elem.lang][elem.order] = {};
+        self.orangeConfig.cityList[elem.lang][elem.order]['key'] = elem.key;
+        self.orangeConfig.cityList[elem.lang][elem.order]['val'] = elem.city;
+      }
+
     } // _mapCityData
 
     function _getCities() {
@@ -39,9 +61,11 @@
 
           self.orangeConfig.cityList = {};
 
-          if (!_.isArray(data)) throw Error('Error: cities data is not an array');
+          if (!_.isArray(data)) throw Error('Error: Cities data is not an array');
 
           data.map(_mapCityData);
+
+          _excludeEmptyElem(self.orangeConfig.cityList);
 
           // console.log('self.orangeConfig:');
           // console.dir(self.orangeConfig);
@@ -56,8 +80,106 @@
         });
     } // _getCities
 
+    /**
+     * Deal
+     */
+
+    function _mapDealData(elem) {
+      if (!_.isArray(self.orangeConfig.dealList[elem.lang])) self.orangeConfig.dealList[elem.lang] = [];
+      if (elem.show == 0) {
+        self.orangeConfig.dealList[elem.lang][elem.order] = -1;
+      } else {
+        self.orangeConfig.dealList[elem.lang][elem.order] = {};
+        self.orangeConfig.dealList[elem.lang][elem.order]['key'] = elem.key;
+        self.orangeConfig.dealList[elem.lang][elem.order]['val'] = elem.deal;
+      }
+
+    } // _mapDealData
+
+    function _getDeals() {
+      Deal.query(function (data) {
+      })
+        .$promise
+        .then(function (data) {
+          // console.log('!!! Success...');
+          // console.dir(data);
+
+          self.orangeConfig.dealList = {};
+
+          if (!_.isArray(data)) throw Error('Error: Deals data is not an array');
+
+          data.map(_mapDealData);
+
+          _excludeEmptyElem(self.orangeConfig.dealList);
+
+          // console.log('self.orangeConfig:');
+          // console.dir(self.orangeConfig);
+          return;
+        })
+        .catch(function (err) {
+
+          // todo: change by Log
+          console.log('Error...');
+          console.dir(err);
+          return;
+        });
+    } // _getDeals
+
+    /**
+     * Object
+     */
+
+    function _mapObjData(elem) {
+      if (!_.isArray(self.orangeConfig.objList[elem.lang])) self.orangeConfig.objList[elem.lang] = [];
+      if (elem.show == 0) {
+        self.orangeConfig.objList[elem.lang][elem.order] = -1;
+      } else {
+        self.orangeConfig.objList[elem.lang][elem.order] = {};
+        self.orangeConfig.objList[elem.lang][elem.order]['key'] = elem.key;
+        self.orangeConfig.objList[elem.lang][elem.order]['val'] = elem.obj;
+      }
+
+    } // _mapObjData
+
+    function _getObj() {
+      Obj.query(function (data) {
+      })
+        .$promise
+        .then(function (data) {
+          // console.log('!!! Success...');
+          // console.dir(data);
+
+          self.orangeConfig.objList = {};
+
+          if (!_.isArray(data)) throw Error('Error: Obj data is not an array');
+
+          data.map(_mapObjData);
+
+          _excludeEmptyElem(self.orangeConfig.objList);
+
+          // console.log('self.orangeConfig:');
+          // console.dir(self.orangeConfig);
+          return;
+        })
+        .catch(function (err) {
+
+          // todo: change by Log
+          console.log('Error...');
+          console.dir(err);
+          return;
+        });
+    } // _getObjects
+
+
+
+    /**
+     * Initialising of app configs
+     */
+
     self.setLang();
     self.getCities();
+    self.getDeals();
+    self.getObj();
 
     return self;
   }

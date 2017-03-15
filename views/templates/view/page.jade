@@ -11,17 +11,44 @@ div(data-ng-controller='TestCtrl as tc').row
     button(data-ng-click='tc.showTest()').btn.btn-info Log config...
     p Selected language: {{ tc.test.lang }}
     p {{ tc.showTestPhrase() }}
+
+    // City
+    p Города
     ul
       li(data-ng-repeat='elem in tc.test.cityList[tc.test.lang]') {{elem.key}} => {{elem.val}}
 
     .form-group.clearfix
       label.col-sm-4.control-label.text-right Город
       .col-sm-8
-        select.form-control#city
+        select.form-control
           option(data-ng-repeat='elem in tc.test.cityList[tc.test.lang]',
             value="elem.key") {{elem.val}}
 
-    button(data-ng-click='tc.showCities()').btn.btn-info Show cities...
+    // Deal
+    p Типы сделки
+    ul
+      li(data-ng-repeat='elem in tc.test.dealList[tc.test.lang]') {{elem.key}} => {{elem.val}}
+
+    .form-group.clearfix
+      label.col-sm-4.control-label.text-right Тип сделки
+      .col-sm-8
+        select.form-control
+          option(data-ng-repeat='elem in tc.test.dealList[tc.test.lang]',
+          value="elem.key") {{elem.val}}
+
+    // Object
+    p Типы объекта
+    ul
+      li(data-ng-repeat='elem in tc.test.objList[tc.test.lang]') {{elem.key}} => {{elem.val}}
+
+    .form-group.clearfix
+      label.col-sm-4.control-label.text-right Тип объекта
+      .col-sm-8
+        select.form-control
+          option(data-ng-repeat='elem in tc.test.objList[tc.test.lang]',
+          value="elem.key") {{elem.val}}
+
+    //button(data-ng-click='tc.showCities()').btn.btn-info Show cities...
 
 #main
   div(data-ng-controller='CarouselCtrl as carousel', data-ride="carousel").carousel.slide#mainCarousel
