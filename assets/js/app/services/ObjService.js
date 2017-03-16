@@ -2,10 +2,10 @@
 
 (function () {
   angular.module('Orange')
-    .factory('Obj', Obj);
+    .factory('oObj', oObj);
 
-  Obj.$inject = ['$resource'];
-  function Obj($resource) {
+  oObj.$inject = ['$resource'];
+  function oObj($resource) {
     return $resource('/obj/:id', {id: '@id'});
   }
 })();

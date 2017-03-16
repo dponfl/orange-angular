@@ -8,18 +8,34 @@
   /**
    * Service to manage main application params
    */
-  GeneralConfigService.$inject = ['City', 'Deal', 'Obj', 'lodash'];
-  function GeneralConfigService(City, Deal, Obj, lodash) {
-    _ = lodash;
-    let self = {
+  GeneralConfigService.$inject = ['oCity', 'oDeal', 'oObj', 'oRoom', 'oTag', 'lodash'];
+  function GeneralConfigService(oCity, oDeal, oObj, oRoom, oTag, lodash) {
+    var _ = lodash;
+    var self = {
       orangeConfig: {},
       setLang: _setLang,
       getCities: _getCities,
       getDeals: _getDeals,
-      getObj: _getObj
+      getObj: _getObj,
+      getRoom: _getRoom,
+      getTag: _getTag
     };
 
-    function _setLang(lang = '') {
+    /**
+     * Initialising of app configs
+     */
+
+    self.setLang();
+    self.getCities();
+    self.getDeals();
+    self.getObj();
+    self.getRoom();
+    self.getTag();
+
+    return self;
+
+
+    function _setLang(lang) {
       // console.log('Setting lang=' + lang);
       self.orangeConfig.lang = lang || 'en';
     } // _setLang
@@ -52,7 +68,7 @@
     } // _mapCityData
 
     function _getCities() {
-      City.query(function (data) {
+      oCity.query(function (data) {
       })
         .$promise
         .then(function (data) {
@@ -97,7 +113,7 @@
     } // _mapDealData
 
     function _getDeals() {
-      Deal.query(function (data) {
+      oDeal.query(function (data) {
       })
         .$promise
         .then(function (data) {
@@ -142,7 +158,7 @@
     } // _mapObjData
 
     function _getObj() {
-      Obj.query(function (data) {
+      oObj.query(function (data) {
       })
         .$promise
         .then(function (data) {
@@ -170,17 +186,84 @@
         });
     } // _getObjects
 
-
-
     /**
-     * Initialising of app configs
+     * Room
      */
 
-    self.setLang();
-    self.getCities();
-    self.getDeals();
-    self.getObj();
+    function _mapRoomData(elem) {
+      if (!_.isArray(self.orangeConfig.roomList[elem.lang])) self.orangeConfig.roomList[elem.lang] = [];
+      if (elem.show == 0) {
+        self.orangeConfig.roomList[elem.lang][elem.order] = -1;
+      } else {
+        self.orangeConfig.roomList[elem.lang][elem.order] = {};
+        self.orangeConfig.roomList[elem.lang][elem.order]['key'] = elem.key;
+        self.orangeConfig.roomList[elem.lang][elem.order]['val'] = elem.room;
+      }
 
-    return self;
+    } // _mapRoomData
+
+    function _getRoom() {
+      oRoom.query(function (data) {
+      })
+        .$promise
+        .then(function (data) {
+          // console.log('!!! Success...');
+          // console.dir(data);
+
+          self.orangeConfig.roomList = {};
+
+          if (!_.isArray(data)) throw Error('Error: Room data is not an array');
+
+          data.map(_mapRoomData);
+
+          _excludeEmptyElem(self.orangeConfig.roomList);
+
+          // console.log('self.orangeConfig:');
+          // console.dir(self.orangeConfig);
+          return;
+        })
+        .catch(function (err) {
+
+          // todo: change by Log
+          console.log('Error...');
+          console.dir(err);
+          return;
+        });
+    } // _getRoom
+
+    /**
+     * Tag
+     */
+
+    function _getTag() {
+      oTag.query(function (data) {
+      })
+        .$promise
+        .then(function (data) {
+          // console.log('!!! Success...');
+          // console.dir(data);
+
+          self.orangeConfig.tagList = {};
+
+          if (!_.isArray(data)) throw Error('Error: Tag data is not an array');
+
+          for (var i = 0; i < data.length; i++) {
+            if (!_.isArray(self.orangeConfig.tagList[data[i].lang])) self.orangeConfig.tagList[data[i].lang] = [];
+            self.orangeConfig.tagList[data[i].lang].push({key: data[i].key, val: data[i].tag})
+          }
+
+          // console.log('self.orangeConfig:');
+          // console.dir(self.orangeConfig);
+          return;
+        })
+        .catch(function (err) {
+
+          // todo: change by Log
+          console.log('Error...');
+          console.dir(err);
+          return;
+        });
+    } // _getTag
+
   }
 })();

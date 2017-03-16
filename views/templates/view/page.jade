@@ -48,6 +48,23 @@ div(data-ng-controller='TestCtrl as tc').row
           option(data-ng-repeat='elem in tc.test.objList[tc.test.lang]',
           value="elem.key") {{elem.val}}
 
+    // Room
+    p Кол-во комнат
+    ul
+      li(data-ng-repeat='elem in tc.test.roomList[tc.test.lang]') {{elem.key}} => {{elem.val}}
+
+    .form-group.clearfix
+      label.col-sm-4.control-label.text-right Кол-во комнат
+      .col-sm-8
+        select.form-control
+          option(data-ng-repeat='elem in tc.test.roomList[tc.test.lang]',
+          value="elem.key") {{elem.val}}
+
+    // Room
+    p Tags
+    ul
+      li(data-ng-repeat='elem in tc.test.tagList[tc.test.lang]') {{elem.key}} => {{elem.val}}
+
     //button(data-ng-click='tc.showCities()').btn.btn-info Show cities...
 
 #main

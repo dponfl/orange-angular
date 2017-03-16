@@ -2,10 +2,10 @@
 
 (function () {
   angular.module('Orange')
-    .factory('Deal', Deal);
+    .factory('oDeal', oDeal);
 
-  Deal.$inject = ['$resource'];
-  function Deal($resource) {
+  oDeal.$inject = ['$resource'];
+  function oDeal($resource) {
     return $resource('/deal/:id', {id: '@id'});
   }
 })();

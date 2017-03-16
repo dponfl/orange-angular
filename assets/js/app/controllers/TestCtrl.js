@@ -7,7 +7,7 @@
   TestCtrl.$inject = ['GeneralConfigService', 'lodash'];
   function TestCtrl(GeneralConfigService, lodash) {
 
-    _ = lodash;
+    var _ = lodash;
 
     this.test = GeneralConfigService.orangeConfig;
 
