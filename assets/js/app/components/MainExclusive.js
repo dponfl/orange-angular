@@ -115,7 +115,7 @@
     if (this.innerGroup.length != 0) this.panelGroups.push(this.innerGroup);
   }
   
-  angular.module('Orange')
+  angular.module('OrangeClient')
     .controller('MainExclusiveCtrl', MainExclusiveCtrl)
     .component('smallPanel', {
       bindings: {

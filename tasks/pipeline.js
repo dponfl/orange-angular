@@ -49,10 +49,13 @@ var jsFilesToInject = [
   // Load Lodash
   'vendor/ng-lodash/build/ng-lodash.js',
 
+  // Load angular-translate
+  'vendor/angular-translate/angular-translate.js',
+
   'js/dependencies/Other/**/*.js',
 
   // Load application modules
-  'js/app/**/module.js',
+  'js/app/modules/**/*.js',
 
   // Load other application files
   'js/app/**/*.js',

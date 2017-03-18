@@ -1,7 +1,7 @@
 "use strict";
 
 (function () {
-  angular.module('Orange')
+  angular.module('OrangeClient')
     .factory('oCity', oCity);
 
   oCity.$inject = ['$resource'];

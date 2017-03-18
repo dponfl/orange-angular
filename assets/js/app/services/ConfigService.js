@@ -2,7 +2,7 @@
 (function () {
   "use strict";
 
-  angular.module('Orange')
+  angular.module('OrangeClient')
     .service('GeneralConfigService', GeneralConfigService);
 
   /**
@@ -14,6 +14,7 @@
     var self = {
       orangeConfig: {},
       setLang: _setLang,
+      getLang: _getLang,
       getCities: _getCities,
       getDeals: _getDeals,
       getObj: _getObj,
@@ -39,6 +40,10 @@
       // console.log('Setting lang=' + lang);
       self.orangeConfig.lang = lang || 'en';
     } // _setLang
+
+    function _getLang() {
+      return self.orangeConfig.lang || 'en';
+    }
 
     /**
      * Exclude elements wish show = 0 from select list

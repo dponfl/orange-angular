@@ -1,7 +1,7 @@
 "use strict";
 
 (function () {
-  angular.module('Orange')
+  angular.module('OrangeClient')
     .controller('CarouselCtrl',CarouselCtrl);
 
   // CarouselCtrl.$inject = ['$scope'];

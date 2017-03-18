@@ -53,7 +53,7 @@ html
     
     // MODERNIZR END
 
-  body(data-ng-app='Orange')
+  body(data-ng-app='OrangeClient')
 
     block body
 
@@ -109,9 +109,15 @@ html
     script(src="/vendor/angular-resource/angular-resource.js")
     script(src="/vendor/angular-ui-router/release/angular-ui-router.js")
     script(src="/vendor/ng-lodash/build/ng-lodash.js")
+    script(src="/vendor/angular-translate/angular-translate.js")
     script(src="/js/dependencies/Other/lightbox.js")
     script(src="/js/dependencies/Other/main.js")
-    script(src="/js/app/module.js")
+    script(src="/js/app/modules/app.client.module.js")
+    script(src="/js/app/modules/app.client.routes.js")
+    script(src="/js/app/modules/app.core.js")
+    script(src="/js/app/modules/app.translate.module.js")
+    script(src="/js/app/app.translate.config.js")
+    script(src="/js/app/app.translate.controller.js")
     script(src="/js/app/components/MainExclusive.js")
     script(src="/js/app/controllers/CarouselCtrl.js")
     script(src="/js/app/controllers/TestCtrl.js")

@@ -2,14 +2,12 @@
 
 (function () {
 
-  angular.module('Orange', [
-    'ngResource',
-    'ui.router',
-    'ngLodash'
-  ]).config(OrangeConfig);
+  angular.module('app.client.routes', [
+    'app.core'
+  ]).config(OrangeClientRoutesConfig);
 
-  OrangeConfig.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider'];
-  function OrangeConfig($stateProvider, $urlRouterProvider, $locationProvider) {
+  OrangeClientRoutesConfig.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider'];
+  function OrangeClientRoutesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
 
     $stateProvider
       .state('main', {

@@ -43,7 +43,7 @@ data-ng-controller='TestCtrl as test').navbar.navbar-default
 
       -
         var navbar_menu = [
-          {href:'main', text: 'Главная'},
+          {href:'main', text: '{{"NAV_HOME" | translate}}'},
           {href:'exclusive', text: 'Эксклюзив'},
           {href:'shortterm', text: 'Посуточная аренда'},
           {href:'longterm', text: 'Долгосрочная аренда'},
@@ -133,6 +133,23 @@ data-ng-controller='TestCtrl as test').navbar.navbar-default
                         .col-lg-9.col-lg-offset-3.col-md-offset-3.col-sm-offset-3
                           button(type="submit").btn.btn-success.btn-lg.btn-margin Отправить
                           button(type="cancel").btn.btn-warning.btn-lg.btn-margin Очистить
-        li
-          button(data-ng-click='test.setupLang("en")').btn.btn-link En
-          button(data-ng-click='test.setupLang("ru")').btn.btn-link Ru
+
+
+        li(data-ng-controller='translateCtrl as t').dropdown
+          div(data-toggle="dropdown").dropdown-toggle.flag-icon-toggle
+            img(ng-src='{{t.getLangIcon();}}')
+
+          ul.dropdown-menu
+            li
+              a(href='#', data-ng-click='t.changeLanguage("en");').flag-icon
+                img(src='../../images/flag_icon_en.png')
+                | &nbsp;&nbsp;&nbsp;English
+            li(data-ng-controller='translateCtrl as t')
+              a(href='#', data-ng-click='t.changeLanguage("ru");').flag-icon
+                img(src='../../images/flag_icon_ru.png')
+                | &nbsp;&nbsp;&nbsp;Russian
+
+
+
+          //button(data-ng-click='test.setupLang("en")').btn.btn-link En
+          //button(data-ng-click='test.setupLang("ru")').btn.btn-link Ru

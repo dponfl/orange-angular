@@ -1,7 +1,7 @@
 "use strict";
 
 (function () {
-  angular.module('Orange')
+  angular.module('OrangeClient')
     .controller('TestCtrl', TestCtrl);
 
   TestCtrl.$inject = ['GeneralConfigService', 'lodash'];

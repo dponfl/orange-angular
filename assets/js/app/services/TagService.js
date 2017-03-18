@@ -1,7 +1,7 @@
 "use strict";
 
 (function () {
-  angular.module('Orange')
+  angular.module('OrangeClient')
     .factory('oTag', oTag);
 
   oTag.$inject = ['$resource'];

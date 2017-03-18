@@ -17,6 +17,21 @@ Notes:	 Hand coded for Orange Holiday Villas
    Navbar
    -------------------------------------- */
 
+.nav > li > a {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.flag-icon {
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+}
+
+.flag-icon-toggle {
+    margin-top: 12px;
+    margin-left: 10px;
+}
+
 nav {
     z-index: 9000;
 }

@@ -18,7 +18,7 @@ div(data-ng-controller='TestCtrl as tc').row
       li(data-ng-repeat='elem in tc.test.cityList[tc.test.lang]') {{elem.key}} => {{elem.val}}
 
     .form-group.clearfix
-      label.col-sm-4.control-label.text-right Город
+      label.col-sm-4.control-label.text-right {{'GEN_CITY' | translate}}
       .col-sm-8
         select.form-control
           option(data-ng-repeat='elem in tc.test.cityList[tc.test.lang]',
