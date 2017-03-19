@@ -26,8 +26,7 @@
       button(type="submit").btn.btn-info.pull-left#object-find_button Найти
 
 nav(data-spy="affix",
-data-offset-top="200",
-data-ng-controller='TestCtrl as test').navbar.navbar-default
+data-offset-top="200").navbar.navbar-default
 
   .container
 
@@ -43,40 +42,45 @@ data-ng-controller='TestCtrl as test').navbar.navbar-default
 
       -
         var navbar_menu = [
-          {href:'main', text: '{{"NAV_HOME" | translate}}'},
-          {href:'exclusive', text: 'Эксклюзив'},
-          {href:'shortterm', text: 'Посуточная аренда'},
-          {href:'longterm', text: 'Долгосрочная аренда'},
-          {href:'sale', text: 'Продажа'},
-          {href:'qa', text: 'Вопросы'},
-          {href:'services', text: 'Доп. услуги'},
-          {href:'contacts', text: 'Контакты'}
+          {href:'main', text: 'NAV_HOME'},
+          {href:'exclusive', text: 'NAV_EXCLUSIVE'},
+          {href:'shortterm', text: 'NAV_DAILY'},
+          {href:'longterm', text: 'NAV_LONG_TERM'},
+          {href:'sale', text: 'NAV_SALES'},
+          {href:'qa', text: 'NAV_QA'},
+          {href:'services', text: 'NAV_SERVICES'},
+          {href:'contacts', text: 'NAV_CONTACTS'}
           ]
 
       ul.nav.navbar-nav
         each element in navbar_menu
           li
-            a(data-ui-sref="#{element.href}" data-ui-sref-active="menu-active") #{element.text}
+            a(data-ui-sref="#{element.href}",
+              data-ui-sref-active="menu-active",
+              translate='#{element.text}')
 
         li.dropdown
           button(data-toggle="dropdown").dropdown-toggle.btn.btn-danger.btn-margin-header
-            | Оставить заявку
+            | {{'NAV_REQ_BUTTON' | translate}}&nbsp;
             strong.caret
 
           -
             var dropdown_menu = [
-            {href: '#dailyRequest',       text: 'Снять недв. посуточно'},
-            {href: '#longtermRequest',    text: 'Снять недв. долгосрочно'},
-            {href: '',      text: 'Сдать недвижимость'},
-            {href: '',      text: 'Купить недвижимость'},
-            {href: '',      text: 'Продать недвижимость'}
+            {href: '#dailyRequest',       text: 'NAV_REQ_DAILY'},
+            {href: '#longtermRequest',    text: 'NAV_REQ_LONG_TERM'},
+            {href: '',      text: 'NAV_REQ_LET_PROP'},
+            {href: '',      text: 'NAV_REQ_BUY_PROP'},
+            {href: '',      text: 'NAV_REQ_SELL_PROP'}
             ]
 
           ul.dropdown-menu
             //li.dropdown-header Снять недвижимость
             each el in dropdown_menu
               li
-                a(href="#{el.href}", role="button", data-toggle="modal") #{el.text}
+                a(href="#{el.href}",
+                  role="button",
+                  data-toggle="modal",
+                  translate='#{el.text}')
 
           .modal.fade#dailyRequest
             .modal-dialog
@@ -147,9 +151,5 @@ data-ng-controller='TestCtrl as test').navbar.navbar-default
             li(data-ng-controller='translateCtrl as t')
               a(href='#', data-ng-click='t.changeLanguage("ru");').flag-icon
                 img(src='../../images/flag_icon_ru.png')
-                | &nbsp;&nbsp;&nbsp;Russian
+                | &nbsp;&nbsp;&nbsp;Русский
 
-
-
-          //button(data-ng-click='test.setupLang("en")').btn.btn-link En
-          //button(data-ng-click='test.setupLang("ru")').btn.btn-link Ru
