@@ -26,8 +26,24 @@ function translateConfig ($translateProvider) {
     'NAV_REQ_BUY_PROP': 'Buy property',
     'NAV_REQ_SELL_PROP': 'Sell property',
 
-    // General form items
-    'GEN_CITY': 'City'
+    // Filter form items
+    'PANEL_HEADER': 'Choose',
+    'LBL_DEAL': 'Deal type',
+    'LBL_OBJ': 'Object type',
+    'LBL_CITY': 'City',
+    'LBL_ROOM': 'Number of rooms',
+    'LBL_OBJ_NUM': 'Object number',
+    'OBJ_NUM_PLACEHOLDER': 'Object #',
+    'BTN_FIND': 'Find',
+    'BTN_CLR': 'Clear',
+
+    // Exclusive
+    'PAGE_HEADER_TITLE': '[En]Эксклюзивные объекты',
+    'PAGE_HEADER_SUBTITLE': '[En]Несколько слов...',
+    'PAGE_BODY_H1': '[En]Эксклюзивные объекты недвижимости',
+    'PAGE_BODY_H2': '[En]Аренда вилл и аппартаментов на Кипре',
+    'PAGE_BODY_H3': '[En]Здесь представлена недвижимость, которая находится ' +
+    'в эксклюзивном управлении компании Orange Holliday villas.',
   });
 
   $translateProvider.translations('ru', {
@@ -50,8 +66,24 @@ function translateConfig ($translateProvider) {
     'NAV_REQ_BUY_PROP': 'Купить недвижимость',
     'NAV_REQ_SELL_PROP': 'Продать недвижимость',
 
-    // General form items
-    'GEN_CITY': 'Город'
+    // Filter form items
+    'PANEL_HEADER': 'Задайте условия поиска',
+    'LBL_DEAL': 'Тип сделки',
+    'LBL_OBJ': 'Тип объекта',
+    'LBL_CITY': 'Город',
+    'LBL_ROOM': 'Кол-во комнат',
+    'LBL_OBJ_NUM': 'Номер объекта',
+    'OBJ_NUM_PLACEHOLDER': '№ объекта',
+    'BTN_FIND': 'Найти',
+    'BTN_CLR': 'Очистить',
+
+    // Exclusive
+    'PAGE_HEADER_TITLE': 'Эксклюзивные объекты',
+    'PAGE_HEADER_SUBTITLE': 'Несколько слов...',
+    'PAGE_BODY_H1': 'Эксклюзивные объекты недвижимости',
+    'PAGE_BODY_H2': 'Аренда вилл и аппартаментов на Кипре',
+    'PAGE_BODY_H3': 'Здесь представлена недвижимость, которая находится ' +
+    'в эксклюзивном управлении компании Orange Holliday villas.',
   });
 
   $translateProvider.preferredLanguage('en');

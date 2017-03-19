@@ -1,6 +1,18 @@
 "use strict";
 
 (function () {
+
+  angular.module('OrangeClient')
+    .controller('MainExclusiveCtrl', MainExclusiveCtrl)
+    .component('smallPanel', {
+      bindings: {
+        hit: '<',
+        img: '<',
+        content: '<'
+      },
+      templateUrl: 'templates/view/main/exclusivePanel.html'
+    });
+
   function MainExclusiveCtrl() {
     this.panelGroups = [];
     this.innerGroup = [];
@@ -115,14 +127,5 @@
     if (this.innerGroup.length != 0) this.panelGroups.push(this.innerGroup);
   }
   
-  angular.module('OrangeClient')
-    .controller('MainExclusiveCtrl', MainExclusiveCtrl)
-    .component('smallPanel', {
-      bindings: {
-        hit: '<',
-        img: '<',
-        content: '<'
-      },
-      templateUrl: 'templates/view/main/exclusivePanel.html'
-    })
+
 })();

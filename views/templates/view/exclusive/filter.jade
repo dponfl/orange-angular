@@ -1,0 +1,39 @@
+form.form-horisontal
+  .form-group.clearfix
+    label(translate='LBL_DEAL').col-sm-4.control-label.text-right
+    .col-sm-8
+      select.form-control#dealType
+        option(data-ng-repeat='elem in $ctrl.dealList',
+          value="elem.key") {{elem.val}}
+
+
+  .form-group.clearfix
+    label(translate='LBL_OBJ').col-sm-4.control-label.text-right
+    .col-sm-8
+      select.form-control#objectType
+        option(data-ng-repeat='elem in $ctrl.objList',
+          value="elem.key") {{elem.val}}
+
+  .form-group.clearfix
+    label(translate='LBL_CITY').col-sm-4.control-label.text-right
+    .col-sm-8
+      select.form-control#city
+        option(data-ng-repeat='elem in $ctrl.cityList',
+          value="elem.key") {{elem.val}}
+
+  .form-group.clearfix
+    label(translate='LBL_ROOM').col-sm-4.control-label.text-right
+    .col-sm-8
+      select.form-control#rooms
+        option(data-ng-repeat='elem in $ctrl.roomList',
+          value="elem.key") {{elem.val}}
+
+  .form-group.clearfix
+    label(translate='LBL_OBJ_NUM').col-sm-4.control-label.text-right
+    .col-sm-8
+      input(type="text", placeholder="{{'OBJ_NUM_PLACEHOLDER' | translate}}").form-control#objectNumber
+
+  .form-group.clearfix
+    .col-lg-7.col-lg-offset-5.col-md-offset-3.col-sm-offset-1
+      button(translate='BTN_FIND', data-ng-click='$ctrl.find()').btn.btn-success.btn-lg.btn-margin
+      button(translate='BTN_CLR', data-ng-click='$ctrl.clear()').btn.btn-warning.btn-lg.btn-margin
