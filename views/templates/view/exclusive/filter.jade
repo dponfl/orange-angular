@@ -1,37 +1,39 @@
 form.form-horisontal
   .form-group.clearfix
-    label(translate='LBL_DEAL').col-sm-4.control-label.text-right
+    label(for='dealType', translate='LBL_DEAL').col-sm-4.control-label.text-right
     .col-sm-8
-      select.form-control#dealType
-        option(data-ng-repeat='elem in $ctrl.dealList',
-          value="elem.key") {{elem.val}}
+      select(name='dealType',
+      data-ng-options='option.val for option in $ctrl.dealList track by option.key',
+      data-ng-model='$ctrl.formData.deal').form-control#dealType
 
 
   .form-group.clearfix
-    label(translate='LBL_OBJ').col-sm-4.control-label.text-right
+    label(for='objectType', translate='LBL_OBJ').col-sm-4.control-label.text-right
     .col-sm-8
-      select.form-control#objectType
-        option(data-ng-repeat='elem in $ctrl.objList',
-          value="elem.key") {{elem.val}}
+      select(name='objectType',
+      data-ng-options='option.val for option in $ctrl.objList track by option.key',
+      data-ng-model='$ctrl.formData.obj').form-control#objectType
 
   .form-group.clearfix
-    label(translate='LBL_CITY').col-sm-4.control-label.text-right
+    label(for='city', translate='LBL_CITY').col-sm-4.control-label.text-right
     .col-sm-8
-      select.form-control#city
-        option(data-ng-repeat='elem in $ctrl.cityList',
-          value="elem.key") {{elem.val}}
+      select(name='city',
+      data-ng-options='option.val for option in $ctrl.cityList track by option.key',
+      data-ng-model='$ctrl.formData.city').form-control#city
 
   .form-group.clearfix
-    label(translate='LBL_ROOM').col-sm-4.control-label.text-right
+    label(for='rooms', translate='LBL_ROOM').col-sm-4.control-label.text-right
     .col-sm-8
-      select.form-control#rooms
-        option(data-ng-repeat='elem in $ctrl.roomList',
-          value="elem.key") {{elem.val}}
+      select(name='rooms',
+      data-ng-options='option.val for option in $ctrl.roomList track by option.key',
+      data-ng-model='$ctrl.formData.room').form-control#rooms
 
   .form-group.clearfix
-    label(translate='LBL_OBJ_NUM').col-sm-4.control-label.text-right
+    label(for='objectNumber', translate='LBL_OBJ_NUM').col-sm-4.control-label.text-right
     .col-sm-8
-      input(type="text", placeholder="{{'OBJ_NUM_PLACEHOLDER' | translate}}").form-control#objectNumber
+      input(type="text",
+      placeholder="{{'OBJ_NUM_PLACEHOLDER' | translate}}",
+      data-ng-model='$ctrl.formData.objNum').form-control#objectNumber
 
   .form-group.clearfix
     .col-lg-7.col-lg-offset-5.col-md-offset-3.col-sm-offset-1
