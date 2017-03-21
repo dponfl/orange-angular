@@ -36,6 +36,7 @@ function translateConfig ($translateProvider) {
     'OBJ_NUM_PLACEHOLDER': 'Object #',
     'BTN_FIND': 'Find',
     'BTN_CLR': 'Clear',
+    'AV_REQ': 'reqEn',
 
     // Exclusive
     'PAGE_HEADER_TITLE': '[En]Эксклюзивные объекты',
@@ -76,6 +77,7 @@ function translateConfig ($translateProvider) {
     'OBJ_NUM_PLACEHOLDER': '№ объекта',
     'BTN_FIND': 'Найти',
     'BTN_CLR': 'Очистить',
+    'AV_REQ': 'reqRu',
 
     // Exclusive
     'PAGE_HEADER_TITLE': 'Эксклюзивные объекты',

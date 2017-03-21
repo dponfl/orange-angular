@@ -52,6 +52,9 @@ var jsFilesToInject = [
   // Load angular-translate
   'vendor/angular-translate/angular-translate.js',
 
+  // Load angular-auto-validate
+  'vendor/angular-auto-validate/dist/jcs-auto-validate.js',
+
   'js/dependencies/Other/**/*.js',
 
   // Load application modules

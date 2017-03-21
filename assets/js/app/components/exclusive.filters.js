@@ -15,10 +15,10 @@
       templateUrl: 'templates/view/exclusive/filter.html'
     });
 
-  ExclusiveFiltersCtrl.$inject = ['GeneralConfigService', '$log', '$rootScope', '$scope'];
+  ExclusiveFiltersCtrl.$inject = ['GeneralConfigService', '$log', '$rootScope'];
 
   /* @ngInject */
-  function ExclusiveFiltersCtrl(GeneralConfigService, $log, $rootScope, $scope) {
+  function ExclusiveFiltersCtrl(GeneralConfigService, $log, $rootScope) {
     var vm = this;
 
     vm.dealList = GeneralConfigService.orangeConfig.dealList[$rootScope.lang];
