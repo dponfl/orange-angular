@@ -25,6 +25,7 @@ Notes:	 Hand coded for Orange Holiday Villas
 .flag-icon {
     padding-left: 5px !important;
     padding-right: 5px !important;
+    text-decoration: none !important;
 }
 
 .flag-icon-toggle {

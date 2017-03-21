@@ -145,11 +145,11 @@ data-offset-top="200").navbar.navbar-default
 
           ul.dropdown-menu
             li
-              a(href='', data-ng-click='t.changeLanguage("en");').flag-icon
+              button(data-ng-click='t.changeLanguage("en");').btn.btn-link.flag-icon
                 img(src='../../images/flag_icon_en.png')
                 | &nbsp;&nbsp;&nbsp;English
             li(data-ng-controller='translateCtrl as t')
-              a(href='', data-ng-click='t.changeLanguage("ru");').flag-icon
+              button(data-ng-click='t.changeLanguage("ru");').btn.btn-link.flag-icon
                 img(src='../../images/flag_icon_ru.png')
                 | &nbsp;&nbsp;&nbsp;Русский
 

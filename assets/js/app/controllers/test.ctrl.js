@@ -4,8 +4,8 @@
   angular.module('OrangeClient')
     .controller('TestCtrl', TestCtrl);
 
-  TestCtrl.$inject = ['GeneralConfigService', 'lodash'];
-  function TestCtrl(GeneralConfigService, lodash) {
+  TestCtrl.$inject = ['GeneralConfigService', 'lodash', '$rootScope'];
+  function TestCtrl(GeneralConfigService, lodash, $rootScope) {
 
     var _ = lodash;
 
@@ -26,7 +26,7 @@
     };
 
     this.showTestPhrase = function () {
-      if (GeneralConfigService.orangeConfig.lang == 'en') {
+      if ($rootScope.lang == 'en') {
         return "Message in English...";
       } else {
         return "Текст на русском языке..."

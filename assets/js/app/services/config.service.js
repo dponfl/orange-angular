@@ -8,8 +8,8 @@
   /**
    * Service to manage main application params
    */
-  GeneralConfigService.$inject = ['oCity', 'oDeal', 'oObj', 'oRoom', 'oTag', 'lodash'];
-  function GeneralConfigService(oCity, oDeal, oObj, oRoom, oTag, lodash) {
+  GeneralConfigService.$inject = ['$rootScope', 'oCity', 'oDeal', 'oObj', 'oRoom', 'oTag', 'lodash'];
+  function GeneralConfigService($rootScope, oCity, oDeal, oObj, oRoom, oTag, lodash) {
     var _ = lodash;
     var self = {
       orangeConfig: {},
@@ -38,11 +38,11 @@
 
     function _setLang(lang) {
       // console.log('Setting lang=' + lang);
-      self.orangeConfig.lang = lang || 'en';
+      $rootScope.lang = lang || 'en';
     } // _setLang
 
     function _getLang() {
-      return self.orangeConfig.lang || 'en';
+      return $rootScope.lang || 'en';
     }
 
     /**
