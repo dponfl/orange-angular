@@ -145,7 +145,8 @@ div(data-ng-controller='TestCtrl as tc').row
               div(data-ng-controller='MainExclusiveCtrl as mainExclCtrl').row
                 div(data-ng-repeat='group in mainExclCtrl.panelGroups').row
                   .col-sm-4(data-ng-repeat='panel in group')
-                    small-panel(hit='panel.hit',
+                    small-panel(badge='panel.badge',
+                    type='panel.type',
                     img='panel.img',
                     content='panel.content')
               hr

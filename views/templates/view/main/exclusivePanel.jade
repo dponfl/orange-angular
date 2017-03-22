@@ -1,5 +1,6 @@
 .panel.panel-info
-  div(ng-show='$ctrl.hit').badge.badge-object
+  div(data-ng-show='$ctrl.badge',
+  data-ng-class="$ctrl.type").badge.badge-object
     span.glyphicon.glyphicon-tag Хит продаж
   .panel-heading
     h3 Объект № 30595

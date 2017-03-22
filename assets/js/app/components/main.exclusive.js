@@ -6,7 +6,8 @@
     .controller('MainExclusiveCtrl', MainExclusiveCtrl)
     .component('smallPanel', {
       bindings: {
-        hit: '<',
+        badge: '<',
+        type: '<',
         img: '<',
         content: '<'
       },
@@ -18,7 +19,8 @@
     this.innerGroup = [];
     this.panels = [
       {
-        hit: true,
+        badge: true,
+        type: 'badge-hit',
         img: {
           href: '../../images/30593_700x500.jpg',
           dataLightbox: '1',
@@ -39,7 +41,7 @@
         ]
       },
       {
-        hit: false,
+        badge: false,
         img: {
           href: '../../images/30593_700x500.jpg',
           dataLightbox: '2',
@@ -60,7 +62,8 @@
         ]
       },
       {
-        hit: true,
+        badge: true,
+        type: 'badge-saleoff',
         img: {
           href: '../../images/30593_700x500.jpg',
           dataLightbox: '3',
@@ -75,7 +78,8 @@
         ]
       },
       {
-        hit: true,
+        badge: true,
+        type: 'badge-hit',
         img: {
           href: '../../images/30593_700x500.jpg',
           dataLightbox: '1',
@@ -96,7 +100,7 @@
         ]
       },
       {
-        hit: false,
+        badge: false,
         img: {
           href: '../../images/30593_700x500.jpg',
           dataLightbox: '2',

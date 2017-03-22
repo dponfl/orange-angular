@@ -26,13 +26,6 @@ Notes:	 Hand coded for Orange Holiday Villas
     position: relative;
 }
 
-.badge.badge-object {
-    position: absolute;
-    top: -15px;
-    right: -15px;
-    padding: 10px;
-}
-
 .glyphicon-tag:before {
     margin-right: 10px;
 }
@@ -185,8 +178,21 @@ body {
    Badges
    -------------------------------------- */
 
-.badge-object {
+
+.badge.badge-object {
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    padding: 10px;
+}
+
+.badge-hit {
     background-color: #C9302C !important;
+    font-size: large;
+}
+
+.badge-saleoff {
+    background-color: sandybrown !important;
     font-size: large;
 }
 
