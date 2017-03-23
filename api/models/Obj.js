@@ -25,7 +25,7 @@ module.exports = {
       required: true
     },
     show: {
-      type: 'boolean',
+      type: 'integer',
       required: true
     },
   },

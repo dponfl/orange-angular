@@ -14,10 +14,14 @@
       templateUrl: 'templates/view/main/exclusivePanel.html'
     });
 
-  function MainExclusiveCtrl() {
-    this.panelGroups = [];
-    this.innerGroup = [];
-    this.panels = [
+  MainExclusiveCtrl.$inject = ['ExclusiveService', '$log', '$rootScope'];
+  function MainExclusiveCtrl(ExclusiveService, $log, $rootScope) {
+    var vm = this;
+    vm.panelGroups = [];
+    vm.innerGroup = [];
+    vm.panels = [];
+
+/*    vm.panels = [
       {
         badge: true,
         type: 'badge-hit',
@@ -120,15 +124,26 @@
             text: '444444444444'}
         ]
       }
-    ];
-    for (var i = 1; i < this.panels.length+1; i++) {
-      this.innerGroup.push(this.panels[i-1]);
-      if (i % 3 == 0) {
-        this.panelGroups.push(this.innerGroup);
-        this.innerGroup = [];
-      }
+    ];*/
+
+    loadPanels();
+    buildPanelGroups();
+
+    function loadPanels() {
+
     }
-    if (this.innerGroup.length != 0) this.panelGroups.push(this.innerGroup);
+
+    function buildPanelGroups () {
+      for (var i = 1; i < vm.panels.length+1; i++) {
+        vm.innerGroup.push(vm.panels[i-1]);
+        if (i % 3 == 0) {
+          vm.panelGroups.push(vm.innerGroup);
+          vm.innerGroup = [];
+        }
+      }
+      if (vm.innerGroup.length != 0) vm.panelGroups.push(vm.innerGroup);
+    }
+
   }
   
 

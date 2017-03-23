@@ -61,7 +61,8 @@
      */
 
     function _mapCityData(elem) {
-      if (!_.isArray(self.orangeConfig.cityList[elem.lang])) self.orangeConfig.cityList[elem.lang] = [];
+      if (!_.isArray(self.orangeConfig.cityList[elem.lang]))
+        self.orangeConfig.cityList[elem.lang] = [];
       if (elem.show == 0) {
         self.orangeConfig.cityList[elem.lang][elem.order] = -1;
       } else {
@@ -106,7 +107,8 @@
      */
 
     function _mapDealData(elem) {
-      if (!_.isArray(self.orangeConfig.dealList[elem.lang])) self.orangeConfig.dealList[elem.lang] = [];
+      if (!_.isArray(self.orangeConfig.dealList[elem.lang]))
+        self.orangeConfig.dealList[elem.lang] = [];
       if (elem.show == 0) {
         self.orangeConfig.dealList[elem.lang][elem.order] = -1;
       } else {
@@ -151,7 +153,8 @@
      */
 
     function _mapObjData(elem) {
-      if (!_.isArray(self.orangeConfig.objList[elem.lang])) self.orangeConfig.objList[elem.lang] = [];
+      if (!_.isArray(self.orangeConfig.objList[elem.lang]))
+        self.orangeConfig.objList[elem.lang] = [];
       if (elem.show == 0) {
         self.orangeConfig.objList[elem.lang][elem.order] = -1;
       } else {
@@ -196,7 +199,8 @@
      */
 
     function _mapRoomData(elem) {
-      if (!_.isArray(self.orangeConfig.roomList[elem.lang])) self.orangeConfig.roomList[elem.lang] = [];
+      if (!_.isArray(self.orangeConfig.roomList[elem.lang]))
+        self.orangeConfig.roomList[elem.lang] = [];
       if (elem.show == 0) {
         self.orangeConfig.roomList[elem.lang][elem.order] = -1;
       } else {
@@ -253,7 +257,8 @@
           if (!_.isArray(data)) throw Error('Error: Tag data is not an array');
 
           for (var i = 0; i < data.length; i++) {
-            if (!_.isArray(self.orangeConfig.tagList[data[i].lang])) self.orangeConfig.tagList[data[i].lang] = [];
+            if (!_.isArray(self.orangeConfig.tagList[data[i].lang]))
+              self.orangeConfig.tagList[data[i].lang] = [];
             self.orangeConfig.tagList[data[i].lang].push({key: data[i].key, val: data[i].tag})
           }
 

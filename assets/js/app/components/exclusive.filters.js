@@ -15,10 +15,10 @@
       templateUrl: 'templates/view/exclusive/filter.html'
     });
 
-  ExclusiveFiltersCtrl.$inject = ['GeneralConfigService', '$log', '$rootScope', 'oCity'];
+  ExclusiveFiltersCtrl.$inject = ['GeneralConfigService', '$log', '$rootScope', 'oCity', 'oExclusiveKey'];
 
   /* @ngInject */
-  function ExclusiveFiltersCtrl(GeneralConfigService, $log, $rootScope, oCity) {
+  function ExclusiveFiltersCtrl(GeneralConfigService, $log, $rootScope, oCity, oExclusiveKey) {
     var vm = this;
 
     vm.dealList = GeneralConfigService.orangeConfig.dealList[$rootScope.lang];
@@ -61,7 +61,22 @@
       })
         .$promise
         .then(function (data) {
-          $log.info('testGetData');
+          $log.info('testGetData, oCity');
+          $log.debug(data);
+        })
+        .catch(function (err) {
+          // todo: change by Log
+          console.log('Error...');
+          console.dir(err);
+          return;
+        })
+
+      // oExclusiveKey.query(function (data) {
+      oExclusiveKey.find({lang: 'en'}, function (data) {
+      })
+        .$promise
+        .then(function(data) {
+          $log.info('testGetData, oExclusiveKey');
           $log.debug(data);
         })
         .catch(function (err) {

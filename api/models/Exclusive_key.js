@@ -1,5 +1,5 @@
 /**
- * Room.js
+ * Exclusive_key.js
  *
  * @description :: TODO: You might write a short summary of how this model works and what it represents here.
  * @docs        :: http://sailsjs.org/documentation/concepts/models-and-orm/models
@@ -16,11 +16,15 @@ module.exports = {
       type: 'integer',
       required: true
     },
+    group: {
+      type: 'integer',
+      required: true
+    },
     key: {
       type: 'string',
       required: true
     },
-    room: {
+    label: {
       type: 'string',
       required: true
     },
@@ -28,7 +32,11 @@ module.exports = {
       type: 'integer',
       required: true
     },
+    main: {
+      type: 'integer',
+      required: true
+    },
   },
-  tableName: 'room'
+  tableName: 'exclusive_key'
 };
 
