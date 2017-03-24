@@ -1,0 +1,25 @@
+#exclusive
+  .row#exclusiveCallout
+    .cal-12
+      .well
+        .page-header.page-primary
+          h1 Эксклюзивные объекты
+            small Несколько слов...
+        .page-body#block-exclusive
+          .row
+            .col-sm-12
+              h1.text-center Эксклюзивные объекты недвижимости
+              h2.text-center Аренда вилл и аппартаментов на Кипре
+          .row
+            .col-sm-12
+              div(data-ng-controller='MainExclusiveCtrl as mainExclCtrl').row
+                div(data-ng-repeat='group in mainExclCtrl.panelGroups').row
+                  .col-sm-4(data-ng-repeat='panel in group')
+                    small-panel(badge='panel.badge',
+                    type='panel.type',
+                    img='panel.img',
+                    content='panel.content')
+              hr
+              button.col-xs-12.btn.btn-info.btn-lg.btn-margin.center-block
+                | Подробная информация об этих и других эксклюзивных объектах
+

@@ -10,37 +10,90 @@
   function OrangeClientRoutesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
 
     $stateProvider
-      .state('main', {
-        url: '/',
-        templateUrl: 'templates/view/page.html'
+      .state('home', {
+        views: {
+          main: {
+            templateUrl: 'templates/view/main/main.html'
+          },
+          exclusive: {
+            templateUrl: 'templates/view/main/exclusive.html'
+          },
+          shortterm: {
+            templateUrl: 'templates/view/main/shortterm.html'
+          },
+          longterm: {
+            templateUrl: 'templates/view/main/longterm.html'
+          },
+          sale: {
+            templateUrl: 'templates/view/main/sale.html'
+          },
+          qa: {
+            templateUrl: 'templates/view/main/qa.html'
+          },
+          services: {
+            templateUrl: 'templates/view/main/services.html'
+          },
+          contacts: {
+            templateUrl: 'templates/view/main/contacts.html'
+          }
+        },
+        url: '/'
       })
       .state('exclusive', {
+        views: {
+          main: {
+            templateUrl: 'templates/view/exclusive.html'
+          },
+        },
         url: '/exclusive',
-        templateUrl: 'templates/view/exclusive.html'
       })
       .state('shortterm', {
+        views: {
+          main: {
+            templateUrl: 'templates/view/shortterm.html'
+          },
+        },
         url: '/shortterm',
-        templateUrl: 'templates/view/shortterm.html'
       })
       .state('longterm', {
+        views: {
+          main: {
+            templateUrl: 'templates/view/longterm.html'
+          },
+        },
         url: '/longterm',
-        templateUrl: 'templates/view/longterm.html'
       })
       .state('sale', {
+        views: {
+          main: {
+            templateUrl: 'templates/view/sale.html'
+          },
+        },
         url: '/sale',
-        templateUrl: 'templates/view/sale.html'
       })
       .state('qa', {
+        views: {
+          main: {
+            templateUrl: 'templates/view/qa.html'
+          },
+        },
         url: '/qa',
-        templateUrl: 'templates/view/qa.html'
       })
       .state('services', {
+        views: {
+          main: {
+            templateUrl: 'templates/view/services.html'
+          },
+        },
         url: '/services',
-        templateUrl: 'templates/view/services.html'
       })
       .state('contacts', {
+        views: {
+          main: {
+            templateUrl: 'templates/view/contacts.html'
+          },
+        },
         url: '/contacts',
-        templateUrl: 'templates/view/contacts.html'
       });
 
     $urlRouterProvider.otherwise('/');
