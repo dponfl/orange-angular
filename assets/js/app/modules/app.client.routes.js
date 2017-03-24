@@ -13,28 +13,28 @@
       .state('home', {
         views: {
           main: {
-            templateUrl: 'templates/view/main/main.html'
+            templateUrl: 'templates/view/home/main.html'
           },
           exclusive: {
-            templateUrl: 'templates/view/main/exclusive.html'
+            templateUrl: 'templates/view/home/exclusive.html'
           },
           shortterm: {
-            templateUrl: 'templates/view/main/shortterm.html'
+            templateUrl: 'templates/view/home/shortterm.html'
           },
           longterm: {
-            templateUrl: 'templates/view/main/longterm.html'
+            templateUrl: 'templates/view/home/longterm.html'
           },
           sale: {
-            templateUrl: 'templates/view/main/sale.html'
+            templateUrl: 'templates/view/home/sale.html'
           },
           qa: {
-            templateUrl: 'templates/view/main/qa.html'
+            templateUrl: 'templates/view/home/qa.html'
           },
           services: {
-            templateUrl: 'templates/view/main/services.html'
+            templateUrl: 'templates/view/home/services.html'
           },
           contacts: {
-            templateUrl: 'templates/view/main/contacts.html'
+            templateUrl: 'templates/view/home/contacts.html'
           }
         },
         url: '/'

@@ -11,7 +11,7 @@
         img: '<',
         content: '<'
       },
-      templateUrl: 'templates/view/main/exclusivePanel.html'
+      templateUrl: 'templates/view/home/exclusivePanel.html'
     });
 
   MainExclusiveCtrl.$inject = ['ExclusiveService', '$log', '$rootScope'];

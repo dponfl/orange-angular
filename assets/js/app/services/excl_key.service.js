@@ -16,7 +16,7 @@
           order: '@order',
           key: '@key',
           show: '@show',
-          main: '@main'
+          main: '@home'
         }
       }
     });

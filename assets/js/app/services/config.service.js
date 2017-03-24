@@ -6,7 +6,7 @@
     .service('GeneralConfigService', GeneralConfigService);
 
   /**
-   * Service to manage main application params
+   * Service to manage home application params
    */
   GeneralConfigService.$inject = ['$rootScope', 'oCity', 'oDeal', 'oObj', 'oRoom', 'oTag', 'lodash'];
   function GeneralConfigService($rootScope, oCity, oDeal, oObj, oRoom, oTag, lodash) {
