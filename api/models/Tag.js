@@ -6,21 +6,20 @@
  */
 
 module.exports = {
-
+  tableName: 'tag',
   attributes: {
     lang: {
       type: 'string',
-      required: true
+      size: 2
     },
     key: {
       type: 'string',
-      required: true
+      size: 255
     },
     tag: {
       type: 'string',
-      required: true
+      size: 255
     },
   },
-  tableName: 'tag'
 };
 

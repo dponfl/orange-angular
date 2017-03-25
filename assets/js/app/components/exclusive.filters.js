@@ -57,8 +57,7 @@
     };
 
     vm.testGetData = function () {
-      oCity.find({key: ['pafos', 'limassol'], lang: 'ru'}, function (data) {
-      })
+      oCity.find({key: ['pafos', 'limassol'], lang: 'ru'}, function (data) {})
         .$promise
         .then(function (data) {
           $log.info('testGetData, oCity');
@@ -72,8 +71,7 @@
         })
 
       // oExclusiveKey.query(function (data) {
-      oExclusiveKey.find({lang: 'en'}, function (data) {
-      })
+      oExclusiveKey.find({lang: 'en'}, function (data) {})
         .$promise
         .then(function(data) {
           $log.info('testGetData, oExclusiveKey');

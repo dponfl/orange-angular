@@ -74,8 +74,7 @@
     } // _mapCityData
 
     function _getCities() {
-      oCity.query(function (data) {
-      })
+      oCity.query(function (data) {})
         .$promise
         .then(function (data) {
           // console.log('!!! Success...');
@@ -120,8 +119,7 @@
     } // _mapDealData
 
     function _getDeals() {
-      oDeal.query(function (data) {
-      })
+      oDeal.query(function (data) {})
         .$promise
         .then(function (data) {
           // console.log('!!! Success...');
@@ -166,8 +164,7 @@
     } // _mapObjData
 
     function _getObj() {
-      oObj.query(function (data) {
-      })
+      oObj.query(function (data) {})
         .$promise
         .then(function (data) {
           // console.log('!!! Success...');
@@ -212,8 +209,7 @@
     } // _mapRoomData
 
     function _getRoom() {
-      oRoom.query(function (data) {
-      })
+      oRoom.query(function (data) {})
         .$promise
         .then(function (data) {
           // console.log('!!! Success...');
@@ -245,8 +241,7 @@
      */
 
     function _getTag() {
-      oTag.query(function (data) {
-      })
+      oTag.query(function (data) {})
         .$promise
         .then(function (data) {
           // console.log('!!! Success...');
@@ -262,8 +257,8 @@
             self.orangeConfig.tagList[data[i].lang].push({key: data[i].key, val: data[i].tag})
           }
 
-          // console.log('self.orangeConfig:');
-          // console.dir(self.orangeConfig);
+          // console.log('self.orangeConfig.tagList:');
+          // console.dir(self.orangeConfig.tagList);
           return;
         })
         .catch(function (err) {

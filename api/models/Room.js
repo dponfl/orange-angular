@@ -6,29 +6,26 @@
  */
 
 module.exports = {
-
+  tableName: 'room',
   attributes: {
     lang: {
       type: 'string',
-      required: true
+      size: 2
     },
     order: {
       type: 'integer',
-      required: true
     },
     key: {
       type: 'string',
-      required: true
+      size: 255
     },
     room: {
       type: 'string',
-      required: true
+      size: 255
     },
     show: {
       type: 'integer',
-      required: true
     },
   },
-  tableName: 'room'
 };
 

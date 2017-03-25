@@ -6,29 +6,26 @@
  */
 
 module.exports = {
-
+  tableName: 'obj',
   attributes: {
     lang: {
       type: 'string',
-      required: true
-    },
+      size: 2
+   },
     order: {
       type: 'integer',
-      required: true
     },
     key: {
       type: 'string',
-      required: true
+      size: 255
     },
     obj: {
       type: 'string',
-      required: true
+      size: 255
     },
     show: {
       type: 'integer',
-      required: true
     },
   },
-  tableName: 'obj'
 };
 

@@ -6,37 +6,32 @@
  */
 
 module.exports = {
-
+  tableName: 'exclusive_key',
   attributes: {
     lang: {
       type: 'string',
-      required: true
+      size: 2
     },
     order: {
       type: 'integer',
-      required: true
     },
     group: {
       type: 'integer',
-      required: true
     },
     key: {
       type: 'string',
-      required: true
+      size: 255
     },
     label: {
       type: 'string',
-      required: true
+      size: 255
     },
     show: {
       type: 'integer',
-      required: true
     },
-    main: {
+    home: {
       type: 'integer',
-      required: true
     },
   },
-  tableName: 'exclusive_key'
 };
 

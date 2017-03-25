@@ -12,7 +12,7 @@
               h2.text-center Аренда вилл и аппартаментов на Кипре
           .row
             .col-sm-12
-              div(data-ng-controller='MainExclusiveCtrl as mainExclCtrl').row
+              div(data-ng-controller='HomeExclusiveCtrl as mainExclCtrl').row
                 div(data-ng-repeat='group in mainExclCtrl.panelGroups').row
                   .col-sm-4(data-ng-repeat='panel in group')
                     small-panel(badge='panel.badge',
