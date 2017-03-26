@@ -73,7 +73,7 @@
     function _getAllExclusiveObjectsHomeObjs() {
       var deferred = $q.defer();
 
-      oExclusive.find({}, function (data) {
+      oExclusive.find({home: 1}, function (data) {
         var __objs = {};
 
         if (!_.isArray(data)) {

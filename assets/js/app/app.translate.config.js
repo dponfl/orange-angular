@@ -38,6 +38,19 @@ function translateConfig ($translateProvider) {
     'BTN_CLR': 'Clear',
     'AV_REQ': 'reqEn',
 
+    // Home - Carousel
+    'HOME_CAROUSEL_TITLE_1': 'Slide 01 message',
+    'HOME_CAROUSEL_TEXT_1': 'Text for Slide 01',
+    'HOME_CAROUSEL_TITLE_2': 'Slide 02 message',
+    'HOME_CAROUSEL_TEXT_2': 'Text for Slide 02',
+    'HOME_CAROUSEL_TITLE_3': 'Slide 03 message',
+    'HOME_CAROUSEL_TEXT_3': 'Text for Slide 03',
+
+    // Home - Main
+    'HOME_TITLE_H1': '[En]Недвижимость на Кипре',
+
+    // Home - Exclusive
+
     // Exclusive
     'PAGE_HEADER_TITLE': '[En]Эксклюзивные объекты',
     'PAGE_HEADER_SUBTITLE': '[En]Несколько слов...',
@@ -45,6 +58,7 @@ function translateConfig ($translateProvider) {
     'PAGE_BODY_H2': '[En]Аренда вилл и аппартаментов на Кипре',
     'PAGE_BODY_H3': '[En]Здесь представлена недвижимость, которая находится ' +
     'в эксклюзивном управлении компании Orange Holliday villas.',
+    'ELEM_OBJ': 'Object #',
   });
 
   $translateProvider.translations('ru', {
@@ -79,6 +93,21 @@ function translateConfig ($translateProvider) {
     'BTN_CLR': 'Очистить',
     'AV_REQ': 'reqRu',
 
+    // Home - Carousel
+    'HOME_CAROUSEL_TITLE_1': 'Слайд 01',
+    'HOME_CAROUSEL_TEXT_1': 'Текст для слайда 01',
+    'HOME_CAROUSEL_TITLE_2': 'Слайд 02',
+    'HOME_CAROUSEL_TEXT_2': 'Текст для слайда 02',
+    'HOME_CAROUSEL_TITLE_3': 'Слайд 03',
+    'HOME_CAROUSEL_TEXT_3': 'Текст для слайда 03',
+
+
+    // Home - Main
+    'HOME_TITLE_H1': 'Недвижимость на Кипре',
+
+    // Home - Exclusive
+
+
     // Exclusive
     'PAGE_HEADER_TITLE': 'Эксклюзивные объекты',
     'PAGE_HEADER_SUBTITLE': 'Несколько слов...',
@@ -86,6 +115,7 @@ function translateConfig ($translateProvider) {
     'PAGE_BODY_H2': 'Аренда вилл и аппартаментов на Кипре',
     'PAGE_BODY_H3': 'Здесь представлена недвижимость, которая находится ' +
     'в эксклюзивном управлении компании Orange Holliday villas.',
+    'ELEM_OBJ': 'Объект №',
   });
 
   $translateProvider.preferredLanguage('en');
