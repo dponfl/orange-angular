@@ -70,18 +70,42 @@ function translateConfig ($translateProvider) {
     'Долорум мнесарчум диссентиунт иус не, но агам примис видерер нец. Еа поссе миним ' +
     'дицерет сеа, усу менандри цонсулату еи.',
 
-    // Home - Exclusive
-
     // Exclusive
-    'PAGE_HEADER_TITLE': '[En]Эксклюзивные объекты',
-    'PAGE_HEADER_SUBTITLE': '[En]Несколько слов...',
-    'PAGE_BODY_H1': '[En]Эксклюзивные объекты недвижимости',
-    'PAGE_BODY_H2': '[En]Аренда вилл и аппартаментов на Кипре',
-    'PAGE_BODY_H3': '[En]Здесь представлена недвижимость, которая находится ' +
+    'EXCLUSIVE_PAGE_HEADER_TITLE': '[En]Эксклюзивные объекты',
+    'EXCLUSIVE_PAGE_HEADER_SUBTITLE': '[En]Несколько слов...',
+    'EXCLUSIVE_PAGE_BODY_H1': '[En]Эксклюзивные объекты недвижимости',
+    'EXCLUSIVE_PAGE_BODY_H2': '[En]Аренда вилл и аппартаментов на Кипре',
+    'EXCLUSIVE_PAGE_BODY_H3': '[En]Здесь представлена недвижимость, которая находится ' +
     'в эксклюзивном управлении компании Orange Holliday villas.',
-    'ELEM_OBJ': 'Object #',
-    'ELEM_MORE_DETAILS': 'More details...',
-    'PAGE_MORE_OBJ': '[En]Подробная информация об этих и других эксклюзивных объектах',
+    'EXCLUSIVE_ELEM_OBJ': 'Object #',
+    'EXCLUSIVE_ELEM_MORE_DETAILS': 'More details...',
+    'EXCLUSIVE_PAGE_MORE_OBJ': '[En]Подробная информация об этих и других эксклюзивных объектах',
+
+    // Short term
+    'SHORTTERM_PAGE_HEADER_TITLE': '[En]Посуточная аренда',
+    'SHORTTERM_PAGE_HEADER_SUBTITLE': '[En]Несколько слов...',
+
+    // Long term
+    'LONGTERM_PAGE_HEADER_TITLE': '[En]Долгосрочная аренда',
+    'LONGTERM_PAGE_HEADER_SUBTITLE': '[En]Несколько слов...',
+
+    // Sales
+    'SALES_PAGE_HEADER_TITLE': '[En]Продажа',
+    'SALES_PAGE_HEADER_SUBTITLE': '[En]Несколько слов...',
+
+    // Q&A
+    'QA_PAGE_HEADER_TITLE': '[En]Вопросы и ответы',
+    'QA_PAGE_HEADER_SUBTITLE': '[En]Несколько слов...',
+
+    // Services
+    'SERVICES_PAGE_HEADER_TITLE': '[En]Дополнительные услуги',
+    'SERVICES_PAGE_HEADER_SUBTITLE': '[En]Несколько слов...',
+
+    // Contacts
+    'CONTACTS_PAGE_HEADER_TITLE': '[En]Наши контакты',
+    'CONTACTS_PAGE_HEADER_SUBTITLE': '[En]Несколько слов...',
+
+
   });
 
   $translateProvider.translations('ru', {
@@ -124,7 +148,6 @@ function translateConfig ($translateProvider) {
     'HOME_CAROUSEL_TITLE_3': 'Слайд 03',
     'HOME_CAROUSEL_TEXT_3': 'Текст для слайда 03',
 
-
     // Home - Main
     'HOME_TITLE_H1': 'Недвижимость на Кипре',
     'HOME_SUBTITLE': 'Несколько слов о том, что мы будем рады вам предложить...',
@@ -149,20 +172,41 @@ function translateConfig ($translateProvider) {
     'Долорум мнесарчум диссентиунт иус не, но агам примис видерер нец. Еа поссе миним ' +
     'дицерет сеа, усу менандри цонсулату еи.',
 
-
-    // Home - Exclusive
-
-
     // Exclusive
-    'PAGE_HEADER_TITLE': 'Эксклюзивные объекты',
-    'PAGE_HEADER_SUBTITLE': 'Несколько слов...',
-    'PAGE_BODY_H1': 'Эксклюзивные объекты недвижимости',
-    'PAGE_BODY_H2': 'Аренда вилл и аппартаментов на Кипре',
-    'PAGE_BODY_H3': 'Здесь представлена недвижимость, которая находится ' +
+    'EXCLUSIVE_PAGE_HEADER_TITLE': 'Эксклюзивные объекты',
+    'EXCLUSIVE_PAGE_HEADER_SUBTITLE': 'Несколько слов...',
+    'EXCLUSIVE_PAGE_BODY_H1': 'Эксклюзивные объекты недвижимости',
+    'EXCLUSIVE_PAGE_BODY_H2': 'Аренда вилл и аппартаментов на Кипре',
+    'EXCLUSIVE_PAGE_BODY_H3': 'Здесь представлена недвижимость, которая находится ' +
     'в эксклюзивном управлении компании Orange Holliday villas.',
-    'ELEM_OBJ': 'Объект №',
-    'ELEM_MORE_DETAILS': 'Подробнее...',
-    'PAGE_MORE_OBJ': 'Подробная информация об этих и других эксклюзивных объектах',
+    'EXCLUSIVE_ELEM_OBJ': 'Объект №',
+    'EXCLUSIVE_ELEM_MORE_DETAILS': 'Подробнее...',
+    'EXCLUSIVE_PAGE_MORE_OBJ': 'Подробная информация об этих и других эксклюзивных объектах',
+
+    // Short term
+    'SHORTTERM_PAGE_HEADER_TITLE': 'Посуточная аренда',
+    'SHORTTERM_PAGE_HEADER_SUBTITLE': 'Несколько слов...',
+
+    // Long term
+    'LONGTERM_PAGE_HEADER_TITLE': 'Долгосрочная аренда',
+    'LONGTERM_PAGE_HEADER_SUBTITLE': 'Несколько слов...',
+
+    // Sales
+    'SALES_PAGE_HEADER_TITLE': 'Продажа',
+    'SALES_PAGE_HEADER_SUBTITLE': 'Несколько слов...',
+
+    // Q&A
+    'QA_PAGE_HEADER_TITLE': 'Вопросы и ответы',
+    'QA_PAGE_HEADER_SUBTITLE': 'Несколько слов...',
+
+    // Services
+    'SERVICES_PAGE_HEADER_TITLE': 'Дополнительные услуги',
+    'SERVICES_PAGE_HEADER_SUBTITLE': 'Несколько слов...',
+
+    // Contacts
+    'CONTACTS_PAGE_HEADER_TITLE': 'Наши контакты',
+    'CONTACTS_PAGE_HEADER_SUBTITLE': 'Несколько слов...',
+
 
   });
 

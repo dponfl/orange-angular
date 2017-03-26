@@ -3,13 +3,13 @@
     .cal-12
       .well
         .page-header.page-primary
-          h1(translate='PAGE_HEADER_TITLE')
-            small(translate='PAGE_HEADER_SUBTITLE')
+          h1 {{'EXCLUSIVE_PAGE_HEADER_TITLE' | translate}}
+            small(translate='EXCLUSIVE_PAGE_HEADER_SUBTITLE')
         .page-body#block-exclusive
           .row
             .col-sm-12
-              h1(translate='PAGE_BODY_H1').text-center
-              h2(translate='PAGE_BODY_H2').text-center
+              h1(translate='EXCLUSIVE_PAGE_BODY_H1').text-center
+              h2(translate='EXCLUSIVE_PAGE_BODY_H2').text-center
           .row
             .col-sm-12
               div(data-ng-controller='HomeExclusiveCtrl as mainExclCtrl').row
@@ -22,6 +22,6 @@
                     img='panel.img',
                     content='panel.content')
               hr
-              button(translate='PAGE_MORE_OBJ').col-xs-12.btn.btn-info.btn-lg.btn-margin.center-block
+              button(translate='EXCLUSIVE_PAGE_MORE_OBJ').col-xs-12.btn.btn-info.btn-lg.btn-margin.center-block
 
 
