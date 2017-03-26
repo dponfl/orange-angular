@@ -8,10 +8,8 @@
   /**
    * Service to manage home application params
    */
-  GeneralConfigService.$inject = ['$rootScope', 'oCity', 'oDeal', 'oObj',
-    'oRoom', 'oTag', 'lodash', '$q', '$log'];
-  function GeneralConfigService($rootScope, oCity, oDeal, oObj,
-                                oRoom, oTag, lodash, $q, $log) {
+  GeneralConfigService.$inject = ['$rootScope', 'oCity', 'oDeal', 'oObj', 'oRoom', 'oTag', 'lodash'];
+  function GeneralConfigService($rootScope, oCity, oDeal, oObj, oRoom, oTag, lodash) {
     var _ = lodash;
     var self = {
       orangeConfig: {},
@@ -34,29 +32,6 @@
     self.getObj();
     self.getRoom();
     self.getTag();
-
-    $q.all([self.getCities(), self.getDeals(), self.getObj(),
-      self.getRoom(), self.getTag()])
-      .then(function () {
-        self.setLang();
-        $log.warn('GeneralConfigService');
-        $log.info('self.orangeConfig.cityList:');
-        $log.debug(self.orangeConfig.cityList);
-        $log.info('self.orangeConfig.dealList:');
-        $log.debug(self.orangeConfig.dealList);
-        $log.info('self.orangeConfig.objList:');
-        $log.debug(self.orangeConfig.objList);
-        $log.info('self.orangeConfig.roomList:');
-        $log.debug(self.orangeConfig.roomList);
-        $log.info('self.orangeConfig.tagList:');
-        $log.debug(self.orangeConfig.tagList);
-      })
-      .catch(function (err) {
-        // todo: change by Log
-        $log.warn('Error...');
-        $log.error(err);
-        return;
-      });
 
     return self;
 
@@ -99,14 +74,15 @@
     } // _mapCityData
 
     function _getCities() {
-      var deferred = $q.defer();
-      oCity.query(function (data) {
+      oCity.query(function (data) {})
+        .$promise
+        .then(function (data) {
           // console.log('!!! Success...');
           // console.dir(data);
 
           self.orangeConfig.cityList = {};
 
-          if (!_.isArray(data)) deferred.reject(Error('Cities data is not an array'));
+          if (!_.isArray(data)) throw Error('Error: Cities data is not an array');
 
           data.map(_mapCityData);
 
@@ -114,10 +90,15 @@
 
           // console.log('self.orangeConfig:');
           // console.dir(self.orangeConfig);
-          deferred.resolve();
-        });
+          return;
+        })
+        .catch(function (err) {
 
-      return deferred.promise;
+          // todo: change by Log
+          console.log('Error...');
+          console.dir(err);
+          return;
+        });
     } // _getCities
 
     /**
@@ -138,14 +119,15 @@
     } // _mapDealData
 
     function _getDeals() {
-      var deferred = $q.defer();
-      oDeal.query(function (data) {
+      oDeal.query(function (data) {})
+        .$promise
+        .then(function (data) {
           // console.log('!!! Success...');
           // console.dir(data);
 
           self.orangeConfig.dealList = {};
 
-          if (!_.isArray(data)) deferred.reject(Error('Deals data is not an array'));
+          if (!_.isArray(data)) throw Error('Error: Deals data is not an array');
 
           data.map(_mapDealData);
 
@@ -153,10 +135,15 @@
 
           // console.log('self.orangeConfig:');
           // console.dir(self.orangeConfig);
+          return;
+        })
+        .catch(function (err) {
 
-          deferred.resolve();
+          // todo: change by Log
+          console.log('Error...');
+          console.dir(err);
+          return;
         });
-      return deferred.promise;
     } // _getDeals
 
     /**
@@ -177,14 +164,15 @@
     } // _mapObjData
 
     function _getObj() {
-      var deferred = $q.defer();
-      oObj.query(function (data) {
+      oObj.query(function (data) {})
+        .$promise
+        .then(function (data) {
           // console.log('!!! Success...');
           // console.dir(data);
 
           self.orangeConfig.objList = {};
 
-          if (!_.isArray(data)) deferred.reject(Error('Obj data is not an array'));
+          if (!_.isArray(data)) throw Error('Error: Obj data is not an array');
 
           data.map(_mapObjData);
 
@@ -192,11 +180,15 @@
 
           // console.log('self.orangeConfig:');
           // console.dir(self.orangeConfig);
+          return;
+        })
+        .catch(function (err) {
 
-          deferred.resolve();
+          // todo: change by Log
+          console.log('Error...');
+          console.dir(err);
+          return;
         });
-
-      return deferred.promise;
     } // _getObjects
 
     /**
@@ -217,14 +209,15 @@
     } // _mapRoomData
 
     function _getRoom() {
-      var deferred = $q.defer();
-      oRoom.query(function (data) {
+      oRoom.query(function (data) {})
+        .$promise
+        .then(function (data) {
           // console.log('!!! Success...');
           // console.dir(data);
 
           self.orangeConfig.roomList = {};
 
-          if (!_.isArray(data)) deferred.reject(Error('Room data is not an array'));
+          if (!_.isArray(data)) throw Error('Error: Room data is not an array');
 
           data.map(_mapRoomData);
 
@@ -232,11 +225,15 @@
 
           // console.log('self.orangeConfig:');
           // console.dir(self.orangeConfig);
+          return;
+        })
+        .catch(function (err) {
 
-          deferred.resolve();
+          // todo: change by Log
+          console.log('Error...');
+          console.dir(err);
+          return;
         });
-
-      return deferred.promise;
     } // _getRoom
 
     /**
@@ -244,14 +241,15 @@
      */
 
     function _getTag() {
-      var deferred = $q.defer();
-      oTag.query(function (data) {
+      oTag.query(function (data) {})
+        .$promise
+        .then(function (data) {
           // console.log('!!! Success...');
           // console.dir(data);
 
           self.orangeConfig.tagList = {};
 
-          if (!_.isArray(data)) deferred.reject(Error('Tag data is not an array'));
+          if (!_.isArray(data)) throw Error('Error: Tag data is not an array');
 
           for (var i = 0; i < data.length; i++) {
             if (!_.isArray(self.orangeConfig.tagList[data[i].lang]))
@@ -261,12 +259,16 @@
 
           // console.log('self.orangeConfig.tagList:');
           // console.dir(self.orangeConfig.tagList);
-
-          deferred.resolve();
+          return;
         })
+        .catch(function (err) {
 
-      return deferred.promise;
+          // todo: change by Log
+          console.log('Error...');
+          console.dir(err);
+          return;
+        });
     } // _getTag
 
-  } // GeneralConfigService
+  }
 })();

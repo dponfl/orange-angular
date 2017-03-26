@@ -94,12 +94,15 @@
 
     
     function _buildRecord(/*elem*/) {
+/*
       $log.warn('_buildRecord invoked...');
       $log.debug('$rootScope.lang: ' + $rootScope.lang);
       $log.info('vm.keys');
       $log.debug(vm.keys);
       $log.info('vm.objs');
       $log.debug(vm.objs);
+*/
+
     }
 
     function buildPanelGroups () {
