@@ -2,7 +2,7 @@
   "use strict";
 
   angular.module('OrangeClient')
-    .component('smallPanelExclusive', {
+    .component('smallPanelShort', {
       bindings: {
         badge: '<',
         type: '<',
@@ -11,6 +11,6 @@
         img: '<',
         content: '<'
       },
-      templateUrl: 'templates/view/home/exclusivePanelHome.html'
+      templateUrl: 'templates/view/home/shortPanelHome.html'
     });
 })();

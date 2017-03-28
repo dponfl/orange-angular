@@ -12,10 +12,10 @@
               h2(translate='EXCLUSIVE_PAGE_BODY_H2').text-center
           .row
             .col-sm-12
-              div(data-ng-controller='HomeExclusiveCtrl as mainExclCtrl').row
-                div(data-ng-repeat='group in mainExclCtrl.panelGroups').row
+              div(data-ng-controller='HomeExclusiveCtrl as homeExclCtrl').row
+                div(data-ng-repeat='group in homeExclCtrl.panelGroups').row
                   .col-sm-4(data-ng-repeat='panel in group')
-                    small-panel(badge='panel.badge',
+                    small-panel-exclusive(badge='panel.badge',
                     type='panel.type',
                     badgetext='panel.badgetext',
                     objnumber='panel.objnumber',
