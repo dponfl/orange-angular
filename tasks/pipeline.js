@@ -63,6 +63,9 @@ var jsFilesToInject = [
   // Load other application files
   'js/app/**/*.js',
 
+  // Load other js files
+  'js/other/**/*.js',
+
 
   // All of the rest of your client-side js files
   // will be injected here in no particular order.

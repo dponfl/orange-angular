@@ -2,11 +2,11 @@
 
 (function () {
   angular.module('OrangeClient')
-    .factory('oShort', oShort);
+    .factory('oLong', oLong);
 
-  oShort.$inject = ['$resource'];
-  function oShort($resource) {
-    return $resource('/short/:id', {id: '@id'}, {
+  oLong.$inject = ['$resource'];
+  function oLong($resource) {
+    return $resource('/long/:id', {id: '@id'}, {
       update: {method: 'PUT'},
       find: {
         method: 'GET',

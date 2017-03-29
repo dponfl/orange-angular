@@ -5,4 +5,18 @@
         .page-header.page-primary
           h1 {{'LONGTERM_PAGE_HEADER_TITLE' | translate}}
             small(translate='LONGTERM_PAGE_HEADER_SUBTITLE')
+        .page-body#block-exclusive
+          .row
+            .col-sm-12
+              div(data-ng-controller='HomeLongCtrl as homeLongCtrl').row
+                div(data-ng-repeat='group in homeLongCtrl.panelGroups').row
+                  .col-sm-4(data-ng-repeat='panel in group')
+                    small-panel-long(badge='panel.badge',
+                    type='panel.type',
+                    badgetext='panel.badgetext',
+                    objnumber='panel.objnumber',
+                    img='panel.img',
+                    content='panel.content')
+              hr
+              button(translate='EXCLUSIVE_PAGE_MORE_OBJ').col-xs-12.btn.btn-info.btn-lg.btn-margin.center-block
 
