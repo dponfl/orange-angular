@@ -70,6 +70,10 @@ function translateConfig ($translateProvider) {
     'Долорум мнесарчум диссентиунт иус не, но агам примис видерер нец. Еа поссе миним ' +
     'дицерет сеа, усу менандри цонсулату еи.',
 
+    // Home - General
+    'GENERAL_ELEM_OBJ': 'Object #',
+    'GENERAL_ELEM_MORE_DETAILS': 'More details...',
+
     // Exclusive
     'EXCLUSIVE_PAGE_HEADER_TITLE': '[En]Эксклюзивные объекты',
     'EXCLUSIVE_PAGE_HEADER_SUBTITLE': '[En]Несколько слов...',
@@ -77,21 +81,25 @@ function translateConfig ($translateProvider) {
     'EXCLUSIVE_PAGE_BODY_H2': '[En]Аренда вилл и аппартаментов на Кипре',
     'EXCLUSIVE_PAGE_BODY_H3': '[En]Здесь представлена недвижимость, которая находится ' +
     'в эксклюзивном управлении компании Orange Holliday villas.',
-    'EXCLUSIVE_ELEM_OBJ': 'Object #',
-    'EXCLUSIVE_ELEM_MORE_DETAILS': 'More details...',
     'EXCLUSIVE_PAGE_MORE_OBJ': '[En]Подробная информация об этих и других эксклюзивных объектах',
 
     // Short term
     'SHORTTERM_PAGE_HEADER_TITLE': '[En]Посуточная аренда',
     'SHORTTERM_PAGE_HEADER_SUBTITLE': '[En]Несколько слов...',
+    'SHORTTERM_PAGE_MORE_OBJ': '[En]Подробная информация об этих и других объектах с посуточной арендой',
+
 
     // Long term
     'LONGTERM_PAGE_HEADER_TITLE': '[En]Долгосрочная аренда',
     'LONGTERM_PAGE_HEADER_SUBTITLE': '[En]Несколько слов...',
+    'LONGTERM_PAGE_MORE_OBJ': '[En]Подробная информация об этих и других объектах с долгосрочной арендой',
+
 
     // Sales
     'SALES_PAGE_HEADER_TITLE': '[En]Продажа',
     'SALES_PAGE_HEADER_SUBTITLE': '[En]Несколько слов...',
+    'SALES_PAGE_MORE_OBJ': '[En]Подробная информация об этих и других объектах продажи',
+
 
     // Q&A
     'QA_PAGE_HEADER_TITLE': '[En]Вопросы и ответы',
@@ -172,6 +180,10 @@ function translateConfig ($translateProvider) {
     'Долорум мнесарчум диссентиунт иус не, но агам примис видерер нец. Еа поссе миним ' +
     'дицерет сеа, усу менандри цонсулату еи.',
 
+    // Home - General
+    'GENERAL_ELEM_OBJ': 'Объект №',
+    'GENERAL_ELEM_MORE_DETAILS': 'Подробнее...',
+
     // Exclusive
     'EXCLUSIVE_PAGE_HEADER_TITLE': 'Эксклюзивные объекты',
     'EXCLUSIVE_PAGE_HEADER_SUBTITLE': 'Несколько слов...',
@@ -179,21 +191,25 @@ function translateConfig ($translateProvider) {
     'EXCLUSIVE_PAGE_BODY_H2': 'Аренда вилл и аппартаментов на Кипре',
     'EXCLUSIVE_PAGE_BODY_H3': 'Здесь представлена недвижимость, которая находится ' +
     'в эксклюзивном управлении компании Orange Holliday villas.',
-    'EXCLUSIVE_ELEM_OBJ': 'Объект №',
-    'EXCLUSIVE_ELEM_MORE_DETAILS': 'Подробнее...',
     'EXCLUSIVE_PAGE_MORE_OBJ': 'Подробная информация об этих и других эксклюзивных объектах',
 
     // Short term
     'SHORTTERM_PAGE_HEADER_TITLE': 'Посуточная аренда',
     'SHORTTERM_PAGE_HEADER_SUBTITLE': 'Несколько слов...',
+    'SHORTTERM_PAGE_MORE_OBJ': 'Подробная информация об этих и других объектах с посуточной арендой',
+
 
     // Long term
     'LONGTERM_PAGE_HEADER_TITLE': 'Долгосрочная аренда',
     'LONGTERM_PAGE_HEADER_SUBTITLE': 'Несколько слов...',
+    'LONGTERM_PAGE_MORE_OBJ': 'Подробная информация об этих и других объектах с долгосрочной арендой',
+
 
     // Sales
     'SALES_PAGE_HEADER_TITLE': 'Продажа',
     'SALES_PAGE_HEADER_SUBTITLE': 'Несколько слов...',
+    'SALES_PAGE_MORE_OBJ': 'Подробная информация об этих и других объектах продажи',
+
 
     // Q&A
     'QA_PAGE_HEADER_TITLE': 'Вопросы и ответы',

@@ -3,7 +3,7 @@
   data-ng-class="$ctrl.type").badge.badge-object
     span.glyphicon.glyphicon-tag {{$ctrl.badgetext}}
   .panel-heading
-    h3 {{'EXCLUSIVE_ELEM_OBJ' | translate}}
+    h3 {{'GENERAL_ELEM_OBJ' | translate}}
      | {{$ctrl.objnumber}}
 
   .panel.panel-body.panel-main-exclusive
@@ -20,4 +20,4 @@
             .col-sm-8
               p.form-control-static.form-control-static-text {{elem.text}}
       hr
-      a(data-ui-sref='exclusive', translate='EXCLUSIVE_ELEM_MORE_DETAILS').col-xs-12.btn.btn-success.btn-sm
+      a(data-ui-sref='exclusive', translate='GENERAL_ELEM_MORE_DETAILS').col-xs-12.btn.btn-success.btn-sm
