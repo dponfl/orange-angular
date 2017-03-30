@@ -11,7 +11,6 @@
     var vm = this;
     var _ = lodash;
 
-    vm.dealList = GeneralConfigService.orangeConfig.dealList[$rootScope.lang];
     vm.objList = GeneralConfigService.orangeConfig.objList[$rootScope.lang];
     vm.cityList = GeneralConfigService.orangeConfig.cityList[$rootScope.lang];
     vm.roomList = GeneralConfigService.orangeConfig.roomList[$rootScope.lang];
@@ -72,7 +71,6 @@
 
 
     function update() {
-      vm.dealList = GeneralConfigService.orangeConfig.dealList[$rootScope.lang];
       vm.objList = GeneralConfigService.orangeConfig.objList[$rootScope.lang];
       vm.cityList = GeneralConfigService.orangeConfig.cityList[$rootScope.lang];
       vm.roomList = GeneralConfigService.orangeConfig.roomList[$rootScope.lang];
@@ -133,11 +131,6 @@
             case 'city':
               vm.cityList.map(function (listElem) {
                 if (listElem.key == oElem.city) tokenVal = listElem.val;
-              });
-              break;
-            case 'deal':
-              vm.dealList.map(function (listElem) {
-                if (listElem.key == oElem.deal) tokenVal = listElem.val;
               });
               break;
             case 'obj':

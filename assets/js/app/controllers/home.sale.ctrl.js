@@ -2,11 +2,11 @@
   "use strict";
 
   angular.module('OrangeClient')
-    .controller('HomeLongCtrl', HomeLongCtrl);
+    .controller('HomeSaleCtrl', HomeSaleCtrl);
 
-  HomeLongCtrl.$inject = ['GeneralConfigService', 'LongService',
+  HomeSaleCtrl.$inject = ['GeneralConfigService', 'SaleService',
     '$log', '$rootScope', 'lodash', '$q'];
-  function HomeLongCtrl(GeneralConfigService, LongService,
+  function HomeSaleCtrl(GeneralConfigService, SaleService,
                              $log, $rootScope, lodash, $q) {
     var vm = this;
     var _ = lodash;
@@ -26,8 +26,8 @@
     vm.keys = [];
     vm.objs = [];
 
-    $q.all({keys: LongService.getAllLongObjectsHomeKeys(),
-      objs: LongService.getAllLongObjectsHomeObjs()})
+    $q.all({keys: SaleService.getAllSaleObjectsHomeKeys(),
+      objs: SaleService.getAllSaleObjectsHomeObjs()})
       .then(function (results) {
 
         vm.keysAll = results.keys;
