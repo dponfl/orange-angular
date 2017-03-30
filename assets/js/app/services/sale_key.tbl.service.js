@@ -2,11 +2,11 @@
   "use strict";
 
   angular.module('OrangeClient')
-    .factory('oShortKey', oShortKey);
+    .factory('oSaleKey', oSaleKey);
 
-  oShortKey.$inject = ['$resource'];
-  function oShortKey($resource) {
-    return $resource('/short_key/:id', {id: '@id'}, {
+  oSaleKey.$inject = ['$resource'];
+  function oSaleKey($resource) {
+    return $resource('/sale_key/:id', {id: '@id'}, {
       update: {method: 'PUT'},
       find: {
         method: 'GET',
