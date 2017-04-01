@@ -87,6 +87,8 @@ function translateConfig ($translateProvider) {
     'SHORTTERM_PAGE_HEADER_TITLE': '[En]Посуточная аренда',
     'SHORTTERM_PAGE_HEADER_SUBTITLE': '[En]Несколько слов...',
     'SHORTTERM_PAGE_MORE_OBJ': '[En]Подробная информация об этих и других объектах с посуточной арендой',
+    'SHORTTERM_PAGE_BUTTON_PRICE': 'Price',
+    'SHORTTERM_PAGE_BUTTON_CALENDAR': 'Calendar',
 
 
     // Long term
@@ -197,6 +199,8 @@ function translateConfig ($translateProvider) {
     'SHORTTERM_PAGE_HEADER_TITLE': 'Посуточная аренда',
     'SHORTTERM_PAGE_HEADER_SUBTITLE': 'Несколько слов...',
     'SHORTTERM_PAGE_MORE_OBJ': 'Подробная информация об этих и других объектах с посуточной арендой',
+    'SHORTTERM_PAGE_BUTTON_PRICE': 'Стоимость',
+    'SHORTTERM_PAGE_BUTTON_CALENDAR': 'Календарь занятости',
 
 
     // Long term
