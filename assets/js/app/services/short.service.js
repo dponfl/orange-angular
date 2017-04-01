@@ -5,11 +5,11 @@
     .module('OrangeClient')
     .service('ShortService', ShortService);
 
-  ShortService.$inject = ['$log', 'oShortKey',
+  ShortService.$inject = ['$http', '$log', 'oShortKey',
     'oShort', 'lodash', '$q'];
 
   /* @ngInject */
-  function ShortService($log, oShortKey, oShort, lodash, $q) {
+  function ShortService($http, $log, oShortKey, oShort, lodash, $q) {
     var _ = lodash;
     var self = {
       getAllShortObjectsKeys: _getAllShortObjectsKeys,
@@ -68,9 +68,107 @@
       });
 
       return deferred.promise;
-    }
-    
+    } // _getAllShortObjectsKeys
+
     function _getAllShortObjectsObjs(reqObj) {
+
+      // todo: return object having result code (200, 404, etc.) and data
+
+      return $http.post('http://localhost:1337/short/find', reqObj)
+       .then(successCb, errorCb);
+
+      function successCb(data) {
+       $log.info(':)');
+       $log.debug(data);
+
+        if (data.status != 200 || !_.isArray(data.data.result)) {
+          return new Error('Short data is not an array');
+        }
+
+        var response = data.data.result;
+
+        var __objs = {};
+
+        for (var i = 0; i < response.length; i++) {
+
+          if (!_.isArray(__objs[response[i].lang]))
+            __objs[response[i].lang] = [];
+
+          __objs[response[i].lang].push({
+            objNumber: response[i].objnumber,
+            show: response[i].show,
+            home: response[i].home,
+            tag: response[i].tag,
+            city: response[i].city,
+            address: response[i].address,
+            obj: response[i].obj,
+            room: response[i].room,
+            bathroom: response[i].bathroom,
+            pool: response[i].pool,
+            price: response[i].price,
+            calendar: response[i].calendar,
+            description: response[i].description,
+            info: response[i].info,
+            googleMap: response[i].map,
+            imgMain: response[i].imgmain,
+            imgGallery: response[i].imggallery,
+            youtube: response[i].youtube,
+            createdAt: response[i].createdAt,
+            updatedAt: response[i].updatedAt,
+          })
+        }
+
+        return __objs;
+      }
+
+      function errorCb(err) {
+       $log.info(':(');
+       $log.debug(err);
+      }
+
+      /*     oShort.find(reqObj, function (data) {
+      var __objs = {};
+
+      if (!_.isArray(data)) {
+      deferred.reject(new Error('Short data is not an array'))
+      }
+
+      for (var i = 0; i < data.length; i++) {
+
+      if (!_.isArray(__objs[data[i].lang]))
+      __objs[data[i].lang] = [];
+
+      __objs[data[i].lang].push({
+      objNumber: data[i].objnumber,
+      show: data[i].show,
+      home: data[i].home,
+      tag: data[i].tag,
+      city: data[i].city,
+      address: data[i].address,
+      obj: data[i].obj,
+      room: data[i].room,
+      bathroom: data[i].bathroom,
+      pool: data[i].pool,
+      price: data[i].price,
+      calendar: data[i].calendar,
+      description: data[i].description,
+      info: data[i].info,
+      googleMap: data[i].map,
+      imgMain: data[i].imgmain,
+      imgGallery: data[i].imggallery,
+      youtube: data[i].youtube,
+      createdAt: data[i].createdAt,
+      updatedAt: data[i].updatedAt,
+      })
+      }
+
+      deferred.resolve(__objs);
+
+      });*/
+
+    } // _getAllShortObjectsObjs
+    
+/*    function _getAllShortObjectsObjs(reqObj) {
       var deferred = $q.defer();
 
       oShort.find(reqObj, function (data) {
@@ -109,21 +207,12 @@
           })
         }
 
-/*
-        $log.info('__objs...');
-        $log.debug(__objs);
-*/
-
         deferred.resolve(__objs);
-
-        /*setTimeout(function () {
-          deferred.resolve(__objs);
-        }, 5000);*/
 
       });
 
       return deferred.promise;
-    }
+    } // _getAllShortObjectsObjs*/
 
   } // ShortService
 

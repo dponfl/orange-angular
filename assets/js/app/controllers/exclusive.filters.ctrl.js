@@ -22,7 +22,7 @@
     vm.formData.obj = GeneralConfigService.orangeConfig.objList[$rootScope.lang][0];
     vm.formData.city = GeneralConfigService.orangeConfig.cityList[$rootScope.lang][0];
     vm.formData.room = GeneralConfigService.orangeConfig.roomList[$rootScope.lang][0];
-    vm.formData.objNum = '';
+    vm.formData.objnumber = '';
 
     $rootScope.$watch('lang', update);
 
@@ -43,7 +43,7 @@
       vm.formData.obj = GeneralConfigService.orangeConfig.objList[$rootScope.lang][0];
       vm.formData.city = GeneralConfigService.orangeConfig.cityList[$rootScope.lang][0];
       vm.formData.room = GeneralConfigService.orangeConfig.roomList[$rootScope.lang][0];
-      vm.formData.objNum = '';
+      vm.formData.objnumber = '';
     };
 
     vm.testGetData = function () {

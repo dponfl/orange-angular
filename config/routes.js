@@ -34,7 +34,8 @@ module.exports.routes = {
 
   '/': {
     view: 'index'
-  }
+  },
+  'POST /short/find': 'ShortController.find',
 
   /***************************************************************************
   *                                                                          *
