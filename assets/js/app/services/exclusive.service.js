@@ -13,7 +13,7 @@
     var _ = lodash;
     var self = {
       getAllExclusiveObjectsKeys: _getAllExclusiveObjectsKeys,
-      getAllExclusiveObjectsHomeObjs: _getAllExclusiveObjectsHomeObjs,
+      getAllExclusiveObjectsObjs: _getAllExclusiveObjectsObjs,
     };
 
     return self;
@@ -70,10 +70,10 @@
       return deferred.promise;
     }
     
-    function _getAllExclusiveObjectsHomeObjs() {
+    function _getAllExclusiveObjectsObjs(reqObj) {
       var deferred = $q.defer();
 
-      oExclusive.find({home: 1}, function (data) {
+      oExclusive.find(reqObj, function (data) {
         var __objs = {};
 
         if (!_.isArray(data)) {

@@ -27,7 +27,7 @@
     vm.objs = [];
 
     $q.all({keys: ShortService.getAllShortObjectsKeys({home: 1}),
-      objs: ShortService.getAllShortObjectsHomeObjs()})
+      objs: ShortService.getAllShortObjectsObjs({home: 1})})
       .then(function (results) {
 
         vm.keysAll = results.keys;
@@ -79,16 +79,20 @@
       vm.keys = vm.keysAll[$rootScope.lang];
       vm.objs = vm.objsAll[$rootScope.lang];
 
+/*
       $log.debug('$rootScope.lang: ' + $rootScope.lang);
       $log.info('vm.keys');
       $log.debug(vm.keys);
       $log.info('vm.objs');
       $log.debug(vm.objs);
+*/
 
       _buildPanel();
       _buildPanelGroups();
+/*
       $log.info('vm.panels:');
       $log.debug(vm.panels);
+*/
     }
 
 
@@ -115,7 +119,7 @@
           badge: oElem.tag ? true : false,
           type: oElem.tag,
           badgetext: tagText,
-          objnumber: oElem.objnumber,
+          objNumber: oElem.objnumber,
           img: {
             href: '../../images/' + oElem.imgmain,
             dataLightbox: '1',

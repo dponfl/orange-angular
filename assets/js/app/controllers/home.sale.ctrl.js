@@ -27,7 +27,7 @@
     vm.objs = [];
 
     $q.all({keys: SaleService.getAllSaleObjectsKeys({home: 1}),
-      objs: SaleService.getAllSaleObjectsHomeObjs()})
+      objs: SaleService.getAllSaleObjectsObjs({home: 1})})
       .then(function (results) {
 
         vm.keysAll = results.keys;
@@ -79,16 +79,20 @@
       vm.keys = vm.keysAll[$rootScope.lang];
       vm.objs = vm.objsAll[$rootScope.lang];
 
+/*
       $log.debug('$rootScope.lang: ' + $rootScope.lang);
       $log.info('vm.keys');
       $log.debug(vm.keys);
       $log.info('vm.objs');
       $log.debug(vm.objs);
+*/
 
       _buildPanel();
       _buildPanelGroups();
+/*
       $log.info('vm.panels:');
       $log.debug(vm.panels);
+*/
     }
 
 

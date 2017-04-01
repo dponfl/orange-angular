@@ -2,11 +2,11 @@
   "use strict";
 
   angular.module('OrangeClient')
-    .controller('HomeLongCtrl', HomeLongCtrl);
+    .controller('ShortCtrl', ShortCtrl);
 
-  HomeLongCtrl.$inject = ['GeneralConfigService', 'LongService',
+  ShortCtrl.$inject = ['GeneralConfigService', 'ShortService',
     '$log', '$rootScope', 'lodash', '$q'];
-  function HomeLongCtrl(GeneralConfigService, LongService,
+  function ShortCtrl(GeneralConfigService, ShortService,
                              $log, $rootScope, lodash, $q) {
     var vm = this;
     var _ = lodash;
@@ -26,8 +26,8 @@
     vm.keys = [];
     vm.objs = [];
 
-    $q.all({keys: LongService.getAllLongObjectsKeys({home: 1}),
-      objs: LongService.getAllLongObjectsObjs({home: 1})})
+    $q.all({keys: ShortService.getAllShortObjectsKeys({}),
+      objs: ShortService.getAllShortObjectsHomeObjs()})
       .then(function (results) {
 
         vm.keysAll = results.keys;
@@ -79,20 +79,16 @@
       vm.keys = vm.keysAll[$rootScope.lang];
       vm.objs = vm.objsAll[$rootScope.lang];
 
-/*
       $log.debug('$rootScope.lang: ' + $rootScope.lang);
       $log.info('vm.keys');
       $log.debug(vm.keys);
       $log.info('vm.objs');
       $log.debug(vm.objs);
-*/
 
       _buildPanel();
       _buildPanelGroups();
-/*
       $log.info('vm.panels:');
       $log.debug(vm.panels);
-*/
     }
 
 
@@ -119,7 +115,7 @@
           badge: oElem.tag ? true : false,
           type: oElem.tag,
           badgetext: tagText,
-          objnumber: oElem.objnumber,
+          objNumber: oElem.objnumber,
           img: {
             href: '../../images/' + oElem.imgmain,
             dataLightbox: '1',

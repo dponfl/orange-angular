@@ -13,7 +13,7 @@
     var _ = lodash;
     var self = {
       getAllLongObjectsKeys: _getAllLongObjectsKeys,
-      getAllLongObjectsHomeObjs: _getAllLongObjectsHomeObjs,
+      getAllLongObjectsObjs: _getAllLongObjectsObjs,
     };
 
     return self;
@@ -70,10 +70,10 @@
       return deferred.promise;
     }
     
-    function _getAllLongObjectsHomeObjs() {
+    function _getAllLongObjectsObjs(reqObj) {
       var deferred = $q.defer();
 
-      oLong.find({home: 1}, function (data) {
+      oLong.find(reqObj, function (data) {
         var __objs = {};
 
         if (!_.isArray(data)) {
