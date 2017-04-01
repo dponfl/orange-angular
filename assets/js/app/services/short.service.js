@@ -12,7 +12,7 @@
   function ShortService($log, oShortKey, oShort, lodash, $q) {
     var _ = lodash;
     var self = {
-      getAllShortObjectsHomeKeys: _getAllShortObjectsHomeKeys,
+      getAllShortObjectsKeys: _getAllShortObjectsKeys,
       getAllShortObjectsHomeObjs: _getAllShortObjectsHomeObjs,
     };
 
@@ -20,10 +20,10 @@
 
     ////////////////
 
-    function _getAllShortObjectsHomeKeys() {
+    function _getAllShortObjectsKeys(reqObj) {
       var deferred = $q.defer();
 
-      oShortKey.find({home: 1}, function (data) {
+      oShortKey.find(reqObj, function (data) {
 
         var sortedData = {};
         var __keys = {};

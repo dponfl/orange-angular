@@ -26,7 +26,7 @@
     vm.keys = [];
     vm.objs = [];
 
-    $q.all({keys: LongService.getAllLongObjectsHomeKeys(),
+    $q.all({keys: LongService.getAllLongObjectsKeys({home: 1}),
       objs: LongService.getAllLongObjectsHomeObjs()})
       .then(function (results) {
 

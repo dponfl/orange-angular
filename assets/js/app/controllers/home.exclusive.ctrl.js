@@ -27,7 +27,7 @@
     vm.keys = [];
     vm.objs = [];
 
-    $q.all({keys: ExclusiveService.getAllExclusiveObjectsHomeKeys(),
+    $q.all({keys: ExclusiveService.getAllExclusiveObjectsKeys({home: 1}),
       objs: ExclusiveService.getAllExclusiveObjectsHomeObjs()})
       .then(function (results) {
 

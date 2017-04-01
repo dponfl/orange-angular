@@ -12,7 +12,7 @@
   function ExclusiveService($log, oExclusiveKey, oExclusive, lodash, $q) {
     var _ = lodash;
     var self = {
-      getAllExclusiveObjectsHomeKeys: _getAllExclusiveObjectsHomeKeys,
+      getAllExclusiveObjectsKeys: _getAllExclusiveObjectsKeys,
       getAllExclusiveObjectsHomeObjs: _getAllExclusiveObjectsHomeObjs,
     };
 
@@ -20,10 +20,10 @@
 
     ////////////////
 
-    function _getAllExclusiveObjectsHomeKeys() {
+    function _getAllExclusiveObjectsKeys(reqObj) {
       var deferred = $q.defer();
 
-      oExclusiveKey.find({home: 1}, function (data) {
+      oExclusiveKey.find(reqObj, function (data) {
 
         var sortedData = {};
         var __keys = {};

@@ -11,6 +11,6 @@
         img: '<',
         content: '<'
       },
-      templateUrl: 'templates/view/home/exclusivePanelHome.html'
+      templateUrl: 'templates/view/home/smallPanelExclusive.html'
     });
 })();

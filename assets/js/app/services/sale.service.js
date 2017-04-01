@@ -12,7 +12,7 @@
   function SaleService($log, oSaleKey, oSale, lodash, $q) {
     var _ = lodash;
     var self = {
-      getAllSaleObjectsHomeKeys: _getAllSaleObjectsHomeKeys,
+      getAllSaleObjectsKeys: _getAllSaleObjectsKeys,
       getAllSaleObjectsHomeObjs: _getAllSaleObjectsHomeObjs,
     };
 
@@ -20,10 +20,10 @@
 
     ////////////////
 
-    function _getAllSaleObjectsHomeKeys() {
+    function _getAllSaleObjectsKeys(reqObj) {
       var deferred = $q.defer();
 
-      oSaleKey.find({home: 1}, function (data) {
+      oSaleKey.find(reqObj, function (data) {
 
         var sortedData = {};
         var __keys = {};

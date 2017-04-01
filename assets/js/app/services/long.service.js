@@ -12,7 +12,7 @@
   function LongService($log, oLongKey, oLong, lodash, $q) {
     var _ = lodash;
     var self = {
-      getAllLongObjectsHomeKeys: _getAllLongObjectsHomeKeys,
+      getAllLongObjectsKeys: _getAllLongObjectsKeys,
       getAllLongObjectsHomeObjs: _getAllLongObjectsHomeObjs,
     };
 
@@ -20,10 +20,10 @@
 
     ////////////////
 
-    function _getAllLongObjectsHomeKeys() {
+    function _getAllLongObjectsKeys(reqObj) {
       var deferred = $q.defer();
 
-      oLongKey.find({home: 1}, function (data) {
+      oLongKey.find(reqObj, function (data) {
 
         var sortedData = {};
         var __keys = {};

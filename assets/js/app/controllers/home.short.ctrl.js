@@ -26,7 +26,7 @@
     vm.keys = [];
     vm.objs = [];
 
-    $q.all({keys: ShortService.getAllShortObjectsHomeKeys(),
+    $q.all({keys: ShortService.getAllShortObjectsKeys({home: 1}),
       objs: ShortService.getAllShortObjectsHomeObjs()})
       .then(function (results) {
 

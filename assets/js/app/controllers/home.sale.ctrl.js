@@ -26,7 +26,7 @@
     vm.keys = [];
     vm.objs = [];
 
-    $q.all({keys: SaleService.getAllSaleObjectsHomeKeys(),
+    $q.all({keys: SaleService.getAllSaleObjectsKeys({home: 1}),
       objs: SaleService.getAllSaleObjectsHomeObjs()})
       .then(function (results) {
 
