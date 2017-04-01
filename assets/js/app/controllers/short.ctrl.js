@@ -16,9 +16,6 @@
     vm.roomList = GeneralConfigService.orangeConfig.roomList[$rootScope.lang];
     vm.tagList = GeneralConfigService.orangeConfig.tagList[$rootScope.lang];
 
-
-    vm.panelGroups = [];
-    vm.innerGroup = [];
     vm.panels = [];
 
     vm.keysAll = [];
@@ -26,8 +23,8 @@
     vm.keys = [];
     vm.objs = [];
 
-    $q.all({keys: ShortService.getAllShortObjectsKeys({}),
-      objs: ShortService.getAllShortObjectsHomeObjs()})
+    $q.all({keys: ShortService.getAllShortObjectsKeys({show: 1}),
+      objs: ShortService.getAllShortObjectsObjs({show: 1})})
       .then(function (results) {
 
         vm.keysAll = results.keys;
@@ -86,7 +83,6 @@
       $log.debug(vm.objs);
 
       _buildPanel();
-      _buildPanelGroups();
       $log.info('vm.panels:');
       $log.debug(vm.panels);
     }
@@ -106,6 +102,7 @@
 
       vm.objs.map(function (oElem) {
         var tagText = '';
+        var _gallery = [];
 
         vm.tagList.map(function (listElem) {
           if (listElem.key == oElem.tag) tagText = listElem.val;
@@ -114,16 +111,18 @@
         record = {
           badge: oElem.tag ? true : false,
           type: oElem.tag,
-          badgetext: tagText,
-          objNumber: oElem.objnumber,
+          badgeText: tagText,
+          objNumber: oElem.objNumber,
           img: {
-            href: '../../images/' + oElem.imgmain,
-            dataLightbox: '1',
+            href: '../../images/' + oElem.imgMain,
+            dataLightbox: oElem.objNumber,
             dataTitle: '',
-            src: '../../images/' + oElem.imgmain,
+            src: '../../images/' + oElem.imgMain,
           },
           content: [],
+          gallery: [],
         };
+
         vm.keys.map(function (kElem) {
           var tokenVal = '';
 
@@ -147,28 +146,36 @@
               tokenVal = oElem[kElem.key] || '';
               break;
           }
-          record.content.push({
+
+          if (!_.isArray(record.content[kElem.group - 1])) {
+            record.content[kElem.group - 1] = [];
+          }
+
+          record.content[kElem.group - 1].push({
             label: kElem.label,
             text:tokenVal,
           })
         });
+
+        _gallery = oElem.imgGallery.replace(/^\s+|\s+$/gm,'').split(';');
+        _gallery.map(function (el) {
+          record.gallery.push({
+            href: '../../images/' + el,
+            dataLightbox: 'gallery-' + oElem.objNumber,
+            dataTitle: '',
+            src: '../../images/' + el,
+          });
+        });
+        record.price = oElem.price;
+        record.calendar = oElem.calendar;
+        record.googleMap = oElem.googleMap;
+        record.youtube = oElem.youtube;
+
+
         vm.panels.push(record);
       });
     } // _buildPanel
 
-    function _buildPanelGroups () {
-      vm.panelGroups = [];
-      vm.innerGroup = [];
-
-      for (var i = 1; i < vm.panels.length+1; i++) {
-        vm.innerGroup.push(vm.panels[i-1]);
-        if (i % 3 == 0) {
-          vm.panelGroups.push(vm.innerGroup);
-          vm.innerGroup = [];
-        }
-      }
-      if (vm.innerGroup.length != 0) vm.panelGroups.push(vm.innerGroup);
-    } // buildPanelGroups
 
   }
 })();

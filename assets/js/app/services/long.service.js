@@ -92,7 +92,6 @@
             tag: data[i].tag,
             city: data[i].city,
             address: data[i].address,
-            deal: data[i].deal,
             obj: data[i].obj,
             room: data[i].room,
             bathroom: data[i].bathroom,

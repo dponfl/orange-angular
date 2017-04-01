@@ -26,8 +26,8 @@
     vm.keys = [];
     vm.objs = [];
 
-    $q.all({keys: ShortService.getAllShortObjectsKeys({home: 1}),
-      objs: ShortService.getAllShortObjectsObjs({home: 1})})
+    $q.all({keys: ShortService.getAllShortObjectsKeys({show: 1, home: 1}),
+      objs: ShortService.getAllShortObjectsObjs({show: 1, home: 1})})
       .then(function (results) {
 
         vm.keysAll = results.keys;
@@ -119,12 +119,12 @@
           badge: oElem.tag ? true : false,
           type: oElem.tag,
           badgetext: tagText,
-          objNumber: oElem.objnumber,
+          objNumber: oElem.objNumber,
           img: {
-            href: '../../images/' + oElem.imgmain,
-            dataLightbox: '1',
+            href: '../../images/' + oElem.imgMain,
+            dataLightbox: oElem.objNumber,
             dataTitle: '',
-            src: '../../images/' + oElem.imgmain,
+            src: '../../images/' + oElem.imgMain,
           },
           content: [],
         };

@@ -26,8 +26,8 @@
     vm.keys = [];
     vm.objs = [];
 
-    $q.all({keys: SaleService.getAllSaleObjectsKeys({home: 1}),
-      objs: SaleService.getAllSaleObjectsObjs({home: 1})})
+    $q.all({keys: SaleService.getAllSaleObjectsKeys({show: 1, home: 1}),
+      objs: SaleService.getAllSaleObjectsObjs({show: 1, home: 1})})
       .then(function (results) {
 
         vm.keysAll = results.keys;
@@ -122,7 +122,7 @@
           objnumber: oElem.objnumber,
           img: {
             href: '../../images/' + oElem.imgmain,
-            dataLightbox: '1',
+            dataLightbox: oElem.objnumber,
             dataTitle: '',
             src: '../../images/' + oElem.imgmain,
           },

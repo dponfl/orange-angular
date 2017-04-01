@@ -27,8 +27,8 @@
     vm.keys = [];
     vm.objs = [];
 
-    $q.all({keys: ExclusiveService.getAllExclusiveObjectsKeys({home: 1}),
-      objs: ExclusiveService.getAllExclusiveObjectsObjs({home: 1})})
+    $q.all({keys: ExclusiveService.getAllExclusiveObjectsKeys({show: 1, home: 1}),
+      objs: ExclusiveService.getAllExclusiveObjectsObjs({show: 1, home: 1})})
       .then(function (results) {
 
         vm.keysAll = results.keys;
@@ -124,7 +124,7 @@
           objnumber: oElem.objnumber,
           img: {
             href: '../../images/' + oElem.imgmain,
-            dataLightbox: '1',
+            dataLightbox: oElem.objnumber,
             dataTitle: '',
             src: '../../images/' + oElem.imgmain,
           },

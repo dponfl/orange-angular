@@ -26,5 +26,12 @@
                   city-list='e.cityList',
                   room-list='e.roomList')
 
-          .row
-            panel-short
+          div(data-ng-controller='ShortCtrl as sc').row
+            div(data-ng-repeat='panel in sc.panels')
+              panel-short(badge='panel.badge',
+              type='panel.type',
+              badge-text='panel.badgeText',
+              obj-number='panel.objNumber',
+              img='panel.img',
+              gallery='panel.gallery',
+              content='panel.content')

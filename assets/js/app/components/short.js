@@ -10,8 +10,7 @@
         objNumber: '<',
         img: '<',
         gallery: '<',
-        contentGroup001: '<'
-        contentGroup002: '<'
+        content: '<'
       },
       templateUrl: 'templates/view/short/panelShort.html'
     });

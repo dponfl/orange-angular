@@ -86,13 +86,12 @@
             __objs[data[i].lang] = [];
 
           __objs[data[i].lang].push({
-            objnumber: data[i].objnumber,
+            objNumber: data[i].objnumber,
             show: data[i].show,
             home: data[i].home,
             tag: data[i].tag,
             city: data[i].city,
             address: data[i].address,
-            deal: data[i].deal,
             obj: data[i].obj,
             room: data[i].room,
             bathroom: data[i].bathroom,
@@ -101,9 +100,9 @@
             calendar: data[i].calendar,
             description: data[i].description,
             info: data[i].info,
-            map: data[i].map,
-            imgmain: data[i].imgmain,
-            imggallery: data[i].imggallery,
+            googleMap: data[i].map,
+            imgMain: data[i].imgmain,
+            imgGallery: data[i].imggallery,
             youtube: data[i].youtube,
             createdAt: data[i].createdAt,
             updatedAt: data[i].updatedAt,

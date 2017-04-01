@@ -26,8 +26,8 @@
     vm.keys = [];
     vm.objs = [];
 
-    $q.all({keys: LongService.getAllLongObjectsKeys({home: 1}),
-      objs: LongService.getAllLongObjectsObjs({home: 1})})
+    $q.all({keys: LongService.getAllLongObjectsKeys({show: 1, home: 1}),
+      objs: LongService.getAllLongObjectsObjs({show: 1, home: 1})})
       .then(function (results) {
 
         vm.keysAll = results.keys;
@@ -122,7 +122,7 @@
           objnumber: oElem.objnumber,
           img: {
             href: '../../images/' + oElem.imgmain,
-            dataLightbox: '1',
+            dataLightbox: oElem.objnumber,
             dataTitle: '',
             src: '../../images/' + oElem.imgmain,
           },
