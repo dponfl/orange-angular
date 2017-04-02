@@ -81,7 +81,7 @@
        $log.info(':)');
        $log.debug(data);
 
-        if (data.status != 200 || !_.isArray(data.data.result)) {
+        if (!_.isArray(data.data.result)) {
           return new Error('Short data is not an array');
         }
 
@@ -118,12 +118,22 @@
           })
         }
 
-        return __objs;
+        return {
+          status: 200,
+          data: __objs,
+        };
       }
 
       function errorCb(err) {
+/*
        $log.info(':(');
        $log.debug(err);
+*/
+
+       return {
+         status: err.status,
+         error: err,
+       }
       }
 
       /*     oShort.find(reqObj, function (data) {

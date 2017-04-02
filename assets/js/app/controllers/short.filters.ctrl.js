@@ -5,32 +5,37 @@
     .module('OrangeClient')
     .controller('ShortFiltersCtrl', ShortFiltersCtrl);
 
-  ShortFiltersCtrl.$inject = ['GeneralConfigService', '$log', '$rootScope'];
+  ShortFiltersCtrl.$inject = ['$log', '$rootScope'];
 
   /* @ngInject */
-  function ShortFiltersCtrl(GeneralConfigService, $log, $rootScope) {
+  function ShortFiltersCtrl($log, $rootScope) {
     var vm = this;
     vm.find = _find;
     vm.clear = _clear;
 
-    vm.objList = GeneralConfigService.orangeConfig.objList[$rootScope.lang];
-    vm.cityList = GeneralConfigService.orangeConfig.cityList[$rootScope.lang];
-    vm.roomList = GeneralConfigService.orangeConfig.roomList[$rootScope.lang];
+/*
+    $log.info('1111111111111111111111111');
+    $log.debug($rootScope.orangeConfig);
+*/
+
+    vm.objList = $rootScope.orangeConfig.objList[$rootScope.lang];
+    vm.cityList = $rootScope.orangeConfig.cityList[$rootScope.lang];
+    vm.roomList = $rootScope.orangeConfig.roomList[$rootScope.lang];
 
     vm.formData = {};
 
-    vm.formData.obj = GeneralConfigService.orangeConfig.objList[$rootScope.lang][0];
-    vm.formData.city = GeneralConfigService.orangeConfig.cityList[$rootScope.lang][0];
-    vm.formData.room = GeneralConfigService.orangeConfig.roomList[$rootScope.lang][0];
+    vm.formData.obj = $rootScope.orangeConfig.objList[$rootScope.lang][0];
+    vm.formData.city = $rootScope.orangeConfig.cityList[$rootScope.lang][0];
+    vm.formData.room = $rootScope.orangeConfig.roomList[$rootScope.lang][0];
     vm.formData.objnumber = '';
 
     $rootScope.$watch('lang', update);
 
 
     function update () {
-      vm.objList = GeneralConfigService.orangeConfig.objList[$rootScope.lang];
-      vm.cityList = GeneralConfigService.orangeConfig.cityList[$rootScope.lang];
-      vm.roomList = GeneralConfigService.orangeConfig.roomList[$rootScope.lang];
+      vm.objList = $rootScope.orangeConfig.objList[$rootScope.lang];
+      vm.cityList = $rootScope.orangeConfig.cityList[$rootScope.lang];
+      vm.roomList = $rootScope.orangeConfig.roomList[$rootScope.lang];
     };
 
     function _find() {
@@ -41,9 +46,9 @@
     };
 
     function _clear() {
-      vm.formData.obj = GeneralConfigService.orangeConfig.objList[$rootScope.lang][0];
-      vm.formData.city = GeneralConfigService.orangeConfig.cityList[$rootScope.lang][0];
-      vm.formData.room = GeneralConfigService.orangeConfig.roomList[$rootScope.lang][0];
+      vm.formData.obj = $rootScope.orangeConfig.objList[$rootScope.lang][0];
+      vm.formData.city = $rootScope.orangeConfig.cityList[$rootScope.lang][0];
+      vm.formData.room = $rootScope.orangeConfig.roomList[$rootScope.lang][0];
       vm.formData.objnumber = '';
     };
   }

@@ -10,6 +10,8 @@
                      $log, $rootScope, lodash, $q) {
     var vm = this;
     var _ = lodash;
+    vm.showNotFound = false;
+    vm.showServerError = false;
 
     vm.performRequest = _performRequest;
 
@@ -61,8 +63,28 @@
         objs: ShortService.getAllShortObjectsObjs(objReqParams)})
         .then(function (results) {
 
+          vm.keysAll= [];
+          vm.objsAll = [];
+
+          $log.info('results');
+          $log.debug(results);
+
           vm.keysAll = results.keys;
-          vm.objsAll = results.objs;
+
+          if (results.objs.status == 404) {
+            vm.showNotFound = true;
+          }
+
+          if (results.objs.status == 500) {
+            vm.showServerError = true;
+          }
+
+          if (results.objs.status == 200) {
+            vm.showNotFound = false;
+            vm.showServerError = false;
+            vm.objsAll = results.objs.data;
+          }
+
 
           /*
            $log.info('loadPanels');
@@ -146,7 +168,7 @@
        $log.debug(vm.objs);
        */
 
-      if (vm.objs.length == 0) return;
+      if (vm.showNotFound || vm.showServerError) return;
 
       vm.objs.map(function (oElem) {
         var tagText = '';

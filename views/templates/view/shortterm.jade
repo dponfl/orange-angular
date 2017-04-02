@@ -26,12 +26,17 @@
                   city-list='e.cityList',
                   room-list='e.roomList')
 
-          div(data-ng-controller='ShortCtrl as sc').row
-            div(data-ng-repeat='panel in sc.panels')
-              panel-short(badge='panel.badge',
-              type='panel.type',
-              badge-text='panel.badgeText',
-              obj-number='panel.objNumber',
-              img='panel.img',
-              gallery='panel.gallery',
-              content='panel.content')
+          div(data-ng-controller='ShortCtrl as sc')
+            div(data-ng-if='sc.showServerError')
+              h1 showServerError
+            div(data-ng-if='sc.showNotFound')
+              h1 showNotFound
+            .row
+              div(data-ng-repeat='panel in sc.panels')
+                panel-short(badge='panel.badge',
+                type='panel.type',
+                badge-text='panel.badgeText',
+                obj-number='panel.objNumber',
+                img='panel.img',
+                gallery='panel.gallery',
+                content='panel.content')

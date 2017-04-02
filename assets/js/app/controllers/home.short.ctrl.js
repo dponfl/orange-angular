@@ -27,11 +27,11 @@
     vm.objs = [];
 
     $q.all({keys: ShortService.getAllShortObjectsKeys({show: 1, home: 1}),
-      objs: ShortService.getAllShortObjectsObjs({show: 1, home: 1, objnumber: '00003'})})
+      objs: ShortService.getAllShortObjectsObjs({show: 1, home: 1})})
       .then(function (results) {
 
         vm.keysAll = results.keys;
-        vm.objsAll = results.objs;
+        vm.objsAll = results.objs.data;
 
         /*
          $log.info('loadPanels');

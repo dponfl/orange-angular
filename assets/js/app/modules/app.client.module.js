@@ -9,9 +9,10 @@
     ])
     .run(setupGlobalScope);
 
-  setupGlobalScope.$inject = ['$rootScope'];
-  function setupGlobalScope($rootScope) {
+  setupGlobalScope.$inject = ['$rootScope', 'GeneralConfigService'];
+  function setupGlobalScope($rootScope, GeneralConfigService) {
     $rootScope.lang = 'en';
+    $rootScope.orangeConfig = GeneralConfigService.orangeConfig;
   }
 
 })();
