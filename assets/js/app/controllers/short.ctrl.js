@@ -12,8 +12,10 @@
     var _ = lodash;
     vm.showNotFound = false;
     vm.showServerError = false;
+    vm.page = 1;
 
     vm.performRequest = _performRequest;
+    vm.activateNextPage = _activateNextPage;
 
     $rootScope.$watch('shortFindActivated', function () {
       if ($rootScope.shortFindActivated) {
@@ -42,6 +44,7 @@
     function _performRequest(reqParams) {
       var params = {};
       var objReqParams = {show: 1};
+      var objReqPager = {};
 
       if (typeof reqParams.objnumber != 'undefined' && reqParams.objnumber) {
         objReqParams.objnumber = reqParams.objnumber;
@@ -56,11 +59,14 @@
         objReqParams.room = reqParams.room.key;
       }
 
+      objReqPager.limit = $rootScope.pagerNumRecords*$rootScope.numLang;
+      objReqPager.page = vm.page;
+
       $log.info('objReqParams');
       $log.debug(objReqParams);
 
       $q.all({keys: ShortService.getAllShortObjectsKeys({show: 1}),
-        objs: ShortService.getAllShortObjectsObjs(objReqParams)})
+        objs: ShortService.getAllShortObjectsObjsPager(objReqParams, objReqPager)})
         .then(function (results) {
 
           vm.keysAll= [];
@@ -123,9 +129,6 @@
         });
     } // _performRequest
 
-
-
-
     function update() {
       vm.objList = GeneralConfigService.orangeConfig.objList[$rootScope.lang];
       vm.cityList = GeneralConfigService.orangeConfig.cityList[$rootScope.lang];
@@ -153,8 +156,7 @@
       $log.info('vm.panels:');
       $log.debug(vm.panels);
 */
-    }
-
+    } // update
 
     function _buildPanel() {
       vm.panels = [];
@@ -246,6 +248,9 @@
       });
     } // _buildPanel
 
-
+    function _activateNextPage() {
+      vm.page++;
+      $rootScope.shortFindActivated = true;
+    } // _activateNextPage
   }
 })();
