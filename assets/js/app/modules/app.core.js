@@ -6,7 +6,8 @@
       'ngResource',
       'ui.router',
       'ngLodash',
-      'jcs-autoValidate'
+      'jcs-autoValidate',
+      'infinite-scroll',
     ])
     .run(errorMsgResolver);
 

@@ -12,7 +12,18 @@
     var _ = lodash;
     vm.showNotFound = false;
     vm.showServerError = false;
-    vm.page = 1;
+    $rootScope.pageShort = 1;
+    vm.busy = false;
+
+    vm.panels = [];
+    vm.keys = [];
+    vm.objs = [];
+
+    vm.objList = GeneralConfigService.orangeConfig.objList[$rootScope.lang];
+    vm.cityList = GeneralConfigService.orangeConfig.cityList[$rootScope.lang];
+    vm.roomList = GeneralConfigService.orangeConfig.roomList[$rootScope.lang];
+    vm.tagList = GeneralConfigService.orangeConfig.tagList[$rootScope.lang];
+
 
     vm.performRequest = _performRequest;
     vm.activateNextPage = _activateNextPage;
@@ -22,29 +33,40 @@
         $log.warn('shortFindActivated...');
         $log.info('$rootScope.shortFilterData');
         $log.debug($rootScope.shortFilterData);
+        vm.busy = false;
+        $rootScope.pageShort = 1;
+        vm.panels = [];
+        vm.keys = [];
+        vm.objs = [];
+        vm.showNotFound = false;
+        vm.showServerError = false;
         vm.performRequest($rootScope.shortFilterData);
         $rootScope.shortFindActivated = false;
       }
     });
 
-    vm.objList = GeneralConfigService.orangeConfig.objList[$rootScope.lang];
-    vm.cityList = GeneralConfigService.orangeConfig.cityList[$rootScope.lang];
-    vm.roomList = GeneralConfigService.orangeConfig.roomList[$rootScope.lang];
-    vm.tagList = GeneralConfigService.orangeConfig.tagList[$rootScope.lang];
 
-    vm.panels = [];
 
-    vm.keysAll = [];
-    vm.objsAll = [];
-    vm.keys = [];
-    vm.objs = [];
 
-    _performRequest({});
+
+
+
+    // vm.performRequest($rootScope.shortFilterData);
 
     function _performRequest(reqParams) {
+
+      if (vm.busy) {
+        $log.info('vm.busy == true!!!');
+        return;
+      }
+      vm.busy = true;
+
       var params = {};
       var objReqParams = {show: 1};
       var objReqPager = {};
+
+      vm.keysAll= {};
+      vm.objsAll = {};
 
       if (typeof reqParams.objnumber != 'undefined' && reqParams.objnumber) {
         objReqParams.objnumber = reqParams.objnumber;
@@ -60,17 +82,22 @@
       }
 
       objReqPager.limit = $rootScope.pagerNumRecords*$rootScope.numLang;
-      objReqPager.page = vm.page;
+      objReqPager.page = $rootScope.pageShort;
+      $rootScope.pageShort++;
 
+      $log.warn('objReqPager.limit & objReqPager.page');
+      $log.debug(objReqPager.limit);
+      $log.debug(objReqPager.page);
+
+
+/*
       $log.info('objReqParams');
       $log.debug(objReqParams);
+*/
 
       $q.all({keys: ShortService.getAllShortObjectsKeys({show: 1}),
         objs: ShortService.getAllShortObjectsObjsPager(objReqParams, objReqPager)})
         .then(function (results) {
-
-          vm.keysAll= [];
-          vm.objsAll = [];
 
           $log.info('results');
           $log.debug(results);
@@ -88,6 +115,8 @@
           if (results.objs.status == 200) {
             vm.showNotFound = false;
             vm.showServerError = false;
+            vm.busy = false;
+
             vm.objsAll = results.objs.data;
           }
 
@@ -119,7 +148,10 @@
            $log.debug(vm.objs);
            });
            */
-          $rootScope.$watch('lang', update);
+
+          // $rootScope.$watch('lang', update);
+
+          _buildPanel();
         })
         .catch(function (err) {
           // todo: change by Log
@@ -135,11 +167,22 @@
       vm.roomList = GeneralConfigService.orangeConfig.roomList[$rootScope.lang];
       vm.tagList = GeneralConfigService.orangeConfig.tagList[$rootScope.lang];
 
-      $log.info('vm.objsAll');
+/*
+      $log.info('update(), vm.objsAll');
       $log.debug(vm.objsAll);
+*/
 
+/*
       vm.keys = vm.keysAll[$rootScope.lang];
       vm.objs = vm.objsAll[$rootScope.lang];
+*/
+
+/*
+      $log.info('update(), vm.keys');
+      $log.debug(vm.keys);
+      $log.info('update(), vm.objs');
+      $log.debug(vm.objs);
+*/
 
 /*
       $log.debug('$rootScope.lang: ' + $rootScope.lang);
@@ -152,6 +195,9 @@
       // todo: make return from _buildPanel true/false and set up controller variable
       // to display message that there is no data
       _buildPanel();
+
+      $log.info('update(), panels:');
+      $log.debug(vm.panels);
 /*
       $log.info('vm.panels:');
       $log.debug(vm.panels);
@@ -159,8 +205,7 @@
     } // update
 
     function _buildPanel() {
-      vm.panels = [];
-      var record = {};
+
       /*
        $log.warn('_buildRecord invoked...');
        $log.debug('$rootScope.lang: ' + $rootScope.lang);
@@ -170,7 +215,18 @@
        $log.debug(vm.objs);
        */
 
-      if (vm.showNotFound || vm.showServerError) return;
+      if (vm.showNotFound || vm.showServerError) {
+        $log.info('_buildPanel(), vm.showNotFound || vm.showServerError');
+        return;
+      }
+
+      $log.info('_buildPanel(), build panels...');
+
+      vm.keys = vm.keysAll[$rootScope.lang];
+      vm.objs = vm.objsAll[$rootScope.lang];
+
+      // vm.panels = [];
+      var record = {};
 
       vm.objs.map(function (oElem) {
         var tagText = '';
@@ -246,11 +302,23 @@
 
         vm.panels.push(record);
       });
+
+      $log.info('_buildPanel(), panels:');
+      $log.debug(vm.panels);
+
     } // _buildPanel
 
     function _activateNextPage() {
-      vm.page++;
-      $rootScope.shortFindActivated = true;
+      $log.info('_activateNextPage(), $rootScope.pageShort before: ' + $rootScope.pageShort);
+      vm.performRequest($rootScope.shortFilterData);
+/*
+      if (!vm.showNotFound) {
+        // $rootScope.pageShort++;
+        vm.performRequest($rootScope.shortFilterData);
+      }
+*/
+      $log.info('_activateNextPage(), $rootScope.pageShort after: ' + $rootScope.pageShort);
+      // $rootScope.shortFindActivated = true;
     } // _activateNextPage
   }
 })();

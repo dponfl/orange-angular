@@ -27,11 +27,13 @@
                   room-list='e.roomList')
 
           div(data-ng-controller='ShortCtrl as sc')
-            div(data-ng-if='sc.showServerError')
+            //div(data-ng-click='sc.activateNextPage()').btn.btn-warning activateNextPage()
+            //div(data-ng-if='sc.showServerError')
               h1 showServerError
-            div(data-ng-if='sc.showNotFound')
+            //div(data-ng-if='sc.showNotFound')
               h1 showNotFound
-            .row
+            div(infinite-scroll='sc.activateNextPage()',
+            infinite-scroll-distance='1').row
               div(data-ng-repeat='panel in sc.panels')
                 panel-short(badge='panel.badge',
                 type='panel.type',

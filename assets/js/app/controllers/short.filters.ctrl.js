@@ -29,6 +29,8 @@
     vm.formData.room = $rootScope.orangeConfig.roomList[$rootScope.lang][0];
     vm.formData.objnumber = '';
 
+    $rootScope.shortFilterData = vm.formData;
+
     $rootScope.$watch('lang', update);
 
 
@@ -40,8 +42,10 @@
 
     function _find() {
       $rootScope.shortFindActivated = true;
+/*
       $log.info('ShortFiltersCtrl::find()');
       $log.debug(vm.formData);
+*/
       $rootScope.shortFilterData = vm.formData;
     };
 

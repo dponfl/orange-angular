@@ -55,6 +55,9 @@ var jsFilesToInject = [
   // Load angular-auto-validate
   'vendor/angular-auto-validate/dist/jcs-auto-validate.js',
 
+  // Load ngInfiniteScroll
+  'vendor/ngInfiniteScroll/build/ng-infinite-scroll.js',
+
   'js/dependencies/Other/**/*.js',
 
   // Load application modules
