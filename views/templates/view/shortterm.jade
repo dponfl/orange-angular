@@ -26,15 +26,18 @@
                   city-list='e.cityList',
                   room-list='e.roomList')
 
-          div(data-ng-controller='ShortCtrl as sc')
-            //div(data-ng-click='sc.activateNextPage()').btn.btn-warning activateNextPage()
+          div(data-ng-controller='ShortCtrl')
             //div(data-ng-if='sc.showServerError')
               h1 showServerError
-            //div(data-ng-if='sc.showNotFound')
-              h1 showNotFound
-            div(infinite-scroll='sc.activateNextPage()',
-            infinite-scroll-distance='1').row
-              div(data-ng-repeat='panel in sc.panels')
+
+            div(data-ng-if='showFoundNothing')
+              h1(translate='GENERAL_FOUND_NOTHING')
+
+            div(infinite-scroll='activateNextPage()',
+            infinite-scroll-disabled='scrollDisabled',
+            infinite-scroll-distance='1',
+            data-ng-hide='showFoundNothing').row
+              div(data-ng-repeat='panel in panels')
                 panel-short(badge='panel.badge',
                 type='panel.type',
                 badge-text='panel.badgeText',
@@ -42,3 +45,6 @@
                 img='panel.img',
                 gallery='panel.gallery',
                 content='panel.content')
+
+            div(data-ng-if='busy')
+              h2 Loading...

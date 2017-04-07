@@ -181,8 +181,6 @@
 
     function _getAllShortObjectsObjsPager(reqObj, pager) {
 
-      // todo: return object having result code (200, 404, etc.) and data
-
       return $http.post('http://localhost:1337/short/findp', {
         conditions: reqObj,
         pager: pager

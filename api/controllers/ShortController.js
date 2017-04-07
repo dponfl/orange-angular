@@ -35,7 +35,7 @@ module.exports = {
       }
     });
 
-    console.log('whereObj:')
+    console.log('whereObj:');
     console.dir(whereObj);
 
     Short.find({
@@ -121,10 +121,24 @@ module.exports = {
             message: 'Not found'});
         }
 
+        // todo: delete after tests of delay
+        setTimeout(function () {
+          return res.ok({
+            code: 200,
+            message: 'OK',
+            result: data
+          });
+        }, 5000);
+
+        // todo: uncomment after tests of delay
+
+/*
         return res.ok({
           code: 200,
           message: 'OK',
-          result: data});
+          result: data
+        });
+*/
       });
 
 

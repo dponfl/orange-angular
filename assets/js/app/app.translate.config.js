@@ -70,9 +70,10 @@ function translateConfig ($translateProvider) {
     'Долорум мнесарчум диссентиунт иус не, но агам примис видерер нец. Еа поссе миним ' +
     'дицерет сеа, усу менандри цонсулату еи.',
 
-    // Home - General
+    // General
     'GENERAL_ELEM_OBJ': 'Object #',
     'GENERAL_ELEM_MORE_DETAILS': 'More details...',
+    'GENERAL_FOUND_NOTHING': 'Nothing found. Change search criteria and try again.',
 
     // Exclusive
     'EXCLUSIVE_PAGE_HEADER_TITLE': '[En]Эксклюзивные объекты',
@@ -182,9 +183,11 @@ function translateConfig ($translateProvider) {
     'Долорум мнесарчум диссентиунт иус не, но агам примис видерер нец. Еа поссе миним ' +
     'дицерет сеа, усу менандри цонсулату еи.',
 
-    // Home - General
+    // General
     'GENERAL_ELEM_OBJ': 'Объект №',
     'GENERAL_ELEM_MORE_DETAILS': 'Подробнее...',
+    'GENERAL_FOUND_NOTHING': 'По вашему запросу ничего не найдено. Измените условия и повторите поиск.',
+
 
     // Exclusive
     'EXCLUSIVE_PAGE_HEADER_TITLE': 'Эксклюзивные объекты',
