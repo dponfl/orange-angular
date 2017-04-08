@@ -32,14 +32,8 @@
     $rootScope.$watch('lang', _update);
 
     function _updateData () {
-      $log.info('$rootScope.$watch................ !!!!!!!!!!!!!!!');
-      $log.debug('$rootScope.$watch: $rootScope.shortFindActivated: ' + $rootScope.shortFindActivated);
-      $log.info('$rootScope.scrollDisabled: ' + $rootScope.scrollDisabled);
 
       if ($rootScope.shortFindActivated) {
-        $log.warn('shortFindActivated...');
-        $log.info('$rootScope.shortFilterData');
-        $log.debug($rootScope.shortFilterData);
 
         $scope.busy = false;
         $rootScope.shortFindActivated = false;
@@ -52,8 +46,6 @@
 
         $q.when(_performRequest($rootScope.shortFilterData))
           .then(function (res) {
-            $log.info('11111111111 $q.when(_performRequest($rootScope.shortFilterData)), res.....');
-            $log.debug(res);
 
             // todo: only for notFound and serverError
             if (!res.performed) {
@@ -63,17 +55,11 @@
 
             var buildResult = _buildPanel(res);
 
-            $log.info('11111111111 $q.when(_performRequest($rootScope.shortFilterData)), buildResult.....');
-            $log.debug(buildResult);
-
             if (!buildResult.performed) return;
 
             $rootScope.panelsAllLangs = buildResult.data;
 
             _update();
-
-            $log.info('11111111111 $rootScope.panels:');
-            $log.debug($rootScope.panels);
 
             return;
           });
@@ -91,7 +77,6 @@
     function _performRequest(reqParams) {
 
       if ($scope.busy) {
-        $log.info('$scope.busy == true!!!');
 
         return {
           performed: false,
@@ -104,7 +89,6 @@
       }
 
       if ($rootScope.showNotFound) {
-        $log.info('$rootScope.showNotFound == true!!!');
 
         return {
           performed: false,
@@ -117,7 +101,6 @@
       }
 
       if ($scope.showServerError) {
-        $log.info('$scope.showServerError == true!!!');
 
         return {
           performed: false,
@@ -155,17 +138,9 @@
 
       $rootScope.pageShort++;
 
-      $log.warn('objReqPager.limit & objReqPager.page');
-      $log.debug(objReqPager.limit);
-      $log.debug(objReqPager.page);
-
       return $q.all({keys: ShortService.getAllShortObjectsKeys({show: 1}),
         objs: ShortService.getAllShortObjectsObjsPager(objReqParams, objReqPager)})
         .then(function (results) {
-
-          $log.info('results');
-          $log.debug(results);
-
           $scope.busy = false;
 
           if (results.objs.status == 404) {
@@ -174,9 +149,6 @@
             if (objReqPager.page == 1) {
               $rootScope.showFoundNothing = true;
             }
-
-            $log.info('==== 33333333333333333333333333 ====');
-            $log.debug('objReqPager.page: ' + objReqPager.page);
 
             return {
               performed: false,
@@ -243,9 +215,6 @@
 
       if (!requestResult.performed) {
 
-        $log.info('_buildPanel(), not performed. Reason: ' + requestResult.reason);
-        $log.debug(requestResult);
-
         return {
           performed: requestResult.performed,
           reason: requestResult.reason,
@@ -253,19 +222,11 @@
         };
       }
 
-      $log.info('_buildPanel(), building panels...');
-
       var result = {};
 
       $rootScope.langList.map(function (elem) {
         result[elem] = __buildPanelOneLang(requestResult.data.keys[elem],
           requestResult.data.objs[elem], elem);
-
-/*
-        $log.info('_buildPanel(), panels:');
-        $log.debug(p);
-*/
-
 
       });
 
@@ -366,55 +327,15 @@
       $rootScope.roomList = GeneralConfigService.orangeConfig.roomList[$rootScope.lang];
       $rootScope.tagList = GeneralConfigService.orangeConfig.tagList[$rootScope.lang];
 
-/*
-      $log.info('update(), $scope.objsAll');
-      $log.debug($scope.objsAll);
-*/
-
-/*
-      $scope.keys = $scope.keysAll[$rootScope.lang];
-      $scope.objs = $scope.objsAll[$rootScope.lang];
-*/
-
-/*
-      $log.info('update(), $scope.keys');
-      $log.debug($scope.keys);
-      $log.info('update(), $scope.objs');
-      $log.debug($scope.objs);
-*/
-
-/*
-      $log.debug('$rootScope.lang: ' + $rootScope.lang);
-      $log.info('$scope.keys');
-      $log.debug($scope.keys);
-      $log.info('$scope.objs');
-      $log.debug($scope.objs);
-*/
-
-      // todo: insert language update function
-
       $rootScope.panels = $rootScope.panelsAllLangs[$rootScope.lang];
 
-/*
-      $log.info('update(), panels:');
-      $log.debug($rootScope.panels);
-*/
-/*
-      $log.info('$scope.panels:');
-      $log.debug($scope.panels);
-*/
     } // update
 
     function _activateNextPage() {
-      $log.info('$rootScope.scrollDisabled: ' + $rootScope.scrollDisabled);
-      $log.info('_activateNextPage(), $rootScope.pageShort before: ' + $rootScope.pageShort);
-
       if ($rootScope.scrollDisabled) return;
 
       $q.when(_performRequest($rootScope.shortFilterData))
         .then(function (res) {
-          $log.info('222222222222 $q.when(_performRequest($rootScope.shortFilterData)), res.....');
-          $log.debug(res);
 
           if (!res.performed) {
             $rootScope.scrollDisabled = true;
@@ -424,9 +345,6 @@
           $rootScope.scrollDisabled = false;
 
           var buildResult = _buildPanel(res);
-
-          $log.info('22222222222222 $q.when(_performRequest($rootScope.shortFilterData)), buildResult.....');
-          $log.debug(buildResult);
 
           if (!buildResult.performed) return;
           
@@ -442,13 +360,9 @@
 
           _update();
 
-          $log.info('2222222222222 $rootScope.panels:');
-          $log.debug($rootScope.panels);
-
           return;
         });
 
-      $log.info('_activateNextPage(), $rootScope.pageShort after: ' + $rootScope.pageShort);
     } // _activateNextPage
   }
 })();

@@ -54,11 +54,6 @@
           })
         }
 
-/*
-        $log.info('__keys...');
-        $log.debug(__keys);
-*/
-
         deferred.resolve(__keys);
 
         /*setTimeout(function () {
@@ -79,8 +74,6 @@
        .then(successCb, errorCb);
 
       function successCb(data) {
-       $log.info(':)');
-       $log.debug(data);
 
         if (!_.isArray(data.data.result)) {
           return new Error('Short data is not an array');
@@ -126,10 +119,6 @@
       }
 
       function errorCb(err) {
-/*
-       $log.info(':(');
-       $log.debug(err);
-*/
 
        return {
          status: err.status,
@@ -188,8 +177,6 @@
        .then(successCb, errorCb);
 
       function successCb(data) {
-       $log.info(':)');
-       $log.debug(data);
 
         if (!_.isArray(data.data.result)) {
           return new Error('Short data is not an array');
@@ -235,10 +222,6 @@
       }
 
       function errorCb(err) {
-/*
-       $log.info(':(');
-       $log.debug(err);
-*/
 
        return {
          status: err.status,

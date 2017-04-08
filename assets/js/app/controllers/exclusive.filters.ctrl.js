@@ -35,7 +35,6 @@
     };
 
     vm.find = function () {
-      $log.debug(vm.formData);
     };
 
     vm.clear = function () {
@@ -50,8 +49,6 @@
       oCity.find({key: ['pafos', 'limassol'], lang: 'ru'}, function (data) {})
         .$promise
         .then(function (data) {
-          $log.info('testGetData, oCity');
-          $log.debug(data);
         })
         .catch(function (err) {
           // todo: change by Log
@@ -64,8 +61,6 @@
       oExclusiveKey.find({lang: 'en'}, function (data) {})
         .$promise
         .then(function(data) {
-          $log.info('testGetData, oExclusiveKey');
-          $log.debug(data);
         })
         .catch(function (err) {
           // todo: change by Log

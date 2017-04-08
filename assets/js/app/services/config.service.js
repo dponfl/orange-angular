@@ -38,17 +38,6 @@
       self.getRoom(), self.getTag()])
       .then(function () {
         self.setLang();
-        $log.warn('GeneralConfigService');
-        $log.info('self.orangeConfig.cityList:');
-        $log.debug(self.orangeConfig.cityList);
-        $log.info('self.orangeConfig.dealList:');
-        $log.debug(self.orangeConfig.dealList);
-        $log.info('self.orangeConfig.objList:');
-        $log.debug(self.orangeConfig.objList);
-        $log.info('self.orangeConfig.roomList:');
-        $log.debug(self.orangeConfig.roomList);
-        $log.info('self.orangeConfig.tagList:');
-        $log.debug(self.orangeConfig.tagList);
       })
       .catch(function (err) {
         // todo: change by Log

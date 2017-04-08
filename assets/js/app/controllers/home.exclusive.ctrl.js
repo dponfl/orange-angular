@@ -34,33 +34,9 @@
         vm.keysAll = results.keys;
         vm.objsAll = results.objs;
 
-        /*
-         $log.info('loadPanels');
-         $log.debug('$rootScope.lang: ' + $rootScope.lang);
-
-         $log.info('results.keys');
-         $log.debug(results.keys);
-         $log.info('results.objs');
-         $log.debug(results.objs);
-         */
-
-      }/*, function (error) {
-       $log.error(error);
-       }*/)
+      })
       .then(function () {
 
-        /*
-         $rootScope.$watch('lang', function () {
-         vm.keys = vm.keysAll[$rootScope.lang];
-         vm.objs = vm.objsAll[$rootScope.lang];
-
-         $log.debug('$rootScope.lang: ' + $rootScope.lang);
-         $log.info('vm.keys');
-         $log.debug(vm.keys);
-         $log.info('vm.objs');
-         $log.debug(vm.objs);
-         });
-         */
         $rootScope.$watch('lang', update);
       })
       .catch(function (err) {
@@ -81,34 +57,14 @@
       vm.keys = vm.keysAll[$rootScope.lang];
       vm.objs = vm.objsAll[$rootScope.lang];
 
-/*
-      $log.debug('$rootScope.lang: ' + $rootScope.lang);
-      $log.info('vm.keys');
-      $log.debug(vm.keys);
-      $log.info('vm.objs');
-      $log.debug(vm.objs);
-*/
-
       _buildPanel();
       _buildPanelGroups();
-/*
-      $log.info('vm.panels:');
-      $log.debug(vm.panels);
-*/
     }
 
 
     function _buildPanel() {
       vm.panels = [];
       var record = {};
-      /*
-       $log.warn('_buildRecord invoked...');
-       $log.debug('$rootScope.lang: ' + $rootScope.lang);
-       $log.info('vm.keys');
-       $log.debug(vm.keys);
-       $log.info('vm.objs');
-       $log.debug(vm.objs);
-       */
 
       vm.objs.map(function (oElem) {
         var tagText = '';

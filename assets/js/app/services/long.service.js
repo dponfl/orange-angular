@@ -53,11 +53,6 @@
           })
         }
 
-/*
-        $log.info('__keys...');
-        $log.debug(__keys);
-*/
-
         deferred.resolve(__keys);
 
         /*setTimeout(function () {
@@ -108,11 +103,6 @@
             updatedAt: data[i].updatedAt,
           })
         }
-
-/*
-        $log.info('__objs...');
-        $log.debug(__objs);
-*/
 
         deferred.resolve(__objs);
 
