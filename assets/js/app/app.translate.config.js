@@ -74,6 +74,7 @@ function translateConfig ($translateProvider) {
     'GENERAL_ELEM_OBJ': 'Object #',
     'GENERAL_ELEM_MORE_DETAILS': 'More details...',
     'GENERAL_FOUND_NOTHING': 'Nothing found. Change search criteria and try again.',
+    'GENERAL_LOADING_SPINNER': 'Loading...',
 
     // Exclusive
     'EXCLUSIVE_PAGE_HEADER_TITLE': '[En]Эксклюзивные объекты',
@@ -187,6 +188,8 @@ function translateConfig ($translateProvider) {
     'GENERAL_ELEM_OBJ': 'Объект №',
     'GENERAL_ELEM_MORE_DETAILS': 'Подробнее...',
     'GENERAL_FOUND_NOTHING': 'По вашему запросу ничего не найдено. Измените условия и повторите поиск.',
+    'GENERAL_LOADING_SPINNER': 'Информация загружается...',
+
 
 
     // Exclusive

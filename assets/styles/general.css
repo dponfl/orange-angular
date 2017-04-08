@@ -35,6 +35,7 @@ h1 > small {
 }
 
 .slideanim {visibility:hidden;}
+
 .slide {
     /* The name of the animation */
     animation-name: slide;
@@ -44,6 +45,19 @@ h1 > small {
     -webkit-animation-duration: 1s;
     /* Make the element visible */
     visibility: visible;
+}
+
+.spinner {
+    position: relative;
+    width: 150px;
+    height: 50px;
+    margin: 0 auto;
+    padding: 40px 0;
+    margin-bottom: 20px;
+}
+
+.spinner-text {
+    margin: 20px 10px;
 }
 
 /* Go from 0% to 100% opacity (see-through) and specify the percentage from when to slide in the element along the Y-axis */

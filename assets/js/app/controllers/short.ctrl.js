@@ -31,6 +31,10 @@
 
     $rootScope.$watch('lang', _update);
 
+    $scope.$watch('busy', function (oldVal, newVal) {
+      $rootScope.busy = newVal;
+    });
+
     function _updateData () {
 
       if ($rootScope.shortFindActivated) {

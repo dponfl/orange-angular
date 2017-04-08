@@ -8,6 +8,8 @@
       'ngLodash',
       'jcs-autoValidate',
       'infinite-scroll',
+      'angularSpinner',
+      'angular-ladda',
     ])
     .run(errorMsgResolver);
 

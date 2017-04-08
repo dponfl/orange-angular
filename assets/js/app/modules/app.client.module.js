@@ -5,7 +5,8 @@
     .module('OrangeClient', [
       'app.core',
       'app.client.routes',
-      'app.translate.module'
+      'app.translate.module',
+      'app.client.config'
     ])
     .run(setupGlobalScope);
 

@@ -20,7 +20,8 @@ var cssFilesToInject = [
   'vendor/bootstrap/dist/css/bootstrap.css',
   'vendor/bootstrap/dist/css/bootstrap-theme.css',
   'styles/libs/**/*.css',
-  'styles/**/*.css'
+  'styles/**/*.css',
+  'vendor/ladda/dist/ladda-themeless.min.css'
 ];
 
 // Modernizr files injection
@@ -57,6 +58,14 @@ var jsFilesToInject = [
 
   // Load ngInfiniteScroll
   'vendor/ngInfiniteScroll/build/ng-infinite-scroll.js',
+
+  // Load angular-spinner
+  'vendor/angular-spinner/dist/angular-spinner.js',
+
+  // Load angular-ladda
+  'vendor/ladda/js/spin.js',
+  'vendor/ladda/js/ladda.js',
+  'vendor/angular-ladda/dist/angular-ladda.js',
 
   'js/dependencies/Other/**/*.js',
 

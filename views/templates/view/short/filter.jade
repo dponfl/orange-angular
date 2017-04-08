@@ -35,7 +35,7 @@ data-ng-submit='$ctrl.find()').form-horisontal
 
   .form-group.clearfix
     .col-lg-7.col-lg-offset-5.col-md-offset-3.col-sm-offset-1
-      button(translate='BTN_FIND',
-      type='submit').btn.btn-success.btn-lg.btn-margin
-      button(translate='BTN_CLR', data-ng-click='$ctrl.clear()').btn.btn-warning.btn-lg.btn-margin
-      //button(data-ng-click='$ctrl.testGetData()').btn.btn-warning.btn-lg.btn-margin testGetData()
+      button(type='submit',
+      ladda='$ctrl.busyFind').btn.btn-success.btn-lg.btn-margin {{'BTN_FIND' | translate}}
+      button(data-ng-click='$ctrl.clear()',
+      ladda='$ctrl.busyClear').btn.btn-warning.btn-lg.btn-margin {{'BTN_CLR' | translate}}
