@@ -5,10 +5,15 @@
     .controller('ShortCtrl', ShortCtrl);
 
   ShortCtrl.$inject = ['GeneralConfigService', 'ShortService',
-    '$log', '$rootScope', '$scope', 'lodash', '$q'];
+    '$log', '$rootScope', '$scope', 'lodash', '$q', '$alert'];
   function ShortCtrl(GeneralConfigService, ShortService,
-                     $log, $rootScope, $scope, lodash, $q) {
+                     $log, $rootScope, $scope, lodash, $q, $alert) {
     var _ = lodash;
+    var busyAlert = $alert({title: 'Title',
+      content: 'Content',
+      container: '#spinner-container',
+      show: true,
+      templateUrl: '../templates/view/busyAlert.html'});
 
     $rootScope.showNotFound = false;
     $scope.showServerError = false;
@@ -33,6 +38,13 @@
 
     $scope.$watch('busy', function (oldVal, newVal) {
       $rootScope.busy = newVal;
+      if (oldVal && !newVal) {
+        $log.debug('busyAlert.show() - oldVal: ' + oldVal + ', newVal: ' + newVal);
+        busyAlert.$promise.then(busyAlert.show);
+      } else if (!oldVal && newVal) {
+        $log.debug('busyAlert.hide() - oldVal: ' + oldVal + ', newVal: ' + newVal);
+        busyAlert.$promise.then(busyAlert.hide);
+      }
     });
 
     function _updateData () {

@@ -10,6 +10,7 @@
       'infinite-scroll',
       'angularSpinner',
       'angular-ladda',
+      'mgcrea.ngStrap',
     ])
     .run(errorMsgResolver);
 

@@ -49,15 +49,22 @@ h1 > small {
 
 .spinner {
     position: relative;
-    width: 150px;
-    height: 50px;
     margin: 0 auto;
-    padding: 40px 0;
-    margin-bottom: 20px;
+    width: 50%;
+    padding: 20px 0;
+    /*margin-bottom: 20px;*/
 }
 
 .spinner-text {
-    margin: 20px 10px;
+    margin: 0 auto;
+    width: 50%;
+    text-align: center;
+    /*
+    position: relative;
+    width: 15%;
+    margin: 0 auto;
+    */
+    /*padding: 20px 10px;*/
 }
 
 /* Go from 0% to 100% opacity (see-through) and specify the percentage from when to slide in the element along the Y-axis */

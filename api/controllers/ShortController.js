@@ -25,6 +25,8 @@ module.exports = {
     console.dir(req.allParams());
 */
 
+    console.log('<== ShortController.js:find ==>');
+
     // todo: make parameters validation
     var requestParams = req.allParams();
     var whereObj = {};
@@ -83,6 +85,8 @@ module.exports = {
     console.dir(req.allParams());
 */
 
+    console.log('<== ShortController.js:findPager ==>');
+
     // todo: make parameters validation
     var requestParams = req.allParams();
     var whereObj = {};
@@ -128,7 +132,7 @@ module.exports = {
             message: 'OK',
             result: data
           });
-        }, 5000);
+        }, 3000);
 
         // todo: uncomment after tests of delay
 

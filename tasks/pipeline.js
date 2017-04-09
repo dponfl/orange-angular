@@ -67,6 +67,11 @@ var jsFilesToInject = [
   'vendor/ladda/js/ladda.js',
   'vendor/angular-ladda/dist/angular-ladda.js',
 
+  // Load angular-strap
+  'vendor/angular-strap/dist/angular-strap.js',
+  'vendor/angular-strap/dist/angular-strap.tpl.js',
+
+
   'js/dependencies/Other/**/*.js',
 
   // Load application modules
