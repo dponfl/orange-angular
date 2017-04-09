@@ -3,6 +3,7 @@
 
   angular.module('OrangeClient')
     .component('panelShort', {
+      controller: 'ShortPanelCtrl',
       bindings: {
         badge: '<',
         type: '<',

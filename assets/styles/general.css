@@ -47,6 +47,10 @@ h1 > small {
     visibility: visible;
 }
 
+.busy-alert {
+    margin-top: 20px;
+}
+
 .spinner {
     position: relative;
     margin: 0 auto;

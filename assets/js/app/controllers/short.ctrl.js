@@ -39,10 +39,8 @@
     $scope.$watch('busy', function (oldVal, newVal) {
       $rootScope.busy = newVal;
       if (oldVal && !newVal) {
-        $log.debug('busyAlert.show() - oldVal: ' + oldVal + ', newVal: ' + newVal);
         busyAlert.$promise.then(busyAlert.show);
       } else if (!oldVal && newVal) {
-        $log.debug('busyAlert.hide() - oldVal: ' + oldVal + ', newVal: ' + newVal);
         busyAlert.$promise.then(busyAlert.hide);
       }
     });
