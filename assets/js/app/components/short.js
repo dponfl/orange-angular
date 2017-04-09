@@ -11,7 +11,8 @@
         objNumber: '<',
         img: '<',
         gallery: '<',
-        content: '<'
+        content: '<',
+        index: '='
       },
       templateUrl: 'templates/view/short/panelShort.html'
     });

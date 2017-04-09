@@ -5,10 +5,10 @@
     .module('OrangeClient')
     .controller('ShortPanelCtrl', ShortPanelCtrl);
 
-  ShortPanelCtrl.$inject = ['$modal', '$log'];
+  ShortPanelCtrl.$inject = ['$rootScope', '$modal', '$log'];
 
   /* @ngInject */
-  function ShortPanelCtrl($modal, $log) {
+  function ShortPanelCtrl($rootScope, $modal, $log) {
     var vm = this;
     vm.title = 'ShortPanelCtrl';
 
@@ -21,8 +21,13 @@
       vm.calendar = _calendar;
     }
 
-    function _price() {
+    function _price(index) {
       $log.info('_price() invoked...');
+      $log.debug('index: ' + vm.index);
+      $log.info('img: ');
+      $log.debug(vm.img);
+      $log.info('$rootScope.panels:');
+      $log.debug($rootScope.panels);
     }
 
     function _calendar() {
