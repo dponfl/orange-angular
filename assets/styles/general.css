@@ -71,6 +71,41 @@ h1 > small {
     /*padding: 20px 10px;*/
 }
 
+/*
+    For AngularStrap
+ */
+
+/*
+body.modal-open {
+    padding-right: 0 !important;
+}
+*/
+
+body {
+    overflow: auto !important;
+}
+
+.short-price-modal {
+    margin-top: 10%;
+}
+
+.modal-backdrop.am-fade {
+    opacity: .7;
+    transition: opacity .15s linear;
+    &.ng-enter {
+         opacity: 0;
+    &.ng-enter-active {
+         opacity: .7;
+     }
+    }
+    &.ng-leave {
+         opacity: .7;
+    &.ng-leave-active {
+         opacity: 0;
+     }
+    }
+}
+
 /* Go from 0% to 100% opacity (see-through) and specify the percentage from when to slide in the element along the Y-axis */
 @keyframes slide {
     0% {

@@ -1,0 +1,15 @@
+div(tabindex="-1",
+role="dialog",
+data-ng-controller='ShortPanelCtrl as spc').modal.short-price-modal
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button(ng-click="$hide()").close &times;
+        h2.modal-title Modal header
+      .modal-body
+        h3 Modal body header
+        p Modal body text
+        h4 {{message}}
+        h4 index: {{index}}
+      .modal-footer
+        button(type='button', ng-click='$hide()').btn.btn-default Close
