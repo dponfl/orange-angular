@@ -73,6 +73,7 @@ function translateConfig ($translateProvider) {
     // General
     'GENERAL_ELEM_OBJ': 'Object #',
     'GENERAL_ELEM_MORE_DETAILS': 'More details...',
+    'GENERAL_FOUND_NOTHING_HEADER': 'Nothing found...',
     'GENERAL_FOUND_NOTHING': 'Nothing found. Change search criteria and try again.',
     'GENERAL_LOADING_SPINNER': 'Loading...',
 
@@ -187,6 +188,7 @@ function translateConfig ($translateProvider) {
     // General
     'GENERAL_ELEM_OBJ': 'Объект №',
     'GENERAL_ELEM_MORE_DETAILS': 'Подробнее...',
+    'GENERAL_FOUND_NOTHING_HEADER': 'Ничего не найдено...',
     'GENERAL_FOUND_NOTHING': 'По вашему запросу ничего не найдено. Измените условия и повторите поиск.',
     'GENERAL_LOADING_SPINNER': 'Информация загружается...',
 

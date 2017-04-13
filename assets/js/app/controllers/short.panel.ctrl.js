@@ -18,6 +18,17 @@
       // backdrop: false,
     });
 
+    this.$onInit = function () {
+      $log.info('$onInit...');
+
+      $log.info('_showPrice() invoked within $onInit...');
+      $log.debug('index: ' + vm.index);
+      $log.info('img: ');
+      $log.debug(vm.img);
+      $log.info('$rootScope.panels:');
+      $log.debug($rootScope.panels);
+    };
+
     $scope.message = 'Some $scope message to show...';
 
     $log.info('Before _showPrice() invoked...');
