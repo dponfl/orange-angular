@@ -6,6 +6,7 @@
 
   ShortCtrl.$inject = ['GeneralConfigService', 'ShortService',
     '$log', '$rootScope', '$scope', 'lodash', '$q', '$alert'];
+
   function ShortCtrl(GeneralConfigService, ShortService,
                      $log, $rootScope, $scope, lodash, $q, $alert) {
     var _ = lodash;
@@ -61,8 +62,8 @@
         $q.when(_performRequest($rootScope.shortFilterData))
           .then(function (res) {
 
-            // todo: only for notFound and serverError
-            if (!res.performed) {
+            if (!res.performed &&
+              (res.reason == 'notFound' || res.reason == 'serverError')) {
               $rootScope.scrollDisabled = true;
               return;
             }
@@ -168,7 +169,7 @@
               performed: false,
               reason: 'notFound',
               data: {
-                keys: results.keys,
+                keys: {},
                 objs: {},
               },
             };
@@ -181,7 +182,7 @@
               performed: false,
               reason: 'serverError',
               data: {
-                keys: results.keys,
+                keys: {},
                 objs: {},
               },
             };
@@ -351,7 +352,8 @@
       $q.when(_performRequest($rootScope.shortFilterData))
         .then(function (res) {
 
-          if (!res.performed) {
+          if (!res.performed &&
+            (res.reason == 'notFound' || res.reason == 'serverError')) {
             $rootScope.scrollDisabled = true;
             return;
           }

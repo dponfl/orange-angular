@@ -46,20 +46,21 @@
     };
 
     function _find() {
-      $rootScope.shortFindActivated = true;
       $rootScope.shortFilterData = vm.formData;
       vm.busyFind = true;
       vm.disabledClear = 'disabled';
+      $rootScope.shortFindActivated = true;
     };
 
     function _clear() {
-      $rootScope.shortFindActivated = true;
       vm.formData.obj = $rootScope.orangeConfig.objList[$rootScope.lang][0];
       vm.formData.city = $rootScope.orangeConfig.cityList[$rootScope.lang][0];
       vm.formData.room = $rootScope.orangeConfig.roomList[$rootScope.lang][0];
       vm.formData.objnumber = '';
+      $rootScope.shortFilterData = vm.formData;
       vm.busyClear = true;
       vm.disabledFind = 'disabled';
+      $rootScope.shortFindActivated = true;
     };
   }
 })();
