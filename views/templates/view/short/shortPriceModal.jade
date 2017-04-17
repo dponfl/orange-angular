@@ -4,12 +4,16 @@ data-ng-controller='ShortPanelCtrl as spc').modal.short-price-modal
   .modal-dialog
     .modal-content
       .modal-header
-        button(ng-click="$hide()").close &times;
-        h2.modal-title Modal header
+        button(data-ng-click="$hide()").close &times;
+        h2(translate='SHORTTERM_PAGE_MODAL_HEADER').modal-title
       .modal-body
-        h3 Modal body header
-        p Modal body text
-        h4 {{message}}
-        h4 index: {{index}}
+        div.price-content-block
+          table.table.table-striped.price-table
+            thead
+              tr
+                th(translate='SHORTTERM_PAGE_MODAL_TABLE_HEAD_COL_1')
+                th(translate='SHORTTERM_PAGE_MODAL_TABLE_HEAD_COL_2')
       .modal-footer
-        button(type='button', ng-click='$hide()').btn.btn-default Close
+        button(type='button',
+        data-ng-click='$hide()',
+        translate='SHORTTERM_PAGE_MODAL_FOOTER_CLOSE_BUTTON').btn.btn-default

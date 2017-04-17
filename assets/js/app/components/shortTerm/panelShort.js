@@ -3,7 +3,7 @@
 
   angular.module('OrangeClient')
     .component('panelShort', {
-      controller: 'ShortPanelCtrl',
+      controller: 'ShortPanelCtrl as spc',
       bindings: {
         badge: '<',
         type: '<',
@@ -12,7 +12,8 @@
         img: '<',
         gallery: '<',
         content: '<',
-        index: '='
+        index: '=',
+        panel: '=',
       },
       templateUrl: 'templates/view/short/panelShort.html'
     });

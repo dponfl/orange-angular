@@ -1,29 +1,29 @@
 .col-sm-12
   .panel.panel-info
-    div(data-ng-show='$ctrl.badge',
-    data-ng-class="$ctrl.type").badge.badge-object
-      span.glyphicon.glyphicon-tag {{$ctrl.badgeText}}
+    div(data-ng-show='spc.badge',
+    data-ng-class="spc.type").badge.badge-object
+      span.glyphicon.glyphicon-tag {{spc.badgeText}}
     .panel-heading
       h3 {{'GENERAL_ELEM_OBJ' | translate}}
-        | {{$ctrl.objNumber}}
+        | {{spc.objNumber}}
 
     .panel.panel-body
       .col-sm-5
-        a(href='{{$ctrl.img.href}}',
-        data-lightbox='{{$ctrl.img.dataLightbox}}',
-        data-title='{{$ctrl.img.dataTitle}}')
-          img(data-ng-src='{{$ctrl.img.src}}').thumbnail.img-main
+        a(href='{{spc.img.href}}',
+        data-lightbox='{{spc.img.dataLightbox}}',
+        data-title='{{spc.img.dataTitle}}')
+          img(data-ng-src='{{spc.img.src}}').thumbnail.img-main
 
         .col-lg-12.col-lg-offset-0.col-md-offset-0.col-sm-offset-0
           button(translate='SHORTTERM_PAGE_BUTTON_PRICE',
-          data-ng-click='$ctrl.showPrice()').btn.btn-success.btn-lg.btn-margin
+          data-ng-click='spc.showPrice()').btn.btn-success.btn-lg.btn-margin
           button(translate='SHORTTERM_PAGE_BUTTON_CALENDAR',
-          data-ng-click='$ctrl.showCalendar()').btn.btn-warning.btn-lg.btn-margin
+          data-ng-click='spc.showCalendar()').btn.btn-warning.btn-lg.btn-margin
 
       .col-sm-7
         .col-sm-12
           form.form-horizontal
-            div(data-ng-repeat='elem in $ctrl.content[0]').form-group.form-group-lg.main-panel
+            div(data-ng-repeat='elem in spc.content[0]').form-group.form-group-lg.main-panel
               label.col-sm-3.control-label {{elem.label}}
               .col-sm-9
                 p.form-control-static.form-control-static-text {{elem.text}}
@@ -31,7 +31,7 @@
       .col-sm-12
         .col-sm-12
           form.form-horizontal
-            div(data-ng-repeat='elem in $ctrl.content[1]').form-group.form-group-lg.main-panel
+            div(data-ng-repeat='elem in spc.content[1]').form-group.form-group-lg.main-panel
               label.col-sm-2.control-label {{elem.label}}
               .col-sm-10
                 p.form-control-static.form-control-static-text {{elem.text}}
@@ -39,7 +39,7 @@
       .col-sm-12
         h2.text-center Фотогалерея
         ul.col-sm-10.col-sm-offset-1.list-inline.text-center#gallery-30593
-          li(data-ng-repeat='elem in $ctrl.gallery')
+          li(data-ng-repeat='elem in spc.gallery')
             a(href='{{elem.href}}',
             data-lightbox='{{elem.dataLightbox}}',
             data-title='{{elem.dataTitle}}')

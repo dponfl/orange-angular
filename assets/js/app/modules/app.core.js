@@ -11,6 +11,7 @@
       'angularSpinner',
       'angular-ladda',
       'mgcrea.ngStrap',
+      'ngSanitize',
     ])
     .run(errorMsgResolver);
 

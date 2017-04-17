@@ -71,6 +71,10 @@ var jsFilesToInject = [
   'vendor/angular-strap/dist/angular-strap.js',
   'vendor/angular-strap/dist/angular-strap.tpl.js',
 
+  // Load angular-spinner
+  'vendor/angular-sanitize/angular-sanitize.js',
+
+
 
   'js/dependencies/Other/**/*.js',
 

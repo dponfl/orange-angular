@@ -81,12 +81,14 @@ body.modal-open {
 }
 */
 
+/*
 body {
     overflow: auto !important;
 }
+*/
 
 .short-price-modal {
-    margin-top: 10%;
+    margin-top: 15%;
 }
 
 .modal-backdrop.am-fade {
