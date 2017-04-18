@@ -28,31 +28,21 @@
       }
     });
 
+    var shortCalendarModal = $modal({
+      scope: $scope,
+      templateUrl: '../templates/view/short/shortCalendarModal.html',
+      show: false,
+      backdrop: true,
+      onHide: function () {
+        $('body').css('overflow', 'auto');
+      },
+      onShow: function () {
+        $('body').css('overflow', 'hidden');
+      }
+    });
+
     this.$onInit = function () {
-/*
-      $log.info('$onInit...');
-
-      $log.info('_showPrice() invoked within $onInit...');
-      $log.debug('index: ' + vm.index);
-      $log.info('img: ');
-      $log.debug(vm.img);
-      $log.info('$rootScope.panels:');
-      $log.debug($rootScope.panels);
-*/
     };
-
-    $scope.message = 'Some $scope message to show...';
-    vm.myHtml = '<h1> Some HTML example: h1</h1>' +
-        '<h2> Some HTML example: h2</h2>';
-
-/*
-    $log.info('Before _showPrice() invoked...');
-    $log.debug('index: ' + vm.index);
-    $log.info('img: ');
-    $log.debug(vm.img);
-    $log.info('$rootScope.panels:');
-    $log.debug($rootScope.panels);
-*/
 
     activate();
 
@@ -62,21 +52,11 @@
 
       vm.showPrice = _showPrice;
       vm.hidePrice = _hidePrice;
-      vm.showCalendar = _calendar;
-
-    }
+      vm.showCalendar = _showCalendar;
+      vm.hideCalendar = _hideCalendar;
+    } // activate()
 
     function _showPrice() {
-
-/*
-      $log.info('_showPrice() invoked...');
-      $log.debug('index: ' + vm.index);
-      $log.info('img: ');
-      $log.debug(vm.img);
-      $log.info('$rootScope.panels:');
-      $log.debug($rootScope.panels);
-*/
-
       $scope.index = vm.index;
 
       shortPriceModal.$promise.then(shortPriceModal.show)
@@ -107,18 +87,44 @@
         }
         tableContent += '</tr>';
       }
+      tableContent += '</tbody>';
       priceTable.append(tableContent);
-    }
+    } // __showPrice()
 
-    function _calendar() {
-/*
-      $log.info('_calendar() invoked...');
-      $log.debug('index: ' + vm.index);
-      $log.info('img: ');
-      $log.debug(vm.img);
-      $log.info('$rootScope.panels:');
-      $log.debug($rootScope.panels);
-*/
+    function _showCalendar() {
+
+      shortCalendarModal.$promise.then(shortCalendarModal.show)
+        .then(function () {
+          __showCalendar();
+        });
+    } // _showCalendar()
+
+    function __showCalendar() {
+      
+      var calendarBlock = $('.calendar-content-block');
+
+      var unavailableDates = [];
+
+      var periods = _.split(vm.panel.calendar, ';');
+      var periodsElems = [];
+      var periodElem= {};
+
+      for (var i = 0; i < periods.length; i++) {
+
+          periodsElems = _.split(periods[i], '=>');
+
+          unavailableDates[i] = {
+            start: periodsElems[0],
+            end: periodsElems[1]
+          };
+      }
+
+      calendarBlock.availabilityCalendar(unavailableDates);
+
+    } // __showCalendar()
+
+    function _hideCalendar() {
+      shortCalendarModal.$promise.then(shortCalendarModal.hide);
     }
 
   }

@@ -91,11 +91,13 @@ function translateConfig ($translateProvider) {
     'SHORTTERM_PAGE_HEADER_SUBTITLE': '[En]Несколько слов...',
     'SHORTTERM_PAGE_MORE_OBJ': '[En]Подробная информация об этих и других объектах с посуточной арендой',
     'SHORTTERM_PAGE_BUTTON_PRICE': 'Price',
-    'SHORTTERM_PAGE_MODAL_HEADER': 'Price',
-    'SHORTTERM_PAGE_MODAL_TABLE_HEAD_COL_1': 'Period',
-    'SHORTTERM_PAGE_MODAL_TABLE_HEAD_COL_2': 'Price',
+    'SHORTTERM_PAGE_PRICE_MODAL_HEADER': 'Price',
+    'SHORTTERM_PAGE_PRICE_MODAL_TABLE_HEAD_COL_1': 'Period',
+    'SHORTTERM_PAGE_PRICE_MODAL_TABLE_HEAD_COL_2': 'Price',
     'SHORTTERM_PAGE_MODAL_FOOTER_CLOSE_BUTTON': 'Close',
     'SHORTTERM_PAGE_BUTTON_CALENDAR': 'Calendar',
+    'SHORTTERM_PAGE_CALENDAR_MODAL_HEADER': 'Calendar',
+
 
 
     // Long term
@@ -212,11 +214,13 @@ function translateConfig ($translateProvider) {
     'SHORTTERM_PAGE_HEADER_SUBTITLE': 'Несколько слов...',
     'SHORTTERM_PAGE_MORE_OBJ': 'Подробная информация об этих и других объектах с посуточной арендой',
     'SHORTTERM_PAGE_BUTTON_PRICE': 'Стоимость',
-    'SHORTTERM_PAGE_MODAL_HEADER': 'Стоимость',
-    'SHORTTERM_PAGE_MODAL_TABLE_HEAD_COL_1': 'Период',
-    'SHORTTERM_PAGE_MODAL_TABLE_HEAD_COL_2': 'Стоимость',
+    'SHORTTERM_PAGE_PRICE_MODAL_HEADER': 'Стоимость',
+    'SHORTTERM_PAGE_PRICE_MODAL_TABLE_HEAD_COL_1': 'Период',
+    'SHORTTERM_PAGE_PRICE_MODAL_TABLE_HEAD_COL_2': 'Стоимость',
     'SHORTTERM_PAGE_MODAL_FOOTER_CLOSE_BUTTON': 'Закрыть',
     'SHORTTERM_PAGE_BUTTON_CALENDAR': 'Календарь занятости',
+    'SHORTTERM_PAGE_CALENDAR_MODAL_HEADER': 'Календарь занятости',
+
 
 
     // Long term
