@@ -100,7 +100,7 @@
     } // _showCalendar()
 
     function __showCalendar() {
-      
+
       var calendarBlock = $('.calendar-content-block');
 
       var unavailableDates = [];
@@ -119,7 +119,7 @@
           };
       }
 
-      calendarBlock.availabilityCalendar(unavailableDates);
+      calendarBlock.availabilityCalendar(unavailableDates, $rootScope.lang);
 
     } // __showCalendar()
 

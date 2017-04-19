@@ -1,17 +1,29 @@
 (function ($) {
-	var weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-	var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+	var weekdays = [];
+	weekdays['en'] = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday',
+		'Saturday', 'Sunday'];
+	weekdays['ru'] = ['Пон.', 'Вт.', 'Ср.', 'Чт.', 'Пт.', 'Сб.', 'Вс.'];
+
+	var months = [];
+	months['en'] = ['January', 'February', 'March', 'April', 'May', 'June',
+		'July', 'August', 'September', 'October', 'November', 'December'];
+	months['ru'] = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь',
+		'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
+
+	var currentMonth = [];
+	currentMonth['en'] = 'This Month';
+	currentMonth['ru'] = 'Тек. месяц';
 
 
-	function AvailabilityCalendar(container, bookedDates) {
+	function AvailabilityCalendar(container, bookedDates, lang) {
 		this.date = new Date();
 		this.date.setDate(1);
 
 		this.container = container;
 		this.bookedDates = bookedDates;
 
-		this.createCalendar();
-		this.renderMonth();
+		this.createCalendar(lang);
+		this.renderMonth(lang);
 	}
 
 
@@ -19,16 +31,17 @@
 		/**
 		 * Setup methods
 		 */
-		__createToolbar: function () {
+		__createToolbar: function (lang) {
 			var $toolbar = $('<div></div>').appendTo(this.container);
 			$toolbar.addClass('availability-calendar-toolbar');
 
 			this.$monthLabel = $('<span></span>').appendTo($toolbar);
 			var $inputContainer = $('<span></span>').appendTo($toolbar);
 
-			$inputContainer.append('<input type="button" title="This month" value="This Month">');
+			$inputContainer.append('<input type="button" title="This month" id="currentMonth" ]>');
 			$inputContainer.append('<input type="button" title="Previous month" value="&#10094;">');
 			$inputContainer.append('<input type="button" title="Next month" value="&#10095;">');
+			$('#currentMonth').val(currentMonth[lang]);
 
 			var $inputs = $inputContainer.children('input');
 			var self = this;
@@ -36,27 +49,27 @@
 			$inputs.eq(0).on('click', function () {
 				self.date = new Date();
 				self.date.setDate(1);
-				self.renderMonth();
+				self.renderMonth(lang);
 			});
 
 			$inputs.eq(1).on('click', function () {
 				self.date.setMonth(self.date.getMonth() - 1);
-				self.renderMonth();
+				self.renderMonth(lang);
 			});
 
 			$inputs.eq(2).on('click', function () {
 				self.date.setMonth(self.date.getMonth() + 1);
-				self.renderMonth();
+				self.renderMonth(lang);
 			});
 		},
-		__createTable: function () {
-			var $table = $('<table></table>').appendTo(this.container);
+		__createTable: function (lang) {
+			var $table = $('<table class="table"></table>').appendTo(this.container);
 			$table.addClass('availability-calendar');
 
 			// Weekday headers
 			var $tr = $('<tr></tr>').appendTo($table);
 
-			weekdays.forEach(function (day) {
+			weekdays[lang].forEach(function (day) {
 				$('<th></th>').html(day).appendTo($tr);
 			});
 
@@ -68,9 +81,9 @@
 
 			this.$cells = $table.find('td');
 		},
-		createCalendar: function () {
-			this.__createToolbar();
-			this.__createTable();
+		createCalendar: function (lang) {
+			this.__createToolbar(lang);
+			this.__createTable(lang);
 		},
 
 
@@ -156,7 +169,7 @@
 				}
 			});
 		},
-		renderMonth: function () {
+		renderMonth: function (lang) {
 			var cellIndexes = {};
 			var dates = [];
 
@@ -164,7 +177,7 @@
 			var month = this.date.getMonth();
 			var date = new Date(year, month, 1);
 
-			this.$monthLabel.html(months[month] + ' ' + year);
+			this.$monthLabel.html(months[lang][month] + ' ' + year);
 			this.$cells.removeClass('ex-month');
 			this.$cells.filter('.unavailable').removeClass('unavailable').children().remove();
 
@@ -177,7 +190,7 @@
 	};
 
 
-	$.fn.availabilityCalendar = function (bookedDates) {
+	$.fn.availabilityCalendar = function (bookedDates, lang) {
 		var dates = [];
 
 		bookedDates.forEach(function (date) {
@@ -199,7 +212,7 @@
 		});
 
 		this.each(function () {
-			new AvailabilityCalendar(this, dates);
+			new AvailabilityCalendar(this, dates, lang);
 		});
 
 		return this;

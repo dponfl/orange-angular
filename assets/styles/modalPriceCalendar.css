@@ -110,3 +110,18 @@
   border-radius: 0 6px 6px 0;
   border-right: 1px solid #A33;
 }
+
+/* Portrait & landscape phone */
+@media (max-width: 480px) {
+  .availability-calendar th {
+    font-size: 0.2em;
+  }
+}
+
+/* Landscape phone to portrait tablet */
+@media (max-width: 768px) {
+  .availability-calendar th {
+    font-size: 0.7em;
+  }
+}
+
