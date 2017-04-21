@@ -45,4 +45,6 @@
             data-title='{{elem.dataTitle}}')
               img(data-ng-src='{{elem.src}}').thumbnail.img-gallery
 
-        button(translate='SHORTTERM_PAGE_BUTTON_BOOK_OBJECT').col-xs-12.btn.btn-danger.btn-lg.btn-margin.center-block
+        a(href='{{spc.youtube}}', target="_blank", translate='SHORTTERM_PAGE_BUTTON_YOUTUBE').col-xs-12.btn.btn-info.btn-lg.btn-margin.center-block
+
+        button(data-ng-click='spc.showBookObject()' translate='SHORTTERM_PAGE_BUTTON_BOOK_OBJECT').col-xs-12.btn.btn-danger.btn-lg.btn-margin.center-block

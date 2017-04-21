@@ -98,7 +98,8 @@ function translateConfig ($translateProvider) {
     'SHORTTERM_PAGE_BUTTON_CALENDAR': 'Calendar',
     'SHORTTERM_PAGE_CALENDAR_MODAL_HEADER': 'Calendar',
     'SHORTTERM_PAGE_BUTTON_BOOK_OBJECT': 'Book this object',
-
+    'SHORTTERM_PAGE_BUTTON_YOUTUBE': 'See object in YouTube',
+    'SHORTTERM_PAGE_BOOK_OBJECT_MODAL_HEADER': 'Object booking',
 
 
     // Long term
@@ -222,8 +223,8 @@ function translateConfig ($translateProvider) {
     'SHORTTERM_PAGE_BUTTON_CALENDAR': 'Календарь занятости',
     'SHORTTERM_PAGE_CALENDAR_MODAL_HEADER': 'Календарь занятости',
     'SHORTTERM_PAGE_BUTTON_BOOK_OBJECT': 'Забронировать этот объект',
-
-
+    'SHORTTERM_PAGE_BUTTON_YOUTUBE': 'Посмотреть объект в YouTube',
+    'SHORTTERM_PAGE_BOOK_OBJECT_MODAL_HEADER': 'Бронирование объекта',
 
 
     // Long term

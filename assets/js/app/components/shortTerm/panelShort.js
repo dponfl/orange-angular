@@ -12,6 +12,7 @@
         img: '<',
         gallery: '<',
         content: '<',
+        youtube: '<',
         index: '=',
         panel: '=',
       },

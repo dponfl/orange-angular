@@ -41,6 +41,19 @@
       }
     });
 
+    var shortBookObjectModal = $modal({
+      scope: $scope,
+      templateUrl: '../templates/view/short/shortBookObjectModal.html',
+      show: false,
+      backdrop: true,
+      onHide: function () {
+        $('body').css('overflow', 'auto');
+      },
+      onShow: function () {
+        $('body').css('overflow', 'hidden');
+      }
+    });
+
     this.$onInit = function () {
     };
 
@@ -54,7 +67,14 @@
       vm.hidePrice = _hidePrice;
       vm.showCalendar = _showCalendar;
       vm.hideCalendar = _hideCalendar;
+      vm.showBookObject = _showBookObject;
+      vm.hideBookObject = _hideBookObject;
     } // activate()
+
+    /**
+     * Price modal
+     * @private
+     */
 
     function _showPrice() {
       $scope.index = vm.index;
@@ -91,6 +111,11 @@
       priceTable.append(tableContent);
     } // __showPrice()
 
+    /**
+     * Calendar modal
+     * @private
+     */
+
     function _showCalendar() {
 
       shortCalendarModal.$promise.then(shortCalendarModal.show)
@@ -125,6 +150,21 @@
 
     function _hideCalendar() {
       shortCalendarModal.$promise.then(shortCalendarModal.hide);
+    }
+
+    /**
+     * Book Object modal
+     * @private
+     */
+
+    function _showBookObject() {
+      $scope.index = vm.index;
+
+      shortBookObjectModal.$promise.then(shortBookObjectModal.show);
+    }
+
+    function _hideBookObject() {
+      shortBookObjectModal.$promise.then(shortBookObjectModal.hide);
     }
 
   }
