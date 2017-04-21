@@ -50,6 +50,7 @@
 
       if ($rootScope.shortFindActivated) {
 
+        $rootScope.panels = [];
         $scope.busy = false;
         $rootScope.shortFindActivated = false;
 
