@@ -28,6 +28,20 @@
     $rootScope.shortFindActivated = false;
     $rootScope.shortFilterData = {};
 
+    // Long term
+    $rootScope.long = {};
+    $rootScope.long.showNotFound = false;
+    $rootScope.long.pageLong = 1;
+    $rootScope.long.longFindActivated = false;
+    $rootScope.long.longFilterData = {};
+    $rootScope.long.scrollDisabled = false;
+    $rootScope.long.showFoundNothing = false;
+    $rootScope.long.showServerError = false;
+    $rootScope.long.panelsAllLangs = {};
+    $rootScope.long.panels = [];
+    $rootScope.long.busy = false;
+
+
   }
 
 })();

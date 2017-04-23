@@ -1,0 +1,32 @@
+div(tabindex="-1",
+role="dialog",
+data-ng-controller='LongPanelCtrl as lpc').modal.book-object-modal
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button(data-ng-click="$hide()").close &times;
+        h2(translate='LONGTERM_PAGE_BOOK_OBJECT_MODAL_HEADER').modal-title
+
+      .modal-body
+        h4.text-center Заполните форму
+          form.form-horizontal
+            -
+              var longTerm = [
+              {label: 'Имя:', id: 'inputNameDaily', type: 'text', placeholder: 'Ваше имя'},
+              {label: 'Телефон:', id: 'inputPhoneDaily', type: 'phone', placeholder: 'Телефон для связи'},
+              {label: 'Email:', id: 'inputEmailDaily', type: 'email', placeholder: 'Ваш email'},
+              {label: 'Цена:', id: 'inputPriceDaily', type: 'text', placeholder: 'Интересующая вас цена'},
+              {label: 'Город:', id: 'inputCityDaily', type: 'text', placeholder: 'Какой город вас интересует'}
+              ]
+            each elem in longTerm
+              .form-group.clearfix
+                label(for="#{elem.id}").col-sm-3.control-label.text-right #{elem.label}
+                .col-sm-7
+                  input(type="#{elem.type}", id="#{elem.id}" placeholder="#{elem.placeholder}").form-control
+
+      .modal-footer
+        button(type='button').btn.btn-success.btn-lg.btn-margin Отправить
+        button(type='button').btn.btn-warning.btn-lg.btn-margin Очистить
+        button(type='button',
+        data-ng-click='$hide()',
+        translate='LONGTERM_PAGE_MODAL_FOOTER_CLOSE_BUTTON').btn.btn-default.btn-lg.btn-margin

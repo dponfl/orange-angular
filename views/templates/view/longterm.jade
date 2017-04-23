@@ -13,3 +13,40 @@
         .page-header.page-primary
           h1 {{'LONGTERM_PAGE_HEADER_TITLE' | translate}}
             small(translate='LONGTERM_PAGE_HEADER_SUBTITLE')
+
+        .page-body#block-long
+
+          .row#block-long-filter
+            .col-sm-6.col-sm-offset-3#longFilterWrapper
+              .panel.panel-info#longFilter
+                .panel-heading
+                  h3(translate='PANEL_HEADER')
+                div(data-ng-controller='LongFiltersCtrl as e').panel-body
+                  long-filter(obj-list='e.objList',
+                  city-list='e.cityList',
+                  room-list='e.roomList')
+
+          div(data-ng-controller='LongCtrl')
+            //div(data-ng-if='sc.showServerError')
+              h1 showServerError
+
+            div(data-ng-if='long.showFoundNothing')
+              nothing-found
+
+            div(infinite-scroll='activateNextPage()',
+            infinite-scroll-disabled='long.scrollDisabled',
+            infinite-scroll-distance='1',
+            data-ng-hide='long.showFoundNothing').row
+              div(data-ng-repeat='panel in long.panels')
+                panel-long(badge='panel.badge',
+                type='panel.type',
+                badge-text='panel.badgeText',
+                obj-number='panel.objNumber',
+                img='panel.img',
+                gallery='panel.gallery',
+                content='panel.content',
+                youtube='panel.youtube',
+                index='$index',
+                panel='panel')
+
+            div#spinner-container

@@ -103,7 +103,7 @@
             calendar: response[i].calendar,
             description: response[i].description,
             info: response[i].info,
-            googleMap: response[i].map,
+            googleMap: response[i].maps,
             imgMain: response[i].imgmain,
             imgGallery: response[i].imggallery,
             youtube: response[i].youtube,
@@ -125,47 +125,6 @@
          error: err,
        }
       }
-
-      /*     oShort.find(reqObj, function (data) {
-      var __objs = {};
-
-      if (!_.isArray(data)) {
-      deferred.reject(new Error('Short data is not an array'))
-      }
-
-      for (var i = 0; i < data.length; i++) {
-
-      if (!_.isArray(__objs[data[i].lang]))
-      __objs[data[i].lang] = [];
-
-      __objs[data[i].lang].push({
-      objNumber: data[i].objnumber,
-      show: data[i].show,
-      home: data[i].home,
-      tag: data[i].tag,
-      city: data[i].city,
-      address: data[i].address,
-      obj: data[i].obj,
-      room: data[i].room,
-      bathroom: data[i].bathroom,
-      pool: data[i].pool,
-      price: data[i].price,
-      calendar: data[i].calendar,
-      description: data[i].description,
-      info: data[i].info,
-      googleMap: data[i].map,
-      imgMain: data[i].imgmain,
-      imgGallery: data[i].imggallery,
-      youtube: data[i].youtube,
-      createdAt: data[i].createdAt,
-      updatedAt: data[i].updatedAt,
-      })
-      }
-
-      deferred.resolve(__objs);
-
-      });*/
-
     } // _getAllShortObjectsObjs
 
     function _getAllShortObjectsObjsPager(reqObj, pager) {
@@ -206,7 +165,7 @@
             calendar: response[i].calendar,
             description: response[i].description,
             info: response[i].info,
-            googleMap: response[i].map,
+            googleMap: response[i].maps,
             imgMain: response[i].imgmain,
             imgGallery: response[i].imggallery,
             youtube: response[i].youtube,

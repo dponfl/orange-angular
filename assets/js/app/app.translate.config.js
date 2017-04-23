@@ -106,6 +106,10 @@ function translateConfig ($translateProvider) {
     'LONGTERM_PAGE_HEADER_TITLE': '[En]Долгосрочная аренда',
     'LONGTERM_PAGE_HEADER_SUBTITLE': '[En]Несколько слов...',
     'LONGTERM_PAGE_MORE_OBJ': '[En]Подробная информация об этих и других объектах с долгосрочной арендой',
+    'LONGTERM_PAGE_BUTTON_BOOK_OBJECT': 'Book this object',
+    'LONGTERM_PAGE_BUTTON_YOUTUBE': 'See object in YouTube',
+    'LONGTERM_PAGE_BOOK_OBJECT_MODAL_HEADER': 'Object booking',
+    'LONGTERM_PAGE_MODAL_FOOTER_CLOSE_BUTTON': 'Close',
 
 
     // Sales
@@ -231,6 +235,11 @@ function translateConfig ($translateProvider) {
     'LONGTERM_PAGE_HEADER_TITLE': 'Долгосрочная аренда',
     'LONGTERM_PAGE_HEADER_SUBTITLE': 'Несколько слов...',
     'LONGTERM_PAGE_MORE_OBJ': 'Подробная информация об этих и других объектах с долгосрочной арендой',
+    'LONGTERM_PAGE_BUTTON_BOOK_OBJECT': 'Забронировать этот объект',
+    'LONGTERM_PAGE_BUTTON_YOUTUBE': 'Посмотреть объект в YouTube',
+    'LONGTERM_PAGE_BOOK_OBJECT_MODAL_HEADER': 'Бронирование объекта',
+    'LONGTERM_PAGE_MODAL_FOOTER_CLOSE_BUTTON': 'Закрыть',
+
 
 
     // Sales
