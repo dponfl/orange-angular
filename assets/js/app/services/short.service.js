@@ -189,8 +189,6 @@
       }
     } // _getAllShortObjectsObjsPager
 
-
-
   } // ShortService
 
 })();

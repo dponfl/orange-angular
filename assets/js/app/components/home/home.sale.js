@@ -7,10 +7,10 @@
         badge: '<',
         type: '<',
         badgetext: '<',
-        objnumber: '<',
+        objNumber: '<',
         img: '<',
         content: '<'
       },
-      templateUrl: 'templates/view/home/salePanelHome.html'
+      templateUrl: 'templates/view/home/smallPanelSale.html'
     });
 })();

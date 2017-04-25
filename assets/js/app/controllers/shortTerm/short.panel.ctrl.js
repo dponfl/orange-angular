@@ -63,12 +63,17 @@
 
     function activate() {
 
+      vm.formData = {};
+
+      vm.formData.objNumber = '12345678';
+
       vm.showPrice = _showPrice;
       vm.hidePrice = _hidePrice;
       vm.showCalendar = _showCalendar;
       vm.hideCalendar = _hideCalendar;
       vm.showBookObject = _showBookObject;
       vm.hideBookObject = _hideBookObject;
+      vm.book = _book;
     } // activate()
 
     /**
@@ -166,6 +171,10 @@
     function _hideBookObject() {
       shortBookObjectModal.$promise.then(shortBookObjectModal.hide);
     }
+
+    function _book() {
+      $log.info('_book() activated...');
+    } // _book
 
   }
 

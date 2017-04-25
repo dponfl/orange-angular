@@ -60,7 +60,7 @@ module.exports = {
     info: {
       type: 'text',
     },
-    map: {
+    maps: {
       type: 'text',
     },
     imgmain: {
