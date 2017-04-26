@@ -11,35 +11,20 @@ data-ng-controller='ShortPanelCtrl as spc').modal.book-object-modal
           h2(translate='SHORTTERM_PAGE_BOOK_OBJECT_MODAL_HEADER').modal-title
 
         .modal-body
-          div {{spc.formData.objNumber}}
-
           .form-group.clearfix
-            label(for='objectNumber', translate='LBL_OBJ').col-sm-4.control-label.text-right
+            label(for='objectNumber', translate='LBL_FIELD_OBJ_NUM').col-sm-4.control-label.text-right
             .col-sm-8
-              input(name='objectNumber',
-              data-ng-model='spc.formData.objNumber').form-control#objectNumber
+              p(data-ng-bind='spc.formData.objNumber').form-control#objectNumber
 
 
           .form-group.clearfix
-            label(for='objectType', translate='LBL_OBJ').col-sm-4.control-label.text-right
+            label(for='clientName', translate='LBL_FIELD_NAME').col-sm-4.control-label.text-right
             .col-sm-8
-              select(name='objectType',
-              data-ng-options='option.val for option in $ctrl.objList track by option.key',
-              data-ng-model='$ctrl.formData.obj').form-control#objectType
-
-          .form-group.clearfix
-            label(for='city', translate='LBL_CITY').col-sm-4.control-label.text-right
-            .col-sm-8
-              select(name='city',
-              data-ng-options='option.val for option in $ctrl.cityList track by option.key',
-              data-ng-model='$ctrl.formData.city').form-control#city
-
-          .form-group.clearfix
-            label(for='rooms', translate='LBL_ROOM').col-sm-4.control-label.text-right
-            .col-sm-8
-              select(name='rooms',
-              data-ng-options='option.val for option in $ctrl.roomList track by option.key',
-              data-ng-model='$ctrl.formData.room').form-control#rooms
+              input(type="text",
+              data-ng-pattern="/^[a-zA-Zа-яА-Я]([\\s\\-\\.\\']*[a-zA-Zа-яА-Я]){1,15}$/",
+              data-ng-required-err-type="{{'AV_REQ' | translate}}",
+              data-ng-pattern-err-type="{{'FIELD_NAME_ERR' | translate}}",
+              data-ng-model='$ctrl.formData.name').form-control#clientName
 
           .form-group.clearfix
             label(for='objectNumber', translate='LBL_OBJ_NUM').col-sm-4.control-label.text-right

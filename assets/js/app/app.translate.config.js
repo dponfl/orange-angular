@@ -38,6 +38,11 @@ function translateConfig ($translateProvider) {
     'BTN_CLR': 'Clear',
     'AV_REQ': 'reqEn',
 
+    // Callback or request forms
+    'LBL_FIELD_OBJ_NUM': 'Object number',
+    'LBL_FIELD_NAME': 'Your name',
+    'FIELD_NAME_ERR': 'nameErrEn',
+
     // Home - Carousel
     'HOME_CAROUSEL_TITLE_1': 'Slide 01 message',
     'HOME_CAROUSEL_TEXT_1': 'Text for Slide 01',
@@ -164,6 +169,12 @@ function translateConfig ($translateProvider) {
     'BTN_FIND': 'Найти',
     'BTN_CLR': 'Очистить',
     'AV_REQ': 'reqRu',
+
+    // Callback or request forms
+    'LBL_FIELD_OBJ_NUM': 'Номер объекта',
+    'LBL_FIELD_NAME': 'Ваше имя',
+    'FIELD_NAME_ERR': 'nameErrRu',
+
 
     // Home - Carousel
     'HOME_CAROUSEL_TITLE_1': 'Слайд 01',

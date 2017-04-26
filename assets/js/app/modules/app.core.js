@@ -19,8 +19,10 @@
   errorMsgFunction.$inject = ['errorMessages'];
   function errorMsgFunction(errorMessages) {
     errorMessages['tooShort'] = 'Object number should be at least {0} digits';
-    errorMessages['reqEn'] = 'Required field - English';
-    errorMessages['reqRu'] = 'Обязательное поле - Русский';
+    errorMessages['reqEn'] = 'Required field';
+    errorMessages['reqRu'] = 'Обязательное поле';
+    errorMessages['nameErrEn'] = 'Wrong name';
+    errorMessages['nameErrRu'] = 'Неверное имя';
   }
 
   function errorMsgResolver(defaultErrorMessageResolver) {
