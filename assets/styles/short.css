@@ -20,7 +20,9 @@ Notes:	 Hand coded for Orange Holiday Villas
 
 #shortFilter {
     margin: 0;
+}
 
-
+#objectInfo {
+    padding-top: 0;
 }
 

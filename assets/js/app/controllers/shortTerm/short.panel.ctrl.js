@@ -73,6 +73,7 @@
     function activate() {
 
       vm.formData = {};
+      vm.busyBook = false;
 
       vm.showPrice = _showPrice;
       vm.hidePrice = _hidePrice;
@@ -171,7 +172,23 @@
      */
 
     function _showBookObject() {
-      $scope.index = vm.index;
+      // $scope.index = vm.index;
+      var city = '';
+      var address = '';
+
+      _.forEach(vm.panel.content, function (value) {
+        _.forEach(value, function (val) {
+          if (val.key === 'city') {
+            city = val.text;
+          }
+
+          if (val.key === 'address') {
+            address = val.text;
+          }
+        });
+      });
+
+      vm.objectInfo = '#' + vm.panel.objNumber + ', ' + city + ', ' + address;
 
       shortBookObjectModal.$promise.then(shortBookObjectModal.show);
     }
@@ -181,6 +198,7 @@
     }
 
     function _book() {
+      vm.busyBook = true;
       $log.info('_book() activated...');
       $log.info('$scope:');
       $log.info($scope);
@@ -188,7 +206,13 @@
       $log.info(vm.panel);
       $log.info('vm.formData');
       $log.info(vm.formData);
-      vm.hideBookObject();
+
+      setTimeout(function () {
+        vm.busyBook = false;
+        vm.hideBookObject();
+      }, 3000);
+
+      // vm.hideBookObject();
     } // _book
 
     function _clear() {

@@ -11,9 +11,9 @@ role="dialog").modal.book-object-modal
 
         .modal-body
           .form-group.clearfix
-            label(for='objectNumber', translate='LBL_FIELD_OBJ_NUM').col-sm-4.control-label.text-right
+            label(for='objectInfo', translate='LBL_FIELD_OBJ').col-sm-4.control-label.text-right
             .col-sm-8
-              p(data-ng-bind='spc.panel.objNumber').form-control#objectNumber
+              p(data-ng-bind='spc.objectInfo').form-control-static.form-control-static-text#objectInfo
 
 
           .form-group.clearfix
@@ -40,7 +40,8 @@ role="dialog").modal.book-object-modal
 
         .modal-footer
           .form-group.clearfix
-            button(type='submit', translate='BTN_FIND').btn.btn-success.btn-lg.btn-margin
+            button(type='submit',
+            ladda='spc.busyBook').btn.btn-success.btn-lg.btn-margin {{'BTN_FIND' | translate}}
             button(data-ng-click='spc.clear()',
             translate='BTN_CLR').btn.btn-warning.btn-lg.btn-margin
             button(type='button',

@@ -12,6 +12,8 @@
       'angular-ladda',
       'mgcrea.ngStrap',
       'ngSanitize',
+      'toaster',
+      'ngAnimate'
     ])
     .run(errorMsgResolver);
 

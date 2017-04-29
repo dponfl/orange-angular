@@ -39,7 +39,7 @@ function translateConfig ($translateProvider) {
     'AV_REQ': 'reqEn',
 
     // Callback or request forms
-    'LBL_FIELD_OBJ_NUM': 'Object number',
+    'LBL_FIELD_OBJ': 'Object',
     'LBL_FIELD_NAME': 'Your name',
     'FIELD_NAME_ERR': 'nameErrEn',
 
@@ -171,7 +171,7 @@ function translateConfig ($translateProvider) {
     'AV_REQ': 'reqRu',
 
     // Callback or request forms
-    'LBL_FIELD_OBJ_NUM': 'Номер объекта',
+    'LBL_FIELD_OBJ': 'Объект',
     'LBL_FIELD_NAME': 'Ваше имя',
     'FIELD_NAME_ERR': 'nameErrRu',
 

@@ -309,6 +309,7 @@
             }
 
             record.content[kElem.group - 1].push({
+              key: kElem.key,
               label: kElem.label,
               text:tokenVal,
             })

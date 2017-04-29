@@ -47,6 +47,9 @@ var jsFilesToInject = [
   'vendor/angular-resource/angular-resource.js',
   'vendor/angular-ui-router/release/angular-ui-router.js',
 
+  // Load angular-animate
+  'vendor/angular-animate/angular-animate.js',
+
   // Load Lodash
   'vendor/ng-lodash/build/ng-lodash.js',
 
@@ -74,7 +77,8 @@ var jsFilesToInject = [
   // Load angular-spinner
   'vendor/angular-sanitize/angular-sanitize.js',
 
-
+  // Load angularjs-toaster
+  'vendor/AngularJS-Toaster/toaster.js',
 
   'js/dependencies/Other/**/*.js',
 
