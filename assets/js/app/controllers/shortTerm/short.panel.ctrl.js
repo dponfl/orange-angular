@@ -55,6 +55,15 @@
     });
 
     this.$onInit = function () {
+/*
+      $log.info('$onInit');
+      $log.info('$scope:');
+      $log.debug($scope);
+      $log.info('vm.panel');
+      $log.debug(vm.panel);
+      $log.info('vm.formData');
+      $log.debug(vm.formData);
+*/
     };
 
     activate();
@@ -65,8 +74,6 @@
 
       vm.formData = {};
 
-      vm.formData.objNumber = '12345678';
-
       vm.showPrice = _showPrice;
       vm.hidePrice = _hidePrice;
       vm.showCalendar = _showCalendar;
@@ -74,6 +81,7 @@
       vm.showBookObject = _showBookObject;
       vm.hideBookObject = _hideBookObject;
       vm.book = _book;
+      vm.clear = _clear;
     } // activate()
 
     /**
@@ -174,7 +182,20 @@
 
     function _book() {
       $log.info('_book() activated...');
+      $log.info('$scope:');
+      $log.info($scope);
+      $log.info('vm.panel');
+      $log.info(vm.panel);
+      $log.info('vm.formData');
+      $log.info(vm.formData);
+      vm.hideBookObject();
     } // _book
+
+    function _clear() {
+      $log.info('_clear() activated...');
+      vm.formData.name = '';
+      vm.formData.phone = '';
+    } // _clear
 
   }
 
