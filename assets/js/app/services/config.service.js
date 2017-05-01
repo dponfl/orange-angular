@@ -20,13 +20,17 @@
       getDeals: _getDeals,
       getObj: _getObj,
       getRoom: _getRoom,
-      getTag: _getTag
+      getTag: _getTag,
+      setHost: _setHost,
+      tokens: _setTokens(),
+      t: _translate,
     };
 
     /**
      * Initialising of app configs
      */
 
+    self.setHost();
     self.setLang();
     self.getCities();
     self.getDeals();
@@ -47,6 +51,29 @@
       });
 
     return self;
+
+    function _setTokens() {
+      return {
+        en: {
+          'BOOKING_SUCCESS_TITLE': 'Thank you for the booking!',
+          'BOOKING_SUCCESS_BODY_1': 'Your request for booking object #',
+          'BOOKING_SUCCESS_BODY_2': ' was successfully submitted. We\'ll contact you shortly.',
+        },
+        ru: {
+          'BOOKING_SUCCESS_TITLE': 'Благодарим за бронирование!',
+          'BOOKING_SUCCESS_BODY_1': 'Ваш запрос на бронирование объекта №',
+          'BOOKING_SUCCESS_BODY_2': ' был успешно отправлен. Мы свяжемся с вами в ближайшее время.',
+        },
+      }
+    }
+
+    function _translate(key) {
+      return self.tokens[$rootScope.lang][key] || '';
+    } // _translate
+
+    function _setHost() {
+      self.orangeConfig.host = 'http://localhost:1337';
+    }
 
 
     function _setLang(lang) {

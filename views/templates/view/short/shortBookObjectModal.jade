@@ -27,21 +27,56 @@ role="dialog").modal.book-object-modal
               data-ng-model='spc.formData.name').form-control#clientName
 
           .form-group.clearfix
-            label(for='objectNumber', translate='LBL_OBJ_NUM').col-sm-4.control-label.text-right
+            label(for='clientEmail', translate='LBL_FIELD_EMAIL').col-sm-4.control-label.text-right
             .col-sm-8
               input(type="text",
-              data-ng-pattern='/^[A-Za-z0-9_]{1,15}$/',
-              data-ng-minLength='5',
-              data-ng-minLength-err-type='tooShort',
+              data-ng-pattern='/^([0-9a-zA-Z\\.]([\\.\\-\\+\\w])*@([0-9a-zA-Z][-\\w]*[0-9a-zA-Z]*\\.)+[a-zA-Z]{2,9})$/',
               data-ng-required-err-type="{{'AV_REQ' | translate}}",
+              data-ng-pattern-err-type="{{'FIELD_EMAIL_ERR' | translate}}",
               required,
-              placeholder="{{'OBJ_NUM_PLACEHOLDER' | translate}}",
-              data-ng-model='spc.formData.phone').form-control#objectNumber
+              data-ng-model='spc.formData.email').form-control#clientEmail
+
+          .form-group.clearfix
+            label(for='clientPhone', translate='LBL_FIELD_PHONE').col-sm-4.control-label.text-right
+            .col-sm-8
+              input(type="text",
+              data-ng-model='spc.formData.phone').form-control#clientPhone
+
+          .form-group.clearfix
+            label(for='clientSkype', translate='LBL_FIELD_SKYPE').col-sm-4.control-label.text-right
+            .col-sm-8
+              input(type="text",
+              data-ng-model='spc.formData.skype').form-control#clientSkype
+
+          .form-group.clearfix
+            label(for='clientWhatsapp', translate='LBL_FIELD_WHATSAPP').col-sm-4.control-label.text-right
+            .col-sm-8
+              input(type="text",
+              data-ng-model='spc.formData.whatsapp').form-control#clientWhatsapp
+
+          .form-group.clearfix
+            label(for='clientTelegram', translate='LBL_FIELD_TELEGRAM').col-sm-4.control-label.text-right
+            .col-sm-8
+              input(type="text",
+              data-ng-model='spc.formData.telegram').form-control#clientTelegram
+
+          .form-group.clearfix
+            label(for='clientViber', translate='LBL_FIELD_VIBER').col-sm-4.control-label.text-right
+            .col-sm-8
+              input(type="text",
+              data-ng-model='spc.formData.viber').form-control#clientViber
+
+          .form-group.clearfix
+            label(for='clientInfo', translate='LBL_FIELD_ADDINFO').col-sm-4.control-label.text-right
+            .col-sm-8
+              textarea(type="text",
+              data-ng-model='spc.formData.additionalInfo').form-control#clientInfo
 
         .modal-footer
           .form-group.clearfix
             button(type='submit',
-            ladda='spc.busyBook').btn.btn-success.btn-lg.btn-margin {{'BTN_FIND' | translate}}
+            translate='BTN_SUBMIT',
+            ladda='spc.busyBook').btn.btn-success.btn-lg.btn-margin
             button(data-ng-click='spc.clear()',
             translate='BTN_CLR').btn.btn-warning.btn-lg.btn-margin
             button(type='button',

@@ -21,7 +21,8 @@ var cssFilesToInject = [
   'vendor/bootstrap/dist/css/bootstrap-theme.css',
   'styles/libs/**/*.css',
   'styles/**/*.css',
-  'vendor/ladda/dist/ladda-themeless.min.css'
+  'vendor/ladda/dist/ladda-themeless.min.css',
+  'vendor/AngularJS-Toaster/toaster.css',
 ];
 
 // Modernizr files injection

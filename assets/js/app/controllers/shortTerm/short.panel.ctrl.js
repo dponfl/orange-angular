@@ -5,11 +5,14 @@
     .module('OrangeClient')
     .controller('ShortPanelCtrl', ShortPanelCtrl);
 
-  ShortPanelCtrl.$inject = ['$rootScope', '$scope', '$modal', '$log', 'lodash'];
+  ShortPanelCtrl.$inject = ['GeneralConfigService', 'S_ReqService', '$rootScope', '$scope', '$modal', '$log',
+    'lodash', 'toaster'];
 
   /* @ngInject */
-  function ShortPanelCtrl($rootScope, $scope, $modal, $log, lodash) {
+  function ShortPanelCtrl(GeneralConfigService, S_ReqService, $rootScope, $scope, $modal, $log,
+                          lodash, toaster) {
     var _ = lodash;
+    var __=GeneralConfigService;
     var vm = this;
     vm.title = 'ShortPanelCtrl';
     // vm.index = '';
@@ -200,12 +203,33 @@
     function _book() {
       vm.busyBook = true;
       $log.info('_book() activated...');
+/*
       $log.info('$scope:');
       $log.info($scope);
       $log.info('vm.panel');
       $log.info(vm.panel);
+*/
+      vm.formData.objnumber = vm.panel.objNumber;
       $log.info('vm.formData');
       $log.info(vm.formData);
+
+      S_ReqService.createSReq(vm.formData)
+        .then(function (res) {
+          $log.info('S_ReqService, res:');
+          $log.info(res);
+          if (res.data.status === 200) {
+            vm.busyBook = false;
+            toaster.pop({
+              type: 'success',
+              title: __.t('BOOKING_SUCCESS_TITLE'),
+              body: __.t('BOOKING_SUCCESS_BODY_1') + vm.formData.objnumber +
+              __.t('BOOKING_SUCCESS_BODY_2'),
+              toasterId: vm.formData.objnumber,
+              showCloseButton: true,
+              timeout: 10000,
+            });
+          }
+        });
 
       setTimeout(function () {
         vm.busyBook = false;
@@ -218,7 +242,13 @@
     function _clear() {
       $log.info('_clear() activated...');
       vm.formData.name = '';
+      vm.formData.email = '';
       vm.formData.phone = '';
+      vm.formData.skype = '';
+      vm.formData.whatsapp = '';
+      vm.formData.telegram = '';
+      vm.formData.viber = '';
+      vm.formData.additionalInfo = '';
     } // _clear
 
   }

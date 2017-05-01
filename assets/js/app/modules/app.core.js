@@ -12,8 +12,8 @@
       'angular-ladda',
       'mgcrea.ngStrap',
       'ngSanitize',
+      'ngAnimate',
       'toaster',
-      'ngAnimate'
     ])
     .run(errorMsgResolver);
 
@@ -25,6 +25,8 @@
     errorMessages['reqRu'] = 'Обязательное поле';
     errorMessages['nameErrEn'] = 'Wrong name';
     errorMessages['nameErrRu'] = 'Неверное имя';
+    errorMessages['emailErrEn'] = 'Wrong email';
+    errorMessages['emailErrRu'] = 'Неверный email';
   }
 
   function errorMsgResolver(defaultErrorMessageResolver) {

@@ -35,6 +35,7 @@ module.exports.routes = {
   '/': {
     view: 'index'
   },
+
   'POST /short/find': 'ShortController.find',
   'POST /short/findp': 'ShortController.findPager',
 
@@ -43,6 +44,8 @@ module.exports.routes = {
 
   'POST /sale/find': 'SaleController.find',
   'POST /sale/findp': 'SaleController.findPager',
+
+  'POST /sreq/create': 'S_reqController.create',
 
 
   /***************************************************************************

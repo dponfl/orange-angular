@@ -41,7 +41,16 @@ function translateConfig ($translateProvider) {
     // Callback or request forms
     'LBL_FIELD_OBJ': 'Object',
     'LBL_FIELD_NAME': 'Your name',
+    'LBL_FIELD_EMAIL': 'Your email',
+    'LBL_FIELD_PHONE': 'Your phone',
+    'LBL_FIELD_SKYPE': 'Your Skype',
+    'LBL_FIELD_WHATSAPP': 'Your WhatsApp',
+    'LBL_FIELD_TELEGRAM': 'Your Telegram',
+    'LBL_FIELD_VIBER': 'Your Viber',
+    'LBL_FIELD_ADDINFO': 'Additional Info',
     'FIELD_NAME_ERR': 'nameErrEn',
+    'FIELD_EMAIL_ERR': 'emailErrEn',
+    'BTN_SUBMIT': 'Submit',
 
     // Home - Carousel
     'HOME_CAROUSEL_TITLE_1': 'Slide 01 message',
@@ -173,7 +182,16 @@ function translateConfig ($translateProvider) {
     // Callback or request forms
     'LBL_FIELD_OBJ': 'Объект',
     'LBL_FIELD_NAME': 'Ваше имя',
+    'LBL_FIELD_EMAIL': 'Ваш email',
+    'LBL_FIELD_PHONE': 'Ваш телефон',
+    'LBL_FIELD_SKYPE': 'Ваш Skype',
+    'LBL_FIELD_WHATSAPP': 'Ваш WhatsApp',
+    'LBL_FIELD_TELEGRAM': 'Ваш Telegram',
+    'LBL_FIELD_VIBER': 'Ваш Viber',
+    'LBL_FIELD_ADDINFO': 'Доп. информация',
     'FIELD_NAME_ERR': 'nameErrRu',
+    'FIELD_EMAIL_ERR': 'emailErrRu',
+    'BTN_SUBMIT': 'Отправить',
 
 
     // Home - Carousel

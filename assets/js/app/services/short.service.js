@@ -5,11 +5,11 @@
     .module('OrangeClient')
     .service('ShortService', ShortService);
 
-  ShortService.$inject = ['$http', '$log', 'oShortKey',
+  ShortService.$inject = ['GeneralConfigService', '$http', '$log', 'oShortKey',
     'oShort', 'lodash', '$q'];
 
   /* @ngInject */
-  function ShortService($http, $log, oShortKey, oShort, lodash, $q) {
+  function ShortService(GeneralConfigService, $http, $log, oShortKey, oShort, lodash, $q) {
     var _ = lodash;
     var self = {
       getAllShortObjectsKeys: _getAllShortObjectsKeys,
@@ -70,7 +70,7 @@
 
       // todo: return object having result code (200, 404, etc.) and data
 
-      return $http.post('http://localhost:1337/short/find', reqObj)
+      return $http.post(GeneralConfigService.orangeConfig.host + '/short/find', reqObj)
        .then(successCb, errorCb);
 
       function successCb(data) {
@@ -129,7 +129,7 @@
 
     function _getAllShortObjectsObjsPager(reqObj, pager) {
 
-      return $http.post('http://localhost:1337/short/findp', {
+      return $http.post(GeneralConfigService.orangeConfig.host + '/short/findp', {
         conditions: reqObj,
         pager: pager
       } )

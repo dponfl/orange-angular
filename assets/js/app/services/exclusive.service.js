@@ -5,11 +5,11 @@
     .module('OrangeClient')
     .service('ExclusiveService', ExclusiveService);
 
-  ExclusiveService.$inject = ['$log', 'oExclusiveKey',
+  ExclusiveService.$inject = ['GeneralConfigService', '$log', 'oExclusiveKey',
     'oExclusive', 'lodash', '$q'];
 
   /* @ngInject */
-  function ExclusiveService($log, oExclusiveKey, oExclusive, lodash, $q) {
+  function ExclusiveService(GeneralConfigService, $log, oExclusiveKey, oExclusive, lodash, $q) {
     var _ = lodash;
     var self = {
       getAllExclusiveObjectsKeys: _getAllExclusiveObjectsKeys,

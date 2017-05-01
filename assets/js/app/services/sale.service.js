@@ -5,11 +5,11 @@
     .module('OrangeClient')
     .service('SaleService', SaleService);
 
-  SaleService.$inject = ['$log', '$http', 'oSaleKey',
+  SaleService.$inject = ['GeneralConfigService', '$log', '$http', 'oSaleKey',
     'oSale', 'lodash', '$q'];
 
   /* @ngInject */
-  function SaleService($log, $http, oSaleKey, oSale, lodash, $q) {
+  function SaleService(GeneralConfigService, $log, $http, oSaleKey, oSale, lodash, $q) {
     var _ = lodash;
     var self = {
       getAllSaleObjectsKeys: _getAllSaleObjectsKeys,
@@ -69,7 +69,7 @@
 
       // todo: return object having result code (200, 404, etc.) and data
 
-      return $http.post('http://localhost:1337/sale/find', reqObj)
+      return $http.post(GeneralConfigService.orangeConfig.host + '/sale/find', reqObj)
         .then(successCb, errorCb);
 
       function successCb(data) {
@@ -127,7 +127,7 @@
 
     function _getAllSaleObjectsObjsPager(reqObj, pager) {
 
-      return $http.post('http://localhost:1337/sale/findp', {
+      return $http.post(GeneralConfigService.orangeConfig.host + '/sale/findp', {
         conditions: reqObj,
         pager: pager
       } )
