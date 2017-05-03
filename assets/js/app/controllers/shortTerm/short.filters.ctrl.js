@@ -13,6 +13,9 @@
     vm.find = _find;
     vm.clear = _clear;
 
+    // todo: delete
+    vm.shortBusy = $rootScope.short.busy;
+
     vm.filterDisabled = false;
 
     vm.objList = $rootScope.orangeConfig.objList[$rootScope.lang];
@@ -30,7 +33,7 @@
 
     $rootScope.$watch('lang', update);
 
-    $rootScope.$watch('busy', function (oldVal, newVal) {
+    $rootScope.$watch('short.busy', function (newVal, oldVal) {
       vm.busy = newVal;
       vm.filterDisabled = newVal;
 /*

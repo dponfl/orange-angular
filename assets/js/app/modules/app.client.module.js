@@ -24,9 +24,11 @@
 
 
     // Short term
+    $rootScope.short = {};
     $rootScope.pageShort = 1;
     $rootScope.shortFindActivated = false;
     $rootScope.shortFilterData = {};
+    $rootScope.short.busy = false;
 
     // Long term
     $rootScope.long = {};

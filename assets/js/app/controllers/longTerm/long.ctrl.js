@@ -10,10 +10,10 @@
   function LongCtrl(GeneralConfigService, LongService,
                      $log, $rootScope, $scope, lodash, $q, $alert) {
     var _ = lodash;
-    var busyAlert = $alert({
+    var longBusyAlert = $alert({
       title: 'Title',
       content: 'Content',
-      container: '#spinner-container',
+      container: '#spinner-container2',
       show: true,
       templateUrl: '../templates/view/busyAlert.html'
     });
@@ -42,9 +42,9 @@
     $scope.$watch('busy', function (oldVal, newVal) {
       $rootScope.long.busy = newVal;
       if (oldVal && !newVal) {
-        busyAlert.$promise.then(busyAlert.show);
+        longBusyAlert.$promise.then(longBusyAlert.show);
       } else if (!oldVal && newVal) {
-        busyAlert.$promise.then(busyAlert.hide);
+        longBusyAlert.$promise.then(longBusyAlert.hide);
       }
     });
 

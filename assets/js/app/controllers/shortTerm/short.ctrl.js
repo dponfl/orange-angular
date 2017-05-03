@@ -10,16 +10,17 @@
   function ShortCtrl(GeneralConfigService, ShortService,
                      $log, $rootScope, $scope, lodash, $q, $alert) {
     var _ = lodash;
-    var busyAlert = $alert({title: 'Title',
+    var shortBusyAlert = $alert({title: 'Title',
       content: 'Content',
-      container: '#spinner-container',
+      container: '#spinner-container1',
       show: true,
       templateUrl: '../templates/view/busyAlert.html'});
 
+    $scope.shortBusy = $rootScope.short.busy;
     $rootScope.showNotFound = false;
     $scope.showServerError = false;
     $rootScope.pageShort = 1;
-    $scope.busy = false;
+    $rootScope.short.busy = false;
     $rootScope.scrollDisabled = false;
     $rootScope.showFoundNothing = false;
 
@@ -37,12 +38,15 @@
 
     $rootScope.$watch('lang', _update);
 
-    $scope.$watch('busy', function (oldVal, newVal) {
-      $rootScope.busy = newVal;
-      if (oldVal && !newVal) {
-        busyAlert.$promise.then(busyAlert.show);
-      } else if (!oldVal && newVal) {
-        busyAlert.$promise.then(busyAlert.hide);
+    $rootScope.$watch('short.busy', function (newVal, oldVal) {
+      $scope.shortBusy = $rootScope.short.busy;
+    });
+
+    $scope.$watch('shortBusy', function (newVal, oldVal) {
+      if (!oldVal && newVal) {
+        shortBusyAlert.$promise.then(shortBusyAlert.show);
+      } else if (oldVal && !newVal) {
+        shortBusyAlert.$promise.then(shortBusyAlert.hide);
       }
     });
 
@@ -51,7 +55,7 @@
       if ($rootScope.shortFindActivated) {
 
         $rootScope.panels = [];
-        $scope.busy = false;
+        $rootScope.short.busy = false;
         $rootScope.shortFindActivated = false;
 
         $rootScope.pageShort = 1;
@@ -92,7 +96,7 @@
 
     function _performRequest(reqParams) {
 
-      if ($scope.busy) {
+      if ($rootScope.short.busy) {
 
         return {
           performed: false,
@@ -130,7 +134,7 @@
 
 
 
-      $scope.busy = true;
+      $rootScope.short.busy = true;
 
       var params = {};
       var objReqParams = {show: 1};
@@ -157,7 +161,7 @@
       return $q.all({keys: ShortService.getAllShortObjectsKeys({show: 1}),
         objs: ShortService.getAllShortObjectsObjsPager(objReqParams, objReqPager)})
         .then(function (results) {
-          $scope.busy = false;
+          $rootScope.short.busy = false;
 
           if (results.objs.status == 404) {
             $rootScope.showNotFound = true;

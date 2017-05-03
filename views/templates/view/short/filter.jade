@@ -1,5 +1,7 @@
 form(novalidate='novalidate',
 data-ng-submit='$ctrl.find()').form-horisontal
+  div $rootScope.short.busy: {{$ctrl.shortBusy}}
+  div $ctrl.filterDisabled: {{$ctrl.filterDisabled}}
 
   fieldset(data-ng-attr-disabled='{{$ctrl.filterDisabled || undefined}}')
 

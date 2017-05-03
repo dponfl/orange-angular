@@ -10,7 +10,7 @@
   function SaleCtrl(GeneralConfigService, SaleService,
                      $log, $rootScope, $scope, lodash, $q, $alert) {
     var _ = lodash;
-    var busyAlert = $alert({
+    var saleBusyAlert = $alert({
       title: 'Title',
       content: 'Content',
       container: '#spinner-container',
@@ -42,9 +42,9 @@
     $scope.$watch('busy', function (oldVal, newVal) {
       $rootScope.sale.busy = newVal;
       if (oldVal && !newVal) {
-        busyAlert.$promise.then(busyAlert.show);
+        saleBusyAlert.$promise.then(saleBusyAlert.show);
       } else if (!oldVal && newVal) {
-        busyAlert.$promise.then(busyAlert.hide);
+        saleBusyAlert.$promise.then(saleBusyAlert.hide);
       }
     });
 
