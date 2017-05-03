@@ -13,7 +13,7 @@
     vm.find = _find;
     vm.clear = _clear;
 
-    vm.disabledClear = '';
+    vm.filterDisabled = false;
 
     vm.objList = $rootScope.orangeConfig.objList[$rootScope.lang];
     vm.cityList = $rootScope.orangeConfig.cityList[$rootScope.lang];
@@ -32,12 +32,12 @@
 
     $rootScope.$watch('busy', function (oldVal, newVal) {
       vm.busy = newVal;
+      vm.filterDisabled = newVal;
+/*
       if (!newVal) {
-        vm.busyFind = newVal;
-        vm.busyClear = newVal;
-        vm.disabledClear = '';
-        vm.disabledFind = '';
+        vm.filterDisabled = newVal;
       }
+*/
     });
 
 
@@ -49,31 +49,27 @@
 
     function _find() {
 
-      if (vm.disabledFind === 'disabled') {
+      if (vm.filterDisabled) {
         return;
       }
 
+      // vm.filterDisabled = true;
       $rootScope.shortFilterData = vm.formData;
-      vm.busyFind = true;
-      vm.disabledClear = 'disabled';
-      vm.disabledFind = 'disabled';
       $rootScope.shortFindActivated = true;
     };
 
     function _clear() {
 
-      if (vm.disabledClear === 'disabled') {
+      if (vm.filterDisabled) {
         return;
       }
 
+      // vm.filterDisabled = true;
       vm.formData.obj = $rootScope.orangeConfig.objList[$rootScope.lang][0];
       vm.formData.city = $rootScope.orangeConfig.cityList[$rootScope.lang][0];
       vm.formData.room = $rootScope.orangeConfig.roomList[$rootScope.lang][0];
       vm.formData.objnumber = '';
       $rootScope.shortFilterData = vm.formData;
-      vm.busyClear = true;
-      vm.disabledFind = 'disabled';
-      vm.disabledClear = 'disabled';
       $rootScope.shortFindActivated = true;
     };
   }
