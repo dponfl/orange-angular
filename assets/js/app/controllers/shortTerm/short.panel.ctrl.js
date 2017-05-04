@@ -77,6 +77,7 @@
 
       vm.formData = {};
       vm.busyBook = false;
+      vm.objectInfo = '';
 
       vm.showPrice = _showPrice;
       vm.hidePrice = _hidePrice;
@@ -175,7 +176,6 @@
      */
 
     function _showBookObject() {
-      // $scope.index = vm.index;
       var city = '';
       var address = '';
 
@@ -202,7 +202,8 @@
 
     function _book() {
       vm.busyBook = true;
-      $log.info('_book() activated...');
+
+      // $log.info('_book() activated...');
 /*
       $log.info('$scope:');
       $log.info($scope);
@@ -210,31 +211,55 @@
       $log.info(vm.panel);
 */
       vm.formData.objnumber = vm.panel.objNumber;
+
+/*
       $log.info('vm.formData');
       $log.info(vm.formData);
+*/
 
       S_ReqService.createSReq(vm.formData)
         .then(function (res) {
+
+/*
           $log.info('S_ReqService, res:');
           $log.info(res);
-          if (res.data.status === 200) {
+*/
+
+
+          if (res.status === 200) {
             vm.busyBook = false;
             toaster.pop({
               type: 'success',
               title: __.t('BOOKING_SUCCESS_TITLE'),
-              body: __.t('BOOKING_SUCCESS_BODY_1') + vm.formData.objnumber +
+              body: __.t('BOOKING_SUCCESS_BODY_1') + vm.objectInfo +
               __.t('BOOKING_SUCCESS_BODY_2'),
               toasterId: vm.formData.objnumber,
               showCloseButton: true,
-              timeout: 10000,
+              timeout: 15000,
+            });
+          } else {
+            vm.busyBook = false;
+            toaster.pop({
+              type: 'error',
+              title: __.t('BOOKING_ERROR_TITLE'),
+              body: __.t('BOOKING_ERROR_BODY_1') + vm.objectInfo +
+              __.t('BOOKING_ERROR_BODY_2'),
+              toasterId: vm.formData.objnumber,
+              showCloseButton: true,
+              timeout: 15000,
             });
           }
         });
 
+/*
       setTimeout(function () {
         vm.busyBook = false;
         vm.hideBookObject();
       }, 3000);
+*/
+
+      vm.busyBook = false;
+      vm.hideBookObject();
 
       // vm.hideBookObject();
     } // _book

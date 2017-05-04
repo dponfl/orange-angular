@@ -39,16 +39,27 @@ module.exports = {
       }
     });
 
+    createObj['user_agent'] = req.headers['user-agent'] || '';
+    createObj['ip'] = req.ip || '';
+    createObj['cookie'] = req.headers.cookie || '';
+
     console.log('createObj:');
     console.dir(createObj);
 
     S_req.create(createObj)
       .exec(function (err, data) {
+
+/*
+        // To test server error case
+        var e = new Error('Some error message');
+        return res.serverError(e);
+*/
+
         if (err) {
           return res.serverError(err);
         }
 
-        return res.ok();
+        return res.ok({result: 'ok'});
       });
   }
 };

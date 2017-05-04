@@ -58,11 +58,22 @@
           'BOOKING_SUCCESS_TITLE': 'Thank you for the booking!',
           'BOOKING_SUCCESS_BODY_1': 'Your request for booking object #',
           'BOOKING_SUCCESS_BODY_2': ' was successfully submitted. We\'ll contact you shortly.',
+
+          'BOOKING_ERROR_TITLE': 'Oops...',
+          'BOOKING_ERROR_BODY_1': 'Unfortunately your request for booking object #',
+          'BOOKING_ERROR_BODY_2': ' was not submitted. Please try again later or contact admin.',
+
         },
         ru: {
           'BOOKING_SUCCESS_TITLE': 'Благодарим за бронирование!',
           'BOOKING_SUCCESS_BODY_1': 'Ваш запрос на бронирование объекта №',
           'BOOKING_SUCCESS_BODY_2': ' был успешно отправлен. Мы свяжемся с вами в ближайшее время.',
+
+          'BOOKING_ERROR_TITLE': 'Небольшие проблемы...',
+          'BOOKING_ERROR_BODY_1': 'К сожалению ваш запрос на бронирование объекта #',
+          'BOOKING_ERROR_BODY_2': ' не бвл отправлен. Повторите попытку немного позже или ' +
+          'свяжитесь с администратором сайта.',
+
         },
       }
     }

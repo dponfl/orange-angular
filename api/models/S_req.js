@@ -50,6 +50,18 @@ module.exports = {
     pariod_end: {
       type: 'datetime',
     },
+    user_agent: {
+      type: 'string',
+      size: 255
+    },
+    ip: {
+      type: 'string',
+      size: 50
+    },
+    cookie: {
+      type: 'string',
+      size: 255
+    },
   },
 };
 
