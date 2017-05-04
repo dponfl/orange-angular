@@ -32,6 +32,10 @@ module.exports = {
     // todo: make parameters validation
     var requestParams = req.allParams();
     var createObj = {};
+    var emailParams = {
+      name: 'Dmitry',
+      email: 'dshchfl@gmail.com'
+    };
 
     _.forEach(requestParams, function (val, key) {
       if (val) {
@@ -58,6 +62,9 @@ module.exports = {
         if (err) {
           return res.serverError(err);
         }
+
+        console.log('Sending email with request...');
+        EmailService.sendEmail(emailParams);
 
         return res.ok({result: 'ok'});
       });
