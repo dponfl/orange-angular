@@ -1,6 +1,6 @@
 "use strict";
 
-// var wellknown = require('nodemailer-wellknown');
+var Mailgun = require('mailgun-js');
 
 module.exports = {
   test: function(options, cb) {
@@ -8,27 +8,31 @@ module.exports = {
     console.log(options);
     return cb({emailOptions: options});
   },
-  sendEmail: function (params) {
-    var template = 'welcomeEmail';
+  sendEmail: function (subject, html) {
+    var api_key = 'key-c3d2a9801173b2ac5edd206c0c469601';
+    var domain = 'sandbox39dd8ba22aad4440ac6be87d983d89ac.mailgun.org';
+
     var data = {
-      Name: params.name,
+      from: 'info@mycompany.com',
+      to: 'dshchfl@gmail.com',
+      subject: subject,
+      html: html,
     };
-    var options = {
-      to: params.email,
-      subject: 'Welcome email',
-    };
-    var cb = function (err) {
+
+    var mailgun = new Mailgun({apiKey: api_key, domain: domain});
+
+    mailgun.messages().send(data, function (err, body) {
       console.log('EmailService, sendEmail');
-      console.log(err || 'Mail was successfully sent!');
-    };
 
-/*
-    var config = wellknown('Mailgun');
+      if (err) {
+        console.log('Error:');
+        console.dir(err);
+        return;
+      }
 
-    console.log('Mailgun config:');
-    console.log(config);
-*/
+      console.log('Mail was successfully sent!');
+      console.dir(body);
+    });
 
-    sails.hooks.email.send(template, data, options, cb);
   }
 };

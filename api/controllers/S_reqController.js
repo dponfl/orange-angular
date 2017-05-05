@@ -5,6 +5,8 @@
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
 
+var _ = require('lodash');
+
 module.exports = {
 	create: function (req, res) {
 
@@ -32,10 +34,6 @@ module.exports = {
     // todo: make parameters validation
     var requestParams = req.allParams();
     var createObj = {};
-    var emailParams = {
-      name: 'Dmitry',
-      email: 'dshchfl@gmail.com'
-    };
 
     _.forEach(requestParams, function (val, key) {
       if (val) {
@@ -64,9 +62,46 @@ module.exports = {
         }
 
         console.log('Sending email with request...');
-        EmailService.sendEmail(emailParams);
+        console.dir(data);
+        var subject = 'Hello from Mailgun';
+        var html = `
+          <table>
+            <tr>
+              <th>Параметр</th>
+              <th>Значение</th>
+            </tr>
+        `;
 
-        return res.ok({result: 'ok'});
+        var keys = [
+          'objnumber',
+          'name',
+          'email',
+          'phone',
+          'skype',
+          'whatsapp',
+          'telegram',
+          'viber',
+          'additionalInfo',
+          'period_start',
+          'pariod_end',
+        ];
+
+        keys.forEach(function (key) {
+          if (data[key]) {
+            html += `
+              <tr>
+                <td>${key}</td>
+                <td>${data[key]}</td>
+              </tr>
+            `;
+          }
+        });
+
+        html += '</table>';
+
+        EmailService.sendEmail(subject, html);
+
+        return res.ok({result: 'ok', data: data});
       });
   }
 };
