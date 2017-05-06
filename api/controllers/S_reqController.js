@@ -63,14 +63,6 @@ module.exports = {
 
         console.log('Sending email with request...');
         console.dir(data);
-        var subject = 'Hello from Mailgun';
-        var html = `
-          <table>
-            <tr>
-              <th>Параметр</th>
-              <th>Значение</th>
-            </tr>
-        `;
 
         var keys = [
           'objnumber',
@@ -86,14 +78,57 @@ module.exports = {
           'pariod_end',
         ];
 
+        var lables = {
+          'objnumber': 'Объект №: ',
+          'name': 'Имя/фамилия: ',
+          'email': 'Email: ',
+          'phone': 'Телефон: ',
+          'skype': 'Skype: ',
+          'whatsapp': 'Whatsapp: ',
+          'telegram': 'Telegram: ',
+          'viber': 'Viber: ',
+          'additionalInfo': 'Доп. информация: ',
+          'period_start': 'Начало: ',
+          'pariod_end': 'Окончание: ',
+        };
+
+        var deal_type_lables = {
+          'short': 'Посуточная аренда',
+          'long': 'Долгосрочная аренда',
+          'sale': 'Продажа',
+        };
+
+        var subject = 'Новый заказ, объект №' + data.objnumber;
+        var html = `
+          <h2>Поступил новый заказ</h2>
+          <hr>
+          <h3>Тип: ${deal_type_lables[data.deal_type]}</h3>
+          <table style="border: 1px; color: #8AB512;">
+        `;
+
+
+
+        var i = 0;
+        var styleOne = 'style = "background:#FFF; color:#000"';
+        var styleTwo = 'style = "background:#DFE7C0; color:#000"';
         keys.forEach(function (key) {
           if (data[key]) {
-            html += `
-              <tr>
-                <td>${key}</td>
+            if (i%2) {
+              html += `
+              <tr ${styleOne}>
+                <td>${lables[key]}</td>
                 <td>${data[key]}</td>
               </tr>
             `;
+            } else {
+              html += `
+              <tr ${styleTwo}>
+                <td>${lables[key]}</td>
+                <td>${data[key]}</td>
+              </tr>
+            `;
+            }
+            i++;
           }
         });
 

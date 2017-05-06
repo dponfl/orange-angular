@@ -211,8 +211,7 @@
       $log.info(vm.panel);
 */
       vm.formData.objnumber = vm.panel.objNumber;
-
-      //todo: add to s_req table and here deal type, e.g. 'short term', 'long term', etc.
+      vm.formData.deal_type = 'short';
 
 /*
       $log.info('vm.formData');

@@ -13,7 +13,7 @@ module.exports = {
     var domain = 'sandbox39dd8ba22aad4440ac6be87d983d89ac.mailgun.org';
 
     var data = {
-      from: 'info@mycompany.com',
+      from: 'order@orangevillas.com',
       to: 'dshchfl@gmail.com',
       subject: subject,
       html: html,
