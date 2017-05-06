@@ -30,14 +30,14 @@
             //div(data-ng-if='sc.showServerError')
               h1 showServerError
 
-            div(data-ng-if='showFoundNothing')
+            div(data-ng-if='short.showFoundNothing')
               nothing-found
 
             div(infinite-scroll='activateNextPage()',
-            infinite-scroll-disabled='scrollDisabled',
+            infinite-scroll-disabled='short.scrollDisabled',
             infinite-scroll-distance='1',
-            data-ng-hide='showFoundNothing').row
-              div(data-ng-repeat='panel in panels')
+            data-ng-hide='short.showFoundNothing').row
+              div(data-ng-repeat='panel in short.panels')
                 panel-short(badge='panel.badge',
                 type='panel.type',
                 badge-text='panel.badgeText',
@@ -49,4 +49,4 @@
                 index='$index',
                 panel='panel')
 
-            div#spinner-container1
+            div#spinner-container-short

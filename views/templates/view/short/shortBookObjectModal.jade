@@ -22,6 +22,7 @@ role="dialog").modal.book-object-modal
               .col-sm-3
                 input(type="text",
                 required,
+                data-ng-required-err-type="{{'AV_REQ' | translate}}",
                 data-ng-model='spc.formData.period_start',
                 bs-datepicker).form-control#dateStart
 
@@ -30,6 +31,7 @@ role="dialog").modal.book-object-modal
               .col-sm-3
                 input(type="text",
                 required,
+                data-ng-required-err-type="{{'AV_REQ' | translate}}",
                 data-ng-model='spc.formData.pariod_end',
                 bs-datepicker).form-control#dateEnd
 

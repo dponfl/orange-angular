@@ -12,20 +12,21 @@
     var _ = lodash;
     var shortBusyAlert = $alert({title: 'Title',
       content: 'Content',
-      container: '#spinner-container1',
+      container: '#spinner-container-short',
       show: true,
-      templateUrl: '../templates/view/busyAlert.html'});
+      templateUrl: '../templates/view/busyAlert.html'
+    });
 
     $scope.shortBusy = $rootScope.short.busy;
-    $rootScope.showNotFound = false;
-    $scope.showServerError = false;
-    $rootScope.pageShort = 1;
+    $rootScope.short.showNotFound = false;
+    $rootScope.short.showServerError = false;
+    $rootScope.short.page = 1;
     $rootScope.short.busy = false;
-    $rootScope.scrollDisabled = false;
-    $rootScope.showFoundNothing = false;
+    $rootScope.short.scrollDisabled = false;
+    $rootScope.short.showFoundNothing = false;
 
-    $rootScope.panelsAllLangs = {};
-    $rootScope.panels = [];
+    $rootScope.short.panelsAllLangs = {};
+    $rootScope.short.panels = [];
 
     $rootScope.objList = GeneralConfigService.orangeConfig.objList[$rootScope.lang];
     $rootScope.cityList = GeneralConfigService.orangeConfig.cityList[$rootScope.lang];
@@ -34,7 +35,7 @@
 
     $scope.activateNextPage = _activateNextPage;
 
-    $rootScope.$watch('shortFindActivated', _updateData);
+    $rootScope.$watch('short.FindActivated', _updateData);
 
     $rootScope.$watch('lang', _update);
 
@@ -52,24 +53,24 @@
 
     function _updateData () {
 
-      if ($rootScope.shortFindActivated) {
+      if ($rootScope.short.FindActivated) {
 
-        $rootScope.panels = [];
+        $rootScope.short.panels = [];
         $rootScope.short.busy = false;
-        $rootScope.shortFindActivated = false;
+        $rootScope.short.FindActivated = false;
 
-        $rootScope.pageShort = 1;
-        $rootScope.showNotFound = false;
+        $rootScope.short.page = 1;
+        $rootScope.short.showNotFound = false;
         $scope.showServerError = false;
-        $rootScope.scrollDisabled = false;
-        $rootScope.showFoundNothing = false;
+        $rootScope.short.scrollDisabled = false;
+        $rootScope.short.showFoundNothing = false;
 
-        $q.when(_performRequest($rootScope.shortFilterData))
+        $q.when(_performRequest($rootScope.short.FilterData))
           .then(function (res) {
 
             if (!res.performed &&
               (res.reason == 'notFound' || res.reason == 'serverError')) {
-              $rootScope.scrollDisabled = true;
+              $rootScope.short.scrollDisabled = true;
               return;
             }
 
@@ -77,7 +78,7 @@
 
             if (!buildResult.performed) return;
 
-            $rootScope.panelsAllLangs = buildResult.data;
+            $rootScope.short.panelsAllLangs = buildResult.data;
 
             _update();
 
@@ -108,7 +109,7 @@
         };
       }
 
-      if ($rootScope.showNotFound) {
+      if ($rootScope.short.showNotFound) {
 
         return {
           performed: false,
@@ -154,9 +155,9 @@
       }
 
       objReqPager.limit = $rootScope.pagerNumRecords*$rootScope.numLang;
-      objReqPager.page = $rootScope.pageShort;
+      objReqPager.page = $rootScope.short.page;
 
-      $rootScope.pageShort++;
+      $rootScope.short.page++;
 
       return $q.all({keys: ShortService.getAllShortObjectsKeys({show: 1}),
         objs: ShortService.getAllShortObjectsObjsPager(objReqParams, objReqPager)})
@@ -164,10 +165,10 @@
           $rootScope.short.busy = false;
 
           if (results.objs.status == 404) {
-            $rootScope.showNotFound = true;
+            $rootScope.short.showNotFound = true;
 
             if (objReqPager.page == 1) {
-              $rootScope.showFoundNothing = true;
+              $rootScope.short.showFoundNothing = true;
             }
 
             return {
@@ -194,7 +195,7 @@
           }
 
           if (results.objs.status == 200) {
-            $rootScope.showNotFound = false;
+            $rootScope.short.showNotFound = false;
             $scope.showServerError = false;
 
             return {
@@ -348,23 +349,23 @@
       $rootScope.roomList = GeneralConfigService.orangeConfig.roomList[$rootScope.lang];
       $rootScope.tagList = GeneralConfigService.orangeConfig.tagList[$rootScope.lang];
 
-      $rootScope.panels = $rootScope.panelsAllLangs[$rootScope.lang];
+      $rootScope.short.panels = $rootScope.short.panelsAllLangs[$rootScope.lang];
 
     } // update
 
     function _activateNextPage() {
-      if ($rootScope.scrollDisabled) return;
+      if ($rootScope.short.scrollDisabled) return;
 
-      $q.when(_performRequest($rootScope.shortFilterData))
+      $q.when(_performRequest($rootScope.short.FilterData))
         .then(function (res) {
 
           if (!res.performed &&
             (res.reason == 'notFound' || res.reason == 'serverError')) {
-            $rootScope.scrollDisabled = true;
+            $rootScope.short.scrollDisabled = true;
             return;
           }
 
-          $rootScope.scrollDisabled = false;
+          $rootScope.short.scrollDisabled = false;
 
           var buildResult = _buildPanel(res);
 
@@ -372,10 +373,10 @@
           
           _.forEach(buildResult.data, function (val, key) {
             val.map(function (elem) {
-              if (!_.isArray($rootScope.panelsAllLangs[key])) {
-                $rootScope.panelsAllLangs[key] = [];
+              if (!_.isArray($rootScope.short.panelsAllLangs[key])) {
+                $rootScope.short.panelsAllLangs[key] = [];
               }
-              $rootScope.panelsAllLangs[key].push(elem);
+              $rootScope.short.panelsAllLangs[key].push(elem);
             });
 
           });

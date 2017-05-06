@@ -29,7 +29,7 @@
     vm.formData.room = $rootScope.orangeConfig.roomList[$rootScope.lang][0];
     vm.formData.objnumber = '';
 
-    $rootScope.shortFilterData = vm.formData;
+    $rootScope.short.FilterData = vm.formData;
 
     $rootScope.$watch('lang', update);
 
@@ -57,8 +57,8 @@
       }
 
       // vm.filterDisabled = true;
-      $rootScope.shortFilterData = vm.formData;
-      $rootScope.shortFindActivated = true;
+      $rootScope.short.FilterData = vm.formData;
+      $rootScope.short.FindActivated = true;
     };
 
     function _clear() {
@@ -72,8 +72,8 @@
       vm.formData.city = $rootScope.orangeConfig.cityList[$rootScope.lang][0];
       vm.formData.room = $rootScope.orangeConfig.roomList[$rootScope.lang][0];
       vm.formData.objnumber = '';
-      $rootScope.shortFilterData = vm.formData;
-      $rootScope.shortFindActivated = true;
+      $rootScope.short.FilterData = vm.formData;
+      $rootScope.short.FindActivated = true;
     };
   }
 })();

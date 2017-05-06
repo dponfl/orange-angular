@@ -25,17 +25,23 @@
 
     // Short term
     $rootScope.short = {};
-    $rootScope.pageShort = 1;
-    $rootScope.shortFindActivated = false;
-    $rootScope.shortFilterData = {};
+    $rootScope.short.showNotFound = false;
+    $rootScope.short.page = 1;
+    $rootScope.short.FindActivated = false;
+    $rootScope.short.FilterData = {};
+    $rootScope.short.scrollDisabled = false;
+    $rootScope.short.showFoundNothing = false;
+    $rootScope.short.showServerError = false;
+    $rootScope.short.panelsAllLangs = {};
+    $rootScope.short.panels = [];
     $rootScope.short.busy = false;
 
     // Long term
     $rootScope.long = {};
     $rootScope.long.showNotFound = false;
-    $rootScope.long.pageLong = 1;
-    $rootScope.long.longFindActivated = false;
-    $rootScope.long.longFilterData = {};
+    $rootScope.long.page = 1;
+    $rootScope.long.FindActivated = false;
+    $rootScope.long.FilterData = {};
     $rootScope.long.scrollDisabled = false;
     $rootScope.long.showFoundNothing = false;
     $rootScope.long.showServerError = false;

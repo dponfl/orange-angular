@@ -18,10 +18,11 @@
       templateUrl: '../templates/view/busyAlert.html'
     });
 
+    $scope.shortBusy = $rootScope.short.busy;
     $rootScope.long.showNotFound = false;
     $rootScope.long.showServerError = false;
     $rootScope.long.pageLong = 1;
-    $scope.busy = false;
+    $rootScope.long.busy = false;
     $rootScope.long.scrollDisabled = false;
     $rootScope.long.showFoundNothing = false;
 
