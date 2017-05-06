@@ -5,12 +5,16 @@
     .config(LaddaConfig)
     .config(ModalConfig);
 
-  LaddaConfig.$inject = ['laddaProvider'];
-  function LaddaConfig(laddaProvider) {
+  LaddaConfig.$inject = ['laddaProvider', '$datepickerProvider'];
+  function LaddaConfig(laddaProvider, $datepickerProvider) {
     laddaProvider.setOption({
       style: 'contract',
       spinnerSize: 35,
       spinnerColor: '#ffffff'
+    });
+    angular.extend($datepickerProvider.defaults, {
+      dateFormat: 'dd/MM/yyyy',
+      autoclose: true,
     });
   }
 

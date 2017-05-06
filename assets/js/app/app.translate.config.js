@@ -40,6 +40,8 @@ function translateConfig ($translateProvider) {
 
     // Callback or request forms
     'LBL_FIELD_OBJ': 'Object',
+    'LBL_FIELD_DATE_START': 'Date start',
+    'LBL_FIELD_DATE_END': 'Date end',
     'LBL_FIELD_NAME': 'Your name',
     'LBL_FIELD_EMAIL': 'Your email',
     'LBL_FIELD_PHONE': 'Your phone',
@@ -181,6 +183,8 @@ function translateConfig ($translateProvider) {
 
     // Callback or request forms
     'LBL_FIELD_OBJ': 'Объект',
+    'LBL_FIELD_DATE_START': 'Дата начала',
+    'LBL_FIELD_DATE_END': 'Дата окончания',
     'LBL_FIELD_NAME': 'Ваше имя',
     'LBL_FIELD_EMAIL': 'Ваш email',
     'LBL_FIELD_PHONE': 'Ваш телефон',

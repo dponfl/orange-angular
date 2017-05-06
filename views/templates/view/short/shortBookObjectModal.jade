@@ -17,6 +17,22 @@ role="dialog").modal.book-object-modal
               .col-sm-8
                 p(data-ng-bind='spc.objectInfo').form-control-static.form-control-static-text#objectInfo
 
+            .form-group.clearfix
+              label(for='dateStart', translate='LBL_FIELD_DATE_START').col-sm-4.control-label.text-right
+              .col-sm-3
+                input(type="text",
+                required,
+                data-ng-model='spc.formData.period_start',
+                bs-datepicker).form-control#dateStart
+
+            .form-group.clearfix
+              label(for='dateEnd', translate='LBL_FIELD_DATE_END').col-sm-4.control-label.text-right
+              .col-sm-3
+                input(type="text",
+                required,
+                data-ng-model='spc.formData.pariod_end',
+                bs-datepicker).form-control#dateEnd
+
 
             .form-group.clearfix
               label(for='clientName', translate='LBL_FIELD_NAME').col-sm-4.control-label.text-right

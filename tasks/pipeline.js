@@ -19,6 +19,7 @@
 var cssFilesToInject = [
   'vendor/bootstrap/dist/css/bootstrap.css',
   'vendor/bootstrap/dist/css/bootstrap-theme.css',
+  'vendor/bootstrap-additions/dist/bootstrap-additions.css',
   'styles/libs/**/*.css',
   'styles/**/*.css',
   'vendor/ladda/dist/ladda-themeless.min.css',
