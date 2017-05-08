@@ -17,10 +17,6 @@
     vm.title = 'ShortPanelCtrl';
     vm.badge = false;
 
-    $log.info('ShortPanelCtrl');
-    $log.info($scope);
-
-
     var shortPriceModal = $modal({
       scope: $scope,
       templateUrl: '../templates/view/short/shortPriceModal.html',

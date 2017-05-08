@@ -22,10 +22,6 @@
     vm.cityList = $rootScope.orangeConfig.cityList[$rootScope.lang];
     vm.roomList = $rootScope.orangeConfig.roomList[$rootScope.lang];
 
-    $log.info('ShortFiltersCtrl');
-    $log.info($scope);
-
-
     vm.formData = {};
 
     vm.formData.obj = $rootScope.orangeConfig.objList[$rootScope.lang][0];

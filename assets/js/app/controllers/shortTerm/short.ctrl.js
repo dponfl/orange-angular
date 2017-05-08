@@ -17,10 +17,6 @@
       templateUrl: '../templates/view/busyAlert.html'
     });
 
-    $log.info('ShortCtrl');
-    $log.info($scope);
-
-
     $scope.shortBusy = $rootScope.short.busy;
     $rootScope.short.showNotFound = false;
     $rootScope.short.showServerError = false;
