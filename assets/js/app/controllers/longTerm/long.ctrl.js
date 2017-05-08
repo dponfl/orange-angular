@@ -13,15 +13,15 @@
     var longBusyAlert = $alert({
       title: 'Title',
       content: 'Content',
-      container: '#spinner-container2',
+      container: '#spinner-container-long',
       show: true,
       templateUrl: '../templates/view/busyAlert.html'
     });
 
-    $scope.shortBusy = $rootScope.short.busy;
+    $scope.longBusy = $rootScope.long.busy;
     $rootScope.long.showNotFound = false;
     $rootScope.long.showServerError = false;
-    $rootScope.long.pageLong = 1;
+    $rootScope.long.page = 1;
     $rootScope.long.busy = false;
     $rootScope.long.scrollDisabled = false;
     $rootScope.long.showFoundNothing = false;
@@ -36,34 +36,37 @@
 
     $scope.activateNextPage = _activateNextPage;
 
-    $rootScope.$watch('long.longFindActivated', _updateData);
+    $rootScope.$watch('long.FindActivated', _updateData);
 
     $rootScope.$watch('lang', _update);
 
-    $scope.$watch('busy', function (oldVal, newVal) {
-      $rootScope.long.busy = newVal;
-      if (oldVal && !newVal) {
+    $rootScope.$watch('long.busy', function (newVal, oldVal) {
+      $scope.longBusy = $rootScope.long.busy;
+    });
+
+    $scope.$watch('longBusy', function (newVal, oldVal) {
+      if (!oldVal && newVal) {
         longBusyAlert.$promise.then(longBusyAlert.show);
-      } else if (!oldVal && newVal) {
+      } else if (oldVal && !newVal) {
         longBusyAlert.$promise.then(longBusyAlert.hide);
       }
     });
 
     function _updateData () {
 
-      if ($rootScope.long.longFindActivated) {
+      if ($rootScope.long.FindActivated) {
 
         $rootScope.long.panels = [];
-        $scope.busy = false;
-        $rootScope.long.longFindActivated = false;
+        $rootScope.long.busy = false;
+        $rootScope.long.FindActivated = false;
 
-        $rootScope.long.pageLong = 1;
+        $rootScope.long.page = 1;
         $rootScope.long.showNotFound = false;
         $rootScope.long.showServerError = false;
         $rootScope.long.scrollDisabled = false;
         $rootScope.long.showFoundNothing = false;
 
-        $q.when(_performRequest($rootScope.long.longFilterData))
+        $q.when(_performRequest($rootScope.long.FilterData))
           .then(function (res) {
 
             if (!res.performed &&
@@ -95,7 +98,7 @@
 
     function _performRequest(reqParams) {
 
-      if ($scope.busy) {
+      if ($rootScope.long.busy) {
 
         return {
           performed: false,
@@ -133,7 +136,7 @@
 
 
 
-      $scope.busy = true;
+      $rootScope.long.busy = true;
 
       var params = {};
       var objReqParams = {show: 1};
@@ -153,14 +156,14 @@
       }
 
       objReqPager.limit = $rootScope.pagerNumRecords*$rootScope.numLang;
-      objReqPager.page = $rootScope.long.pageLong;
+      objReqPager.page = $rootScope.long.page;
 
-      $rootScope.long.pageLong++;
+      $rootScope.long.page++;
 
       return $q.all({keys: LongService.getAllLongObjectsKeys({show: 1}),
         objs: LongService.getAllLongObjectsObjsPager(objReqParams, objReqPager)})
         .then(function (results) {
-          $scope.busy = false;
+          $rootScope.long.busy = false;
 
           if (results.objs.status == 404) {
             $rootScope.long.showNotFound = true;
@@ -312,6 +315,7 @@
             }
 
             record.content[kElem.group - 1].push({
+              key: kElem.key,
               label: kElem.label,
               text:tokenVal,
             })
@@ -353,7 +357,7 @@
     function _activateNextPage() {
       if ($rootScope.long.scrollDisabled) return;
 
-      $q.when(_performRequest($rootScope.long.longFilterData))
+      $q.when(_performRequest($rootScope.long.FilterData))
         .then(function (res) {
 
           if (!res.performed &&

@@ -15,7 +15,6 @@
     var __=GeneralConfigService;
     var vm = this;
     vm.title = 'ShortPanelCtrl';
-    // vm.index = '';
     vm.badge = false;
 
     var shortPriceModal = $modal({
@@ -201,6 +200,8 @@
     }
 
     function _book() {
+      $log.info('short _book() activated...');
+
       vm.busyBook = true;
 
       // $log.info('_book() activated...');
@@ -266,7 +267,9 @@
     } // _book
 
     function _clear() {
-      $log.info('_clear() activated...');
+      $log.info('short _clear() activated...');
+      vm.formData.period_start = '';
+      vm.formData.pariod_end = '';
       vm.formData.name = '';
       vm.formData.email = '';
       vm.formData.phone = '';

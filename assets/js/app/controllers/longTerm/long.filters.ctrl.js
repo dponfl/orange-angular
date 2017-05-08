@@ -13,6 +13,11 @@
     vm.find = _find;
     vm.clear = _clear;
 
+    // todo: delete
+    vm.longBusy = $rootScope.long.busy;
+
+    vm.filterDisabled = false;
+
     vm.objList = $rootScope.orangeConfig.objList[$rootScope.lang];
     vm.cityList = $rootScope.orangeConfig.cityList[$rootScope.lang];
     vm.roomList = $rootScope.orangeConfig.roomList[$rootScope.lang];
@@ -24,18 +29,18 @@
     vm.formData.room = $rootScope.orangeConfig.roomList[$rootScope.lang][0];
     vm.formData.objnumber = '';
 
-    $rootScope.long.longFilterData = vm.formData;
+    $rootScope.long.FilterData = vm.formData;
 
     $rootScope.$watch('lang', update);
 
-    $rootScope.$watch('long.busy', function (oldVal, newVal) {
+    $rootScope.$watch('long.busy', function (newVal, oldVal) {
       vm.busy = newVal;
+      vm.filterDisabled = newVal;
+/*
       if (!newVal) {
-        vm.busyFind = newVal;
-        vm.busyClear = newVal;
-        vm.disabledClear = '';
-        vm.disabledFind = '';
+        vm.filterDisabled = newVal;
       }
+*/
     });
 
 
@@ -46,21 +51,29 @@
     };
 
     function _find() {
-      $rootScope.long.longFilterData = vm.formData;
-      vm.busyFind = true;
-      vm.disabledClear = 'disabled';
-      $rootScope.long.longFindActivated = true;
+
+      if (vm.filterDisabled) {
+        return;
+      }
+
+      // vm.filterDisabled = true;
+      $rootScope.long.FilterData = vm.formData;
+      $rootScope.long.FindActivated = true;
     };
 
     function _clear() {
+
+      if (vm.filterDisabled) {
+        return;
+      }
+
+      // vm.filterDisabled = true;
       vm.formData.obj = $rootScope.orangeConfig.objList[$rootScope.lang][0];
       vm.formData.city = $rootScope.orangeConfig.cityList[$rootScope.lang][0];
       vm.formData.room = $rootScope.orangeConfig.roomList[$rootScope.lang][0];
       vm.formData.objnumber = '';
-      $rootScope.long.longFilterData = vm.formData;
-      vm.busyClear = true;
-      vm.disabledFind = 'disabled';
-      $rootScope.long.longFindActivated = true;
+      $rootScope.long.FilterData = vm.formData;
+      $rootScope.long.FindActivated = true;
     };
   }
 })();

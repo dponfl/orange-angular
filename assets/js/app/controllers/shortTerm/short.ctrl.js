@@ -61,7 +61,7 @@
 
         $rootScope.short.page = 1;
         $rootScope.short.showNotFound = false;
-        $scope.showServerError = false;
+        $rootScope.short.showServerError = false;
         $rootScope.short.scrollDisabled = false;
         $rootScope.short.showFoundNothing = false;
 
@@ -121,7 +121,7 @@
         };
       }
 
-      if ($scope.showServerError) {
+      if ($rootScope.short.showServerError) {
 
         return {
           performed: false,
@@ -182,7 +182,7 @@
           }
 
           if (results.objs.status == 500) {
-            $scope.showServerError = true;
+            $rootScope.short.showServerError = true;
 
             return {
               performed: false,
@@ -196,7 +196,7 @@
 
           if (results.objs.status == 200) {
             $rootScope.short.showNotFound = false;
-            $scope.showServerError = false;
+            $rootScope.short.showServerError = false;
 
             return {
               performed: true,
