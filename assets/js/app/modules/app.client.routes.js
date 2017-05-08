@@ -50,10 +50,13 @@
       .state('shortterm', {
         views: {
           main: {
-            templateUrl: 'templates/view/shortterm.html'
+            templateUrl: 'templates/view/shortterm.html',
+            controller: function ($scope, $stateParams) {
+              $scope.directLinkObjectNumber = $stateParams.objNumber;
+            }
           },
         },
-        url: '/shortterm',
+        url: '/shortterm/:objNumber',
       })
       .state('longterm', {
         views: {

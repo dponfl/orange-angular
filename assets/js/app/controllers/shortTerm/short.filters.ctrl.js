@@ -5,10 +5,10 @@
     .module('OrangeClient')
     .controller('ShortFiltersCtrl', ShortFiltersCtrl);
 
-  ShortFiltersCtrl.$inject = ['$log', '$rootScope'];
+  ShortFiltersCtrl.$inject = ['$log', '$rootScope', '$scope'];
 
   /* @ngInject */
-  function ShortFiltersCtrl($log, $rootScope) {
+  function ShortFiltersCtrl($log, $rootScope, $scope) {
     var vm = this;
     vm.find = _find;
     vm.clear = _clear;
@@ -22,12 +22,16 @@
     vm.cityList = $rootScope.orangeConfig.cityList[$rootScope.lang];
     vm.roomList = $rootScope.orangeConfig.roomList[$rootScope.lang];
 
+    $log.info('ShortFiltersCtrl');
+    $log.info($scope);
+
+
     vm.formData = {};
 
     vm.formData.obj = $rootScope.orangeConfig.objList[$rootScope.lang][0];
     vm.formData.city = $rootScope.orangeConfig.cityList[$rootScope.lang][0];
     vm.formData.room = $rootScope.orangeConfig.roomList[$rootScope.lang][0];
-    vm.formData.objnumber = '';
+    vm.formData.objnumber = $scope.$parent.directLinkObjectNumber || '';
 
     $rootScope.short.FilterData = vm.formData;
 
