@@ -56,7 +56,10 @@
             }
           },
         },
-        url: '/shortterm/:objNumber',
+        url: '/shortterm',
+        params: {
+          objNumber: null,
+        },
       })
       .state('longterm', {
         views: {
