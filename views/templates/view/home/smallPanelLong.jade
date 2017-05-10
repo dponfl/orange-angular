@@ -20,4 +20,4 @@
             .col-sm-8
               p.form-control-static.form-control-static-text {{elem.text}}
       hr
-      button(translate='GENERAL_ELEM_MORE_DETAILS').col-xs-12.btn.btn-success.btn-sm
+      a(data-ui-sref='longterm({objNumber: "{{$ctrl.objNumber}}"})', translate='GENERAL_ELEM_MORE_DETAILS').col-xs-12.btn.btn-success.btn-sm.link-and-scroll

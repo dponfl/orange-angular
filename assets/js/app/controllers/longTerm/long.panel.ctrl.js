@@ -158,7 +158,6 @@
     function _clear() {
       $log.info('long _clear() activated...');
       vm.formData.period_start = '';
-      vm.formData.pariod_end = '';
       vm.formData.name = '';
       vm.formData.email = '';
       vm.formData.phone = '';

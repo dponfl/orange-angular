@@ -5,10 +5,10 @@
     .module('OrangeClient')
     .controller('LongFiltersCtrl', LongFiltersCtrl);
 
-  LongFiltersCtrl.$inject = ['$log', '$rootScope'];
+  LongFiltersCtrl.$inject = ['$log', '$rootScope', '$scope'];
 
   /* @ngInject */
-  function LongFiltersCtrl($log, $rootScope) {
+  function LongFiltersCtrl($log, $rootScope, $scope) {
     var vm = this;
     vm.find = _find;
     vm.clear = _clear;
@@ -28,6 +28,7 @@
     vm.formData.city = $rootScope.orangeConfig.cityList[$rootScope.lang][0];
     vm.formData.room = $rootScope.orangeConfig.roomList[$rootScope.lang][0];
     vm.formData.objnumber = '';
+    vm.formData.objnumber = $scope.$parent.directLinkObjectNumber || '';
 
     $rootScope.long.FilterData = vm.formData;
 
