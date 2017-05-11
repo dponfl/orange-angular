@@ -49,6 +49,19 @@
     $rootScope.long.panels = [];
     $rootScope.long.busy = false;
 
+    // Sale
+    $rootScope.sale = {};
+    $rootScope.sale.showNotFound = false;
+    $rootScope.sale.page = 1;
+    $rootScope.sale.FindActivated = false;
+    $rootScope.sale.FilterData = {};
+    $rootScope.sale.scrollDisabled = false;
+    $rootScope.sale.showFoundNothing = false;
+    $rootScope.sale.showServerError = false;
+    $rootScope.sale.panelsAllLangs = {};
+    $rootScope.sale.panels = [];
+    $rootScope.sale.busy = false;
+
 
   }
 

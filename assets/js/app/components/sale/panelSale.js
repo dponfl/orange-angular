@@ -3,7 +3,7 @@
 
   angular.module('OrangeClient')
     .component('panelSale', {
-      controller: 'SalePanelCtrl as lpc',
+      controller: 'SalePanelCtrl as slpc',
       bindings: {
         badge: '<',
         type: '<',

@@ -14,6 +14,7 @@
     var self = {
       getAllSaleObjectsKeys: _getAllSaleObjectsKeys,
       getAllSaleObjectsObjs: _getAllSaleObjectsObjs,
+      getAllSaleObjectsObjsPager: _getAllSaleObjectsObjsPager,
     };
 
     return self;
@@ -185,7 +186,6 @@
         }
       }
     } // _getAllSaleObjectsObjsPager
-
 
   } // SaleService
 

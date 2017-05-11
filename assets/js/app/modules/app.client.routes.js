@@ -78,10 +78,16 @@
       .state('sale', {
         views: {
           main: {
-            templateUrl: 'templates/view/sale.html'
+            templateUrl: 'templates/view/sale.html',
+            controller: function ($scope, $stateParams) {
+              $scope.directLinkObjectNumber = $stateParams.objNumber;
+            },
           },
         },
         url: '/sale',
+        params: {
+          objNumber: null,
+        },
       })
       .state('qa', {
         views: {

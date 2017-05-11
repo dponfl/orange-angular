@@ -13,15 +13,16 @@
     var saleBusyAlert = $alert({
       title: 'Title',
       content: 'Content',
-      container: '#spinner-container',
+      container: '#spinner-container-sale',
       show: true,
       templateUrl: '../templates/view/busyAlert.html'
     });
 
+    $scope.saleBusy = $rootScope.sale.busy;
     $rootScope.sale.showNotFound = false;
     $rootScope.sale.showServerError = false;
-    $rootScope.sale.pageSale = 1;
-    $scope.busy = false;
+    $rootScope.sale.page = 1;
+    $rootScope.sale.busy = false;
     $rootScope.sale.scrollDisabled = false;
     $rootScope.sale.showFoundNothing = false;
 
@@ -35,34 +36,37 @@
 
     $scope.activateNextPage = _activateNextPage;
 
-    $rootScope.$watch('sale.saleFindActivated', _updateData);
+    $rootScope.$watch('sale.FindActivated', _updateData);
 
     $rootScope.$watch('lang', _update);
 
-    $scope.$watch('busy', function (oldVal, newVal) {
-      $rootScope.sale.busy = newVal;
-      if (oldVal && !newVal) {
+    $rootScope.$watch('sale.busy', function (newVal, oldVal) {
+      $scope.saleBusy = $rootScope.sale.busy;
+    });
+
+    $scope.$watch('saleBusy', function (newVal, oldVal) {
+      if (!oldVal && newVal) {
         saleBusyAlert.$promise.then(saleBusyAlert.show);
-      } else if (!oldVal && newVal) {
+      } else if (oldVal && !newVal) {
         saleBusyAlert.$promise.then(saleBusyAlert.hide);
       }
     });
 
     function _updateData () {
 
-      if ($rootScope.sale.saleFindActivated) {
+      if ($rootScope.sale.FindActivated) {
 
         $rootScope.sale.panels = [];
-        $scope.busy = false;
-        $rootScope.sale.saleFindActivated = false;
+        $rootScope.sale.busy = false;
+        $rootScope.sale.FindActivated = false;
 
-        $rootScope.sale.pageSale = 1;
+        $rootScope.sale.page = 1;
         $rootScope.sale.showNotFound = false;
         $rootScope.sale.showServerError = false;
         $rootScope.sale.scrollDisabled = false;
         $rootScope.sale.showFoundNothing = false;
 
-        $q.when(_performRequest($rootScope.sale.saleFilterData))
+        $q.when(_performRequest($rootScope.sale.FilterData))
           .then(function (res) {
 
             if (!res.performed &&
@@ -94,7 +98,7 @@
 
     function _performRequest(reqParams) {
 
-      if ($scope.busy) {
+      if ($rootScope.sale.busy) {
 
         return {
           performed: false,
@@ -132,7 +136,7 @@
 
 
 
-      $scope.busy = true;
+      $rootScope.sale.busy = true;
 
       var params = {};
       var objReqParams = {show: 1};
@@ -152,14 +156,14 @@
       }
 
       objReqPager.limit = $rootScope.pagerNumRecords*$rootScope.numLang;
-      objReqPager.page = $rootScope.sale.pageSale;
+      objReqPager.page = $rootScope.sale.page;
 
-      $rootScope.sale.pageSale++;
+      $rootScope.sale.page++;
 
       return $q.all({keys: SaleService.getAllSaleObjectsKeys({show: 1}),
         objs: SaleService.getAllSaleObjectsObjsPager(objReqParams, objReqPager)})
         .then(function (results) {
-          $scope.busy = false;
+          $rootScope.sale.busy = false;
 
           if (results.objs.status == 404) {
             $rootScope.sale.showNotFound = true;
@@ -311,6 +315,7 @@
             }
 
             record.content[kElem.group - 1].push({
+              key: kElem.key,
               label: kElem.label,
               text:tokenVal,
             })
@@ -352,7 +357,7 @@
     function _activateNextPage() {
       if ($rootScope.sale.scrollDisabled) return;
 
-      $q.when(_performRequest($rootScope.sale.saleFilterData))
+      $q.when(_performRequest($rootScope.sale.FilterData))
         .then(function (res) {
 
           if (!res.performed &&

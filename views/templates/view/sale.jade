@@ -1,5 +1,5 @@
 //
-   Sales
+   Sale
    =============
 
    Author:  iStudioDTD.com
@@ -11,5 +11,42 @@
     .cal-12
       .well
         .page-header.page-primary
-          h1 {{'SALES_PAGE_HEADER_TITLE' | translate}}
-            small(translate='SALES_PAGE_HEADER_SUBTITLE')
+          h1 {{'SALE_PAGE_HEADER_TITLE' | translate}}
+            small(translate='SALE_PAGE_HEADER_SUBTITLE')
+
+        .page-body#block-sale
+
+          .row#block-sale-filter
+            .col-sm-6.col-sm-offset-3#saleFilterWrapper
+              .panel.panel-info#saleFilter
+                .panel-heading
+                  h3(translate='PANEL_HEADER')
+                div(data-ng-controller='SaleFiltersCtrl as e').panel-body
+                  sale-filter(obj-list='e.objList',
+                  city-list='e.cityList',
+                  room-list='e.roomList')
+
+          div(data-ng-controller='SaleCtrl')
+            //div(data-ng-if='sc.showServerError')
+              h1 showServerError
+
+            div(data-ng-if='sale.showFoundNothing')
+              nothing-found
+
+            div(infinite-scroll='activateNextPage()',
+            infinite-scroll-disabled='sale.scrollDisabled',
+            infinite-scroll-distance='1',
+            data-ng-hide='sale.showFoundNothing').row
+              div(data-ng-repeat='panel in sale.panels')
+                panel-sale(badge='panel.badge',
+                type='panel.type',
+                badge-text='panel.badgeText',
+                obj-number='panel.objNumber',
+                img='panel.img',
+                gallery='panel.gallery',
+                content='panel.content',
+                youtube='panel.youtube',
+                index='$index',
+                panel='panel')
+
+            div#spinner-container-sale

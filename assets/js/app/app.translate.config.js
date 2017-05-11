@@ -128,11 +128,14 @@ function translateConfig ($translateProvider) {
     'LONGTERM_PAGE_MODAL_FOOTER_CLOSE_BUTTON': 'Close',
 
 
-    // Sales
-    'SALES_PAGE_HEADER_TITLE': '[En]Продажа',
-    'SALES_PAGE_HEADER_SUBTITLE': '[En]Несколько слов...',
-    'SALES_PAGE_MORE_OBJ': '[En]Подробная информация об этих и других объектах продажи',
-
+    // Sale
+    'SALE_PAGE_HEADER_TITLE': '[En]Продажа',
+    'SALE_PAGE_HEADER_SUBTITLE': '[En]Несколько слов...',
+    'SALE_PAGE_MORE_OBJ': '[En]Подробная информация об этих и других объектах продажи',
+    'SALE_PAGE_BUTTON_BOOK_OBJECT': 'Book this object',
+    'SALE_PAGE_BUTTON_YOUTUBE': 'See object in YouTube',
+    'SALE_PAGE_BOOK_OBJECT_MODAL_HEADER': 'Object booking',
+    'SALE_PAGE_MODAL_FOOTER_CLOSE_BUTTON': 'Close',
 
     // Q&A
     'QA_PAGE_HEADER_TITLE': '[En]Вопросы и ответы',
@@ -275,11 +278,14 @@ function translateConfig ($translateProvider) {
 
 
 
-    // Sales
-    'SALES_PAGE_HEADER_TITLE': 'Продажа',
-    'SALES_PAGE_HEADER_SUBTITLE': 'Несколько слов...',
-    'SALES_PAGE_MORE_OBJ': 'Подробная информация об этих и других объектах продажи',
-
+    // Sale
+    'SALE_PAGE_HEADER_TITLE': 'Продажа',
+    'SALE_PAGE_HEADER_SUBTITLE': 'Несколько слов...',
+    'SALE_PAGE_MORE_OBJ': 'Подробная информация об этих и других объектах продажи',
+    'SALE_PAGE_BUTTON_BOOK_OBJECT': 'Забронировать этот объект',
+    'SALE_PAGE_BUTTON_YOUTUBE': 'Посмотреть объект в YouTube',
+    'SALE_PAGE_BOOK_OBJECT_MODAL_HEADER': 'Бронирование объекта',
+    'SALE_PAGE_MODAL_FOOTER_CLOSE_BUTTON': 'Закрыть',
 
     // Q&A
     'QA_PAGE_HEADER_TITLE': 'Вопросы и ответы',
