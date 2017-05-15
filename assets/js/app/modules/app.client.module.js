@@ -62,6 +62,19 @@
     $rootScope.sale.panels = [];
     $rootScope.sale.busy = false;
 
+    // Exclusive
+    $rootScope.exclusive = {};
+    $rootScope.exclusive.showNotFound = false;
+    $rootScope.exclusive.page = 1;
+    $rootScope.exclusive.FindActivated = false;
+    $rootScope.exclusive.FilterData = {};
+    $rootScope.exclusive.scrollDisabled = false;
+    $rootScope.exclusive.showFoundNothing = false;
+    $rootScope.exclusive.showServerError = false;
+    $rootScope.exclusive.panelsAllLangs = {};
+    $rootScope.exclusive.panels = [];
+    $rootScope.exclusive.busy = false;
+
 
   }
 

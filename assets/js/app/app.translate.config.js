@@ -101,6 +101,16 @@ function translateConfig ($translateProvider) {
     'EXCLUSIVE_PAGE_BODY_H3': '[En]Здесь представлена недвижимость, которая находится ' +
     'в эксклюзивном управлении компании Orange Holliday villas.',
     'EXCLUSIVE_PAGE_MORE_OBJ': '[En]Подробная информация об этих и других эксклюзивных объектах',
+    'EXCLUSIVE_PAGE_BUTTON_PRICE': 'Price',
+    'EXCLUSIVE_PAGE_PRICE_MODAL_HEADER': 'Price',
+    'EXCLUSIVE_PAGE_PRICE_MODAL_TABLE_HEAD_COL_1': 'Period',
+    'EXCLUSIVE_PAGE_PRICE_MODAL_TABLE_HEAD_COL_2': 'Price',
+    'EXCLUSIVE_PAGE_MODAL_FOOTER_CLOSE_BUTTON': 'Close',
+    'EXCLUSIVE_PAGE_BUTTON_CALENDAR': 'Calendar',
+    'EXCLUSIVE_PAGE_CALENDAR_MODAL_HEADER': 'Calendar',
+    'EXCLUSIVE_PAGE_BUTTON_BOOK_OBJECT': 'Book this object',
+    'EXCLUSIVE_PAGE_BUTTON_YOUTUBE': 'See object in YouTube',
+    'EXCLUSIVE_PAGE_BOOK_OBJECT_MODAL_HEADER': 'Object booking',
 
     // Short term
     'SHORTTERM_PAGE_HEADER_TITLE': '[En]Посуточная аренда',
@@ -250,6 +260,16 @@ function translateConfig ($translateProvider) {
     'EXCLUSIVE_PAGE_BODY_H3': 'Здесь представлена недвижимость, которая находится ' +
     'в эксклюзивном управлении компании Orange Holliday villas.',
     'EXCLUSIVE_PAGE_MORE_OBJ': 'Подробная информация об этих и других эксклюзивных объектах',
+    'EXCLUSIVE_PAGE_BUTTON_PRICE': 'Стоимость',
+    'EXCLUSIVE_PAGE_PRICE_MODAL_HEADER': 'Стоимость',
+    'EXCLUSIVE_PAGE_PRICE_MODAL_TABLE_HEAD_COL_1': 'Период',
+    'EXCLUSIVE_PAGE_PRICE_MODAL_TABLE_HEAD_COL_2': 'Стоимость',
+    'EXCLUSIVE_PAGE_MODAL_FOOTER_CLOSE_BUTTON': 'Закрыть',
+    'EXCLUSIVE_PAGE_BUTTON_CALENDAR': 'Календарь занятости',
+    'EXCLUSIVE_PAGE_CALENDAR_MODAL_HEADER': 'Календарь занятости',
+    'EXCLUSIVE_PAGE_BUTTON_BOOK_OBJECT': 'Забронировать этот объект',
+    'EXCLUSIVE_PAGE_BUTTON_YOUTUBE': 'Посмотреть объект в YouTube',
+    'EXCLUSIVE_PAGE_BOOK_OBJECT_MODAL_HEADER': 'Бронирование объекта',
 
     // Short term
     'SHORTTERM_PAGE_HEADER_TITLE': 'Посуточная аренда',

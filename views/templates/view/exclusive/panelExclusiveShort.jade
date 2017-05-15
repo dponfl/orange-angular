@@ -1,0 +1,52 @@
+.col-sm-12
+  .panel.panel-info
+    div(data-ng-show='eshortpc.badge',
+    data-ng-class="eshortpc.type").badge.badge-object
+      span.glyphicon.glyphicon-tag {{eshortpc.badgeText}}
+    .panel-heading
+      h3 {{'GENERAL_ELEM_OBJ' | translate}}
+        | {{eshortpc.objNumber}}
+
+    .panel.panel-body
+      .col-sm-5
+        a(href='{{eshortpc.img.href}}',
+        data-lightbox='{{eshortpc.img.dataLightbox}}',
+        data-title='{{eshortpc.img.dataTitle}}')
+          img(data-ng-src='{{eshortpc.img.src}}').thumbnail.img-main
+
+        .col-lg-12.col-lg-offset-0.col-md-offset-0.col-sm-offset-0
+          button(translate='EXCLUSIVE_PAGE_BUTTON_PRICE',
+          data-ng-click='eshortpc.showPrice()').btn.btn-success.btn-lg.btn-margin
+          button(translate='EXCLUSIVE_PAGE_BUTTON_CALENDAR',
+          data-ng-click='eshortpc.showCalendar()').btn.btn-warning.btn-lg.btn-margin
+
+      .col-sm-7
+        .col-sm-12
+          form.form-horizontal
+            div(data-ng-repeat='elem in eshortpc.content[0]').form-group.form-group-lg.main-panel
+              label.col-sm-3.control-label {{elem.label}}
+              .col-sm-9
+                p.form-control-static.form-control-static-text {{elem.text}}
+
+      .col-sm-12
+        .col-sm-12
+          form.form-horizontal
+            div(data-ng-repeat='elem in eshortpc.content[1]').form-group.form-group-lg.main-panel
+              label.col-sm-2.control-label {{elem.label}}
+              .col-sm-10
+                p.form-control-static.form-control-static-text {{elem.text}}
+
+      .col-sm-12
+        h2.text-center Фотогалерея
+        ul.col-sm-10.col-sm-offset-1.list-inline.text-center#gallery-30593
+          li(data-ng-repeat='elem in eshortpc.gallery')
+            a(href='{{elem.href}}',
+            data-lightbox='{{elem.dataLightbox}}',
+            data-title='{{elem.dataTitle}}')
+              img(data-ng-src='{{elem.src}}').thumbnail.img-gallery
+
+        a(href='{{eshortpc.youtube}}', target="_blank", translate='EXCLUSIVE_PAGE_BUTTON_YOUTUBE').col-xs-12.btn.btn-info.btn-lg.btn-margin.center-block
+
+        button(data-ng-click='eshortpc.showBookObject()' translate='EXCLUSIVE_PAGE_BUTTON_BOOK_OBJECT').col-xs-12.btn.btn-danger.btn-lg.btn-margin.center-block
+
+toaster-container(data-toaster-options="{'toaster-id': {{eshortpc.objNumber}}}")

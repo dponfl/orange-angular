@@ -7,7 +7,7 @@
         badge: '<',
         type: '<',
         badgetext: '<',
-        objnumber: '<',
+        objNumber: '<',
         img: '<',
         content: '<'
       },

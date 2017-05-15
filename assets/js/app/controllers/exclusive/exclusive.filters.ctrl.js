@@ -5,69 +5,80 @@
     .module('OrangeClient')
     .controller('ExclusiveFiltersCtrl', ExclusiveFiltersCtrl);
 
-  ExclusiveFiltersCtrl.$inject = ['GeneralConfigService', '$log', '$rootScope', 'oCity', 'oExclusiveKey'];
+  ExclusiveFiltersCtrl.$inject = ['$log', '$rootScope', '$scope'];
 
   /* @ngInject */
-  function ExclusiveFiltersCtrl(GeneralConfigService, $log, $rootScope, oCity, oExclusiveKey) {
+  function ExclusiveFiltersCtrl($log, $rootScope, $scope) {
     var vm = this;
+    vm.find = _find;
+    vm.clear = _clear;
 
-    vm.dealList = GeneralConfigService.orangeConfig.dealList[$rootScope.lang];
-    vm.objList = GeneralConfigService.orangeConfig.objList[$rootScope.lang];
-    vm.cityList = GeneralConfigService.orangeConfig.cityList[$rootScope.lang];
-    vm.roomList = GeneralConfigService.orangeConfig.roomList[$rootScope.lang];
+    // todo: delete
+    vm.exclusiveBusy = $rootScope.exclusive.busy;
+
+    vm.filterDisabled = false;
+
+    vm.objList = $rootScope.orangeConfig.objList[$rootScope.lang];
+    vm.dealList = $rootScope.orangeConfig.dealList[$rootScope.lang];
+    vm.cityList = $rootScope.orangeConfig.cityList[$rootScope.lang];
+    vm.roomList = $rootScope.orangeConfig.roomList[$rootScope.lang];
 
     vm.formData = {};
 
-    vm.formData.deal = GeneralConfigService.orangeConfig.dealList[$rootScope.lang][0];
-    vm.formData.obj = GeneralConfigService.orangeConfig.objList[$rootScope.lang][0];
-    vm.formData.city = GeneralConfigService.orangeConfig.cityList[$rootScope.lang][0];
-    vm.formData.room = GeneralConfigService.orangeConfig.roomList[$rootScope.lang][0];
+    vm.formData.obj = $rootScope.orangeConfig.objList[$rootScope.lang][0];
+    vm.formData.deal = $rootScope.orangeConfig.dealList[$rootScope.lang][0];
+    vm.formData.city = $rootScope.orangeConfig.cityList[$rootScope.lang][0];
+    vm.formData.room = $rootScope.orangeConfig.roomList[$rootScope.lang][0];
     vm.formData.objnumber = '';
+    vm.formData.objnumber = $scope.$parent.directLinkObjectNumber || '';
+
+    $rootScope.exclusive.FilterData = vm.formData;
 
     $rootScope.$watch('lang', update);
 
+    $rootScope.$watch('exclusive.busy', function (newVal, oldVal) {
+      vm.busy = newVal;
+      vm.filterDisabled = newVal;
+/*
+      if (!newVal) {
+        vm.filterDisabled = newVal;
+      }
+*/
+    });
+
 
     function update () {
-      vm.dealList = GeneralConfigService.orangeConfig.dealList[$rootScope.lang];
-      vm.objList = GeneralConfigService.orangeConfig.objList[$rootScope.lang];
-      vm.cityList = GeneralConfigService.orangeConfig.cityList[$rootScope.lang];
-      vm.roomList = GeneralConfigService.orangeConfig.roomList[$rootScope.lang];
+      vm.objList = $rootScope.orangeConfig.objList[$rootScope.lang];
+      vm.dealList = $rootScope.orangeConfig.dealList[$rootScope.lang];
+      vm.cityList = $rootScope.orangeConfig.cityList[$rootScope.lang];
+      vm.roomList = $rootScope.orangeConfig.roomList[$rootScope.lang];
     };
 
-    vm.find = function () {
+    function _find() {
+
+      if (vm.filterDisabled) {
+        return;
+      }
+
+      // vm.filterDisabled = true;
+      $rootScope.exclusive.FilterData = vm.formData;
+      $rootScope.exclusive.FindActivated = true;
     };
 
-    vm.clear = function () {
-      vm.formData.deal = GeneralConfigService.orangeConfig.dealList[$rootScope.lang][0];
-      vm.formData.obj = GeneralConfigService.orangeConfig.objList[$rootScope.lang][0];
-      vm.formData.city = GeneralConfigService.orangeConfig.cityList[$rootScope.lang][0];
-      vm.formData.room = GeneralConfigService.orangeConfig.roomList[$rootScope.lang][0];
+    function _clear() {
+
+      if (vm.filterDisabled) {
+        return;
+      }
+
+      // vm.filterDisabled = true;
+      vm.formData.obj = $rootScope.orangeConfig.objList[$rootScope.lang][0];
+      vm.formData.deal = $rootScope.orangeConfig.dealList[$rootScope.lang][0];
+      vm.formData.city = $rootScope.orangeConfig.cityList[$rootScope.lang][0];
+      vm.formData.room = $rootScope.orangeConfig.roomList[$rootScope.lang][0];
       vm.formData.objnumber = '';
+      $rootScope.exclusive.FilterData = vm.formData;
+      $rootScope.exclusive.FindActivated = true;
     };
-
-    vm.testGetData = function () {
-      oCity.find({key: ['pafos', 'limassol'], lang: 'ru'}, function (data) {})
-        .$promise
-        .then(function (data) {
-        })
-        .catch(function (err) {
-          // todo: change by Log
-          console.log('Error...');
-          console.dir(err);
-          return;
-        })
-
-      // oExclusiveKey.query(function (data) {
-      oExclusiveKey.find({lang: 'en'}, function (data) {})
-        .$promise
-        .then(function(data) {
-        })
-        .catch(function (err) {
-          // todo: change by Log
-          console.log('Error...');
-          console.dir(err);
-          return;
-        })
-    }
   }
 })();

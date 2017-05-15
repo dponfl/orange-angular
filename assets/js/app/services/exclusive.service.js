@@ -5,15 +5,16 @@
     .module('OrangeClient')
     .service('ExclusiveService', ExclusiveService);
 
-  ExclusiveService.$inject = ['GeneralConfigService', '$log', 'oExclusiveKey',
+  ExclusiveService.$inject = ['GeneralConfigService', '$http', '$log', 'oExclusiveKey',
     'oExclusive', 'lodash', '$q'];
 
   /* @ngInject */
-  function ExclusiveService(GeneralConfigService, $log, oExclusiveKey, oExclusive, lodash, $q) {
+  function ExclusiveService(GeneralConfigService, $http, $log, oExclusiveKey, oExclusive, lodash, $q) {
     var _ = lodash;
     var self = {
       getAllExclusiveObjectsKeys: _getAllExclusiveObjectsKeys,
       getAllExclusiveObjectsObjs: _getAllExclusiveObjectsObjs,
+      getAllExclusiveObjectsObjsPager: _getAllExclusiveObjectsObjsPager,
     };
 
     return self;
@@ -63,65 +64,133 @@
       });
 
       return deferred.promise;
-    }
-    
+    } // _getAllExclusiveObjectsKeys
+
     function _getAllExclusiveObjectsObjs(reqObj) {
-      var deferred = $q.defer();
 
-      oExclusive.find(reqObj, function (data) {
-        var __objs = {};
+      // todo: return object having result code (200, 404, etc.) and data
 
-        if (!_.isArray(data)) {
-          deferred.reject(new Error('Exclusive data is not an array'))
+      return $http.post(GeneralConfigService.orangeConfig.host + '/exclusive/find', reqObj)
+        .then(successCb, errorCb);
+
+      function successCb(data) {
+
+        if (!_.isArray(data.data.result)) {
+          return new Error('Exclusive data is not an array');
         }
 
-        for (var i = 0; i < data.length; i++) {
+        var response = data.data.result;
 
-          if (!_.isArray(__objs[data[i].lang]))
-            __objs[data[i].lang] = [];
+        var __objs = {};
 
-          __objs[data[i].lang].push({
-            objnumber: data[i].objnumber,
-            show: data[i].show,
-            home: data[i].home,
-            tag: data[i].tag,
-            city: data[i].city,
-            address: data[i].address,
-            deal: data[i].deal,
-            obj: data[i].obj,
-            room: data[i].room,
-            bathroom: data[i].bathroom,
-            pool: data[i].pool,
-            price: data[i].price,
-            calendar: data[i].calendar,
-            description: data[i].description,
-            info: data[i].info,
-            map: data[i].map,
-            imgmain: data[i].imgmain,
-            imggallery: data[i].imggallery,
-            youtube: data[i].youtube,
-            createdAt: data[i].createdAt,
-            updatedAt: data[i].updatedAt,
+        for (var i = 0; i < response.length; i++) {
+
+          if (!_.isArray(__objs[response[i].lang]))
+            __objs[response[i].lang] = [];
+
+          __objs[response[i].lang].push({
+            objNumber: response[i].objnumber,
+            show: response[i].show,
+            home: response[i].home,
+            tag: response[i].tag,
+            city: response[i].city,
+            address: response[i].address,
+            deal: response[i].deal,
+            obj: response[i].obj,
+            room: response[i].room,
+            bathroom: response[i].bathroom,
+            pool: response[i].pool,
+            price: response[i].price,
+            calendar: response[i].calendar,
+            description: response[i].description,
+            info: response[i].info,
+            googleMap: response[i].maps,
+            imgMain: response[i].imgmain,
+            imgGallery: response[i].imggallery,
+            youtube: response[i].youtube,
+            createdAt: response[i].createdAt,
+            updatedAt: response[i].updatedAt,
           })
         }
 
-        deferred.resolve(__objs);
-
-        /*setTimeout(function () {
-          deferred.resolve(__objs);
-        }, 5000);*/
-
-      });
-
-      return deferred.promise;
-    }
-
-    function _getAllExclusiveObjects() {
-      return {
-        key: 'value',
-        keyTwo: 'value 2'
+        return {
+          status: 200,
+          data: __objs,
+        };
       }
-    }
+
+      function errorCb(err) {
+
+       return {
+         status: err.status,
+         error: err,
+       }
+      }
+    } // _getAllExclusiveObjectsObjs
+
+    function _getAllExclusiveObjectsObjsPager(reqObj, pager) {
+
+      return $http.post(GeneralConfigService.orangeConfig.host + '/exclusive/findp', {
+        conditions: reqObj,
+        pager: pager
+      } )
+       .then(successCb, errorCb);
+
+      function successCb(data) {
+
+        if (!_.isArray(data.data.result)) {
+          return new Error('Exclusive data is not an array');
+        }
+
+        var response = data.data.result;
+
+        var __objs = {};
+
+        for (var i = 0; i < response.length; i++) {
+
+          if (!_.isArray(__objs[response[i].lang]))
+            __objs[response[i].lang] = [];
+
+          __objs[response[i].lang].push({
+            objNumber: response[i].objnumber,
+            show: response[i].show,
+            home: response[i].home,
+            tag: response[i].tag,
+            city: response[i].city,
+            address: response[i].address,
+            deal: response[i].deal,
+            obj: response[i].obj,
+            room: response[i].room,
+            bathroom: response[i].bathroom,
+            pool: response[i].pool,
+            price: response[i].price,
+            calendar: response[i].calendar,
+            description: response[i].description,
+            info: response[i].info,
+            googleMap: response[i].maps,
+            imgMain: response[i].imgmain,
+            imgGallery: response[i].imggallery,
+            youtube: response[i].youtube,
+            createdAt: response[i].createdAt,
+            updatedAt: response[i].updatedAt,
+          })
+        }
+
+        return {
+          status: 200,
+          data: __objs,
+        };
+      }
+
+      function errorCb(err) {
+
+       return {
+         status: err.status,
+         error: err,
+       }
+      }
+    } // _getAllExclusiveObjectsObjsPager
+
   } // ExclusiveService
 
 })();

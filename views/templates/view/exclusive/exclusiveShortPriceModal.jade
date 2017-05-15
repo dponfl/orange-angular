@@ -1,0 +1,19 @@
+div(tabindex="-1",
+role="dialog",
+data-ng-controller='ExclusiveShortPanelCtrl as eshortpc').modal.price-modal
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button(data-ng-click="$hide()").close &times;
+        h2(translate='EXCLUSIVE_PAGE_PRICE_MODAL_HEADER').modal-title
+      .modal-body
+        div.price-content-block
+          table.table.table-striped.price-table
+            thead
+              tr
+                th(translate='EXCLUSIVE_PAGE_PRICE_MODAL_TABLE_HEAD_COL_1')
+                th(translate='EXCLUSIVE_PAGE_PRICE_MODAL_TABLE_HEAD_COL_2')
+      .modal-footer
+        button(type='button',
+        data-ng-click='$hide()',
+        translate='EXCLUSIVE_PAGE_MODAL_FOOTER_CLOSE_BUTTON').btn.btn-default

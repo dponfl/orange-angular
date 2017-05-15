@@ -6,7 +6,6 @@
     .component('exclusiveFilter', {
       controller: 'ExclusiveFiltersCtrl',
       bindings: {
-        dealList: '=',
         objList: '=',
         cityList: '=',
         roomList: '='

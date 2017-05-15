@@ -45,6 +45,9 @@ module.exports.routes = {
   'POST /sale/find': 'SaleController.find',
   'POST /sale/findp': 'SaleController.findPager',
 
+  'POST /exclusive/find': 'ExclusiveController.find',
+  'POST /exclusive/findp': 'ExclusiveController.findPager',
+
   'POST /sreq/create': 'S_reqController.create',
 
 

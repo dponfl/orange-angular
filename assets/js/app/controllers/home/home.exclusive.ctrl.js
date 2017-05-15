@@ -32,7 +32,7 @@
       .then(function (results) {
 
         vm.keysAll = results.keys;
-        vm.objsAll = results.objs;
+        vm.objsAll = results.objs.data;
 
       })
       .then(function () {
@@ -77,12 +77,12 @@
           badge: oElem.tag ? true : false,
           type: oElem.tag,
           badgetext: tagText,
-          objnumber: oElem.objnumber,
+          objNumber: oElem.objNumber,
           img: {
-            href: '../../images/' + oElem.imgmain,
-            dataLightbox: oElem.objnumber,
+            href: '../../images/' + oElem.imgMain,
+            dataLightbox: oElem.objNumber,
             dataTitle: '',
-            src: '../../images/' + oElem.imgmain,
+            src: '../../images/' + oElem.imgMain,
           },
           content: [],
         };
