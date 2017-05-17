@@ -96,6 +96,9 @@ module.exports = {
           'short': 'Посуточная аренда',
           'long': 'Долгосрочная аренда',
           'sale': 'Продажа',
+          'exclusive_short': 'Посуточная аренда (эксклюзив)',
+          'exclusive_long': 'Долгосрочная аренда (эксклюзив)',
+          'exclusive_sale': 'Продажа (эксклюзив)',
         };
 
         var subject = 'Новый заказ, объект №' + data.objnumber;

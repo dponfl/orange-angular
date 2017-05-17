@@ -200,7 +200,7 @@
     }
 
     function _book() {
-      $log.info('exclusive _book() activated...');
+      $log.info('exclusive short _book() activated...');
 
       vm.busyBook = true;
 
@@ -212,7 +212,7 @@
       $log.info(vm.panel);
 */
       vm.formData.objnumber = vm.panel.objNumber;
-      vm.formData.deal_type = 'exclusive';
+      vm.formData.deal_type = 'exclusive_short';
 
 /*
       $log.info('vm.formData');
@@ -267,7 +267,7 @@
     } // _book
 
     function _clear() {
-      $log.info('exclusive _clear() activated...');
+      $log.info('exclusive short _clear() activated...');
       vm.formData.period_start = '';
       vm.formData.pariod_end = '';
       vm.formData.name = '';

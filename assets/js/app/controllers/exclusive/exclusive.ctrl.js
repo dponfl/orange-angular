@@ -5,9 +5,11 @@
     .controller('ExclusiveCtrl', ExclusiveCtrl);
 
   ExclusiveCtrl.$inject = ['GeneralConfigService', 'ExclusiveService',
+    'ShortService', 'LongService', 'SaleService',
     '$log', '$rootScope', '$scope', 'lodash', '$q', '$alert'];
 
   function ExclusiveCtrl(GeneralConfigService, ExclusiveService,
+                         ShortService, LongService, SaleService,
                      $log, $rootScope, $scope, lodash, $q, $alert) {
     var _ = lodash;
     var exclusiveBusyAlert = $alert({title: 'Title',
@@ -163,7 +165,9 @@
 
       $rootScope.exclusive.page++;
 
-      return $q.all({keys: ExclusiveService.getAllExclusiveObjectsKeys({show: 1}),
+      return $q.all({keysShort: ShortService.getAllShortObjectsKeys({show: 1}),
+        keysLong: LongService.getAllLongObjectsKeys({show: 1}),
+        keysSale: SaleService.getAllSaleObjectsKeys({show: 1}),
         objs: ExclusiveService.getAllExclusiveObjectsObjsPager(objReqParams, objReqPager)})
         .then(function (results) {
           $rootScope.exclusive.busy = false;
@@ -206,7 +210,11 @@
               performed: true,
               reason: 'ok',
               data: {
-                keys: results.keys,
+                keys: {
+                  short_term: results.keysShort,
+                  long_term: results.keysLong,
+                  sales: results.keysSale,
+                },
                 objs: results.objs.data,
               },
             };
@@ -249,8 +257,18 @@
 
       var result = {};
 
+
+
       $rootScope.langList.map(function (elem) {
-        result[elem] = __buildPanelOneLang(requestResult.data.keys[elem],
+
+        // todo: delete
+        $log.info('requestResult.data.objs[elem]:');
+        $log.info(requestResult.data.objs[elem]);
+        $log.info('requestResult.data.keys:');
+        $log.info(requestResult.data.keys);
+
+
+        result[elem] = __buildPanelOneLang(requestResult.data.keys,
           requestResult.data.objs[elem], elem);
 
       });
@@ -290,7 +308,19 @@
             gallery: [],
           };
 
-          panelKeys.map(function (kElem) {
+          var tokenValDeal = '';
+          GeneralConfigService.orangeConfig.dealList[lang].map(function (listElem) {
+            if (listElem.key == oElem.deal) tokenValDeal = listElem.val;
+          });
+
+          record.content[0] = [];
+          record.content[0].push({
+            key: 'deal',
+            label: 'Deal type',
+            text: tokenValDeal,
+          });
+
+          panelKeys[oElem.deal][lang].map(function (kElem) {
             var tokenVal = '';
 
             switch (kElem.key) {

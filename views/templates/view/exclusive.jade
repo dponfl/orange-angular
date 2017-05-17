@@ -51,8 +51,18 @@
                   index='$index',
                   panel='panel')
 
-                  h2(data-ng-switch-when='sales') Sales...
+                  panel-exclusive-long(data-ng-switch-when='long_term',
+                  badge='panel.badge',
+                  type='panel.type',
+                  badge-text='panel.badgeText',
+                  obj-number='panel.objNumber',
+                  img='panel.img',
+                  gallery='panel.gallery',
+                  content='panel.content',
+                  youtube='panel.youtube',
+                  index='$index',
+                  panel='panel')
 
-                  h2(data-ng-switch-when='long_term') Long term...
+                  h2(data-ng-switch-when='sales') Sales...
 
             div#spinner-container-exclusive
