@@ -308,6 +308,7 @@
             gallery: [],
           };
 
+/*
           var tokenValDeal = '';
           GeneralConfigService.orangeConfig.dealList[lang].map(function (listElem) {
             if (listElem.key == oElem.deal) tokenValDeal = listElem.val;
@@ -319,6 +320,7 @@
             label: 'Deal type',
             text: tokenValDeal,
           });
+*/
 
           panelKeys[oElem.deal][lang].map(function (kElem) {
             var tokenVal = '';

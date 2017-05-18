@@ -313,11 +313,14 @@
               record.content[kElem.group - 1] = [];
             }
 
-            record.content[kElem.group - 1].push({
-              key: kElem.key,
-              label: kElem.label,
-              text:tokenVal,
-            })
+            if (kElem.key !== 'deal') {
+              record.content[kElem.group - 1].push({
+                key: kElem.key,
+                label: kElem.label,
+                text:tokenVal,
+              })
+            }
+
           });
 
           _gallery = oElem.imgGallery.replace(/^\s+|\s+$/gm,'').split(';');
