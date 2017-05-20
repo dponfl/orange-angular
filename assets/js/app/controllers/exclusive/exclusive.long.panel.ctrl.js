@@ -102,6 +102,7 @@
 */
       vm.formData.objnumber = vm.panel.objNumber;
       vm.formData.deal_type = 'exclusive_long';
+      vm.formData.req_type = 'booking';
 
 /*
       $log.info('vm.formData');

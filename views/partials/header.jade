@@ -20,7 +20,7 @@
 
     button(type="button").btn.btn-success#message Отправить</br>сообщение
 
-    form(role="search")#object-find
+    //form(role="search")#object-find
       .form-group.pull-left
         input(type="text", placeholder="№ объекта").form-control#object-find_input
       button(type="submit").btn.btn-info.pull-left#object-find_button Найти
@@ -28,7 +28,7 @@
 nav(data-spy="affix",
 data-offset-top="200").navbar.navbar-default
 
-  .container
+  div(data-ng-controller='HeaderCtrl as hc').container
 
     button(data-target=".navbar-responsive-collapse", data-toggle="collapse", type="button").navbar-toggle
       span.icon-bar
@@ -40,24 +40,11 @@ data-offset-top="200").navbar.navbar-default
 
     .navbar-collapse.collapse.navbar-responsive-collapse
 
-      -
-        var navbar_menu = [
-          {href:'home', text: 'NAV_HOME'},
-          {href:'exclusive', text: 'NAV_EXCLUSIVE'},
-          {href:'shortterm', text: 'NAV_DAILY'},
-          {href:'longterm', text: 'NAV_LONG_TERM'},
-          {href:'sale', text: 'NAV_SALES'},
-          {href:'qa', text: 'NAV_QA'},
-          {href:'services', text: 'NAV_SERVICES'},
-          {href:'contacts', text: 'NAV_CONTACTS'}
-          ]
-
       ul.nav.navbar-nav
-        each element in navbar_menu
-          li
-            a(data-ui-sref="#{element.href}",
-              data-ui-sref-active="menu-active",
-              translate='#{element.text}')
+        li(data-ng-repeat='elem in hc.navMeny')
+          a(data-ui-sref="{{elem.href}}",
+            data-ui-sref-active="menu-active",
+            translate='{{elem.text}}')
 
         li.dropdown
           button(data-toggle="dropdown").dropdown-toggle.btn.btn-danger.btn-margin-header
@@ -74,13 +61,9 @@ data-offset-top="200").navbar.navbar-default
             ]
 
           ul.dropdown-menu
-            //li.dropdown-header Снять недвижимость
-            each el in dropdown_menu
-              li
-                a(href="#{el.href}",
-                  role="button",
-                  data-toggle="modal",
-                  translate='#{el.text}')
+            li(data-ng-repeat='elem in hc.dropdownMenu')
+              button(data-ng-click='hc.activateModal(elem.action)',
+                translate='{{elem.text}}').btn.btn-link
 
           .modal.fade#dailyRequest
             .modal-dialog

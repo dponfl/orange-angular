@@ -12,6 +12,10 @@ module.exports = {
       type: 'string',
       size: 25
     },
+    req_type: {
+      type: 'string',
+      size: 50
+    },
     deal_type: {
       type: 'string',
       size: 50

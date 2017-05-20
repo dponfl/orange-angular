@@ -8,6 +8,7 @@
 }
 
 .book-object-modal {
+  z-index: 9010 !important;
   margin-top: 5%;
 }
 
