@@ -31,6 +31,38 @@
 
     activate();
 
+        $log.info('$rootScope.orangeConfig:');
+        $log.info($rootScope.orangeConfig);
+        $log.info('$rootScope.orangeConfig.host:');
+        $log.info($rootScope.orangeConfig.host);
+        $log.info('$rootScope.orangeConfig.objList:');
+        $log.info($rootScope.orangeConfig.objList);
+        $log.info('$rootScope.lang:');
+        $log.info($rootScope.lang);
+        $log.info('keys:');
+        $log.info(_.keys($rootScope.orangeConfig));
+
+
+        vm.objList = $rootScope.orangeConfig.objList[$rootScope.lang];
+        vm.cityList = $rootScope.orangeConfig.cityList[$rootScope.lang];
+        vm.roomList = $rootScope.orangeConfig.roomList[$rootScope.lang];
+
+        $log.info('$rootScope.orangeConfig.objList[$rootScope.lang][0]:');
+        $log.info($rootScope.orangeConfig.objList[$rootScope.lang][0]);
+
+        vm.formData.obj = $rootScope.orangeConfig.objList[$rootScope.lang][0];
+        vm.formData.city = $rootScope.orangeConfig.cityList[$rootScope.lang][0];
+        vm.formData.room = $rootScope.orangeConfig.roomList[$rootScope.lang][0];
+
+
+
+
+        $rootScope.$watch('lang', update);
+
+
+
+
+
     ////////////////
 
     function activate() {
@@ -41,6 +73,7 @@
       vm.closeModal = _closeModal;
       vm.sendRequestShort = _sendRequestShort;
       vm.clear = _clear;
+
 
 
       vm.navMeny = [
@@ -125,8 +158,13 @@
 
     function _clear() {
 
-      // todo: delete
-      $log.info('_clear...');
+      if (vm.busyBook) {
+        return;
+      }
+
+      vm.formData.obj = $rootScope.orangeConfig.objList[$rootScope.lang][0];
+      vm.formData.city = $rootScope.orangeConfig.cityList[$rootScope.lang][0];
+      vm.formData.room = $rootScope.orangeConfig.roomList[$rootScope.lang][0];
 
     } // _clear
 
@@ -155,6 +193,14 @@
         $('body').css('overflow', 'hidden');
       }
     });
+
+    function update () {
+      vm.objList = $rootScope.orangeConfig.objList[$rootScope.lang];
+      vm.cityList = $rootScope.orangeConfig.cityList[$rootScope.lang];
+      vm.roomList = $rootScope.orangeConfig.roomList[$rootScope.lang];
+    }
+
+
   }
 
 })();

@@ -10,15 +10,20 @@
     ])
     .run(setupGlobalScope);
 
-  setupGlobalScope.$inject = ['$rootScope', 'GeneralConfigService'];
-  function setupGlobalScope($rootScope, GeneralConfigService) {
+  setupGlobalScope.$inject = ['$rootScope', 'configOrange'];
+  function setupGlobalScope($rootScope, configOrange) {
+
+
+    // todo: delete
+    console.log('OrangeClient');
+
 
     //Generale
     $rootScope.lang = 'en';
     $rootScope.langList = ['en', 'ru'];
     $rootScope.numLang = 2;
     $rootScope.pagerNumRecords = 2;
-    $rootScope.orangeConfig = GeneralConfigService.orangeConfig;
+    $rootScope.orangeConfig = configOrange;
     $rootScope.scrollDisabled = false;
     $rootScope.panelsAllLangs = {};
 

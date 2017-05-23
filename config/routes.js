@@ -50,6 +50,8 @@ module.exports.routes = {
 
   'POST /sreq/create': 'S_reqController.create',
 
+  'GET /config': 'ConfigController.loadConfig',
+
 
   /***************************************************************************
   *                                                                          *

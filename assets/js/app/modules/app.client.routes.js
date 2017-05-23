@@ -9,6 +9,11 @@
   OrangeClientRoutesConfig.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider'];
   function OrangeClientRoutesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
 
+
+    // todo: delete
+    console.log('app.client.routes');
+
+
     $stateProvider
       .state('home', {
         views: {
