@@ -49,6 +49,7 @@ module.exports.routes = {
   'POST /exclusive/findp': 'ExclusiveController.findPager',
 
   'POST /sreq/create': 'S_reqController.create',
+  'POST /sreq/createInfo': 'S_reqController.createInfo',
 
   'GET /config': 'ConfigController.loadConfig',
 

@@ -3,7 +3,7 @@ role="dialog").modal.book-object-modal
   .modal-dialog
     .modal-content
       form(novalidate='novalidate',
-      data-ng-submit='hc.sendRequestShort()').form-horisontal
+      data-ng-submit='hc.sendRequest("short")').form-horisontal
 
         fieldset(data-ng-attr-disabled='{{hc.busyBook || undefined}}')
 

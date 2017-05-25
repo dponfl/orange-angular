@@ -20,6 +20,18 @@ module.exports = {
       type: 'string',
       size: 50
     },
+    obj: {
+      type: 'string',
+      size: 50
+    },
+    city: {
+      type: 'string',
+      size: 50
+    },
+    room: {
+      type: 'string',
+      size: 50
+    },
     name: {
       type: 'string',
       size: 50

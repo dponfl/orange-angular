@@ -109,7 +109,7 @@
       $log.info(vm.formData);
 */
 
-      S_ReqService.createSReq(vm.formData)
+      S_ReqService.createSReq(vm.formData, vm.formData.req_type)
         .then(function (res) {
 
 /*

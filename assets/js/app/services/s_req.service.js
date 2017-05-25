@@ -5,10 +5,10 @@
     .module('OrangeClient')
     .service('S_ReqService', S_ReqService);
 
-  S_ReqService.$inject = ['GeneralConfigService', '$http', '$log', 'lodash', '$q'];
+  S_ReqService.$inject = ['GeneralConfigService', '$rootScope', '$http', '$log', 'lodash', '$q'];
 
   /* @ngInject */
-  function S_ReqService(GeneralConfigService, $http, $log, lodash, $q) {
+  function S_ReqService(GeneralConfigService, $rootScope, $http, $log, lodash, $q) {
     var _ = lodash;
     var self = {
       createSReq: _createSReq,
@@ -18,11 +18,20 @@
 
     ////////////////
 
-    function _createSReq(reqObj) {
+    function _createSReq(reqObj, type) {
 
       // todo: return object having result code (200, 404, etc.) and data
 
-      return $http.post($rootScope.orangeConfig.host + '/sreq/create', reqObj)
+      switch (type) {
+        case 'booking':
+          var action = 'create';
+          break;
+        case 'info':
+          var action = 'createInfo';
+          break;
+      }
+
+      return $http.post($rootScope.orangeConfig.host + '/sreq/' + action, reqObj)
        .then(successCb, errorCb);
 
       function successCb(data) {
