@@ -19,14 +19,8 @@
 
     var _ = lodash;
     var self = {
-      orangeConfig: {},
       setLang: _setLang,
       getLang: _getLang,
-      getCities: _getCities,
-      getDeals: _getDeals,
-      getObj: _getObj,
-      getRoom: _getRoom,
-      getTag: _getTag,
       setHost: _setHost,
       tokens: _setTokens(),
       t: _translate,
@@ -38,23 +32,12 @@
 
     self.setHost();
     self.setLang();
+
     self.getCities();
     self.getDeals();
     self.getObj();
     self.getRoom();
     self.getTag();
-
-    $q.all([self.getCities(), self.getDeals(), self.getObj(),
-      self.getRoom(), self.getTag()])
-      .then(function () {
-        self.setLang();
-      })
-      .catch(function (err) {
-        // todo: change by Log
-        $log.warn('Error...');
-        $log.error(err);
-        return;
-      });
 
     return self;
 
@@ -105,6 +88,7 @@
     /**
      * Exclude elements wish show = 0 from select list
      */
+/*
     function _excludeEmptyElem(arr) {
       _.forEach(arr, function (elem) {
         _.remove(elem, function (innerElem) {
@@ -112,11 +96,13 @@
         })
       })
     } // _excludeEmptyElem
+*/
 
     /**
      * City
      */
 
+/*
     function _mapCityData(elem) {
       if (!_.isArray(self.orangeConfig.cityList[elem.lang]))
         self.orangeConfig.cityList[elem.lang] = [];
@@ -129,6 +115,7 @@
       }
 
     } // _mapCityData
+*/
 
     function _getCities() {
       var deferred = $q.defer();
