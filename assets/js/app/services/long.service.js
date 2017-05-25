@@ -5,11 +5,11 @@
     .module('OrangeClient')
     .service('LongService', LongService);
 
-  LongService.$inject = ['GeneralConfigService', '$http', '$log', 'oLongKey',
+  LongService.$inject = ['GeneralConfigService', '$rootScope', '$http', '$log', 'oLongKey',
     'oLong', 'lodash', '$q'];
 
   /* @ngInject */
-  function LongService(GeneralConfigService, $http, $log, oLongKey, oLong, lodash, $q) {
+  function LongService(GeneralConfigService, $rootScope, $http, $log, oLongKey, oLong, lodash, $q) {
     var _ = lodash;
     var self = {
       getAllLongObjectsKeys: _getAllLongObjectsKeys,
@@ -70,7 +70,7 @@
 
       // todo: return object having result code (200, 404, etc.) and data
 
-      return $http.post(GeneralConfigService.orangeConfig.host + '/long/find', reqObj)
+      return $http.post($rootScope.orangeConfig.host + '/long/find', reqObj)
         .then(successCb, errorCb);
 
       function successCb(data) {
@@ -128,7 +128,7 @@
 
     function _getAllLongObjectsObjsPager(reqObj, pager) {
 
-      return $http.post(GeneralConfigService.orangeConfig.host + '/long/findp', {
+      return $http.post($rootScope.orangeConfig.host + '/long/findp', {
         conditions: reqObj,
         pager: pager
       } )

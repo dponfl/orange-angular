@@ -11,11 +11,11 @@
     var vm = this;
     var _ = lodash;
 
-    vm.dealList = GeneralConfigService.orangeConfig.dealList[$rootScope.lang];
-    vm.objList = GeneralConfigService.orangeConfig.objList[$rootScope.lang];
-    vm.cityList = GeneralConfigService.orangeConfig.cityList[$rootScope.lang];
-    vm.roomList = GeneralConfigService.orangeConfig.roomList[$rootScope.lang];
-    vm.tagList = GeneralConfigService.orangeConfig.tagList[$rootScope.lang];
+    vm.dealList = $rootScope.orangeConfig.dealList[$rootScope.lang];
+    vm.objList = $rootScope.orangeConfig.objList[$rootScope.lang];
+    vm.cityList = $rootScope.orangeConfig.cityList[$rootScope.lang];
+    vm.roomList = $rootScope.orangeConfig.roomList[$rootScope.lang];
+    vm.tagList = $rootScope.orangeConfig.tagList[$rootScope.lang];
 
 
     vm.panelGroups = [];
@@ -48,11 +48,11 @@
 
 
     function update() {
-      vm.dealList = GeneralConfigService.orangeConfig.dealList[$rootScope.lang];
-      vm.objList = GeneralConfigService.orangeConfig.objList[$rootScope.lang];
-      vm.cityList = GeneralConfigService.orangeConfig.cityList[$rootScope.lang];
-      vm.roomList = GeneralConfigService.orangeConfig.roomList[$rootScope.lang];
-      vm.tagList = GeneralConfigService.orangeConfig.tagList[$rootScope.lang];
+      vm.dealList = $rootScope.orangeConfig.dealList[$rootScope.lang];
+      vm.objList = $rootScope.orangeConfig.objList[$rootScope.lang];
+      vm.cityList = $rootScope.orangeConfig.cityList[$rootScope.lang];
+      vm.roomList = $rootScope.orangeConfig.roomList[$rootScope.lang];
+      vm.tagList = $rootScope.orangeConfig.tagList[$rootScope.lang];
 
       vm.keys = vm.keysAll[$rootScope.lang];
       vm.objs = vm.objsAll[$rootScope.lang];

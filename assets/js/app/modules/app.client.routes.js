@@ -47,10 +47,16 @@
       .state('exclusive', {
         views: {
           main: {
-            templateUrl: 'templates/view/exclusive.html'
+            templateUrl: 'templates/view/exclusive.html',
+            controller: function ($scope, $stateParams) {
+              $scope.directLinkObjectNumber = $stateParams.objNumber;
+            },
           },
         },
         url: '/exclusive',
+        params: {
+          objNumber: null,
+        },
       })
       .state('shortterm', {
         views: {

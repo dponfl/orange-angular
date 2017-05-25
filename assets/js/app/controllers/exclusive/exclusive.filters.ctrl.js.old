@@ -11,37 +11,37 @@
   function ExclusiveFiltersCtrl(GeneralConfigService, $log, $rootScope, oCity, oExclusiveKey) {
     var vm = this;
 
-    vm.dealList = GeneralConfigService.orangeConfig.dealList[$rootScope.lang];
-    vm.objList = GeneralConfigService.orangeConfig.objList[$rootScope.lang];
-    vm.cityList = GeneralConfigService.orangeConfig.cityList[$rootScope.lang];
-    vm.roomList = GeneralConfigService.orangeConfig.roomList[$rootScope.lang];
+    vm.dealList = $rootScope.orangeConfig.dealList[$rootScope.lang];
+    vm.objList = $rootScope.orangeConfig.objList[$rootScope.lang];
+    vm.cityList = $rootScope.orangeConfig.cityList[$rootScope.lang];
+    vm.roomList = $rootScope.orangeConfig.roomList[$rootScope.lang];
 
     vm.formData = {};
 
-    vm.formData.deal = GeneralConfigService.orangeConfig.dealList[$rootScope.lang][0];
-    vm.formData.obj = GeneralConfigService.orangeConfig.objList[$rootScope.lang][0];
-    vm.formData.city = GeneralConfigService.orangeConfig.cityList[$rootScope.lang][0];
-    vm.formData.room = GeneralConfigService.orangeConfig.roomList[$rootScope.lang][0];
+    vm.formData.deal = $rootScope.orangeConfig.dealList[$rootScope.lang][0];
+    vm.formData.obj = $rootScope.orangeConfig.objList[$rootScope.lang][0];
+    vm.formData.city = $rootScope.orangeConfig.cityList[$rootScope.lang][0];
+    vm.formData.room = $rootScope.orangeConfig.roomList[$rootScope.lang][0];
     vm.formData.objnumber = '';
 
     $rootScope.$watch('lang', update);
 
 
     function update () {
-      vm.dealList = GeneralConfigService.orangeConfig.dealList[$rootScope.lang];
-      vm.objList = GeneralConfigService.orangeConfig.objList[$rootScope.lang];
-      vm.cityList = GeneralConfigService.orangeConfig.cityList[$rootScope.lang];
-      vm.roomList = GeneralConfigService.orangeConfig.roomList[$rootScope.lang];
+      vm.dealList = $rootScope.orangeConfig.dealList[$rootScope.lang];
+      vm.objList = $rootScope.orangeConfig.objList[$rootScope.lang];
+      vm.cityList = $rootScope.orangeConfig.cityList[$rootScope.lang];
+      vm.roomList = $rootScope.orangeConfig.roomList[$rootScope.lang];
     };
 
     vm.find = function () {
     };
 
     vm.clear = function () {
-      vm.formData.deal = GeneralConfigService.orangeConfig.dealList[$rootScope.lang][0];
-      vm.formData.obj = GeneralConfigService.orangeConfig.objList[$rootScope.lang][0];
-      vm.formData.city = GeneralConfigService.orangeConfig.cityList[$rootScope.lang][0];
-      vm.formData.room = GeneralConfigService.orangeConfig.roomList[$rootScope.lang][0];
+      vm.formData.deal = $rootScope.orangeConfig.dealList[$rootScope.lang][0];
+      vm.formData.obj = $rootScope.orangeConfig.objList[$rootScope.lang][0];
+      vm.formData.city = $rootScope.orangeConfig.cityList[$rootScope.lang][0];
+      vm.formData.room = $rootScope.orangeConfig.roomList[$rootScope.lang][0];
       vm.formData.objnumber = '';
     };
 

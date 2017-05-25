@@ -5,11 +5,11 @@
     .module('OrangeClient')
     .service('ExclusiveService', ExclusiveService);
 
-  ExclusiveService.$inject = ['GeneralConfigService', '$http', '$log', 'oExclusiveKey',
+  ExclusiveService.$inject = ['GeneralConfigService', '$rootScope', '$http', '$log', 'oExclusiveKey',
     'oExclusive', 'lodash', '$q'];
 
   /* @ngInject */
-  function ExclusiveService(GeneralConfigService, $http, $log, oExclusiveKey, oExclusive, lodash, $q) {
+  function ExclusiveService(GeneralConfigService, $rootScope, $http, $log, oExclusiveKey, oExclusive, lodash, $q) {
     var _ = lodash;
     var self = {
       getAllExclusiveObjectsKeys: _getAllExclusiveObjectsKeys,
@@ -70,7 +70,7 @@
 
       // todo: return object having result code (200, 404, etc.) and data
 
-      return $http.post(GeneralConfigService.orangeConfig.host + '/exclusive/find', reqObj)
+      return $http.post($rootScope.orangeConfig.host + '/exclusive/find', reqObj)
         .then(successCb, errorCb);
 
       function successCb(data) {
@@ -130,7 +130,7 @@
 
     function _getAllExclusiveObjectsObjsPager(reqObj, pager) {
 
-      return $http.post(GeneralConfigService.orangeConfig.host + '/exclusive/findp', {
+      return $http.post($rootScope.orangeConfig.host + '/exclusive/findp', {
         conditions: reqObj,
         pager: pager
       } )

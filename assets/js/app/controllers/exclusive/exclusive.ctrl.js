@@ -30,11 +30,11 @@
     $rootScope.exclusive.panelsAllLangs = {};
     $rootScope.exclusive.panels = [];
 
-    $rootScope.objList = GeneralConfigService.orangeConfig.objList[$rootScope.lang];
-    $rootScope.dealList = GeneralConfigService.orangeConfig.dealList[$rootScope.lang];
-    $rootScope.cityList = GeneralConfigService.orangeConfig.cityList[$rootScope.lang];
-    $rootScope.roomList = GeneralConfigService.orangeConfig.roomList[$rootScope.lang];
-    $rootScope.tagList = GeneralConfigService.orangeConfig.tagList[$rootScope.lang];
+    $rootScope.objList = $rootScope.orangeConfig.objList[$rootScope.lang];
+    $rootScope.dealList = $rootScope.orangeConfig.dealList[$rootScope.lang];
+    $rootScope.cityList = $rootScope.orangeConfig.cityList[$rootScope.lang];
+    $rootScope.roomList = $rootScope.orangeConfig.roomList[$rootScope.lang];
+    $rootScope.tagList = $rootScope.orangeConfig.tagList[$rootScope.lang];
 
     $scope.activateNextPage = _activateNextPage;
 
@@ -288,7 +288,7 @@
           var tagText = '';
           var _gallery = [];
 
-          GeneralConfigService.orangeConfig.tagList[lang].map(function (listElem) {
+          $rootScope.orangeConfig.tagList[lang].map(function (listElem) {
             if (listElem.key == oElem.tag) tagText = listElem.val;
           });
 
@@ -310,7 +310,7 @@
 
 /*
           var tokenValDeal = '';
-          GeneralConfigService.orangeConfig.dealList[lang].map(function (listElem) {
+          $rootScope.orangeConfig.dealList[lang].map(function (listElem) {
             if (listElem.key == oElem.deal) tokenValDeal = listElem.val;
           });
 
@@ -327,22 +327,22 @@
 
             switch (kElem.key) {
               case 'deal':
-                GeneralConfigService.orangeConfig.dealList[lang].map(function (listElem) {
+                $rootScope.orangeConfig.dealList[lang].map(function (listElem) {
                   if (listElem.key == oElem.deal) tokenVal = listElem.val;
                 });
                 break;
               case 'city':
-                GeneralConfigService.orangeConfig.cityList[lang].map(function (listElem) {
+                $rootScope.orangeConfig.cityList[lang].map(function (listElem) {
                   if (listElem.key == oElem.city) tokenVal = listElem.val;
                 });
                 break;
               case 'obj':
-                GeneralConfigService.orangeConfig.objList[lang].map(function (listElem) {
+                $rootScope.orangeConfig.objList[lang].map(function (listElem) {
                   if (listElem.key == oElem.obj) tokenVal = listElem.val;
                 });
                 break;
               case 'room':
-                GeneralConfigService.orangeConfig.roomList[lang].map(function (listElem) {
+                $rootScope.orangeConfig.roomList[lang].map(function (listElem) {
                   if (listElem.key == oElem.room) tokenVal = listElem.val;
                 });
                 break;
@@ -386,11 +386,11 @@
     } // _buildPanel
 
     function _update() {
-      $rootScope.objList = GeneralConfigService.orangeConfig.objList[$rootScope.lang];
-      $rootScope.dealList = GeneralConfigService.orangeConfig.dealList[$rootScope.lang];
-      $rootScope.cityList = GeneralConfigService.orangeConfig.cityList[$rootScope.lang];
-      $rootScope.roomList = GeneralConfigService.orangeConfig.roomList[$rootScope.lang];
-      $rootScope.tagList = GeneralConfigService.orangeConfig.tagList[$rootScope.lang];
+      $rootScope.objList = $rootScope.orangeConfig.objList[$rootScope.lang];
+      $rootScope.dealList = $rootScope.orangeConfig.dealList[$rootScope.lang];
+      $rootScope.cityList = $rootScope.orangeConfig.cityList[$rootScope.lang];
+      $rootScope.roomList = $rootScope.orangeConfig.roomList[$rootScope.lang];
+      $rootScope.tagList = $rootScope.orangeConfig.tagList[$rootScope.lang];
 
       $rootScope.exclusive.panels = $rootScope.exclusive.panelsAllLangs[$rootScope.lang];
 

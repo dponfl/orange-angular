@@ -28,10 +28,10 @@
     $rootScope.short.panelsAllLangs = {};
     $rootScope.short.panels = [];
 
-    $rootScope.objList = GeneralConfigService.orangeConfig.objList[$rootScope.lang];
-    $rootScope.cityList = GeneralConfigService.orangeConfig.cityList[$rootScope.lang];
-    $rootScope.roomList = GeneralConfigService.orangeConfig.roomList[$rootScope.lang];
-    $rootScope.tagList = GeneralConfigService.orangeConfig.tagList[$rootScope.lang];
+    $rootScope.objList = $rootScope.orangeConfig.objList[$rootScope.lang];
+    $rootScope.cityList = $rootScope.orangeConfig.cityList[$rootScope.lang];
+    $rootScope.roomList = $rootScope.orangeConfig.roomList[$rootScope.lang];
+    $rootScope.tagList = $rootScope.orangeConfig.tagList[$rootScope.lang];
 
     $scope.activateNextPage = _activateNextPage;
 
@@ -266,7 +266,7 @@
           var tagText = '';
           var _gallery = [];
 
-          GeneralConfigService.orangeConfig.tagList[lang].map(function (listElem) {
+          $rootScope.orangeConfig.tagList[lang].map(function (listElem) {
             if (listElem.key == oElem.tag) tagText = listElem.val;
           });
 
@@ -290,17 +290,17 @@
 
             switch (kElem.key) {
               case 'city':
-                GeneralConfigService.orangeConfig.cityList[lang].map(function (listElem) {
+                $rootScope.orangeConfig.cityList[lang].map(function (listElem) {
                   if (listElem.key == oElem.city) tokenVal = listElem.val;
                 });
                 break;
               case 'obj':
-                GeneralConfigService.orangeConfig.objList[lang].map(function (listElem) {
+                $rootScope.orangeConfig.objList[lang].map(function (listElem) {
                   if (listElem.key == oElem.obj) tokenVal = listElem.val;
                 });
                 break;
               case 'room':
-                GeneralConfigService.orangeConfig.roomList[lang].map(function (listElem) {
+                $rootScope.orangeConfig.roomList[lang].map(function (listElem) {
                   if (listElem.key == oElem.room) tokenVal = listElem.val;
                 });
                 break;
@@ -347,10 +347,10 @@
     } // _buildPanel
 
     function _update() {
-      $rootScope.objList = GeneralConfigService.orangeConfig.objList[$rootScope.lang];
-      $rootScope.cityList = GeneralConfigService.orangeConfig.cityList[$rootScope.lang];
-      $rootScope.roomList = GeneralConfigService.orangeConfig.roomList[$rootScope.lang];
-      $rootScope.tagList = GeneralConfigService.orangeConfig.tagList[$rootScope.lang];
+      $rootScope.objList = $rootScope.orangeConfig.objList[$rootScope.lang];
+      $rootScope.cityList = $rootScope.orangeConfig.cityList[$rootScope.lang];
+      $rootScope.roomList = $rootScope.orangeConfig.roomList[$rootScope.lang];
+      $rootScope.tagList = $rootScope.orangeConfig.tagList[$rootScope.lang];
 
       $rootScope.short.panels = $rootScope.short.panelsAllLangs[$rootScope.lang];
 

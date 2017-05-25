@@ -22,7 +22,7 @@
 
       // todo: return object having result code (200, 404, etc.) and data
 
-      return $http.post(GeneralConfigService.orangeConfig.host + '/sreq/create', reqObj)
+      return $http.post($rootScope.orangeConfig.host + '/sreq/create', reqObj)
        .then(successCb, errorCb);
 
       function successCb(data) {
