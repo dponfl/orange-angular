@@ -39,7 +39,7 @@
             data-title='{{elem.dataTitle}}')
               img(data-ng-src='{{elem.src}}').thumbnail.img-gallery
 
-        a(href='{{elongpc.youtube}}', target="_blank", translate='EXCLUSIVE_PAGE_BUTTON_YOUTUBE').col-xs-12.btn.btn-info.btn-lg.btn-margin.center-block
+        a(data-ng-show="elongpc.youtubeshow", href='{{elongpc.youtube}}', target="_blank", translate='EXCLUSIVE_PAGE_BUTTON_YOUTUBE').col-xs-12.btn.btn-info.btn-lg.btn-margin.center-block
 
         button(data-ng-click='elongpc.showBookObject()' translate='EXCLUSIVE_PAGE_BUTTON_BOOK_OBJECT').col-xs-12.btn.btn-danger.btn-lg.btn-margin.center-block
 

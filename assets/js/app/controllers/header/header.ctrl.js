@@ -110,6 +110,18 @@
           action: 'long',
           text: 'NAV_REQ_LONG_TERM',
         },
+        {
+          action: 'let',
+          text: 'NAV_REQ_LET_PROP',
+        },
+        {
+          action: 'buy',
+          text: 'NAV_REQ_BUY_PROP',
+        },
+        {
+          action: 'sell',
+          text: 'NAV_REQ_SELL_PROP',
+        },
       ];
 
     } // activate
@@ -129,6 +141,15 @@
         case 'long':
           headerSendRequestLongModal.$promise.then(headerSendRequestLongModal.show);
           break;
+        case 'let':
+          headerSendRequestLetModal.$promise.then(headerSendRequestLetModal.show);
+          break;
+        case 'buy':
+          headerSendRequestBuyModal.$promise.then(headerSendRequestBuyModal.show);
+          break;
+        case 'sell':
+          headerSendRequestSellModal.$promise.then(headerSendRequestSellModal.show);
+          break;
       }
     } // _activateModal
 
@@ -140,6 +161,15 @@
           break;
         case 'long':
           headerSendRequestLongModal.$promise.then(headerSendRequestLongModal.hide);
+          break;
+        case 'let':
+          headerSendRequestLetModal.$promise.then(headerSendRequestLetModal.hide);
+          break;
+        case 'buy':
+          headerSendRequestBuyModal.$promise.then(headerSendRequestBuyModal.hide);
+          break;
+        case 'sell':
+          headerSendRequestSellModal.$promise.then(headerSendRequestSellModal.hide);
           break;
       }
     } // _closeModal
@@ -239,6 +269,45 @@
     var headerSendRequestLongModal = $modal({
       scope: $scope,
       templateUrl: '../templates/view/header/headerSendRequestLongModal.html',
+      show: false,
+      backdrop: true,
+      onHide: function () {
+        $('body').css('overflow', 'auto');
+      },
+      onShow: function () {
+        $('body').css('overflow', 'hidden');
+      }
+    });
+
+    var headerSendRequestLetModal = $modal({
+      scope: $scope,
+      templateUrl: '../templates/view/header/headerSendRequestLetModal.html',
+      show: false,
+      backdrop: true,
+      onHide: function () {
+        $('body').css('overflow', 'auto');
+      },
+      onShow: function () {
+        $('body').css('overflow', 'hidden');
+      }
+    });
+
+    var headerSendRequestBuyModal = $modal({
+      scope: $scope,
+      templateUrl: '../templates/view/header/headerSendRequestBuyModal.html',
+      show: false,
+      backdrop: true,
+      onHide: function () {
+        $('body').css('overflow', 'auto');
+      },
+      onShow: function () {
+        $('body').css('overflow', 'hidden');
+      }
+    });
+
+    var headerSendRequestSellModal = $modal({
+      scope: $scope,
+      templateUrl: '../templates/view/header/headerSendRequestSellModal.html',
       show: false,
       backdrop: true,
       onHide: function () {

@@ -240,15 +240,35 @@ module.exports = {
           'exclusive_short': 'Посуточная аренда (эксклюзив)',
           'exclusive_long': 'Долгосрочная аренда (эксклюзив)',
           'exclusive_sale': 'Продажа (эксклюзив)',
+          'let': 'Сдача в аренду',
+
         };
 
-        var subject = 'Запрос информации: ' + deal_type_lables[data.deal_type];
-        var html = `
-          <h2>Поступил запрос информации</h2>
-          <hr>
-          <h3>Тип: ${deal_type_lables[data.deal_type]}</h3>
-          <table style="border: 1px; color: #8AB512;">
-        `;
+        switch (data.deal_type) {
+          case 'short':
+          case 'long':
+          case 'buy':
+            var subject = 'Запрос информации: ' + deal_type_lables[data.deal_type];
+            var html = `
+              <h2>Поступил запрос информации</h2>
+              <hr>
+              <h3>Тип: ${deal_type_lables[data.deal_type]}</h3>
+              <table style="border: 1px; color: #8AB512;">
+            `;
+            break;
+          case 'let':
+          case 'sell':
+            var subject = 'Поступило предложение: ' + deal_type_lables[data.deal_type];
+            var html = `
+              <h2>Поступило предложение</h2>
+              <hr>
+              <h3>Тип: ${deal_type_lables[data.deal_type]}</h3>
+              <table style="border: 1px; color: #8AB512;">
+            `;
+            break;
+        }
+
+
 
 
 

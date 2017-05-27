@@ -337,6 +337,7 @@
           record.calendar = oElem.calendar;
           record.googleMap = oElem.googleMap;
           record.youtube = oElem.youtube;
+          record.youtubeshow = ((oElem.youtube != '') ? true : false);
 
 
           panels.push(record);

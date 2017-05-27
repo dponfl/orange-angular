@@ -13,6 +13,7 @@
         gallery: '<',
         content: '<',
         youtube: '<',
+        youtubeshow: '<',
         index: '=',
         panel: '=',
       },

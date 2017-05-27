@@ -1,0 +1,106 @@
+div(tabindex="-1",
+role="dialog").modal.book-object-modal
+  .modal-dialog
+    .modal-content
+      form(novalidate='novalidate',
+      data-ng-submit='hc.sendRequest("buy")').form-horisontal
+
+        fieldset(data-ng-attr-disabled='{{hc.busyBook || undefined}}')
+
+          .modal-header
+            button(data-ng-click="$hide()").close &times;
+            h2(translate='HEADER_INFO_BUY').modal-title
+
+          .modal-body
+            .form-group.clearfix
+              label(for='objectType', translate='LBL_OBJ').col-sm-4.control-label.text-right
+              .col-sm-8
+                select(name='objectType',
+                required,
+                data-ng-required-err-type="{{'AV_REQ' | translate}}",
+                data-ng-options='option.val for option in hc.objList track by option.key',
+                data-ng-model='hc.formData.obj').form-control#objectType
+
+            .form-group.clearfix
+              label(for='city', translate='LBL_CITY').col-sm-4.control-label.text-right
+              .col-sm-8
+                select(name='city',
+                required,
+                data-ng-required-err-type="{{'AV_REQ' | translate}}",
+                data-ng-options='option.val for option in hc.cityList track by option.key',
+                data-ng-model='hc.formData.city').form-control#city
+
+            .form-group.clearfix
+              label(for='rooms', translate='LBL_ROOM').col-sm-4.control-label.text-right
+              .col-sm-8
+                select(name='rooms',
+                required,
+                data-ng-required-err-type="{{'AV_REQ' | translate}}",
+                data-ng-options='option.val for option in hc.roomList track by option.key',
+                data-ng-model='hc.formData.room').form-control#rooms
+
+            .form-group.clearfix
+              label(for='clientName', translate='LBL_FIELD_NAME').col-sm-4.control-label.text-right
+              .col-sm-8
+                input(type="text",
+                data-ng-pattern="/^[a-zA-Zа-яА-Яα-ωΑ-Ω\\s\\-\\.\\']+$/",
+                data-ng-required-err-type="{{'AV_REQ' | translate}}",
+                data-ng-pattern-err-type="{{'FIELD_NAME_ERR' | translate}}",
+                required,
+                data-ng-model='hc.formData.name').form-control#clientName
+
+            .form-group.clearfix
+              label(for='clientEmail', translate='LBL_FIELD_EMAIL').col-sm-4.control-label.text-right
+              .col-sm-8
+                input(type="text",
+                data-ng-pattern='/^([0-9a-zA-Z\\.]([\\.\\-\\+\\w])*@([0-9a-zA-Z][-\\w]*[0-9a-zA-Z]*\\.)+[a-zA-Z]{2,9})$/',
+                data-ng-required-err-type="{{'AV_REQ' | translate}}",
+                data-ng-pattern-err-type="{{'FIELD_EMAIL_ERR' | translate}}",
+                required,
+                data-ng-model='hc.formData.email').form-control#clientEmail
+
+            .form-group.clearfix
+              label(for='clientPhone', translate='LBL_FIELD_PHONE').col-sm-4.control-label.text-right
+              .col-sm-8
+                input(type="text",
+                data-ng-model='hc.formData.phone').form-control#clientPhone
+
+            .form-group.clearfix
+              label(for='clientSkype', translate='LBL_FIELD_SKYPE').col-sm-4.control-label.text-right
+              .col-sm-8
+                input(type="text",
+                data-ng-model='hc.formData.skype').form-control#clientSkype
+
+            .form-group.clearfix
+              label(for='clientWhatsapp', translate='LBL_FIELD_WHATSAPP').col-sm-4.control-label.text-right
+              .col-sm-8
+                input(type="text",
+                data-ng-model='hc.formData.whatsapp').form-control#clientWhatsapp
+
+            .form-group.clearfix
+              label(for='clientTelegram', translate='LBL_FIELD_TELEGRAM').col-sm-4.control-label.text-right
+              .col-sm-8
+                input(type="text",
+                data-ng-model='hc.formData.telegram').form-control#clientTelegram
+
+            .form-group.clearfix
+              label(for='clientViber', translate='LBL_FIELD_VIBER').col-sm-4.control-label.text-right
+              .col-sm-8
+                input(type="text",
+                data-ng-model='hc.formData.viber').form-control#clientViber
+
+            .form-group.clearfix
+              label(for='clientInfo', translate='LBL_FIELD_ADDINFO').col-sm-4.control-label.text-right
+              .col-sm-8
+                textarea(type="text",
+                data-ng-model='hc.formData.additionalInfo').form-control#clientInfo
+
+          .modal-footer
+            .form-group.clearfix
+              button(type='submit',
+              translate='BTN_SUBMIT').btn.btn-success.btn-lg.btn-margin
+              button(data-ng-click='hc.clear()',
+              translate='BTN_CLR').btn.btn-warning.btn-lg.btn-margin
+              button(type='button',
+              data-ng-click='$hide()',
+              translate='HEADER_INFO_MODAL_FOOTER_CLOSE_BUTTON').btn.btn-default.btn-lg.btn-margin
