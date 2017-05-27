@@ -150,6 +150,9 @@
         case 'sell':
           headerSendRequestSellModal.$promise.then(headerSendRequestSellModal.show);
           break;
+        case 'general':
+          headerSendRequestGeneralModal.$promise.then(headerSendRequestGeneralModal.show);
+          break;
       }
     } // _activateModal
 
@@ -171,6 +174,9 @@
         case 'sell':
           headerSendRequestSellModal.$promise.then(headerSendRequestSellModal.hide);
           break;
+        case 'general':
+          headerSendRequestGeneralModal.$promise.then(headerSendRequestGeneralModal.hide);
+          break;
       }
     } // _closeModal
 
@@ -178,9 +184,13 @@
 
       var formDataToSend = vm.formData;
 
-      formDataToSend.obj = vm.formData.obj.val;
-      formDataToSend.city = vm.formData.city.val;
-      formDataToSend.room = vm.formData.room.val;
+      if (param != 'general') {
+        formDataToSend.obj = vm.formData.obj.val;
+        formDataToSend.city = vm.formData.city.val;
+        formDataToSend.room = vm.formData.room.val;
+      } else {
+        formDataToSend = _.omit(formDataToSend, ['obj', 'city', 'room']);
+      }
 
       vm.busyBook = true;
 
@@ -308,6 +318,19 @@
     var headerSendRequestSellModal = $modal({
       scope: $scope,
       templateUrl: '../templates/view/header/headerSendRequestSellModal.html',
+      show: false,
+      backdrop: true,
+      onHide: function () {
+        $('body').css('overflow', 'auto');
+      },
+      onShow: function () {
+        $('body').css('overflow', 'hidden');
+      }
+    });
+
+    var headerSendRequestGeneralModal = $modal({
+      scope: $scope,
+      templateUrl: '../templates/view/header/headerSendRequestGeneralModal.html',
       show: false,
       backdrop: true,
       onHide: function () {

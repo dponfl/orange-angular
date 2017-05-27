@@ -6,7 +6,7 @@
   Updated: January 2017
   Notes:	 Hand coded for Orange Holiday Villas
 
-.row.header-block
+div(data-ng-controller='HeaderCtrl as hc').row.header-block
 
   a.header-block-logo.pull-left.navbar-collapse.collapse(href="/")
     img(src="../../images/logo-orange.png", alt="Orange Holiday Villas logo").logo-img
@@ -14,11 +14,12 @@
   .row.header-block-contacts.pull-right
 
     #contacts-header
-      .row.block-contacts__details Office: +357 26 102728
-      .row.block-contacts__details Mob: +357 99 828 886
-      .row.block-contacts__details Skype: prolat.natalia
+      .row.block-contacts__details {{'HEADER_OFFICE_PHONE' | translate}}: +357 26 102728
+      .row.block-contacts__details {{'HEADER_MOBILE_PHONE' | translate}}: +357 99 828 886
+      .row.block-contacts__details {{'HEADER_SKYPE_PHONE' | translate}}: prolat.natalia
 
-    button(type="button").btn.btn-success#message Отправить</br>сообщение
+    button(data-ng-click='hc.activateModal("general")',
+    type="button").btn.btn-success#message {{'HEADER_SEND_MESSAGE_1' | translate}}</br>{{'HEADER_SEND_MESSAGE_2' | translate}}
 
     //form(role="search")#object-find
       .form-group.pull-left
@@ -50,15 +51,6 @@ data-offset-top="200").navbar.navbar-default
           button(data-toggle="dropdown").dropdown-toggle.btn.btn-danger.btn-margin-header
             | {{'NAV_REQ_BUTTON' | translate}}&nbsp;
             strong.caret
-
-          -
-            var dropdown_menu = [
-            {href: '#dailyRequest',       text: 'NAV_REQ_DAILY'},
-            {href: '#longtermRequest',    text: 'NAV_REQ_LONG_TERM'},
-            {href: '',      text: 'NAV_REQ_LET_PROP'},
-            {href: '',      text: 'NAV_REQ_BUY_PROP'},
-            {href: '',      text: 'NAV_REQ_SELL_PROP'}
-            ]
 
           ul.dropdown-menu
             li(data-ng-repeat='elem in hc.dropdownMenu')

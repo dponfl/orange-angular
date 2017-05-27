@@ -241,13 +241,19 @@ module.exports = {
           'exclusive_long': 'Долгосрочная аренда (эксклюзив)',
           'exclusive_sale': 'Продажа (эксклюзив)',
           'let': 'Сдача в аренду',
-
+          'buy': 'Покупка',
+          'sell': 'Продажа',
+          'general': 'Сообщение',
         };
 
         switch (data.deal_type) {
           case 'short':
           case 'long':
+          case 'sale':
           case 'buy':
+          case 'exclusive_short':
+          case 'exclusive_long':
+          case 'exclusive_sale':
             var subject = 'Запрос информации: ' + deal_type_lables[data.deal_type];
             var html = `
               <h2>Поступил запрос информации</h2>
@@ -266,6 +272,16 @@ module.exports = {
               <table style="border: 1px; color: #8AB512;">
             `;
             break;
+          case 'general':
+            var subject = 'Поступило сообщение: ' + deal_type_lables[data.deal_type];
+            var html = `
+              <h2>Поступило сообщение</h2>
+              <hr>
+              <h3>Тип: ${deal_type_lables[data.deal_type]}</h3>
+              <table style="border: 1px; color: #8AB512;">
+            `;
+            break;
+
         }
 
 

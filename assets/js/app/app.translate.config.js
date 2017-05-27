@@ -8,6 +8,14 @@ translateConfig.$inject = ['$translateProvider'];
 function translateConfig ($translateProvider) {
   $translateProvider.translations('en', {
 
+    // Header
+    'HEADER_OFFICE_PHONE': 'Office',
+    'HEADER_MOBILE_PHONE': 'Mobile',
+    'HEADER_SKYPE_PHONE': 'Skype',
+    'HEADER_SEND_MESSAGE_1': 'Send',
+    'HEADER_SEND_MESSAGE_2': 'message',
+
+
     // Main menu items
     'NAV_HOME': 'Home',
     'NAV_EXCLUSIVE': 'Exclusive',
@@ -43,18 +51,20 @@ function translateConfig ($translateProvider) {
     'LBL_FIELD_DATE_START': 'Date start',
     'LBL_FIELD_DATE_END': 'Date end',
     'LBL_FIELD_NAME': 'Your name',
-    'LBL_FIELD_EMAIL': 'Your email',
-    'LBL_FIELD_PHONE': 'Your phone',
-    'LBL_FIELD_SKYPE': 'Your Skype',
-    'LBL_FIELD_WHATSAPP': 'Your WhatsApp',
-    'LBL_FIELD_TELEGRAM': 'Your Telegram',
-    'LBL_FIELD_VIBER': 'Your Viber',
+    'LBL_FIELD_EMAIL': 'Email',
+    'LBL_FIELD_PHONE': 'Phone',
+    'LBL_FIELD_SKYPE': 'Skype',
+    'LBL_FIELD_WHATSAPP': 'WhatsApp',
+    'LBL_FIELD_TELEGRAM': 'Telegram',
+    'LBL_FIELD_VIBER': 'Viber',
     'LBL_FIELD_ADDINFO': 'Additional Info',
+    'LBL_FIELD_INFO': 'Message',
     'HEADER_INFO_SHORT': 'Short term rent information request',
     'HEADER_INFO_LONG': 'Long term rent information request',
     'HEADER_INFO_LET': 'Let property information submission',
     'HEADER_INFO_BUY': 'Buy property information request',
     'HEADER_INFO_SELL': 'Sell property information submission',
+    'HEADER_INFO_GENERAL': 'Send message',
     'FIELD_NAME_ERR': 'nameErrEn',
     'FIELD_EMAIL_ERR': 'emailErrEn',
     'BTN_SUBMIT': 'Submit',
@@ -171,6 +181,13 @@ function translateConfig ($translateProvider) {
 
   $translateProvider.translations('ru', {
 
+    // Header
+    'HEADER_OFFICE_PHONE': 'Офис',
+    'HEADER_MOBILE_PHONE': 'Мобильный',
+    'HEADER_SKYPE_PHONE': 'Skype',
+    'HEADER_SEND_MESSAGE_1': 'Отправить',
+    'HEADER_SEND_MESSAGE_2': 'сообщение',
+
     // Main menu items
     'NAV_HOME': 'Главная',
     'NAV_EXCLUSIVE': 'Эксклюзив',
@@ -206,18 +223,20 @@ function translateConfig ($translateProvider) {
     'LBL_FIELD_DATE_START': 'Дата начала',
     'LBL_FIELD_DATE_END': 'Дата окончания',
     'LBL_FIELD_NAME': 'Ваше имя',
-    'LBL_FIELD_EMAIL': 'Ваш email',
-    'LBL_FIELD_PHONE': 'Ваш телефон',
-    'LBL_FIELD_SKYPE': 'Ваш Skype',
-    'LBL_FIELD_WHATSAPP': 'Ваш WhatsApp',
-    'LBL_FIELD_TELEGRAM': 'Ваш Telegram',
-    'LBL_FIELD_VIBER': 'Ваш Viber',
+    'LBL_FIELD_EMAIL': 'Email',
+    'LBL_FIELD_PHONE': 'Телефон',
+    'LBL_FIELD_SKYPE': 'Skype',
+    'LBL_FIELD_WHATSAPP': 'WhatsApp',
+    'LBL_FIELD_TELEGRAM': 'Telegram',
+    'LBL_FIELD_VIBER': 'Viber',
     'LBL_FIELD_ADDINFO': 'Доп. информация',
+    'LBL_FIELD_INFO': 'Сообщение',
     'HEADER_INFO_SHORT': 'Запрос информации по краткосрочной аренде',
     'HEADER_INFO_LONG': 'Запрос информации по долгосрочной аренде',
     'HEADER_INFO_LET': 'Предложение по сдаче недвижимости в аренду',
     'HEADER_INFO_BUY': 'Запрос информации по покупке недвижимости',
     'HEADER_INFO_SELL': 'Предложение по продаже недвижимости',
+    'HEADER_INFO_GENERAL': 'Отправка сообщения',
     'FIELD_NAME_ERR': 'nameErrRu',
     'FIELD_EMAIL_ERR': 'emailErrRu',
     'BTN_SUBMIT': 'Отправить',
