@@ -12,8 +12,11 @@
   };
 */
 
-  $.get('/config', function (data) {
+  $.get('/config', config);
 
+  config.$inject = ['data'];
+
+  function config(data) {
     console.log('config data:');
     console.log(data);
 
@@ -42,9 +45,13 @@
 
     } // OrangeConfiguration
 
+/*
+    angular.bootstrap(document, ['OrangeClient'], {
+      strictDi: true
+    });
+*/
     angular.bootstrap(document, ['OrangeClient']);
-
-  });
+}
 
 
 // });

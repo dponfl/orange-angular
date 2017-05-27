@@ -86,36 +86,5 @@
       return $rootScope.lang || 'en';
     }
 
-
-
-    /**
-     * Tag
-     */
-
-    function _getTag() {
-      var deferred = $q.defer();
-      oTag.query(function (data) {
-          // console.log('!!! Success...');
-          // console.dir(data);
-
-          self.orangeConfig.tagList = {};
-
-          if (!_.isArray(data)) deferred.reject(Error('Tag data is not an array'));
-
-          for (var i = 0; i < data.length; i++) {
-            if (!_.isArray(self.orangeConfig.tagList[data[i].lang]))
-              self.orangeConfig.tagList[data[i].lang] = [];
-            self.orangeConfig.tagList[data[i].lang].push({key: data[i].key, val: data[i].tag})
-          }
-
-          // console.log('self.orangeConfig.tagList:');
-          // console.dir(self.orangeConfig.tagList);
-
-          deferred.resolve();
-        })
-
-      return deferred.promise;
-    } // _getTag
-
   } // GeneralConfigService
 })();

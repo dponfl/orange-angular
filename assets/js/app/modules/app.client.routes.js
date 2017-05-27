@@ -48,9 +48,9 @@
         views: {
           main: {
             templateUrl: 'templates/view/exclusive.html',
-            controller: function ($scope, $stateParams) {
+            controller: ['$scope', '$stateParams', function ($scope, $stateParams) {
               $scope.directLinkObjectNumber = $stateParams.objNumber;
-            },
+            }],
           },
         },
         url: '/exclusive',
@@ -62,9 +62,9 @@
         views: {
           main: {
             templateUrl: 'templates/view/shortterm.html',
-            controller: function ($scope, $stateParams) {
+            controller: ['$scope', '$stateParams', function ($scope, $stateParams) {
               $scope.directLinkObjectNumber = $stateParams.objNumber;
-            },
+            }],
           },
         },
         url: '/shortterm',
@@ -76,9 +76,9 @@
         views: {
           main: {
             templateUrl: 'templates/view/longterm.html',
-            controller: function ($scope, $stateParams) {
+            controller: ['$scope', '$stateParams', function ($scope, $stateParams) {
               $scope.directLinkObjectNumber = $stateParams.objNumber;
-            },
+            }],
           },
         },
         url: '/longterm',
@@ -90,9 +90,9 @@
         views: {
           main: {
             templateUrl: 'templates/view/sale.html',
-            controller: function ($scope, $stateParams) {
+            controller: ['$scope', '$stateParams', function ($scope, $stateParams) {
               $scope.directLinkObjectNumber = $stateParams.objNumber;
-            },
+            }],
           },
         },
         url: '/sale',
