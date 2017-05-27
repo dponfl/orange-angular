@@ -58,6 +58,8 @@ function translateConfig ($translateProvider) {
     'FIELD_NAME_ERR': 'nameErrEn',
     'FIELD_EMAIL_ERR': 'emailErrEn',
     'BTN_SUBMIT': 'Submit',
+    'HEADER_INFO_MODAL_FOOTER_CLOSE_BUTTON': 'Close',
+
 
     // Home - Carousel
     'HOME_CAROUSEL_TITLE_1': 'Slide 01 message',
@@ -219,6 +221,8 @@ function translateConfig ($translateProvider) {
     'FIELD_NAME_ERR': 'nameErrRu',
     'FIELD_EMAIL_ERR': 'emailErrRu',
     'BTN_SUBMIT': 'Отправить',
+    'HEADER_INFO_MODAL_FOOTER_CLOSE_BUTTON': 'Закрыть',
+
 
 
     // Home - Carousel

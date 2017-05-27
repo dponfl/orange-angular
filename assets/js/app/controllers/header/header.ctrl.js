@@ -127,7 +127,7 @@
           headerSendRequestShortModal.$promise.then(headerSendRequestShortModal.show);
           break;
         case 'long':
-          longBookObjectModal.$promise.then(longBookObjectModal.show);
+          headerSendRequestLongModal.$promise.then(headerSendRequestLongModal.show);
           break;
       }
     } // _activateModal
@@ -139,7 +139,7 @@
           headerSendRequestShortModal.$promise.then(headerSendRequestShortModal.hide);
           break;
         case 'long':
-          longBookObjectModal.$promise.then(longBookObjectModal.hide);
+          headerSendRequestLongModal.$promise.then(headerSendRequestLongModal.hide);
           break;
       }
     } // _closeModal
@@ -170,10 +170,9 @@
             vm.busyBook = false;
             toaster.pop({
               type: 'success',
-              title: __.t('BOOKING_SUCCESS_TITLE'),
-              body: __.t('BOOKING_SUCCESS_BODY_1') + vm.objectInfo +
-              __.t('BOOKING_SUCCESS_BODY_2'),
-              toasterId: 12345,
+              title: __.t('INFO_SUCCESS_TITLE'),
+              body: __.t('INFO_SUCCESS_BODY_1'),
+              toasterId: '12345',
               showCloseButton: true,
               timeout: 15000,
             });
@@ -181,10 +180,9 @@
             vm.busyBook = false;
             toaster.pop({
               type: 'error',
-              title: __.t('BOOKING_ERROR_TITLE'),
-              body: __.t('BOOKING_ERROR_BODY_1') + vm.objectInfo +
-              __.t('BOOKING_ERROR_BODY_2'),
-              toasterId: 12345,
+              title: __.t('INFO_ERROR_TITLE'),
+              body: __.t('INFO_ERROR_BODY_1') + __.t('INFO_ERROR_BODY_2'),
+              toasterId: '12345',
               showCloseButton: true,
               timeout: 15000,
             });
@@ -238,9 +236,9 @@
       }
     });
 
-    var longBookObjectModal = $modal({
+    var headerSendRequestLongModal = $modal({
       scope: $scope,
-      templateUrl: '../templates/view/long/longBookObjectModal.html',
+      templateUrl: '../templates/view/header/headerSendRequestLongModal.html',
       show: false,
       backdrop: true,
       onHide: function () {

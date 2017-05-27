@@ -65,62 +65,6 @@ data-offset-top="200").navbar.navbar-default
               button(data-ng-click='hc.activateModal(elem.action)',
                 translate='{{elem.text}}').btn.btn-link
 
-          .modal.fade#dailyRequest
-            .modal-dialog
-              .modal-content
-                .panel.panel-info
-                  .panel-heading
-                    button(data-dismiss="modal").close &times;
-                    h4.modal-title.text-center Снять недвижимость: Посуточно
-                  .panel-body
-                    h4.text-center Заполните форму
-                    form.form-horizontal
-                      -
-                        var longTerm = [
-                        {label: 'Имя:', id: 'inputNameDaily', type: 'text', placeholder: 'Ваше имя'},
-                        {label: 'Телефон:', id: 'inputPhoneDaily', type: 'phone', placeholder: 'Телефон для связи'},
-                        {label: 'Email:', id: 'inputEmailDaily', type: 'email', placeholder: 'Ваш email'},
-                        {label: 'Цена:', id: 'inputPriceDaily', type: 'text', placeholder: 'Интересующая вас цена'},
-                        {label: 'Город:', id: 'inputCityDaily', type: 'text', placeholder: 'Какой город вас интересует'}
-                        ]
-                      each elem in longTerm
-                        .form-group.clearfix
-                          label(for="#{elem.id}").col-sm-3.control-label.text-right #{elem.label}
-                          .col-sm-7
-                            input(type="#{elem.type}", id="#{elem.id}" placeholder="#{elem.placeholder}").form-control
-                      .form-group.clearfix
-                        .col-lg-9.col-lg-offset-3.col-md-offset-3.col-sm-offset-3
-                          button.btn.btn-success.btn-lg.btn-margin Отправить
-                          button.btn.btn-warning.btn-lg.btn-margin Очистить
-
-          .modal.fade#longtermRequest
-            .modal-dialog
-              .modal-content
-                .panel.panel-info
-                  .panel-heading
-                    button(data-dismiss="modal").close &times;
-                    h4.modal-title.text-center Снять недвижимость: Долгосрочно
-                  .panel-body
-                    h4.text-center Заполните форму
-                    form.form-horizontal
-                      -
-                        var longTerm = [
-                        {label: 'Имя:', id: 'inputNameLongterm', type: 'text', placeholder: 'Ваше имя'},
-                        {label: 'Телефон:', id: 'inputPhoneLongterm', type: 'phone', placeholder: 'Телефон для связи'},
-                        {label: 'Email:', id: 'inputEmailLongterm', type: 'email', placeholder: 'Ваш email'},
-                        {label: 'Цена:', id: 'inputPriceLongterm', type: 'text', placeholder: 'Интересующая вас цена'},
-                        {label: 'Город:', id: 'inputCityLongterm', type: 'text', placeholder: 'Какой город вас интересует'}
-                        ]
-                      each elem in longTerm
-                        .form-group.clearfix
-                          label(for="#{elem.id}").col-sm-3.control-label.text-right #{elem.label}
-                          .col-sm-7
-                            input(type="#{elem.type}", id="#{elem.id}" placeholder="#{elem.placeholder}").form-control
-                      .form-group.clearfix
-                        .col-lg-9.col-lg-offset-3.col-md-offset-3.col-sm-offset-3
-                          button(type="submit").btn.btn-success.btn-lg.btn-margin Отправить
-                          button(type="cancel").btn.btn-warning.btn-lg.btn-margin Очистить
-
 
         li(data-ng-controller='translateCtrl as t').dropdown
           div(data-toggle="dropdown").dropdown-toggle.flag-icon-toggle
@@ -135,4 +79,6 @@ data-offset-top="200").navbar.navbar-default
               button(data-ng-click='t.changeLanguage("ru");').btn.btn-link.flag-icon
                 img(src='../../images/flag_icon_ru.png')
                 | &nbsp;&nbsp;&nbsp;Русский
+
+toaster-container(data-toaster-options="{'toaster-id': '12345'}")
 
