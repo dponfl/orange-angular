@@ -42,6 +42,13 @@ $(window).scroll(function() {
 */
 
 $(document).ready(function() {
+
+  setTimeout(function () {
+    $('.carousel').carousel('cycle');
+  }, 3000);
+
+
+
   $( "body" ).on( 'click', '.link-and-scroll', function(event) {
 
     $('html, body').animate({
@@ -60,5 +67,18 @@ $(document).ready(function() {
 
     $('.navbar-collapse').removeClass('in');
   });
+
+/*
+  setTimeout(function () {
+    $(".right.carousel-control").click();
+  }, 1000);
+*/
+
+/*
+  setInterval(function () {
+    $(".right.carousel-control").click();
+  }, 3000);
+*/
+
 
 });

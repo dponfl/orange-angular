@@ -4,6 +4,7 @@
   angular.module('app.client.config', [])
     .config(LaddaConfig)
     .config(ModalConfig)
+    .config(DynamicLocale)
     .provider('configOrange', configOrange);
 
   LaddaConfig.$inject = ['laddaProvider', '$datepickerProvider'];
@@ -22,6 +23,7 @@
     angular.extend($datepickerProvider.defaults, {
       dateFormat: 'dd/MM/yyyy',
       autoclose: true,
+      startWeek: 1,
     });
   } // LaddaConfig
 
@@ -31,6 +33,12 @@
       html: true
     });
   } // ModalConfig
+
+  DynamicLocale.$inject = ['tmhDynamicLocaleProvider'];
+  function DynamicLocale(tmhDynamicLocaleProvider) {
+    tmhDynamicLocaleProvider.defaultLocale('en');
+    tmhDynamicLocaleProvider.localeLocationPattern('vendor/angular-i18n/angular-locale_{{locale}}.js');
+  } // DynamicLocale
 
   configOrange.$inject = ['lodash'];
   function configOrange(lodash) {

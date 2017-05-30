@@ -14,6 +14,7 @@
       'ngSanitize',
       'ngAnimate',
       'toaster',
+      'tmh.dynamicLocale',
     ])
     .run(errorMsgResolver);
 

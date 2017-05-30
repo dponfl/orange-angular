@@ -29,6 +29,8 @@
     "angular-animate": "^1.6.4",
     "angular-sanitize": "^1.6.4",
     "AngularJS-Toaster": "angularjs-toaster#^2.1.0",
-    "bootstrap-additions": "^0.3.1"
+    "bootstrap-additions": "^0.3.1",
+    "angular-dynamic-locale": "^0.1.32",
+    "angular-i18n": "^1.6.4"
   }
 }

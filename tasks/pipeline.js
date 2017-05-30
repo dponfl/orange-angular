@@ -82,6 +82,9 @@ var jsFilesToInject = [
   // Load angularjs-toaster
   'vendor/AngularJS-Toaster/toaster.js',
 
+  // Load angular-dynamic-locale
+  'vendor/angular-dynamic-locale/dist/tmhDynamicLocale.js',
+
   'js/dependencies/Other/**/*.js',
 
   // Load application modules

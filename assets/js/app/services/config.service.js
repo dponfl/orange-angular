@@ -8,9 +8,9 @@
    * Service to manage home application params
    */
   GeneralConfigService.$inject = ['$rootScope', 'oCity', 'oDeal', 'oObj',
-    'oRoom', 'oTag', 'lodash', '$q', '$log'];
+    'oRoom', 'oTag', 'lodash', '$q', '$log', 'tmhDynamicLocale'];
   function GeneralConfigService($rootScope, oCity, oDeal, oObj,
-                                oRoom, oTag, lodash, $q, $log) {
+                                oRoom, oTag, lodash, $q, $log, tmhDynamicLocale) {
 
 
     // todo: delete
@@ -80,6 +80,7 @@
     function _setLang(lang) {
       // console.log('Setting lang=' + lang);
       $rootScope.lang = lang || 'en';
+      tmhDynamicLocale.set($rootScope.lang);
     } // _setLang
 
     function _getLang() {
