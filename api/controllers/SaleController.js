@@ -126,6 +126,7 @@ module.exports = {
         }
 
         // todo: delete after tests of delay
+/*
         setTimeout(function () {
           return res.ok({
             code: 200,
@@ -133,16 +134,15 @@ module.exports = {
             result: data
           });
         }, 3000);
+*/
 
         // todo: uncomment after tests of delay
 
-        /*
          return res.ok({
          code: 200,
          message: 'OK',
          result: data
          });
-         */
       });
 
 
