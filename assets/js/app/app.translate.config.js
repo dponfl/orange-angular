@@ -15,6 +15,18 @@ function translateConfig ($translateProvider) {
     'HEADER_SEND_MESSAGE_1': 'Send',
     'HEADER_SEND_MESSAGE_2': 'message',
 
+    // Footer
+    'FOOTER_ABOUT_COMPANY_TITLE': 'About us',
+    'FOOTER_ABOUT_COMPANY_TEXT': '[En]Лорем ипсум долор сит амет, не дицит легере еос, ' +
+    'еос еу волутпат цомпрехенсам, не хас долор омиттам! При утамур сингулис адиписцинг ' +
+    'не, не алии ехерци дуо. Тота игнота алияуандо ан яуо, хабео яуидам хендрерит те яуо.',
+    'FOOTER_NAVIGATION': 'Navigation',
+    'FOOTER_SUBSCRIBE_TITLE': 'Subscribe to our news',
+    'FOOTER_SUBSCRIBE_YOUTUBE': 'YouTube',
+    'FOOTER_SUBSCRIBE_FACEBOOK': 'Facebook',
+    'FOOTER_SUBSCRIBE_TWEETER': 'Tweeter',
+    'FOOTER_SUBSCRIBE_GOOGLEPLUS': 'Google Plus',
+    'FOOTER_DEVELOPER': 'Developed by',
 
     // Main menu items
     'NAV_HOME': 'Home',
@@ -187,6 +199,19 @@ function translateConfig ($translateProvider) {
     'HEADER_SKYPE_PHONE': 'Skype',
     'HEADER_SEND_MESSAGE_1': 'Отправить',
     'HEADER_SEND_MESSAGE_2': 'сообщение',
+
+    // Footer
+    'FOOTER_ABOUT_COMPANY_TITLE': 'О нас',
+    'FOOTER_ABOUT_COMPANY_TEXT': 'Лорем ипсум долор сит амет, не дицит легере еос, ' +
+    'еос еу волутпат цомпрехенсам, не хас долор омиттам! При утамур сингулис адиписцинг ' +
+    'не, не алии ехерци дуо. Тота игнота алияуандо ан яуо, хабео яуидам хендрерит те яуо.',
+    'FOOTER_NAVIGATION': 'Навигация',
+    'FOOTER_SUBSCRIBE_TITLE': 'Подписаться на новости',
+    'FOOTER_SUBSCRIBE_YOUTUBE': 'YouTube',
+    'FOOTER_SUBSCRIBE_FACEBOOK': 'Facebook',
+    'FOOTER_SUBSCRIBE_TWEETER': 'Tweeter',
+    'FOOTER_SUBSCRIBE_GOOGLEPLUS': 'Google Plus',
+    'FOOTER_DEVELOPER': 'Разработано',
 
     // Main menu items
     'NAV_HOME': 'Главная',

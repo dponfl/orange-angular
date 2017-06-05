@@ -21,11 +21,6 @@ div(data-ng-controller='HeaderCtrl as hc').row.header-block
     button(data-ng-click='hc.activateModal("general")',
     type="button").btn.btn-success#message {{'HEADER_SEND_MESSAGE_1' | translate}}</br>{{'HEADER_SEND_MESSAGE_2' | translate}}
 
-    //form(role="search")#object-find
-      .form-group.pull-left
-        input(type="text", placeholder="№ объекта").form-control#object-find_input
-      button(type="submit").btn.btn-info.pull-left#object-find_button Найти
-
 nav(data-spy="affix",
 data-offset-top="200").navbar.navbar-default
 
