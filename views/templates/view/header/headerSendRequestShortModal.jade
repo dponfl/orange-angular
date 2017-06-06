@@ -19,6 +19,8 @@ role="dialog").modal.book-object-modal
                 required,
                 data-ng-required-err-type="{{'AV_REQ' | translate}}",
                 data-ng-model='hc.formData.period_start',
+                data-max-date='{{hc.formData.pariod_end}}',
+                data-min-date='{{hc.startDate}}',
                 bs-datepicker).form-control#dateStart
 
             .form-group.clearfix
@@ -28,6 +30,7 @@ role="dialog").modal.book-object-modal
                 required,
                 data-ng-required-err-type="{{'AV_REQ' | translate}}",
                 data-ng-model='hc.formData.pariod_end',
+                data-min-date='{{(hc.formData.period_start ? hc.formData.period_start : hc.startDate)}}',
                 bs-datepicker).form-control#dateEnd
 
             .form-group.clearfix

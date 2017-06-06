@@ -24,6 +24,7 @@ role="dialog").modal.book-object-modal
                 required,
                 data-ng-required-err-type="{{'AV_REQ' | translate}}",
                 data-ng-model='elongpc.formData.period_start',
+                data-min-date='{{elongpc.startDate}}',
                 bs-datepicker).form-control#dateStart
 
 

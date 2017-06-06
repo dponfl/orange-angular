@@ -57,6 +57,8 @@
     function activate() {
       vm.modalType = '';
       vm.formData = {};
+      vm.startDate = new Date();
+      vm.startDate.setDate(vm.startDate.getDate() - 1);
       vm.busyBook = false;
 
       vm.activateModal = _activateModal;

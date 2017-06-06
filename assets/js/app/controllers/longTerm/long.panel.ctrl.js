@@ -49,6 +49,8 @@
     function activate() {
 
       vm.formData = {};
+      vm.startDate = new Date();
+      vm.startDate.setDate(vm.startDate.getDate() - 1);
       vm.busyBook = false;
       vm.objectInfo = '';
 
