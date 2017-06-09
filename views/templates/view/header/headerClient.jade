@@ -1,0 +1,71 @@
+//
+  Header
+  =============
+
+  Author:  iStudioDTD.com
+  Updated: January 2017
+  Notes:	 Hand coded for Orange Holiday Villas
+
+div(data-ng-controller='HeaderCtrl as hc').row.header-block
+
+  a.header-block-logo.pull-left.navbar-collapse.collapse(href="/")
+    img(src="../../images/logo-orange.png", alt="Orange Holiday Villas logo").logo-img
+
+  .row.header-block-contacts.pull-right
+
+    #contacts-header
+      .row.block-contacts__details {{'HEADER_OFFICE_PHONE' | translate}}: +357 26 102728
+      .row.block-contacts__details {{'HEADER_MOBILE_PHONE' | translate}}: +357 99 828 886
+      .row.block-contacts__details {{'HEADER_SKYPE_PHONE' | translate}}: prolat.natalia
+
+    button(data-ng-click='hc.activateModal("general")',
+    type="button").btn.btn-success#message {{'HEADER_SEND_MESSAGE_1' | translate}}</br>{{'HEADER_SEND_MESSAGE_2' | translate}}
+
+nav(bs-affix,
+data-offset-top="200").navbar.navbar-default
+
+    div(data-ng-controller='HeaderCtrl as hc').container
+
+      button(data-target=".navbar-responsive-collapse", data-toggle="collapse", type="button").navbar-toggle
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+
+      a(href="/").navbar-brand
+        img(src="../../images/logo-orange.png", alt="Orange Holiday Villas logo", height="50px")
+
+      .navbar-collapse.collapse.navbar-responsive-collapse
+
+        ul.nav.navbar-nav
+          li(data-ng-repeat='elem in hc.navMeny')
+            a(data-ui-sref="{{elem.href}}",
+              data-ui-sref-active="menu-active",
+              translate='{{elem.text}}')
+
+          li.dropdown
+            button(data-toggle="dropdown").dropdown-toggle.btn.btn-danger.btn-margin-header
+              | {{'NAV_REQ_BUTTON' | translate}}&nbsp;
+              strong.caret
+
+            ul.dropdown-menu
+              li(data-ng-repeat='elem in hc.dropdownMenu')
+                button(data-ng-click='hc.activateModal(elem.action)',
+                  translate='{{elem.text}}').btn.btn-link
+
+
+          li(data-ng-controller='translateCtrl as t').dropdown
+            div(data-toggle="dropdown").dropdown-toggle.flag-icon-toggle
+              img(ng-src='{{t.getLangIcon();}}')
+
+            ul.dropdown-menu
+              li
+                button(data-ng-click='t.changeLanguage("en");').btn.btn-link.flag-icon
+                  img(src='../../images/flag_icon_en.png')
+                  | &nbsp;&nbsp;&nbsp;English
+              li(data-ng-controller='translateCtrl as t')
+                button(data-ng-click='t.changeLanguage("ru");').btn.btn-link.flag-icon
+                  img(src='../../images/flag_icon_ru.png')
+                  | &nbsp;&nbsp;&nbsp;Русский
+
+  toaster-container(data-toaster-options="{'toaster-id': '12345'}")
+

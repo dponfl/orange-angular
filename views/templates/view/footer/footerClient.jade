@@ -1,0 +1,31 @@
+//
+  Footer
+  =============
+
+  Author:  iStudioDTD.com
+  Updated: January 2017
+  Notes:	 Hand coded for Orange Holiday Villas
+
+div(data-ng-controller='FooterCtrl as fc').container
+  .row
+    .col-sm-4
+      h6 {{'FOOTER_ABOUT_COMPANY_TITLE' | translate}}
+      p {{'FOOTER_ABOUT_COMPANY_TEXT' | translate}}
+    .col-sm-2
+      h6 {{'FOOTER_NAVIGATION' | translate}}
+      ul.list-unstyled
+        li(data-ng-repeat='elem in fc.navMeny')
+          a(data-ui-sref="{{elem.href}}",
+          translate='{{elem.text}}').link-and-scroll
+
+    .col-sm-2
+      h6 {{'FOOTER_SUBSCRIBE_TITLE' | translate}}
+      ul.list-unstyled
+        li(data-ng-repeat='elem in fc.subscription')
+          a(href="{{elem.href}}",
+          translate='{{elem.text}}',
+          target="_blank")
+    .col-sm-3.developer
+      h6 Copyright &copy; 2017
+      span {{'FOOTER_DEVELOPER' | translate}}
+      a(href="{{fc.developer.href}}", target="_blank")#developer {{fc.developer.text}}

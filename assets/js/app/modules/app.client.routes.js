@@ -17,6 +17,9 @@
     $stateProvider
       .state('home', {
         views: {
+          header: {
+            templateUrl: 'templates/view/header/headerClient.html'
+          },
           main: {
             templateUrl: 'templates/view/home/main.html'
           },
@@ -40,17 +43,26 @@
           },
           contacts: {
             templateUrl: 'templates/view/home/contacts.html'
-          }
+          },
+          footer: {
+            templateUrl: 'templates/view/footer/footerClient.html'
+          },
         },
         url: '/'
       })
       .state('exclusive', {
         views: {
+          header: {
+            templateUrl: 'templates/view/header/headerClient.html'
+          },
           main: {
             templateUrl: 'templates/view/exclusive.html',
             controller: ['$scope', '$stateParams', function ($scope, $stateParams) {
               $scope.directLinkObjectNumber = $stateParams.objNumber;
             }],
+          },
+          footer: {
+            templateUrl: 'templates/view/footer/footerClient.html'
           },
         },
         url: '/exclusive',
@@ -60,11 +72,17 @@
       })
       .state('shortterm', {
         views: {
+          header: {
+            templateUrl: 'templates/view/header/headerClient.html'
+          },
           main: {
             templateUrl: 'templates/view/shortterm.html',
             controller: ['$scope', '$stateParams', function ($scope, $stateParams) {
               $scope.directLinkObjectNumber = $stateParams.objNumber;
             }],
+          },
+          footer: {
+            templateUrl: 'templates/view/footer/footerClient.html'
           },
         },
         url: '/shortterm',
@@ -74,11 +92,17 @@
       })
       .state('longterm', {
         views: {
+          header: {
+            templateUrl: 'templates/view/header/headerClient.html'
+          },
           main: {
             templateUrl: 'templates/view/longterm.html',
             controller: ['$scope', '$stateParams', function ($scope, $stateParams) {
               $scope.directLinkObjectNumber = $stateParams.objNumber;
             }],
+          },
+          footer: {
+            templateUrl: 'templates/view/footer/footerClient.html'
           },
         },
         url: '/longterm',
@@ -88,11 +112,17 @@
       })
       .state('sale', {
         views: {
+          header: {
+            templateUrl: 'templates/view/header/headerClient.html'
+          },
           main: {
             templateUrl: 'templates/view/sale.html',
             controller: ['$scope', '$stateParams', function ($scope, $stateParams) {
               $scope.directLinkObjectNumber = $stateParams.objNumber;
             }],
+          },
+          footer: {
+            templateUrl: 'templates/view/footer/footerClient.html'
           },
         },
         url: '/sale',
@@ -102,24 +132,42 @@
       })
       .state('qa', {
         views: {
+          header: {
+            templateUrl: 'templates/view/header/headerClient.html'
+          },
           main: {
             templateUrl: 'templates/view/qa.html'
+          },
+          footer: {
+            templateUrl: 'templates/view/footer/footerClient.html'
           },
         },
         url: '/qa',
       })
       .state('services', {
         views: {
+          header: {
+            templateUrl: 'templates/view/header/headerClient.html'
+          },
           main: {
             templateUrl: 'templates/view/services.html'
+          },
+          footer: {
+            templateUrl: 'templates/view/footer/footerClient.html'
           },
         },
         url: '/services',
       })
       .state('contacts', {
         views: {
+          header: {
+            templateUrl: 'templates/view/header/headerClient.html'
+          },
           main: {
             templateUrl: 'templates/view/contacts.html'
+          },
+          footer: {
+            templateUrl: 'templates/view/footer/footerClient.html'
           },
         },
         url: '/contacts',
