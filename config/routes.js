@@ -36,6 +36,38 @@ module.exports.routes = {
     view: 'index'
   },
 
+  '/exclusive': {
+    view: 'index'
+  },
+
+  '/shortterm': {
+    view: 'index'
+  },
+
+  '/longterm': {
+    view: 'index'
+  },
+
+  '/sale': {
+    view: 'index'
+  },
+
+  '/qa': {
+    view: 'index'
+  },
+
+  '/services': {
+    view: 'index'
+  },
+
+  '/contacts': {
+    view: 'index'
+  },
+
+  '/admin': {
+    view: 'index'
+  },
+
   'POST /short/find': 'ShortController.find',
   'POST /short/findp': 'ShortController.findPager',
 

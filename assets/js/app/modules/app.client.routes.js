@@ -4,14 +4,15 @@
 
   angular.module('app.client.routes', [
     'app.core'
-  ]).config(OrangeClientRoutesConfig);
+  ])
+    .config(OrangeClientRoutesConfig);
 
-  OrangeClientRoutesConfig.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider'];
-  function OrangeClientRoutesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
+  OrangeClientRoutesConfig.$inject = ['$stateProvider', '$locationProvider', '$urlRouterProvider'];
+  function OrangeClientRoutesConfig($stateProvider, $locationProvider, $urlRouterProvider) {
 
 
     // todo: delete
-    console.log('app.client.routes');
+    console.log('app.client.routes: OrangeClientRoutesConfig');
 
 
     $stateProvider
@@ -171,12 +172,58 @@
           },
         },
         url: '/contacts',
+      })
+      .state('admin', {
+        views: {
+          header: {
+            templateUrl: 'templates/view/header/headerAdmin.html'
+          },
+          main: {
+            templateUrl: 'templates/view/home/main.html'
+          },
+          footer: {
+            templateUrl: 'templates/view/footer/footerClient.html'
+          },
+        },
+        url: '/admin',
+      })
+      .state('exclusive_admin', {
+        views: {
+          header: {
+            templateUrl: 'templates/view/header/headerAdmin.html'
+          },
+          main: {
+            templateUrl: 'templates/view/exclusive.html'
+          },
+          footer: {
+            templateUrl: 'templates/view/footer/footerClient.html'
+          },
+        },
+        url: '/admin222',
       });
 
-    $urlRouterProvider.otherwise('/');
+    // todo: delete
+    console.log('app.client.routes: OrangeClientRoutes');
+
+    $urlRouterProvider
+/*
+      .when('/qa', '/qa')
+*/
+     .when('/qa', ['$state', function ($state) {
+     $state.go('qa');
+     }])
+/*
+      .when(state.url, ['$match', '$stateParams', function ($match, $stateParams) {
+        if ($state.$current.navigable != state || !equalForKeys($match, $stateParams)) {
+          $state.transitionTo(state, $match, false);
+        }
+      }])
+*/
+      .otherwise('/');
 
     $locationProvider.hashPrefix('');
-  }
+    $locationProvider.html5Mode(true);
+  } // OrangeClientRoutesConfig
 
 
 })();
