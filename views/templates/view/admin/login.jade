@@ -1,19 +1,24 @@
 div(data-ng-controller="LoginController as lc").form-container
 
+
+
   form(novalidate='novalidate',
-  data-ng-submit='lc.init()').form-horisontal
+  data-ng-submit='lc.login()').form-horisontal
     h1 Login page
-    .form-group.clearfix
+    .form-group
       label(for="username") Username
       input(type="text", name="username", data-ng-model="lc.username")#username
 
-    .form-group.clearfix
+    .form-group
       label(for="password") Password
       input(type="text", name="password", data-ng-model="lc.password")#password
 
-    .form-group.clearfix
+    div(data-ng-show="lc.wrongLogin")
+      h2 Wrong login/password!
+
+    .form-group
       button(type='submit',
-      translate='BTN_SUBMIT').btn.btn-success.btn-lg.btn-margin
-      button(data-ng-click='lc.init()',
-      translate='BTN_CLR').btn.btn-warning.btn-lg.btn-margin
+      translate='BTN_ADMIN_LOGIN').btn.btn-success.btn-lg.btn-margin
+      button(type="button", data-ng-click='lc.clear()',
+      translate='BTN_ADMIN_CLEAR').btn.btn-warning.btn-lg.btn-margin
 

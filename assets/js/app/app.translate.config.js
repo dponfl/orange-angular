@@ -15,10 +15,13 @@ function translateConfig ($translateProvider) {
     'HEADER_SEND_MESSAGE_1': 'Send',
     'HEADER_SEND_MESSAGE_2': 'message',
 
-    // Header Admin
-    'HEADER_ADMIN_ADMIN': 'Admin',
+    // Admin
+    'HEADER_ADMIN_LOGIN': 'Login',
     'HEADER_ADMIN_ACCOUNT': 'Account',
     'HEADER_ADMIN_LOGOUT': 'Logout',
+    'BTN_ADMIN_UPDATE': 'Update',
+    'BTN_ADMIN_LOGIN': 'Login',
+    'BTN_ADMIN_CLEAR': 'Clear',
 
     // Footer
     'FOOTER_ABOUT_COMPANY_TITLE': 'About us',

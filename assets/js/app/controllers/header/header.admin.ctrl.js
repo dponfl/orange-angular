@@ -70,8 +70,8 @@
 
       vm.navMeny = [
         {
-          href: 'admin',
-          text: 'HEADER_ADMIN_ADMIN',
+          href: 'login',
+          text: 'HEADER_ADMIN_LOGIN',
         },
         {
           href: 'account',

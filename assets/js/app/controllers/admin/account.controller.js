@@ -5,16 +5,15 @@
     .module('OrangeClient')
     .controller('AccountController', AccountController);
 
-  AccountController.$inject = ['$state', 'UserService', 'FlashService'];
+  AccountController.$inject = ['UserService', '$state'];
 
   /* @ngInject */
-  function AccountController($state, UserService, FlashService) {
+  function AccountController(UserService, $state) {
     var vm = this;
     vm.title = 'AccountController';
 
     vm.user = null;
-    vm.saveUser = _saveUser;
-    vm.deleteUser = _deleteUser;
+    vm.saveUser = _updateUser;
 
     initController();
 
@@ -29,9 +28,9 @@
 */
     } // initController
 
-    function _saveUser() {
+    function _updateUser() {
 
-      console.log('saveUser...');
+      console.log('updateUser...');
 
 /*
       UserService.Update(vm.user)
@@ -42,23 +41,7 @@
           FlashService.Error(error);
         });
 */
-    } // saveUser
-
-    function _deleteUser() {
-
-      console.log('deleteUser...');
-
-/*
-      UserService.Delete(vm.user._id)
-        .then(function () {
-          // log user out
-          $state.go('login');
-        })
-        .catch(function (error) {
-          FlashService.Error(error);
-        });
-*/
-    } // deleteUser
+    } // updateUser
 
   } // AccountController
 

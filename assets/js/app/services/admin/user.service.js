@@ -15,7 +15,6 @@
     service.createUser = _create;
     service.loginUser = _login;
     service.updateUser = _update;
-    service.deleteUser = _delete;
 
     return service;
 
@@ -26,20 +25,16 @@
     } // _getCurrent
 
     function _create(reqObj) {
-      return $http.post('/users', user).then(handleSuccess, handleError);
+      return $http.post('/users', reqObj).then(handleSuccess, handleError);
     } // _create
 
     function _login(reqObj) {
-      return $http.post('/users', user).then(handleSuccess, handleError);
+      return $http.post($rootScope.orangeConfig.host + '/auth/local', reqObj).then(handleSuccess, handleError);
     } // _login
 
-    function _update(user) {
-      return $http.put('/users/' + user._id, user).then(handleSuccess, handleError);
+    function _update(reqObj) {
+      return $http.put('/users/' + reqObj).then(handleSuccess, handleError);
     } // _update
-
-    function _delete(_id) {
-      return $http.delete('/users/' + _id).then(handleSuccess, handleError);
-    } // _delete
 
     // private functions
 
@@ -48,7 +43,7 @@
     } // handleSuccess
 
     function handleError(res) {
-      return $q.reject(res.data);
+      return $q.reject(res);
     } // handleError
   }
 

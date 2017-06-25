@@ -193,7 +193,7 @@
             templateUrl: 'templates/view/admin/headerAdmin.html'
           },
           main: {
-            templateUrl: 'templates/view/admin/accountIndex.html',
+            templateUrl: 'templates/view/admin/account.html',
           },
           footer: {
             templateUrl: 'templates/view/admin/footerAdmin.html',

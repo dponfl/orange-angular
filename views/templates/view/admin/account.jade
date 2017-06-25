@@ -1,0 +1,34 @@
+//div(data-ng-controller="LoginController as lc").form-container
+div().form-container
+  //form(novalidate='novalidate',
+  //data-ng-submit='lc.init()').form-horisontal
+  form(novalidate='novalidate').form-horisontal
+    h1 My Account
+    .form-group
+      label(for="firstName") First name
+      input(type="text",
+      data-ng-model="currentUser.first_name").form-control#firstName
+    //
+    //.form-group
+    //  label(for="lastName") Last name
+    //  input(type="text",
+    //  data-ng-model="vm.user.lastName",
+    //  data-ng-required-err-type="{{'AV_REQ' | translate}}").form-control#lastName
+    //
+    //.form-group
+    //  label(for="username") Username
+    //  input(type="text",
+    //  data-ng-model="vm.user.username",
+    //  data-ng-required-err-type="{{'AV_REQ' | translate}}").form-control#username
+    //
+    //.form-group
+    //  label(for="password") Password
+    //  input(type="password",
+    //  data-ng-model="vm.user.password").form-control#password
+
+    .form-group
+      //button(data-ng-click="vm.saveUser()").btn.btn-primary Save
+      //button(data-ng-click="vm.deleteUser()").btn.btn-danger Delete
+      button.btn.btn-primary Save
+      button.btn.btn-danger Delete
+
