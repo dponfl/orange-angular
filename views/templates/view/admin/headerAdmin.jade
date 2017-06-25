@@ -46,5 +46,9 @@ data-offset-top="200").navbar.navbar-default
                   img(src='../../images/flag_icon_ru.png')
                   | &nbsp;&nbsp;&nbsp;Русский
 
+        div(data-ng-if="flash").flash-message
+          div(class="{{'alert alert-' + flash.type}}",
+          data-ng-bind="flash.message")
+
   toaster-container(data-toaster-options="{'toaster-id': '12345'}")
 

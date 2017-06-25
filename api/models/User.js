@@ -1,25 +1,23 @@
 /**
- * Users.js
+ * User.js
  *
  * @description :: TODO: You might write a short summary of how this model works and what it represents here.
  * @docs        :: http://sailsjs.org/documentation/concepts/models-and-orm/models
  */
 
-module.exports = {
-  tableName: 'users',
+var _ = require('lodash');
+var _super = require('orange-sails-auth/api/models/User');
+
+var extObj = {
   attributes: {
-    login: {
+    first_name: {
       type: 'string',
-      size: 50
     },
-    password: {
+    last_name: {
       type: 'string',
-      size: 50
     },
-    role: {
-      type: 'string',
-      size: 50
-    },
-  },
+  }
 };
 
+_.merge(module.exports, _super);
+_.merge(module.exports, extObj);

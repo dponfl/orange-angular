@@ -41,6 +41,8 @@
     "jade": "^1.11.0",
     "lodash": "^4.17.4",
     "mailgun-js": "^0.10.1",
+    "orange-sails-auth": "github:dponfl/orange-sails-auth#master",
+    "sails-auth": "github:dponfl/orange-sails-auth#master",
     "sails-hook-autoreload": "^0.13.2",
     "sails-mysql": "^0.11.5"
   }

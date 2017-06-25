@@ -173,33 +173,33 @@
         },
         url: '/contacts',
       })
-      .state('admin', {
+      .state('login', {
         views: {
           header: {
-            templateUrl: 'templates/view/header/headerAdmin.html'
+            templateUrl: 'templates/view/header/headerClient.html'
           },
           main: {
-            templateUrl: 'templates/view/home/main.html'
+            templateUrl: 'templates/view/admin/login.html',
           },
           footer: {
-            templateUrl: 'templates/view/footer/footerClient.html'
+            templateUrl: 'templates/view/footer/footerClient.html',
           },
         },
-        url: '/admin',
+        url: '/login',
       })
-      .state('exclusive_admin', {
+      .state('account', {
         views: {
           header: {
-            templateUrl: 'templates/view/header/headerAdmin.html'
+            templateUrl: 'templates/view/admin/headerAdmin.html'
           },
           main: {
-            templateUrl: 'templates/view/exclusive.html'
+            templateUrl: 'templates/view/admin/accountIndex.html',
           },
           footer: {
-            templateUrl: 'templates/view/footer/footerClient.html'
+            templateUrl: 'templates/view/admin/footerAdmin.html',
           },
         },
-        url: '/admin222',
+        url: '/account',
       });
 
     // todo: delete
@@ -209,9 +209,11 @@
 /*
       .when('/qa', '/qa')
 */
+/*
      .when('/qa', ['$state', function ($state) {
      $state.go('qa');
      }])
+*/
 /*
       .when(state.url, ['$match', '$stateParams', function ($match, $stateParams) {
         if ($state.$current.navigable != state || !equalForKeys($match, $stateParams)) {

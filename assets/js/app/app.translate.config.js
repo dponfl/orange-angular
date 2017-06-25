@@ -15,6 +15,11 @@ function translateConfig ($translateProvider) {
     'HEADER_SEND_MESSAGE_1': 'Send',
     'HEADER_SEND_MESSAGE_2': 'message',
 
+    // Header Admin
+    'HEADER_ADMIN_ADMIN': 'Admin',
+    'HEADER_ADMIN_ACCOUNT': 'Account',
+    'HEADER_ADMIN_LOGOUT': 'Logout',
+
     // Footer
     'FOOTER_ABOUT_COMPANY_TITLE': 'About us',
     'FOOTER_ABOUT_COMPANY_TEXT': '[En]Лорем ипсум долор сит амет, не дицит легере еос, ' +

@@ -64,10 +64,24 @@ module.exports.routes = {
     view: 'index'
   },
 
-  '/admin': {
+  '/login': {
     view: 'index'
   },
 
+  '/account': {
+    view: 'index'
+  },
+
+
+  /***************************************************************************
+  *                                                                          *
+  * Custom routes here...                                                    *
+  *                                                                          *
+  * If a request to a URL doesn't match any of the custom routes above, it   *
+  * is matched against Sails route blueprints. See `config/blueprints.js`    *
+  * for configuration options and examples.                                  *
+  *                                                                          *
+  ***************************************************************************/
   'POST /short/find': 'ShortController.find',
   'POST /short/findp': 'ShortController.findPager',
 
@@ -85,15 +99,17 @@ module.exports.routes = {
 
   'GET /config': 'ConfigController.loadConfig',
 
+  // orange-sails-auth
 
-  /***************************************************************************
-  *                                                                          *
-  * Custom routes here...                                                    *
-  *                                                                          *
-  * If a request to a URL doesn't match any of the custom routes above, it   *
-  * is matched against Sails route blueprints. See `config/blueprints.js`    *
-  * for configuration options and examples.                                  *
-  *                                                                          *
-  ***************************************************************************/
+  'POST /register': 'UserController.create',
+  'GET /me': 'UserController.me',
+
+  'POST /update': 'UserController.update',
+
+  'POST /logout': 'AuthController.logout',
+
+  'POST /auth/local': 'AuthController.callback',
+  'POST /auth/local/:action': 'AuthController.callback',
 
 };
+

@@ -71,15 +71,15 @@
       vm.navMeny = [
         {
           href: 'admin',
-          text: 'NAV_HOME',
+          text: 'HEADER_ADMIN_ADMIN',
         },
         {
-          href: 'exclusive_admin',
-          text: 'NAV_EXCLUSIVE',
+          href: 'account',
+          text: 'HEADER_ADMIN_ACCOUNT',
         },
         {
-          href: 'shortterm_admin',
-          text: 'NAV_DAILY',
+          href: 'logout',
+          text: 'HEADER_ADMIN_LOGOUT',
         },
         {
           href: 'longterm_admin',

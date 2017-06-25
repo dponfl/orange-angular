@@ -125,7 +125,12 @@ module.exports = {
       return {host: 'http://localhost:1337'};
     };
 
-    Promise.all([cityPromise, objPromise, dealPromise, roomPromise, tagPromise, getHost()])
+    var getToken = function () {
+      return {token: '123'};
+    }; // getToken
+
+    Promise.all([cityPromise, objPromise, dealPromise, roomPromise, tagPromise,
+      getHost(), getToken()])
       .then(function (data) {
 
         var result = {};
@@ -139,7 +144,7 @@ module.exports = {
         console.log('loadConfig, result:');
         console.log(result);
 
-        return res.ok({result: 'ok', data: result});
+        return res.ok({result: 'ok', data: result, token: '123'});
       }, function (reason) {
         console.log('Promise.all error, reason:');
         console.log(reason);

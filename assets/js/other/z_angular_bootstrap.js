@@ -29,6 +29,10 @@
           // console.log('2222222222');
           configOrangeProvider.initialize(data.data);
         }
+
+        if (_.has(data.data, 'token')) {
+          var jwtToken = data.data.token;
+        }
       }
 
     } // OrangeConfiguration
