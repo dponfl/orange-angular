@@ -1,7 +1,5 @@
 div(data-ng-controller="LoginController as lc").form-container
 
-
-
   form(novalidate='novalidate',
   data-ng-submit='lc.login()').form-horisontal
     h1 Login page
@@ -13,8 +11,8 @@ div(data-ng-controller="LoginController as lc").form-container
       label(for="password") Password
       input(type="text", name="password", data-ng-model="lc.password")#password
 
-    div(data-ng-show="lc.wrongLogin")
-      h2 Wrong login/password!
+    div(role="alert", data-ng-show="lc.wrongLogin").alert.alert-danger.col-sm-4
+      strong Wrong login/password!
 
     .form-group
       button(type='submit',

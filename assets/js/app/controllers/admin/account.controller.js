@@ -5,43 +5,40 @@
     .module('OrangeClient')
     .controller('AccountController', AccountController);
 
-  AccountController.$inject = ['UserService', '$state'];
+  AccountController.$inject = ['UserService', '$state', '$rootScope'];
 
   /* @ngInject */
-  function AccountController(UserService, $state) {
+  function AccountController(UserService, $state, $rootScope) {
     var vm = this;
     vm.title = 'AccountController';
 
     vm.user = null;
-    vm.saveUser = _updateUser;
+    vm.update = _updateUser;
+    vm.clear = _clear;
 
-    initController();
+    _initController();
 
     ////////////////
 
-    function initController() {
-      // get current user
-/*
-      UserService.GetCurrent().then(function (user) {
-        vm.user = user;
-      });
-*/
-    } // initController
+    function _initController() {
+      vm.first_name = $rootScope.currentUser.first_name;
+      vm.last_name = $rootScope.currentUser.last_name;
+      vm.email = $rootScope.currentUser.email;
+      vm.username = $rootScope.currentUser.username;
+    } // _initController
 
     function _updateUser() {
 
       console.log('updateUser...');
 
-/*
-      UserService.Update(vm.user)
-        .then(function () {
-          FlashService.Success('User updated');
-        })
-        .catch(function (error) {
-          FlashService.Error(error);
-        });
-*/
-    } // updateUser
+    } // _updateUser
+
+    function _clear() {
+      vm.first_name = '';
+      vm.last_name = '';
+      vm.email = '';
+      vm.username = '';
+    } // _clear
 
   } // AccountController
 

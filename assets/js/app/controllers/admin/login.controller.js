@@ -17,31 +17,32 @@
     vm.clear = _clear;
 
     vm.user = null;
-    vm.username = 'none';
-    vm.password = 'none';
+    vm.username = '';
+    vm.password = '';
     vm.wrongLogin = false;
 
-    // _initController();
+    _initController();
 
     ////////////////
 
     function _initController() {
       // get current user
       UserService.getCurrentUser().then(function (data) {
-        var keys = _.keys(data);
 
         $log.info('_initController, data:');
         $log.info(data);
 
-        $log.info('_initController, data, keys:');
-        $log.info(keys);
+        if (_.has(data, 'session')
+          && _.has(data.session, 'authenticated')
+          && _.has(data.session, 'passport')
+          && _.has(data.session.passport, 'user')
+        ) {
 
-        if (_.indexOf(keys, 'passport') != -1) {
-          var user = _.find(data.passport, 'user');
-          vm.username = data.passport.user;
+          var userId = data.session.passport.user;
+          vm.username = 'User Id: ' + userId;
         } else {
-          vm.username = 'new none';
-          vm.password = 'new none';
+          vm.username = 'new';
+          vm.password = 'new';
         }
       });
     } // _initController
