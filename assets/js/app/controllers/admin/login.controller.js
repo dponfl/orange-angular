@@ -36,13 +36,15 @@
           && _.has(data.session, 'authenticated')
           && _.has(data.session, 'passport')
           && _.has(data.session.passport, 'user')
+          && _.has($rootScope.currentUser, 'username')
+          && _.has($rootScope.currentUser, 'id')
+          && $rootScope.currentUser.id == data.session.passport.user
         ) {
 
-          var userId = data.session.passport.user;
-          vm.username = 'User Id: ' + userId;
+          vm.username = $rootScope.currentUser.username;
         } else {
-          vm.username = 'new';
-          vm.password = 'new';
+          vm.username = '';
+          vm.password = '';
         }
       });
     } // _initController

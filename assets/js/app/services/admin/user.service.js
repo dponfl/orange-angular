@@ -21,15 +21,18 @@
     ////////////////
 
     function _getCurrent() {
-      return $http.get($rootScope.orangeConfig.host + '/me').then(handleSuccess, handleError);
+      return $http.get($rootScope.orangeConfig.host + '/me')
+        .then(handleSuccess, handleError);
     } // _getCurrent
 
     function _create(reqObj) {
-      return $http.post('/users', reqObj).then(handleSuccess, handleError);
+      return $http.post($rootScope.orangeConfig.host + '/register', reqObj)
+        .then(handleSuccess, handleError);
     } // _create
 
     function _login(reqObj) {
-      return $http.post($rootScope.orangeConfig.host + '/auth/local', reqObj).then(handleSuccess, handleError);
+      return $http.post($rootScope.orangeConfig.host + '/auth/local', reqObj)
+        .then(handleSuccess, handleError);
     } // _login
 
     function _update(reqObj) {

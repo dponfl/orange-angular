@@ -20,6 +20,7 @@ function translateConfig ($translateProvider) {
     'HEADER_ADMIN_ACCOUNT': 'Account',
     'HEADER_ADMIN_LOGOUT': 'Logout',
     'BTN_ADMIN_UPDATE': 'Update',
+    'BTN_ADMIN_CREATE': 'Create',
     'BTN_ADMIN_LOGIN': 'Login',
     'BTN_ADMIN_CLEAR': 'Clear',
 

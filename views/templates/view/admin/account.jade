@@ -2,34 +2,48 @@ div(data-ng-controller="AccountController as ac").form-container
   form(novalidate='novalidate',
   data-ng-submit='ac.update()').form-horisontal
     h1 My Account
-    .form-group
+    .form-group.clearfix
       label(for="firstName") First name
-      input(type="text",
-      data-ng-model="ac.first_name").form-control.col-sm-6#firstName
+      .col-sm-4
+        input(type="text",
+        data-ng-model="ac.first_name").form-control.col-sm-6#firstName
 
-    .form-group
+    .form-group.clearfix
       label(for="lastName") Last name
-      input(type="text",
-      data-ng-model="ac.last_name").form-control.col-sm-6#lastName
+      .col-sm-4
+        input(type="text",
+        data-ng-model="ac.last_name").form-control.col-sm-6#lastName
 
-    .form-group
+    .form-group.clearfix
       label(for="email") Email
-      input(type="text",
-      data-ng-model="ac.email").form-control.col-sm-6#email
+      .col-sm-4
+        input(type="text",
+        data-ng-model="ac.email").form-control.col-sm-6#email
 
-    .form-group
+    .form-group.clearfix
       label(for="username") Username
-      input(type="text",
-      data-ng-model="ac.username").form-control.col-sm-6#username
+      .col-sm-4
+        input(type="text",
+        data-ng-model="ac.username").form-control.col-sm-6#username
 
-    .form-group
+    .form-group.clearfix
       label(for="password") Password
-      input(type="password",
-      data-ng-model="ac.password").form-control.col-sm-6#password
+      .col-sm-4
+        input(type="password",
+        data-ng-model="ac.password").form-control.col-sm-6#password
 
-    .form-group
+    .form-group.clearfix
+      div(role="alert", data-ng-show="ac.wrongCreate").alert.alert-danger.col-sm-4
+        strong Error while creating user! Please try again later or contact administrator.
+      div(role="alert", data-ng-show="ac.successfulCreate").alert.alert-success.col-sm-4
+        strong User was created successfully.
+
+    .form-group.clearfix
       button(type='submit',
       translate='BTN_ADMIN_UPDATE').btn.btn-success.btn-lg.btn-margin
+      button(type='button', data-ng-show="ac.isAdmin",
+      data-ng-click='ac.create()',
+      translate='BTN_ADMIN_CREATE').btn.btn-info.btn-lg.btn-margin
       button(type="button", data-ng-click='ac.clear()',
       translate='BTN_ADMIN_CLEAR').btn.btn-warning.btn-lg.btn-margin
 
