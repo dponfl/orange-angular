@@ -4,22 +4,26 @@ div(data-ng-controller="LoginController as lc").form-container
   data-ng-submit='lc.login()').form-horisontal
     h1 Login page
     .form-group.clearfix
-      label(for="username") Username
-      input(type="text", placeholder="Enter username",
-      name="username", data-ng-model="lc.username")#username
+      label(for="username").col-sm-2.control-label.text-right Username
+      .col-sm-4
+        input(type="text", placeholder="Enter username",
+        name="username", data-ng-model="lc.username")#username
 
     .form-group.clearfix
-      label(for="password") Password
-      input(type="password", placeholder="Enter password",
-      name="password", data-ng-model="lc.password")#password
+      label(for="password").col-sm-2.control-label.text-right Password
+      .col-sm-4
+        input(type="password", placeholder="Enter password",
+        name="password", data-ng-model="lc.password")#password
 
     .form-group.clearfix
-      div(role="alert", data-ng-show="lc.wrongLogin").alert.alert-danger.col-sm-4
-        strong Wrong login/password!
+      .col-sm-6.col-sm-offset-2
+        div(role="alert", data-ng-show="lc.wrongLogin").alert.alert-danger.col-sm-4
+          strong Wrong login/password!
 
     .form-group.clearfix
-      button(type='submit',
-      translate='BTN_ADMIN_LOGIN').btn.btn-success.btn-lg.btn-margin
-      button(type="button", data-ng-click='lc.clear()',
-      translate='BTN_ADMIN_CLEAR').btn.btn-warning.btn-lg.btn-margin
+      .col-sm-6.col-sm-offset-2
+        button(type='submit',
+        translate='BTN_ADMIN_LOGIN').btn.btn-success.btn-lg.btn-margin
+        button(type="button", data-ng-click='lc.clear()',
+        translate='BTN_ADMIN_CLEAR').btn.btn-warning.btn-lg.btn-margin
 

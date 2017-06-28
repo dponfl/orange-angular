@@ -3,47 +3,72 @@ div(data-ng-controller="AccountController as ac").form-container
   data-ng-submit='ac.update()').form-horisontal
     h1 My Account
     .form-group.clearfix
-      label(for="firstName") First name
+      label(for="firstName").col-sm-2.control-label.text-right First name
       .col-sm-4
         input(type="text",
+        required,
+        data-ng-required-err-type="{{'AV_REQ' | translate}}",
+        data-ng-pattern="/^[a-zA-Zа-яА-Яα-ωΑ-Ω\\s\\-\\.\\']+$/",
+        data-ng-pattern-err-type="{{'FIELD_NAME_ERR' | translate}}",
         data-ng-model="ac.first_name").form-control.col-sm-6#firstName
 
     .form-group.clearfix
-      label(for="lastName") Last name
+      label(for="lastName").col-sm-2.control-label.text-right Last name
       .col-sm-4
         input(type="text",
+        required,
+        data-ng-required-err-type="{{'AV_REQ' | translate}}",
+        data-ng-pattern="/^[a-zA-Zа-яА-Яα-ωΑ-Ω\\s\\-\\.\\']+$/",
+        data-ng-pattern-err-type="{{'FIELD_NAME_ERR' | translate}}",
         data-ng-model="ac.last_name").form-control.col-sm-6#lastName
 
     .form-group.clearfix
-      label(for="email") Email
+      label(for="email").col-sm-2.control-label.text-right Email
       .col-sm-4
         input(type="text",
+        required,
+        data-ng-required-err-type="{{'AV_REQ' | translate}}",
+        data-ng-pattern='/^([0-9a-zA-Z\\.]([\\.\\-\\+\\w])*@([0-9a-zA-Z][-\\w]*[0-9a-zA-Z]*\\.)+[a-zA-Z]{2,9})$/',
+        data-ng-pattern-err-type="{{'FIELD_EMAIL_ERR' | translate}}",
         data-ng-model="ac.email").form-control.col-sm-6#email
 
     .form-group.clearfix
-      label(for="username") Username
+      label(for="username").col-sm-2.control-label.text-right Username
       .col-sm-4
         input(type="text",
+        required,
+        data-ng-required-err-type="{{'AV_REQ' | translate}}",
+        data-ng-pattern="/^[0-9a-zA-Z]+$/",
+        data-ng-pattern-err-type="{{'FIELD_NAME_ERR' | translate}}",
         data-ng-model="ac.username").form-control.col-sm-6#username
 
     .form-group.clearfix
-      label(for="password") Password
+      label(for="password").col-sm-2.control-label.text-right Password
       .col-sm-4
         input(type="password",
+        required,
+        data-ng-required-err-type="{{'AV_REQ' | translate}}",
         data-ng-model="ac.password").form-control.col-sm-6#password
 
     .form-group.clearfix
-      div(role="alert", data-ng-show="ac.wrongCreate").alert.alert-danger.col-sm-4
-        strong Error while creating user! Please try again later or contact administrator.
-      div(role="alert", data-ng-show="ac.successfulCreate").alert.alert-success.col-sm-4
-        strong User was created successfully.
+      .col-sm-6.col-sm-offset-2
+        div(role="alert", data-ng-show="ac.wrongCreate").alert.alert-danger.col-sm-4
+          strong Error while creating user! Please try again later or contact administrator.
+        div(role="alert", data-ng-show="ac.successfulCreate").alert.alert-success.col-sm-4
+          strong User was created successfully:
+          ul
+            li First name: {{ac.createdUser.first_name}}
+            li Last name: {{ac.createdUser.last_name}}
+            li Email: {{ac.createdUser.email}}
+            li Username: {{ac.createdUser.username}}
 
     .form-group.clearfix
-      button(type='submit',
-      translate='BTN_ADMIN_UPDATE').btn.btn-success.btn-lg.btn-margin
-      button(type='button', data-ng-show="ac.isAdmin",
-      data-ng-click='ac.create()',
-      translate='BTN_ADMIN_CREATE').btn.btn-info.btn-lg.btn-margin
-      button(type="button", data-ng-click='ac.clear()',
-      translate='BTN_ADMIN_CLEAR').btn.btn-warning.btn-lg.btn-margin
+      .col-sm-6.col-sm-offset-2
+        button(type='submit',
+        translate='BTN_ADMIN_UPDATE').btn.btn-success.btn-lg.btn-margin
+        button(type='button', data-ng-show="ac.isAdmin",
+        data-ng-click='ac.create()',
+        translate='BTN_ADMIN_CREATE').btn.btn-info.btn-lg.btn-margin
+        button(type="button", data-ng-click='ac.clear()',
+        translate='BTN_ADMIN_CLEAR').btn.btn-warning.btn-lg.btn-margin
 

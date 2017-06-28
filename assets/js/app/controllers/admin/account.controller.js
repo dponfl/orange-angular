@@ -5,10 +5,14 @@
     .module('OrangeClient')
     .controller('AccountController', AccountController);
 
-  AccountController.$inject = ['UserService', '$state', '$rootScope', '$log', '$timeout'];
+  AccountController.$inject = ['UserService', '$state', '$rootScope', '$log',
+    '$timeout', 'lodash'];
 
   /* @ngInject */
-  function AccountController(UserService, $state, $rootScope, $log, $timeout) {
+  function AccountController(UserService, $state, $rootScope, $log,
+                             $timeout, lodash) {
+
+    var _ = lodash;
     var vm = this;
     vm.title = 'AccountController';
 
@@ -26,6 +30,13 @@
       vm.last_name = $rootScope.currentUser.last_name;
       vm.email = $rootScope.currentUser.email;
       vm.username = $rootScope.currentUser.username;
+
+      vm.createdUser = {};
+      vm.createdUser.first_name = '';
+      vm.createdUser.last_name = '';
+      vm.createdUser.email = '';
+      vm.createdUser.username = '';
+
       vm.isAdmin = ($rootScope.currentUser.username == 'admin');
       vm.wrongUpdata = false;
       vm.successfulUpdate = false;
@@ -48,6 +59,11 @@
 
         $log.info('_createUser, data:');
         $log.info(data);
+
+        vm.createdUser.first_name = _.has(data, 'first_name') ? data.first_name : '';
+        vm.createdUser.last_name = _.has(data, 'last_name') ? data.last_name : '';
+        vm.createdUser.email = _.has(data, 'email') ? data.email : '';
+        vm.createdUser.username = _.has(data, 'username') ? data.username : '';
 
         vm.successfulCreate = true;
         vm.wrongCreate = false;
