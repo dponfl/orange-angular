@@ -78,10 +78,6 @@
           text: 'HEADER_ADMIN_ACCOUNT',
         },
         {
-          href: 'logout',
-          text: 'HEADER_ADMIN_LOGOUT',
-        },
-        {
           href: 'longterm_admin',
           text: 'NAV_LONG_TERM',
         },

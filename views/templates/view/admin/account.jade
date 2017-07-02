@@ -1,6 +1,6 @@
 div(data-ng-controller="AccountController as ac").form-container
   form(novalidate='novalidate',
-  data-ng-submit='ac.update()').form-horisontal
+  data-ng-submit="ac.manageCommand()").form-horisontal
     h1 My Account
     .form-group.clearfix
       label(for="firstName").col-sm-2.control-label.text-right First name
@@ -16,8 +16,6 @@ div(data-ng-controller="AccountController as ac").form-container
       label(for="lastName").col-sm-2.control-label.text-right Last name
       .col-sm-4
         input(type="text",
-        required,
-        data-ng-required-err-type="{{'AV_REQ' | translate}}",
         data-ng-pattern="/^[a-zA-Zа-яА-Яα-ωΑ-Ω\\s\\-\\.\\']+$/",
         data-ng-pattern-err-type="{{'FIELD_NAME_ERR' | translate}}",
         data-ng-model="ac.last_name").form-control.col-sm-6#lastName
@@ -52,9 +50,9 @@ div(data-ng-controller="AccountController as ac").form-container
 
     .form-group.clearfix
       .col-sm-6.col-sm-offset-2
-        div(role="alert", data-ng-show="ac.wrongCreate").alert.alert-danger.col-sm-4
+        div(role="alert", data-ng-show="ac.wrongCreate").alert.alert-danger.col-sm-8
           strong Error while creating user! Please try again later or contact administrator.
-        div(role="alert", data-ng-show="ac.successfulCreate").alert.alert-success.col-sm-4
+        div(role="alert", data-ng-show="ac.successfulCreate").alert.alert-success.col-sm-8
           strong User was created successfully:
           ul
             li First name: {{ac.createdUser.first_name}}
@@ -62,13 +60,20 @@ div(data-ng-controller="AccountController as ac").form-container
             li Email: {{ac.createdUser.email}}
             li Username: {{ac.createdUser.username}}
 
+        div(role="alert", data-ng-show="ac.wrongUpdate").alert.alert-danger.col-sm-8
+          strong Error while updating user! Please try again later or contact administrator.
+        div(role="alert", data-ng-show="ac.successfulUpdate").alert.alert-success.col-sm-8
+          strong User was updated successfully!
+
     .form-group.clearfix
       .col-sm-6.col-sm-offset-2
-        button(type='submit',
+        button(type='submit', data-ng-click='ac.updateButton()',
         translate='BTN_ADMIN_UPDATE').btn.btn-success.btn-lg.btn-margin
-        button(type='button', data-ng-show="ac.isAdmin",
-        data-ng-click='ac.create()',
+        button(type='submit', data-ng-show="ac.isAdmin",
+        data-ng-click='ac.createButton()',
         translate='BTN_ADMIN_CREATE').btn.btn-info.btn-lg.btn-margin
         button(type="button", data-ng-click='ac.clear()',
         translate='BTN_ADMIN_CLEAR').btn.btn-warning.btn-lg.btn-margin
+        button(type="button", data-ng-click='ac.logout()',
+        translate='BTN_ADMIN_LOGOUT').btn.btn-danger.btn-lg.btn-margin
 

@@ -36,7 +36,8 @@
     } // _login
 
     function _update(reqObj) {
-      return $http.put('/users/' + reqObj).then(handleSuccess, handleError);
+      return $http.post($rootScope.orangeConfig.host + '/update', reqObj)
+        .then(handleSuccess, handleError);
     } // _update
 
     // private functions

@@ -18,7 +18,7 @@ function translateConfig ($translateProvider) {
     // Admin
     'HEADER_ADMIN_LOGIN': 'Login',
     'HEADER_ADMIN_ACCOUNT': 'Account',
-    'HEADER_ADMIN_LOGOUT': 'Logout',
+    'BTN_ADMIN_LOGOUT': 'Logout',
     'BTN_ADMIN_UPDATE': 'Update',
     'BTN_ADMIN_CREATE': 'Create',
     'BTN_ADMIN_LOGIN': 'Login',
