@@ -20,7 +20,8 @@
     vm.command = null;
     vm.update = _updateUser;
     vm.create = _createUser;
-    vm.clear = _clear;
+    vm.clear = _clearUser;
+    vm.logout = _logoutUser;
     vm.manageCommand = _manageCommand;
     vm.updateButton = _updateUserButton;
     vm.createButton = _createUserButton;
@@ -159,7 +160,7 @@
       });
     } // _createUser
 
-    function _clear() {
+    function _clearUser() {
       vm.first_name = '';
       vm.last_name = '';
       vm.email = '';
@@ -169,7 +170,36 @@
       vm.successfulUpdate = false;
       vm.wrongCreate = false;
       vm.successfulCreate = false;
-    } // _clear
+    } // _clearUser
+
+    function _logoutUser() {
+
+      $log.info('staring _logoutUser...');
+
+      UserService.logoutUser().then(function (data) {
+
+        $log.info('_logoutUser, data:');
+        // $log.info(data);
+
+        $rootScope.currentUser.first_name = '';
+        $rootScope.currentUser.last_name = '';
+        $rootScope.currentUser.email = '';
+        $rootScope.currentUser.username = '';
+
+        vm.first_name = $rootScope.currentUser.first_name;
+        vm.last_name = $rootScope.currentUser.last_name;
+        vm.email = $rootScope.currentUser.email;
+        vm.username = $rootScope.currentUser.username;
+
+        $state.go('home');
+
+      }).catch(function (err) {
+
+        $log.info('_logoutUser, error:');
+        $log.info(err);
+      });
+
+    } // _logout
 
   } // AccountController
 

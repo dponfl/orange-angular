@@ -15,6 +15,7 @@
     service.createUser = _create;
     service.loginUser = _login;
     service.updateUser = _update;
+    service.logoutUser = _logout;
 
     return service;
 
@@ -37,6 +38,11 @@
 
     function _update(reqObj) {
       return $http.post($rootScope.orangeConfig.host + '/update', reqObj)
+        .then(handleSuccess, handleError);
+    } // _update
+
+    function _logout() {
+      return $http.post($rootScope.orangeConfig.host + '/logout')
         .then(handleSuccess, handleError);
     } // _update
 
