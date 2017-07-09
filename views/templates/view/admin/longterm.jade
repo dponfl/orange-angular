@@ -1,10 +1,4 @@
-//
-   Long term
-   =============
-
-   Author:  iStudioDTD.com
-   Updated: March 2017
-   Notes:   Hand coded for Orange Holiday Villas
+h1 Admin
 
 #longterm
   .row#longtermCallout
@@ -26,17 +20,14 @@
                   city-list='e.cityList',
                   room-list='e.roomList')
 
-          div(data-ng-controller='LongCtrl', data-ng-init="updateData()")
+          div(data-ng-controller='LongCtrl', data-ng-init="updateDataAll()")
             //div(data-ng-if='sc.showServerError')
               h1 showServerError
 
             div(data-ng-if='long.showFoundNothing')
               nothing-found
 
-            div(infinite-scroll='activateNextPage()',
-            infinite-scroll-disabled='long.scrollDisabled',
-            infinite-scroll-distance='1',
-            data-ng-hide='long.showFoundNothing').row
+            div(data-ng-hide='long.showFoundNothing').row
               div(data-ng-repeat='panel in long.panels')
                 panel-long(badge='panel.badge',
                 type='panel.type',
@@ -50,4 +41,3 @@
                 index='$index',
                 panel='panel')
 
-            div#spinner-container-long

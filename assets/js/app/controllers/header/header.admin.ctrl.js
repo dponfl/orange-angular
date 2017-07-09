@@ -78,7 +78,7 @@
           text: 'HEADER_ADMIN_ACCOUNT',
         },
         {
-          href: 'longterm_admin',
+          href: 'admin_longterm',
           text: 'NAV_LONG_TERM',
         },
         {

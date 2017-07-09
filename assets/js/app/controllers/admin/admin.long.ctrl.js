@@ -2,12 +2,12 @@
   "use strict";
 
   angular.module('OrangeClient')
-    .controller('LongCtrl', LongCtrl);
+    .controller('AdminLongCtrl', AdminLongCtrl);
 
-  LongCtrl.$inject = ['GeneralConfigService', 'LongService',
+  AdminLongCtrl.$inject = ['GeneralConfigService', 'LongService',
     '$log', '$rootScope', '$scope', 'lodash', '$q', '$alert'];
 
-  function LongCtrl(GeneralConfigService, LongService,
+  function AdminLongCtrl(GeneralConfigService, LongService,
                      $log, $rootScope, $scope, lodash, $q, $alert) {
     var _ = lodash;
     var longBusyAlert = $alert({
@@ -35,17 +35,8 @@
     $rootScope.tagList = $rootScope.orangeConfig.tagList[$rootScope.lang];
 
     $scope.activateNextPage = _activateNextPage;
-    $scope.updateData = _updateData;
-    $scope.updateDataAll = _updateDataAll;
 
-    // $rootScope.$watch('long.FindActivated', _updateData);
-    $rootScope.$watch('long.FindActivated', function () {
-      if ($rootScope.useAll) {
-        _updateDataAll();
-      } else {
-        _updateData();
-      }
-    });
+    $rootScope.$watch('long.FindActivated', _updateData);
 
     $rootScope.$watch('lang', _update);
 
@@ -61,48 +52,7 @@
       }
     });
 
-    function _updateDataAll() {
-      $log.info('_updateDataAll activated...');
-
-      $rootScope.useAll = true;
-
-      $rootScope.long.panels = [];
-      $rootScope.long.busy = false;
-      $rootScope.long.FindActivated = false;
-
-      $rootScope.long.page = 1;
-      $rootScope.long.showNotFound = false;
-      $rootScope.long.showServerError = false;
-      $rootScope.long.scrollDisabled = false;
-      $rootScope.long.showFoundNothing = false;
-
-      $q.when(_performRequestAll($rootScope.long.FilterData))
-        .then(function (res) {
-
-          if (!res.performed &&
-            (res.reason == 'notFound' || res.reason == 'serverError')) {
-            $rootScope.long.scrollDisabled = true;
-            return;
-          }
-
-          var buildResult = _buildPanel(res);
-
-          if (!buildResult.performed) return;
-
-          $rootScope.long.panelsAllLangs = buildResult.data;
-
-          _update();
-
-          return;
-        });
-
-    } // _updateDataAll
-
-
-
     function _updateData () {
-
-      $rootScope.useAll = false;
 
       if ($rootScope.long.FindActivated) {
 
@@ -138,124 +88,6 @@
 
       }
     } // _updateData
-
-    function _performRequestAll(reqParams) {
-
-      if ($rootScope.long.busy) {
-
-        return {
-          performed: false,
-          reason: 'busy',
-          data: {
-            keys: {},
-            objs: {},
-          },
-        };
-      }
-
-      if ($rootScope.long.showNotFound) {
-
-        return {
-          performed: false,
-          reason: 'notFound',
-          data: {
-            keys: {},
-            objs: {},
-          },
-        };
-      }
-
-      if ($rootScope.long.showServerError) {
-
-        return {
-          performed: false,
-          reason: 'serverError',
-          data: {
-            keys: {},
-            objs: {},
-          },
-        };
-      }
-
-      $rootScope.long.busy = true;
-
-      var objReqParams = {show: 1};
-
-      if (typeof reqParams.objnumber != 'undefined' && reqParams.objnumber) {
-        objReqParams.objnumber = reqParams.objnumber;
-      }
-      if (typeof reqParams.city == 'object' && reqParams.city.key != 'any') {
-        objReqParams.city = reqParams.city.key;
-      }
-      if (typeof reqParams.obj == 'object' && reqParams.obj.key != 'any') {
-        objReqParams.obj = reqParams.obj.key;
-      }
-      if (typeof reqParams.room == 'object' && reqParams.room.key != 'any') {
-        objReqParams.room = reqParams.room.key;
-      }
-
-
-      return $q.all({keys: LongService.getAllLongObjectsKeys({show: 1}),
-        objs: LongService.getAllLongObjectsObjs(objReqParams)})
-        .then(function (results) {
-          $rootScope.long.busy = false;
-
-          if (results.objs.status == 404) {
-            $rootScope.long.showNotFound = true;
-            $rootScope.long.showFoundNothing = true;
-
-            return {
-              performed: false,
-              reason: 'notFound',
-              data: {
-                keys: {},
-                objs: {},
-              },
-            };
-          }
-
-          if (results.objs.status == 500) {
-            $rootScope.long.showServerError = true;
-
-            return {
-              performed: false,
-              reason: 'serverError',
-              data: {
-                keys: {},
-                objs: {},
-              },
-            };
-          }
-
-          if (results.objs.status == 200) {
-            $rootScope.long.showNotFound = false;
-            $rootScope.long.showServerError = false;
-
-            return {
-              performed: true,
-              reason: 'ok',
-              data: {
-                keys: results.keys,
-                objs: results.objs.data,
-              },
-            };
-          }
-
-        })
-        .catch(function (err) {
-          // todo: change by Log
-          $log.warn('Error...');
-          $log.error(err);
-
-          return {
-            performed: false,
-            reason: 'error',
-            data: {
-              error: err,
-            },
-          };
-        });
-    } // _performRequestAll
 
     /**
      *

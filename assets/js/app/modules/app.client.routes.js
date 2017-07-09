@@ -200,6 +200,20 @@
           },
         },
         url: '/account',
+      })
+      .state('admin_longterm', {
+        views: {
+          header: {
+            templateUrl: 'templates/view/admin/headerAdmin.html'
+          },
+          main: {
+            templateUrl: 'templates/view/admin/longterm.html',
+          },
+          footer: {
+            templateUrl: 'templates/view/admin/footerAdmin.html',
+          },
+        },
+        url: '/admin_longterm',
       });
 
     // todo: delete
