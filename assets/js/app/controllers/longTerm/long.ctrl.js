@@ -73,7 +73,6 @@
       $rootScope.long.page = 1;
       $rootScope.long.showNotFound = false;
       $rootScope.long.showServerError = false;
-      $rootScope.long.scrollDisabled = false;
       $rootScope.long.showFoundNothing = false;
 
       $q.when(_performRequestAll($rootScope.long.FilterData))
@@ -81,7 +80,6 @@
 
           if (!res.performed &&
             (res.reason == 'notFound' || res.reason == 'serverError')) {
-            $rootScope.long.scrollDisabled = true;
             return;
           }
 
@@ -451,6 +449,7 @@
               src: '../../images/' + oElem.imgMain,
             },
             content: [],
+            contentObj: {},
             gallery: [],
           };
 
@@ -487,7 +486,12 @@
                 key: kElem.key,
                 label: kElem.label,
                 text:tokenVal,
-              })
+              });
+
+              record.contentObj[kElem.key] = {
+                label: kElem.label,
+                text:tokenVal,
+              }
             }
 
           });

@@ -21,15 +21,13 @@ h1 Admin
                   room-list='e.roomList')
 
           div(data-ng-controller='LongCtrl', data-ng-init="updateDataAll()")
-            //div(data-ng-if='sc.showServerError')
-              h1 showServerError
 
             div(data-ng-if='long.showFoundNothing')
               nothing-found
 
             div(data-ng-hide='long.showFoundNothing').row
               div(data-ng-repeat='panel in long.panels')
-                panel-long(badge='panel.badge',
+                panel-admin-tbl(badge='panel.badge',
                 type='panel.type',
                 badge-text='panel.badgeText',
                 obj-number='panel.objNumber',
