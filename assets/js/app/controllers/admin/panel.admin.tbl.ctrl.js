@@ -22,6 +22,9 @@
       $log.info(vm.index);
       $log.info('vm.panel');
       $log.info(vm.panel);
+      $log.info('$rootScope.long.panels:');
+      $log.info($rootScope.long.panels);
+      vm.data = $rootScope.long.panels;
     };
 
     activate();
@@ -31,8 +34,23 @@
     function activate() {
 
       $log.info('activate...');
+      vm.sort = _sort;
+      vm.clearSort = _clearSort;
+      vm.reverse = false;
 
     } // activate()
+
+    function _sort(keyName) {
+      // $log.info('sort...');
+
+      vm.sortKey = keyName;
+      vm.reverse = !vm.reverse;
+    } // _sort
+
+    function _clearSort() {
+      vm.sortKey ='';
+      vm.reverse = false;
+    } // _clearSort
 
 
   }

@@ -26,16 +26,25 @@ h1 Admin
               nothing-found
 
             div(data-ng-hide='long.showFoundNothing').row
-              div(data-ng-repeat='panel in long.panels')
-                panel-admin-tbl(badge='panel.badge',
-                type='panel.type',
-                badge-text='panel.badgeText',
-                obj-number='panel.objNumber',
-                img='panel.img',
-                gallery='panel.gallery',
-                content='panel.content',
-                youtube='panel.youtube',
-                youtubeshow='panel.youtubeshow',
-                index='$index',
-                panel='panel')
+              div(data-ng-controller='PanelAdminTblCtrl as p').col-sm-10
+                h2 List of Objects
+                button(data-ng-click='p.clearSort();').btn.btn-info Clear sort
+                table.table.table-striped.table-hover
+                  thead
+                    tr
+                      th(data-ng-click='p.sort("objNumber");') Object Number
+                        span(data-ng-show="p.sortKey=='objNumber'",
+                        data-ng-class="{'glyphicon-chevron-up':!p.reverse,'glyphicon-chevron-down':p.reverse}").glyphicon.sort-icon
+                      th(data-ng-click='p.sort("contentObj.obj.text");') Object Type
+                        span(data-ng-show="p.sortKey=='contentObj.obj.text'",
+                        data-ng-class="{'glyphicon-chevron-up':!p.reverse,'glyphicon-chevron-down':p.reverse}").glyphicon.sort-icon
+                      th City
+                      th Address
+                  tbody
+                    tr(data-ng-repeat='panel in long.panels|orderBy:p.sortKey:p.reverse')
+                      td {{panel.objNumber}}
+                      td {{panel.contentObj.obj.text}}
+                      td {{panel.contentObj.city.text}}
+                      td {{panel.contentObj.address.text}}
+
 
