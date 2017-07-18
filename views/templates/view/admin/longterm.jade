@@ -32,19 +32,23 @@ h1 Admin
                 table.table.table-striped.table-hover
                   thead
                     tr
-                      th(data-ng-click='p.sort("objNumber");') Object Number
+                      th(data-ng-click='p.sort("objNumber");').sort-th Object Number
                         span(data-ng-show="p.sortKey=='objNumber'",
                         data-ng-class="{'glyphicon-chevron-up':!p.reverse,'glyphicon-chevron-down':p.reverse}").glyphicon.sort-icon
-                      th(data-ng-click='p.sort("contentObj.obj.text");') Object Type
+                      th(data-ng-click='p.sort("contentObj.obj.text");').sort-th Object Type
                         span(data-ng-show="p.sortKey=='contentObj.obj.text'",
                         data-ng-class="{'glyphicon-chevron-up':!p.reverse,'glyphicon-chevron-down':p.reverse}").glyphicon.sort-icon
-                      th City
+                      th(data-ng-click='p.sort("contentObj.city.text");').sort-th City
+                        span(data-ng-show="p.sortKey=='contentObj.city.text'",
+                        data-ng-class="{'glyphicon-chevron-up':!p.reverse,'glyphicon-chevron-down':p.reverse}").glyphicon.sort-icon
                       th Address
                   tbody
-                    tr(data-ng-repeat='panel in long.panels|orderBy:p.sortKey:p.reverse')
+                    tr(data-dir-paginate='panel in long.panels|orderBy:p.sortKey:p.reverse|itemsPerPage:2')
                       td {{panel.objNumber}}
                       td {{panel.contentObj.obj.text}}
                       td {{panel.contentObj.city.text}}
                       td {{panel.contentObj.address.text}}
+
+                dir-pagination-controls(max-size="3", boundary-links="true")
 
 

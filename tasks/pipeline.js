@@ -85,6 +85,9 @@ var jsFilesToInject = [
   // Load angular-dynamic-locale
   'vendor/angular-dynamic-locale/dist/tmhDynamicLocale.js',
 
+  // Load angular-utils-pagination
+  'vendor/angularUtils-pagination/dirPagination.js',
+
   'js/dependencies/Other/**/*.js',
 
   // Load application modules

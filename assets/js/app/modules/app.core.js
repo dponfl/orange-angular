@@ -15,6 +15,7 @@
       'ngAnimate',
       'toaster',
       'tmh.dynamicLocale',
+      'angularUtils.directives.dirPagination',
     ])
     .run(errorMsgResolver);
 
