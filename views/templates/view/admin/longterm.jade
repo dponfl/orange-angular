@@ -6,49 +6,92 @@ h1 Admin
       .well
         .page-header.page-primary
           h1 {{'LONGTERM_PAGE_HEADER_TITLE' | translate}}
-            small(translate='LONGTERM_PAGE_HEADER_SUBTITLE')
 
-        .page-body#block-long
+        div(data-ng-controller='PanelAdminTblCtrl as p').page-body#block-long
 
-          .row#block-long-filter
-            .col-sm-6.col-sm-offset-3#longFilterWrapper
-              .panel.panel-info#longFilter
-                .panel-heading
-                  h3(translate='PANEL_HEADER')
-                div(data-ng-controller='LongFiltersCtrl as e').panel-body
-                  long-filter(obj-list='e.objList',
-                  city-list='e.cityList',
-                  room-list='e.roomList')
+          div(bs-active-pane="p.activeTabMain", bs-tabs)
 
-          div(data-ng-controller='LongCtrl', data-ng-init="updateDataAll()")
+            //=================
+            // New objects
+            //=================
 
-            div(data-ng-if='long.showFoundNothing')
-              nothing-found
+            div(data-title="Create new objects",
+            name="new_obj",
+            bs-pane
+            )
+              h2 New objects...
 
-            div(data-ng-hide='long.showFoundNothing').row
-              div(data-ng-controller='PanelAdminTblCtrl as p').col-sm-10
-                h2 List of Objects
-                button(data-ng-click='p.clearSort();').btn.btn-info Clear sort
-                table.table.table-striped.table-hover
-                  thead
-                    tr
-                      th(data-ng-click='p.sort("objNumber");').sort-th Object Number
-                        span(data-ng-show="p.sortKey=='objNumber'",
-                        data-ng-class="{'glyphicon-chevron-up':!p.reverse,'glyphicon-chevron-down':p.reverse}").glyphicon.sort-icon
-                      th(data-ng-click='p.sort("contentObj.obj.text");').sort-th Object Type
-                        span(data-ng-show="p.sortKey=='contentObj.obj.text'",
-                        data-ng-class="{'glyphicon-chevron-up':!p.reverse,'glyphicon-chevron-down':p.reverse}").glyphicon.sort-icon
-                      th(data-ng-click='p.sort("contentObj.city.text");').sort-th City
-                        span(data-ng-show="p.sortKey=='contentObj.city.text'",
-                        data-ng-class="{'glyphicon-chevron-up':!p.reverse,'glyphicon-chevron-down':p.reverse}").glyphicon.sort-icon
-                      th Address
-                  tbody
-                    tr(data-dir-paginate='panel in long.panels|orderBy:p.sortKey:p.reverse|itemsPerPage:2')
-                      td {{panel.objNumber}}
-                      td {{panel.contentObj.obj.text}}
-                      td {{panel.contentObj.city.text}}
-                      td {{panel.contentObj.address.text}}
 
-                dir-pagination-controls(max-size="3", boundary-links="true")
+            //=================
+            // Existing objects
+            //=================
+
+            div(data-title="Existing objects",
+              name="existing_obj",
+              bs-pane
+            )
+              .row#block-long-filter-admin
+                .col-sm-6.col-sm-offset-3#longFilterWrapper
+                  .panel.panel-info#longFilter
+                    .panel-heading
+                      h3(translate='PANEL_HEADER')
+                    div(data-ng-controller='LongFiltersCtrl as e').panel-body
+                      long-filter(obj-list='e.objList',
+                      city-list='e.cityList',
+                      room-list='e.roomList'
+                      )
+
+              div(data-ng-controller='LongCtrl', data-ng-init="updateDataAll()")
+
+                div(data-ng-if='long.showFoundNothing')
+                  nothing-found
+
+                div(data-ng-hide='long.showFoundNothing').row
+                  .col-sm-10
+                    h2 List of Objects
+                    button(data-ng-click='p.clearSort();').btn.btn-info Clear sort
+                    table.table.table-striped.table-hover
+                      thead
+                        tr
+                          th(data-ng-click='p.sort("objNumber");').sort-th Object Number
+                            span(data-ng-show="p.sortKey=='objNumber'",
+                            data-ng-class="{'glyphicon-chevron-up':!p.reverse,'glyphicon-chevron-down':p.reverse}").glyphicon.sort-icon
+                          th(data-ng-click='p.sort("contentObj.obj.text");').sort-th Object Type
+                            span(data-ng-show="p.sortKey=='contentObj.obj.text'",
+                            data-ng-class="{'glyphicon-chevron-up':!p.reverse,'glyphicon-chevron-down':p.reverse}").glyphicon.sort-icon
+                          th(data-ng-click='p.sort("contentObj.city.text");').sort-th City
+                            span(data-ng-show="p.sortKey=='contentObj.city.text'",
+                            data-ng-class="{'glyphicon-chevron-up':!p.reverse,'glyphicon-chevron-down':p.reverse}").glyphicon.sort-icon
+                          th Address
+                      tbody
+                        tr(data-dir-paginate='panel in long.panels|orderBy:p.sortKey:p.reverse|itemsPerPage:2')
+                          td {{panel.objNumber}}
+                          td {{panel.contentObj.obj.text}}
+                          td {{panel.contentObj.city.text}}
+                          td {{panel.contentObj.address.text}}
+
+                    dir-pagination-controls(max-size="3", boundary-links="true")
+
+                .row
+                  div(bs-active-pane="p.activeTabEdit", bs-tabs)
+
+                    //=================
+                    // Existing objects
+                    //=================
+
+                    div(data-title="English",
+                    name="lang_eng",
+                    bs-pane
+                    )
+                      h2 English !!!!!!!
+
+                    div(data-title="Russian",
+                    name="lang_rus",
+                    bs-pane
+                    )
+                      h2 Russian !!!!!!
+
+
+
 
 

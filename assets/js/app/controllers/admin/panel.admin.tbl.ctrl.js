@@ -38,6 +38,9 @@
       vm.clearSort = _clearSort;
       vm.reverse = false;
 
+      vm.activeTabMain = 'new_obj';
+      vm.activeTabEdit = 'lang_eng';
+
     } // activate()
 
     function _sort(keyName) {
