@@ -209,6 +209,16 @@ function translateConfig ($translateProvider) {
     'HEADER_SEND_MESSAGE_1': 'Отправить',
     'HEADER_SEND_MESSAGE_2': 'сообщение',
 
+    // Admin
+    'HEADER_ADMIN_LOGIN': 'Вход',
+    'HEADER_ADMIN_ACCOUNT': 'Профиль',
+    'BTN_ADMIN_LOGOUT': 'Выход',
+    'BTN_ADMIN_UPDATE': 'Обновить',
+    'BTN_ADMIN_CREATE': 'Создать',
+    'BTN_ADMIN_LOGIN': 'Вход',
+    'BTN_ADMIN_CLEAR': 'Очистить',
+
+
     // Footer
     'FOOTER_ABOUT_COMPANY_TITLE': 'О нас',
     'FOOTER_ABOUT_COMPANY_TEXT': 'Лорем ипсум долор сит амет, не дицит легере еос, ' +

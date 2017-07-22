@@ -1,9 +1,9 @@
 div(data-ng-controller="AccountController as ac").form-container
   form(novalidate='novalidate',
   data-ng-submit="ac.manageCommand()").form-horisontal
-    h1 My Account
+    h1 Профиль
     .form-group.clearfix
-      label(for="firstName").col-sm-2.control-label.text-right First name
+      label(for="firstName").col-sm-2.control-label.text-right Имя
       .col-sm-4
         input(type="text",
         required,
@@ -13,7 +13,7 @@ div(data-ng-controller="AccountController as ac").form-container
         data-ng-model="ac.first_name").form-control.col-sm-6#firstName
 
     .form-group.clearfix
-      label(for="lastName").col-sm-2.control-label.text-right Last name
+      label(for="lastName").col-sm-2.control-label.text-right Фамилия
       .col-sm-4
         input(type="text",
         data-ng-pattern="/^[a-zA-Zа-яА-Яα-ωΑ-Ω\\s\\-\\.\\']+$/",
@@ -31,7 +31,7 @@ div(data-ng-controller="AccountController as ac").form-container
         data-ng-model="ac.email").form-control.col-sm-6#email
 
     .form-group.clearfix
-      label(for="username").col-sm-2.control-label.text-right Username
+      label(for="username").col-sm-2.control-label.text-right Алиас пользователя
       .col-sm-4
         input(type="text",
         required,
@@ -41,7 +41,7 @@ div(data-ng-controller="AccountController as ac").form-container
         data-ng-model="ac.username").form-control.col-sm-6#username
 
     .form-group.clearfix
-      label(for="password").col-sm-2.control-label.text-right Password
+      label(for="password").col-sm-2.control-label.text-right Пароль
       .col-sm-4
         input(type="password",
         required,
@@ -53,12 +53,12 @@ div(data-ng-controller="AccountController as ac").form-container
         div(role="alert", data-ng-show="ac.wrongCreate").alert.alert-danger.col-sm-8
           strong Error while creating user! Please try again later or contact administrator.
         div(role="alert", data-ng-show="ac.successfulCreate").alert.alert-success.col-sm-8
-          strong User was created successfully:
+          strong Новый пользователь был успешно создан:
           ul
-            li First name: {{ac.createdUser.first_name}}
-            li Last name: {{ac.createdUser.last_name}}
+            li Имя: {{ac.createdUser.first_name}}
+            li Фамилия: {{ac.createdUser.last_name}}
             li Email: {{ac.createdUser.email}}
-            li Username: {{ac.createdUser.username}}
+            li Алиас пользователя: {{ac.createdUser.username}}
 
         div(role="alert", data-ng-show="ac.wrongUpdate").alert.alert-danger.col-sm-8
           strong Error while updating user! Please try again later or contact administrator.

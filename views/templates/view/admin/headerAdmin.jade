@@ -32,20 +32,6 @@ data-offset-top="200").navbar.navbar-default
               data-ui-sref-active="menu-active",
               translate='{{elem.text}}')
 
-          li(data-ng-controller='translateCtrl as t').dropdown
-            div(data-toggle="dropdown").dropdown-toggle.flag-icon-toggle
-              img(ng-src='{{t.getLangIcon();}}')
-
-            ul.dropdown-menu
-              li
-                button(data-ng-click='t.changeLanguage("en");').btn.btn-link.flag-icon
-                  img(src='../../images/flag_icon_en.png')
-                  | &nbsp;&nbsp;&nbsp;English
-              li(data-ng-controller='translateCtrl as t')
-                button(data-ng-click='t.changeLanguage("ru");').btn.btn-link.flag-icon
-                  img(src='../../images/flag_icon_ru.png')
-                  | &nbsp;&nbsp;&nbsp;Русский
-
         div(data-ng-if="flash").flash-message
           div(class="{{'alert alert-' + flash.type}}",
           data-ng-bind="flash.message")

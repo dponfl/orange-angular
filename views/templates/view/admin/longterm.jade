@@ -1,5 +1,3 @@
-h1 Admin
-
 #longterm
   .row#longtermCallout
     .cal-12
@@ -15,18 +13,18 @@ h1 Admin
             // New objects
             //=================
 
-            div(data-title="Create new objects",
+            div(data-title="Создание новых объектов",
             name="new_obj",
             bs-pane
             )
-              h2 New objects...
+              h2 Новый объект...
 
 
             //=================
             // Existing objects
             //=================
 
-            div(data-title="Existing objects",
+            div(data-title="Редактирование объектов",
               name="existing_obj",
               bs-pane
             )
@@ -48,21 +46,21 @@ h1 Admin
 
                 div(data-ng-hide='long.showFoundNothing').row
                   .col-sm-10
-                    h2 List of Objects
-                    button(data-ng-click='p.clearSort();').btn.btn-info Clear sort
+                    h2 Список объектов
+                    button(data-ng-click='p.clearSort();').btn.btn-info Очистить сортировку
                     table.table.table-striped.table-hover
                       thead
                         tr
-                          th(data-ng-click='p.sort("objNumber");').sort-th Object Number
+                          th(data-ng-click='p.sort("objNumber");').sort-th Номер объекта
                             span(data-ng-show="p.sortKey=='objNumber'",
                             data-ng-class="{'glyphicon-chevron-up':!p.reverse,'glyphicon-chevron-down':p.reverse}").glyphicon.sort-icon
-                          th(data-ng-click='p.sort("contentObj.obj.text");').sort-th Object Type
+                          th(data-ng-click='p.sort("contentObj.obj.text");').sort-th Тип объекта
                             span(data-ng-show="p.sortKey=='contentObj.obj.text'",
                             data-ng-class="{'glyphicon-chevron-up':!p.reverse,'glyphicon-chevron-down':p.reverse}").glyphicon.sort-icon
-                          th(data-ng-click='p.sort("contentObj.city.text");').sort-th City
+                          th(data-ng-click='p.sort("contentObj.city.text");').sort-th Город
                             span(data-ng-show="p.sortKey=='contentObj.city.text'",
                             data-ng-class="{'glyphicon-chevron-up':!p.reverse,'glyphicon-chevron-down':p.reverse}").glyphicon.sort-icon
-                          th Address
+                          th Адрес объекта
                       tbody
                         tr(data-dir-paginate='panel in long.panels|orderBy:p.sortKey:p.reverse|itemsPerPage:2')
                           td {{panel.objNumber}}
@@ -79,13 +77,13 @@ h1 Admin
                     // Existing objects
                     //=================
 
-                    div(data-title="English",
+                    div(data-title="Английский",
                     name="lang_eng",
                     bs-pane
                     )
                       h2 English !!!!!!!
 
-                    div(data-title="Russian",
+                    div(data-title="Русский",
                     name="lang_rus",
                     bs-pane
                     )
