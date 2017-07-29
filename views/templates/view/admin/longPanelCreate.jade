@@ -1,0 +1,67 @@
+form(novalidate='novalidate',
+data-ng-submit='$ctrl.create()').form-horisontal
+
+  fieldset
+
+    .form-group.clearfix
+      label(for='objectExclusiveLabel', translate='LBL_OBJ_EXCLUSIVE').col-sm-2.control-label.text-right
+      .col-sm-4
+        #objectExclusiveLabel
+          label(for='objectExclusive')
+            input(type='radio',
+              data-ng-model='$ctrl.formData.exclusive',
+              value="exclusive"
+            )#objectExclusive
+            | Да
+          label(for='objectNotExclusive')
+            input(type='radio',
+              data-ng-model='$ctrl.formData.exclusive',
+              value="not_exclusive"
+            )#objectNotExclusive
+            | Нет
+
+    .form-group.clearfix
+      label(for='objectNumber', translate='LBL_OBJ_NUM').col-sm-2.control-label.text-right
+      .col-sm-3
+        input(type="text",
+        data-ng-pattern='/^[A-Za-z0-9_]{1,15}$/',
+        data-ng-minLength='5',
+        data-ng-minLength-err-type='tooShort',
+        data-ng-required-err-type="{{'AV_REQ' | translate}}",
+        placeholder="{{'OBJ_NUM_PLACEHOLDER' | translate}}",
+        data-ng-model='$ctrl.formData.objnumber').form-control#objectNumber
+
+    .form-group.clearfix
+      label(for='objectType', translate='LBL_OBJ').col-sm-2.control-label.text-right
+      .col-sm-4
+        select(name='objectType',
+        data-ng-options='option.val for option in $ctrl.objList track by option.key',
+        data-ng-model='$ctrl.formData.obj',
+        object-form-select-validation).form-control#objectType
+
+    .form-group.clearfix
+      label(for='city', translate='LBL_CITY').col-sm-2.control-label.text-right
+      .col-sm-4
+        select(name='city',
+        data-ng-options='option.val for option in $ctrl.cityList track by option.key',
+        data-ng-model='$ctrl.formData.city',
+        object-form-select-validation).form-control#city
+
+    .form-group.clearfix
+      label(for='rooms', translate='LBL_ROOM').col-sm-2.control-label.text-right
+      .col-sm-4
+        select(name='rooms',
+        data-ng-options='option.val for option in $ctrl.roomList track by option.key',
+        data-ng-model='$ctrl.formData.room',
+        object-form-select-validation).form-control#rooms
+
+
+    .form-group.clearfix
+      .col-lg-7.col-lg-offset-2.col-md-offset-1.col-sm-offset-1
+        button(type='submit',
+        translate='BTN_ADMIN_CREATE').btn.btn-success.btn-lg.btn-margin
+        button(data-ng-click='$ctrl.clear()',
+        translate='BTN_CLR').btn.btn-warning.btn-lg.btn-margin
+
+    div
+      pre {{$ctrl.formData.exclusive}}

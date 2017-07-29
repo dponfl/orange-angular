@@ -29,6 +29,7 @@
     errorMessages['nameErrRu'] = 'Неверное имя';
     errorMessages['emailErrEn'] = 'Wrong email';
     errorMessages['emailErrRu'] = 'Неверный email';
+    errorMessages['objectFormSelectValidation'] = 'Выберите значение кроме "Любой"';
   }
 
   function errorMsgResolver(defaultErrorMessageResolver) {

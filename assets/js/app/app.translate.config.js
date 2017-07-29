@@ -217,7 +217,7 @@ function translateConfig ($translateProvider) {
     'BTN_ADMIN_CREATE': 'Создать',
     'BTN_ADMIN_LOGIN': 'Вход',
     'BTN_ADMIN_CLEAR': 'Очистить',
-
+    'LBL_OBJ_EXCLUSIVE': 'Эксклюзивный объект',
 
     // Footer
     'FOOTER_ABOUT_COMPANY_TITLE': 'О нас',

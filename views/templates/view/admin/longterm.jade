@@ -16,8 +16,13 @@
             div(data-title="Создание новых объектов",
             name="new_obj",
             bs-pane
-            )
-              h2 Новый объект...
+            ).tabs-block
+
+              div(data-ng-controller='LongAdminCtrl as lac')
+                long-admin-create(obj-list='lac.objList',
+                  city-list='lac.cityList',
+                  room-list='lac.roomList'
+                )
 
 
             //=================
@@ -27,14 +32,14 @@
             div(data-title="Редактирование объектов",
               name="existing_obj",
               bs-pane
-            )
+            ).tabs-block
               .row#block-long-filter-admin
                 .col-sm-6.col-sm-offset-3#longFilterWrapper
                   .panel.panel-info#longFilter
                     .panel-heading
                       h3(translate='PANEL_HEADER')
-                    div(data-ng-controller='LongFiltersCtrl as e').panel-body
-                      long-filter(obj-list='e.objList',
+                    div(data-ng-controller='AdminFiltersCtrl as e').panel-body
+                      admin-object-filter(obj-list='e.objList',
                       city-list='e.cityList',
                       room-list='e.roomList'
                       )

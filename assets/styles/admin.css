@@ -30,3 +30,12 @@
 .tab-pane.am-fade.active-add {
   animation-name: fadeIn;
 }
+
+.tabs-block {
+  margin-top: 30px;
+}
+
+#objectExclusiveLabel label {
+  margin-left: 5px;
+  margin-right: 5px;
+}
