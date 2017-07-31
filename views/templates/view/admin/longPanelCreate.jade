@@ -4,6 +4,18 @@ data-ng-submit='$ctrl.create()').form-horisontal
   fieldset
 
     .form-group.clearfix
+      label(for='objectNumber', translate='LBL_OBJ_NUM').col-sm-2.control-label.text-right
+      .col-sm-3
+        input(type="text",
+        data-ng-pattern='/^[A-Za-z0-9_]{1,15}$/',
+        data-ng-minLength='5',
+        data-ng-minLength-err-type='tooShort',
+        data-ng-required-err-type="{{'AV_REQ' | translate}}",
+        placeholder="{{'OBJ_NUM_PLACEHOLDER' | translate}}",
+        data-ng-model='$ctrl.formData.objnumber').form-control#objectNumber
+
+
+    .form-group.clearfix
       label(for='objectExclusiveLabel', translate='LBL_OBJ_EXCLUSIVE').col-sm-2.control-label.text-right
       .col-sm-4
         #objectExclusiveLabel
@@ -21,15 +33,45 @@ data-ng-submit='$ctrl.create()').form-horisontal
             | Нет
 
     .form-group.clearfix
-      label(for='objectNumber', translate='LBL_OBJ_NUM').col-sm-2.control-label.text-right
-      .col-sm-3
-        input(type="text",
-        data-ng-pattern='/^[A-Za-z0-9_]{1,15}$/',
-        data-ng-minLength='5',
-        data-ng-minLength-err-type='tooShort',
-        data-ng-required-err-type="{{'AV_REQ' | translate}}",
-        placeholder="{{'OBJ_NUM_PLACEHOLDER' | translate}}",
-        data-ng-model='$ctrl.formData.objnumber').form-control#objectNumber
+      label(for='objectShowLabel', translate='LBL_OBJ_SHOW').col-sm-2.control-label.text-right
+      .col-sm-4
+        #objectShowLabel
+          label(for='objectShow')
+            input(type='radio',
+              data-ng-model='$ctrl.formData.show',
+              value="show"
+            )#objectShow
+            | Да
+          label(for='objectNotShow')
+            input(type='radio',
+              data-ng-model='$ctrl.formData.show',
+              value="not_show"
+            )#objectNotShow
+            | Нет
+
+    .form-group.clearfix
+      label(for='objectHomeLabel', translate='LBL_OBJ_HOME').col-sm-2.control-label.text-right
+      .col-sm-4
+        #objectHomeLabel
+          label(for='objectHome')
+            input(type='radio',
+              data-ng-model='$ctrl.formData.home',
+              value="home"
+            )#objectHome
+            | Да
+          label(for='objectNotHome')
+            input(type='radio',
+              data-ng-model='$ctrl.formData.home',
+              value="not_home"
+            )#objectNotHome
+            | Нет
+
+    .form-group.clearfix
+      label(for='tagType', translate='LBL_TAG').col-sm-2.control-label.text-right
+      .col-sm-4
+        select(name='tagType',
+        data-ng-options='option.val for option in $ctrl.tagList track by option.key',
+        data-ng-model='$ctrl.formData.tag').form-control#tagType
 
     .form-group.clearfix
       label(for='objectType', translate='LBL_OBJ').col-sm-2.control-label.text-right
@@ -54,6 +96,19 @@ data-ng-submit='$ctrl.create()').form-horisontal
         data-ng-options='option.val for option in $ctrl.roomList track by option.key',
         data-ng-model='$ctrl.formData.room',
         object-form-select-validation).form-control#rooms
+
+    .form-group.clearfix
+      label(for='imgMain', translate='LBL_OBJ_IMG_MAIN').col-sm-2.control-label.text-right
+      .col-sm-5
+        input(type="file",
+        data-ng-model='$ctrl.formData.imgMain')#imgMain
+
+    .form-group.clearfix
+      label(for='imgGallery', translate='LBL_OBJ_IMG_GALLERY').col-sm-2.control-label.text-right
+      .col-sm-5
+        input(type="file",
+        multiple,
+        data-ng-model='$ctrl.formData.imgGallery')#imgGallery
 
 
     .form-group.clearfix

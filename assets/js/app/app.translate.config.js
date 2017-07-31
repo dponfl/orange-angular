@@ -218,6 +218,9 @@ function translateConfig ($translateProvider) {
     'BTN_ADMIN_LOGIN': 'Вход',
     'BTN_ADMIN_CLEAR': 'Очистить',
     'LBL_OBJ_EXCLUSIVE': 'Эксклюзивный объект',
+    'LBL_OBJ_SHOW': 'Объект открыт для показа',
+    'LBL_OBJ_HOME': 'Размещать объект на главной странице',
+    'LBL_TAG': 'Тег',
 
     // Footer
     'FOOTER_ABOUT_COMPANY_TITLE': 'О нас',

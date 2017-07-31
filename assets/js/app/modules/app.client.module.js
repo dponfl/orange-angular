@@ -10,12 +10,12 @@
     ])
     .run(setupGlobalScope);
 
-  setupGlobalScope.$inject = ['$rootScope', 'configOrange'];
-  function setupGlobalScope($rootScope, configOrange) {
+  setupGlobalScope.$inject = ['$rootScope', 'configOrange', '$log'];
+  function setupGlobalScope($rootScope, configOrange, $log) {
 
 
     // todo: delete
-    console.log('OrangeClient');
+    $log.info('OrangeClient');
 
 
     //Generale
@@ -80,7 +80,8 @@
     $rootScope.exclusive.panels = [];
     $rootScope.exclusive.busy = false;
 
-
+    $log.info('OrangeClient, $rootScope:');
+    $log.info($rootScope);
   }
 
 })();

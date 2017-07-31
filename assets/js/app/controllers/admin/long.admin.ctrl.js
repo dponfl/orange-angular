@@ -5,11 +5,12 @@
     .module('OrangeClient')
     .controller('LongAdminCtrl', LongAdminCtrl);
 
-  LongAdminCtrl.$inject = ['LongService', '$log', '$rootScope', '$scope', '$q'];
+  LongAdminCtrl.$inject = ['LongService', '$log', '$rootScope', '$scope', '$q', 'lodash'];
 
   /* @ngInject */
-  function LongAdminCtrl(LongService, $log, $rootScope, $scope, $q) {
+  function LongAdminCtrl(LongService, $log, $rootScope, $scope, $q, lodash) {
     var vm = this;
+    var _ = lodash;
     vm.create = _create;
     vm.clear = _clear;
 
@@ -17,17 +18,21 @@
     vm.objList = $rootScope.orangeConfig.objList[$rootScope.lang];
     vm.cityList = $rootScope.orangeConfig.cityList[$rootScope.lang];
     vm.roomList = $rootScope.orangeConfig.roomList[$rootScope.lang];
+    vm.tagList = _.concat({key: 'none', val: 'Без тега'},
+      $rootScope.orangeConfig.tagList[$rootScope.lang]);
 
     vm.formData = {};
 
-    vm.formData.obj = $rootScope.orangeConfig.objList[$rootScope.lang][0];
-    vm.formData.city = $rootScope.orangeConfig.cityList[$rootScope.lang][0];
-    vm.formData.room = $rootScope.orangeConfig.roomList[$rootScope.lang][0];
+    vm.formData.obj = vm.objList[0];
+    vm.formData.city = vm.cityList[0];
+    vm.formData.room = vm.roomList[0];
+    vm.formData.tag = vm.tagList[0];
     vm.formData.objnumber = '';
     vm.formData.exclusive = 'not_exclusive';
-
-
-
+    vm.formData.show = 'show';
+    vm.formData.home = 'not_home';
+    vm.formData.imgMain = '';
+    vm.formData.imgGallery = '';
 
     function _create() {
       var createResult;
@@ -105,11 +110,14 @@
 
     function _clear() {
 
-      vm.formData.obj = $rootScope.orangeConfig.objList[$rootScope.lang][0];
-      vm.formData.city = $rootScope.orangeConfig.cityList[$rootScope.lang][0];
-      vm.formData.room = $rootScope.orangeConfig.roomList[$rootScope.lang][0];
+      vm.formData.obj = vm.objList[0];
+      vm.formData.city = vm.cityList[0];
+      vm.formData.room = vm.roomList[0];
+      vm.formData.tag = vm.tagList[0];
       vm.formData.objnumber = '';
       vm.formData.exclusive = 'not_exclusive';
+      vm.formData.show = 'show';
+      vm.formData.home = 'not_home';
     } // _clear
   }
 })();
