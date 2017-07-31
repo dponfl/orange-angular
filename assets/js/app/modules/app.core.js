@@ -16,6 +16,7 @@
       'toaster',
       'tmh.dynamicLocale',
       'angularUtils.directives.dirPagination',
+      'angularFileUpload',
     ])
     .run(errorMsgResolver);
 

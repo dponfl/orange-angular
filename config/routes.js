@@ -112,5 +112,9 @@ module.exports.routes = {
   'POST /auth/local': 'AuthController.callback',
   'POST /auth/local/:action': 'AuthController.callback',
 
+  // FileUpload
+
+  'POST /file/upload': 'FileController.upload',
+
 };
 

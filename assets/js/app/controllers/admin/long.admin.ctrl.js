@@ -5,14 +5,20 @@
     .module('OrangeClient')
     .controller('LongAdminCtrl', LongAdminCtrl);
 
-  LongAdminCtrl.$inject = ['LongService', '$log', '$rootScope', '$scope', '$q', 'lodash'];
+  LongAdminCtrl.$inject = ['LongService', '$log', '$rootScope', '$scope', '$q',
+    'lodash', 'FileUploader'];
 
   /* @ngInject */
-  function LongAdminCtrl(LongService, $log, $rootScope, $scope, $q, lodash) {
+  function LongAdminCtrl(LongService, $log, $rootScope, $scope, $q,
+                         lodash, FileUploader) {
     var vm = this;
     var _ = lodash;
     vm.create = _create;
     vm.clear = _clear;
+
+    var uploader = $scope.uploader = new FileUploader({
+      url: $rootScope.orangeConfig.host + '/file/upload'
+    });
 
 
     vm.objList = $rootScope.orangeConfig.objList[$rootScope.lang];
@@ -119,5 +125,7 @@
       vm.formData.show = 'show';
       vm.formData.home = 'not_home';
     } // _clear
+
+
   }
 })();

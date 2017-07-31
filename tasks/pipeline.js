@@ -88,6 +88,9 @@ var jsFilesToInject = [
   // Load angular-utils-pagination
   'vendor/angularUtils-pagination/dirPagination.js',
 
+  // Load angular-file-upload
+  'vendor/angular-file-upload/dist/angular-file-upload.js',
+
   'js/dependencies/Other/**/*.js',
 
   // Load application modules
