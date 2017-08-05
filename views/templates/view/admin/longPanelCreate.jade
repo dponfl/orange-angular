@@ -7,12 +7,13 @@ data-ng-submit='$ctrl.create()').form-horisontal
       label(for='objectNumber', translate='LBL_OBJ_NUM').col-sm-2.control-label.text-right
       .col-sm-3
         input(type="text",
-        data-ng-pattern='/^[A-Za-z0-9_]{1,15}$/',
-        data-ng-minLength='5',
-        data-ng-minLength-err-type='tooShort',
-        data-ng-required-err-type="{{'AV_REQ' | translate}}",
-        placeholder="{{'OBJ_NUM_PLACEHOLDER' | translate}}",
-        data-ng-model='$ctrl.formData.objnumber').form-control#objectNumber
+          data-ng-pattern='/^[A-Za-z0-9_]{1,15}$/',
+          data-ng-minLength='5',
+          data-ng-minLength-err-type='tooShort',
+          data-ng-required-err-type="{{'AV_REQ' | translate}}",
+          placeholder="{{'OBJ_NUM_PLACEHOLDER' | translate}}",
+          data-ng-model='$ctrl.formData.objnumber'
+        ).form-control#objectNumber
 
 
     .form-group.clearfix
@@ -70,66 +71,70 @@ data-ng-submit='$ctrl.create()').form-horisontal
       label(for='tagType', translate='LBL_TAG').col-sm-2.control-label.text-right
       .col-sm-4
         select(name='tagType',
-        data-ng-options='option.val for option in $ctrl.tagList track by option.key',
-        data-ng-model='$ctrl.formData.tag').form-control#tagType
+          data-ng-options='option.val for option in $ctrl.tagList track by option.key',
+          data-ng-model='$ctrl.formData.tag'
+        ).form-control#tagType
 
     .form-group.clearfix
       label(for='objectType', translate='LBL_OBJ').col-sm-2.control-label.text-right
       .col-sm-4
         select(name='objectType',
-        data-ng-options='option.val for option in $ctrl.objList track by option.key',
-        data-ng-model='$ctrl.formData.obj',
-        object-form-select-validation).form-control#objectType
+          data-ng-options='option.val for option in $ctrl.objList track by option.key',
+          data-ng-model='$ctrl.formData.obj',
+          object-form-select-validation
+        ).form-control#objectType
 
     .form-group.clearfix
       label(for='city', translate='LBL_CITY').col-sm-2.control-label.text-right
       .col-sm-4
         select(name='city',
-        data-ng-options='option.val for option in $ctrl.cityList track by option.key',
-        data-ng-model='$ctrl.formData.city',
-        object-form-select-validation).form-control#city
+          data-ng-options='option.val for option in $ctrl.cityList track by option.key',
+          data-ng-model='$ctrl.formData.city',
+          object-form-select-validation
+        ).form-control#city
 
     .form-group.clearfix
       label(for='rooms', translate='LBL_ROOM').col-sm-2.control-label.text-right
       .col-sm-4
         select(name='rooms',
-        data-ng-options='option.val for option in $ctrl.roomList track by option.key',
-        data-ng-model='$ctrl.formData.room',
-        object-form-select-validation).form-control#rooms
+          data-ng-options='option.val for option in $ctrl.roomList track by option.key',
+          data-ng-model='$ctrl.formData.room',
+          object-form-select-validation
+        ).form-control#rooms
 
-    div(data-ng-controller='ImgUploadCtrl',
-    nv-file-drop="",
-    uploader="uploader"
+    div(nv-file-drop="",
+    uploader="$ctrl.uploader",
     ).form-group.clearfix
       .row
         .col-md-3
           h3 Select files
           input(type="file",
-          nv-file-select="",
-          uploader="uploader",
-          multiple)
+            nv-file-select="",
+            uploader="$ctrl.uploader",
+            multiple
+          )
 
         .col-md-9.file-upload-block
           h2 Upload images
           h3 The queue
-          p Queue length: {{uploader.queue.length}}
+          p Queue length: {{$ctrl.uploader.queue.length}}
 
           table.table
             thead
               tr
                 th(width="50%") Name
-                th(data-ng-show="uploader.isHTML5") Size
-                th(data-ng-show="uploader.isHTML5") Progress
+                th(data-ng-show="$ctrl.uploader.isHTML5") Size
+                th(data-ng-show="$ctrl.uploader.isHTML5") Progress
                 th Status
                 th Actions
             tbody
-              tr(data-ng-repeat="item in uploader.queue")
+              tr(data-ng-repeat="item in $ctrl.uploader.queue")
                 td
                   strong {{ item.file.name }}
-                  div(ng-show="uploader.isHTML5",
-                  ng-thumb="{ file: item._file, height: 100 }")
-                td(data-ng-show="uploader.isHTML5" nowrap) {{ item.file.size/1024/1024|number:2 }} MB
-                td(data-ng-show="uploader.isHTML5")
+                  div(ng-show="$ctrl.uploader.isHTML5",
+                    ng-thumb="{ file: item._file, height: 100 }")
+                td(data-ng-show="$ctrl.uploader.isHTML5" nowrap) {{ item.file.size/1024/1024|number:2 }} MB
+                td(data-ng-show="$ctrl.uploader.isHTML5")
                   .progress
                     div(role="progressbar",
                     data-ng-style="{ 'width': item.progress + '%' }").progress-bar
@@ -142,19 +147,42 @@ data-ng-submit='$ctrl.create()').form-horisontal
                     i.glyphicon.glyphicon-remove
                 td(nowrap)
                   button(type="button",
-                  data-ng-click="item.upload()",
-                  data-ng-disabled="item.isReady || item.isUploading || item.isSuccess"
+                    data-ng-click="item.upload()",
+                    data-ng-disabled="item.isReady || item.isUploading || item.isSuccess"
                   ).btn.btn-success.btn-xs
                     span.glyphicon.glyphicon-upload &nbsp;Upload
                   button(type="button",
-                  data-ng-click="item.cancel()",
-                  data-ng-disabled="!item.isUploading"
+                    data-ng-click="item.cancel()",
+                    data-ng-disabled="!item.isUploading"
                   ).btn.btn-warning.btn-xs
                     span.glyphicon.glyphicon-ban-circle &nbsp;Cancel
                   button(type="button",
-                  data-ng-click="item.remove()"
+                    data-ng-click="item.remove()"
                   ).btn.btn-danger.btn-xs
                     span.glyphicon.glyphicon-trash &nbsp;Remove
+
+          div
+            div Queue progress:
+              .progress.queue-progress
+                div(role="progressbar",
+                  data-ng-style="{ 'width': $ctrl.uploader.progress + '%' }"
+                ).progress-bar
+
+            button(type="button",
+              data-ng-click="$ctrl.uploader.uploadAll()",
+              data-ng-disabled="!$ctrl.uploader.getNotUploadedItems().length"
+            ).btn.btn-success.btn-s
+              span.glyphicon.glyphicon-upload &nbsp;Upload all
+            button(type="button",
+              data-ng-click="$ctrl.uploader.cancelAll()",
+              data-ng-disabled="!$ctrl.uploader.isUploading"
+            ).btn.btn-warning.btn-s
+              span.glyphicon.glyphicon-ban-circle &nbsp;Cancel all
+            button(type="button",
+              data-ng-click="$ctrl.uploader.clearQueue()",
+              data-ng-disabled="!$ctrl.uploader.queue.length"
+            ).btn.btn-danger.btn-s
+              span.glyphicon.glyphicon-trash &nbsp;Remove all
 
 
     .form-group.clearfix

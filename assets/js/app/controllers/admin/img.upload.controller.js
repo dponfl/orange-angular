@@ -3,18 +3,20 @@
 
   angular
     .module('OrangeClient')
-    .controller('ImgUploadCtrl', ImgUploadCtrl);
+    .controller('ImgUploadCtrlOld', ImgUploadCtrlOld);
 
-  ImgUploadCtrl.$inject = ['$scope', 'FileUploader'];
+  ImgUploadCtrlOld.$inject = ['$scope', 'FileUploader'];
 
   /* @ngInject */
-  function ImgUploadCtrl($scope, FileUploader) {
+  function ImgUploadCtrlOld($scope, FileUploader) {
     var vm = this;
-    vm.title = 'ImgUploadCtrl';
+    vm.title = 'ImgUploadCtrlOld';
+    vm.objectNumber = '';
 
     var uploader = $scope.uploader = new FileUploader({
       alias: 'someimg',
-      url: '/file/upload'
+      url: '/file/upload',
+      formData: [{objectNum: '100'}]
     });
 
     // FILTERS
