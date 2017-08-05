@@ -10,5 +10,18 @@ module.exports = {
     console.log('req.allParams():');
     console.dir(req.allParams());
 
+    req.file('someimg').upload(function (err, uploadedFiles) {
+      if (err) return res.send(500, err);
+      var result = {
+        message: uploadedFiles.length + ' file(s) uploaded successfully!',
+        files: uploadedFiles
+      };
+
+      console.log('FileController, result:');
+      console.dir(result);
+
+      return res.json(result);
+    });
+
   },
 };

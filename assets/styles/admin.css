@@ -72,4 +72,11 @@ canvas {
   margin: 6px 0 0 6px;
 }
 
+.file-upload-block {
+  margin-bottom: 40px;
+}
+
+.progress {
+  margin-bottom: 0;
+}
 
