@@ -443,10 +443,10 @@
             badgeText: tagText,
             objNumber: oElem.objNumber,
             img: {
-              href: '../../images/' + oElem.imgMain,
+              href: '../../img/' + oElem.imgMain,
               dataLightbox: oElem.objNumber,
               dataTitle: '',
-              src: '../../images/' + oElem.imgMain,
+              src: '../../img/' + oElem.imgMain,
             },
             content: [],
             contentObj: {},
@@ -499,10 +499,12 @@
           _gallery = oElem.imgGallery.replace(/^\s+|\s+$/gm,'').split(';');
           _gallery.map(function (el) {
             record.gallery.push({
-              href: '../../images/' + el,
+              // href: '../../images/' + el,
+              href: '../../img/' + el,
               dataLightbox: 'gallery-' + oElem.objNumber,
               dataTitle: '',
-              src: '../../images/' + el,
+              // src: '../../images/' + el,
+              src: '../../img/' + el,
             });
           });
           record.price = oElem.price;

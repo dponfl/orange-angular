@@ -115,6 +115,9 @@ module.exports.routes = {
   // FileUpload
 
   'POST /file/upload': 'FileController.upload',
+  'POST /file/uploadmain': 'FileController.uploadmain',
+  'POST /file/upload2': 'FileController.upload2',
+  'POST /file/uploadmain2': 'FileController.uploadmain2',
 
 };
 

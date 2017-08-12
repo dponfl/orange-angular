@@ -7,6 +7,7 @@ data-ng-submit='$ctrl.create()').form-horisontal
       label(for='objectNumber', translate='LBL_OBJ_NUM').col-sm-2.control-label.text-right
       .col-sm-3
         input(type="text",
+          required,
           data-ng-pattern='/^[A-Za-z0-9_]{1,15}$/',
           data-ng-minLength='5',
           data-ng-minLength-err-type='tooShort',
@@ -102,6 +103,92 @@ data-ng-submit='$ctrl.create()').form-horisontal
           object-form-select-validation
         ).form-control#rooms
 
+    // Main img upload
+
+    div(nv-file-drop="",
+    uploader="$ctrl.uploaderMain",
+    ).form-group.clearfix
+      .row
+        .col-md-3
+          h3 Select main image file
+          input(type="file",
+          nv-file-select="",
+          uploader="$ctrl.uploaderMain",
+          multiple
+          )
+
+        .col-md-9.file-upload-block
+          h2 Upload main image
+          h3 The queue
+          p Queue length: {{$ctrl.uploaderMain.queue.length}}
+
+          table.table
+            thead
+              tr
+                th(width="50%") Name
+                th(data-ng-show="$ctrl.uploaderMain.isHTML5") Size
+                th(data-ng-show="$ctrl.uploaderMain.isHTML5") Progress
+                th Status
+                th Actions
+            tbody
+              tr(data-ng-repeat="item in $ctrl.uploaderMain.queue")
+                td
+                  strong {{ item.file.name }}
+                  div(ng-show="$ctrl.uploaderMain.isHTML5",
+                  ng-thumb="{ file: item._file, height: 100 }")
+                td(data-ng-show="$ctrl.uploaderMain.isHTML5" nowrap) {{ item.file.size/1024/1024|number:2 }} MB
+                td(data-ng-show="$ctrl.uploaderMain.isHTML5")
+                  .progress
+                    div(role="progressbar",
+                    data-ng-style="{ 'width': item.progress + '%' }").progress-bar
+                td.text-center
+                  span(data-ng-show="item.isSuccess")
+                    i.glyphicon.glyphicon-ok
+                  span(data-ng-show="item.isCancel")
+                    i.glyphicon.glyphicon-ban-circle
+                  span(data-ng-show="item.isError")
+                    i.glyphicon.glyphicon-remove
+                td(nowrap)
+                  //button(type="button",
+                    data-ng-click="item.upload()",
+                    data-ng-disabled="item.isReady || item.isUploading || item.isSuccess"
+                  //).btn.btn-success.btn-xs
+                    span.glyphicon.glyphicon-upload &nbsp;Upload
+                  //button(type="button",
+                    data-ng-click="item.cancel()",
+                    data-ng-disabled="!item.isUploading"
+                  //).btn.btn-warning.btn-xs
+                    span.glyphicon.glyphicon-ban-circle &nbsp;Cancel
+                  button(type="button",
+                  data-ng-click="item.remove()"
+                  ).btn.btn-danger.btn-xs
+                    span.glyphicon.glyphicon-trash &nbsp;Remove
+
+          div
+            div Queue progress:
+              .progress.queue-progress
+                div(role="progressbar",
+                data-ng-style="{ 'width': $ctrl.uploaderMain.progress + '%' }"
+                ).progress-bar
+
+            button(type="button",
+            data-ng-click="$ctrl.uploaderMain.uploadAll()",
+            data-ng-disabled="!$ctrl.uploaderMain.getNotUploadedItems().length"
+            ).btn.btn-success.btn-s
+              span.glyphicon.glyphicon-upload &nbsp;Upload main
+            //button(type="button",
+              data-ng-click="$ctrl.uploader.cancelAll()",
+              data-ng-disabled="!$ctrl.uploader.isUploading"
+            //).btn.btn-warning.btn-s
+              span.glyphicon.glyphicon-ban-circle &nbsp;Cancel all
+            button(type="button",
+            data-ng-click="$ctrl.uploaderMain.clearQueue()",
+            data-ng-disabled="!$ctrl.uploaderMain.queue.length"
+            ).btn.btn-danger.btn-s
+              span.glyphicon.glyphicon-trash &nbsp;Remove main
+
+    // Gallery img upload
+
     div(nv-file-drop="",
     uploader="$ctrl.uploader",
     ).form-group.clearfix
@@ -146,15 +233,15 @@ data-ng-submit='$ctrl.create()').form-horisontal
                   span(data-ng-show="item.isError")
                     i.glyphicon.glyphicon-remove
                 td(nowrap)
-                  button(type="button",
+                  //button(type="button",
                     data-ng-click="item.upload()",
                     data-ng-disabled="item.isReady || item.isUploading || item.isSuccess"
-                  ).btn.btn-success.btn-xs
+                  //).btn.btn-success.btn-xs
                     span.glyphicon.glyphicon-upload &nbsp;Upload
-                  button(type="button",
+                  //button(type="button",
                     data-ng-click="item.cancel()",
                     data-ng-disabled="!item.isUploading"
-                  ).btn.btn-warning.btn-xs
+                  //).btn.btn-warning.btn-xs
                     span.glyphicon.glyphicon-ban-circle &nbsp;Cancel
                   button(type="button",
                     data-ng-click="item.remove()"
@@ -173,10 +260,10 @@ data-ng-submit='$ctrl.create()').form-horisontal
               data-ng-disabled="!$ctrl.uploader.getNotUploadedItems().length"
             ).btn.btn-success.btn-s
               span.glyphicon.glyphicon-upload &nbsp;Upload all
-            button(type="button",
+            //button(type="button",
               data-ng-click="$ctrl.uploader.cancelAll()",
               data-ng-disabled="!$ctrl.uploader.isUploading"
-            ).btn.btn-warning.btn-s
+            //).btn.btn-warning.btn-s
               span.glyphicon.glyphicon-ban-circle &nbsp;Cancel all
             button(type="button",
               data-ng-click="$ctrl.uploader.clearQueue()",
@@ -188,9 +275,12 @@ data-ng-submit='$ctrl.create()').form-horisontal
     .form-group.clearfix
       .col-lg-7.col-lg-offset-2.col-md-offset-1.col-sm-offset-1
         button(type='submit',
-        translate='BTN_ADMIN_CREATE').btn.btn-success.btn-lg.btn-margin
+          translate='BTN_ADMIN_CREATE',
+          data-ng-disabled="!$ctrl.uploader.getNotUploadedItems().length"
+        ).btn.btn-success.btn-lg.btn-margin
         button(data-ng-click='$ctrl.clear()',
-        translate='BTN_CLR').btn.btn-warning.btn-lg.btn-margin
+          translate='BTN_CLR'
+        ).btn.btn-warning.btn-lg.btn-margin
 
-    div
+    //div
       pre {{$ctrl.formData.exclusive}}
