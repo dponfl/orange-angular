@@ -91,6 +91,9 @@ var jsFilesToInject = [
   // Load angular-file-upload
   'vendor/angular-file-upload/dist/angular-file-upload.js',
 
+  // Load async
+  'vendor/async/dist/async.js',
+
   'js/dependencies/Other/**/*.js',
 
   // Load application modules

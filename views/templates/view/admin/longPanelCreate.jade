@@ -114,7 +114,8 @@ data-ng-submit='$ctrl.create()').form-horisontal
           input(type="file",
           nv-file-select="",
           uploader="$ctrl.uploaderMain",
-          multiple
+          multiple,
+          data-ng-disabled="!$ctrl.formData.objnumber.length"
           )
 
         .col-md-9.file-upload-block
@@ -198,7 +199,8 @@ data-ng-submit='$ctrl.create()').form-horisontal
           input(type="file",
             nv-file-select="",
             uploader="$ctrl.uploader",
-            multiple
+            multiple,
+            data-ng-disabled="!$ctrl.formData.objnumber.length"
           )
 
         .col-md-9.file-upload-block

@@ -99,10 +99,10 @@
     // CALLBACKS
 
     vm.uploader.onWhenAddingFileFailed = function(item /*{File|FileLikeObject}*/, filter, options) {
-      console.info('onWhenAddingFileFailed, uploader:', item, filter, options);
+      // console.info('onWhenAddingFileFailed, uploader:', item, filter, options);
     };
     vm.uploader.onAfterAddingFile = function(fileItem) {
-      console.info('onAfterAddingFile, uploader:', fileItem);
+      // console.info('onAfterAddingFile, uploader:', fileItem);
     };
     vm.uploader.onAfterAddingAll = function(addedFileItems) {
       console.info('onAfterAddingAll, uploader:', addedFileItems);
@@ -121,25 +121,25 @@
 
     };
     vm.uploader.onBeforeUploadItem = function(item) {
-      console.info('onBeforeUploadItem', item);
+      // console.info('onBeforeUploadItem', item);
     };
     vm.uploader.onProgressItem = function(fileItem, progress) {
-      console.info('onProgressItem', fileItem, progress);
+      // console.info('onProgressItem', fileItem, progress);
     };
     vm.uploader.onProgressAll = function(progress) {
-      console.info('onProgressAll', progress);
+      // console.info('onProgressAll', progress);
     };
     vm.uploader.onSuccessItem = function(fileItem, response, status, headers) {
-      console.info('onSuccessItem', fileItem, response, status, headers);
+      // console.info('onSuccessItem', fileItem, response, status, headers);
     };
     vm.uploader.onErrorItem = function(fileItem, response, status, headers) {
-      console.info('onErrorItem', fileItem, response, status, headers);
+      // console.info('onErrorItem', fileItem, response, status, headers);
     };
     vm.uploader.onCancelItem = function(fileItem, response, status, headers) {
-      console.info('onCancelItem', fileItem, response, status, headers);
+      // console.info('onCancelItem', fileItem, response, status, headers);
     };
     vm.uploader.onCompleteItem = function(fileItem, response, status, headers) {
-      console.info('onCompleteItem', fileItem, response, status, headers);
+      console.info('onCompleteItem, uploader:', fileItem, response, status, headers);
       console.info('Response:');
       console.dir(response);
       vm.formData.imgGallery += (!firstImg ? ';' : '' ) +
@@ -148,44 +148,48 @@
         firstImg = false;
       }
     };
+/*
     vm.uploader.onCompleteAll = function() {
       var deferred = $q.defer();
 
-      console.info('onCompleteAll');
+      console.info('onCompleteAll, uploader:');
       console.info('Queue:');
       console.dir(vm.uploader.queue);
 
       deferred.resolve({element: 'uploader'});
       return deferred.promise;
     };
+*/
 
+/*
     vm.uploader_2.onCompleteAll = function() {
       var deferred = $q.defer();
 
-      console.info('onCompleteAll (uploader_2)');
+      console.info('onCompleteAll, uploader_2:');
       console.info('Queue:');
       console.dir(vm.uploader_2.queue);
 
       deferred.resolve({element: 'uploader_2'});
       return deferred.promise;
     };
+*/
 
 
 
     vm.uploaderMain.onWhenAddingFileFailed = function(item /*{File|FileLikeObject}*/, filter, options) {
-      console.info('onWhenAddingFileFailed', item, filter, options);
+      // console.info('onWhenAddingFileFailed', item, filter, options);
     };
     vm.uploaderMain.onAfterAddingFile = function(fileItem) {
-      console.info('onAfterAddingFile', fileItem);
+      // console.info('onAfterAddingFile', fileItem);
     };
     vm.uploaderMain.onAfterAddingAll = function(addedFileItems) {
-      console.info('onAfterAddingAll', addedFileItems);
+      console.info('onAfterAddingAll, uploaderMain:', addedFileItems);
 
       vm.uploaderMain.queue.map(function (el) {
         el.formData = [{obj: vm.formData.objnumber + '_long'}];
       });
 
-      vm.uploaderMain_2.queue = _.cloneDeep(vm.uploader.queue);
+      vm.uploaderMain_2.queue = _.cloneDeep(vm.uploaderMain.queue);
       vm.uploaderMain_2.queue.map(function (el) {
         el.alias = vm.uploaderMain_2.alias;
         el.url = vm.uploaderMain_2.url;
@@ -195,52 +199,114 @@
 
     };
     vm.uploaderMain.onBeforeUploadItem = function(item) {
-      console.info('onBeforeUploadItem', item);
+      // console.info('onBeforeUploadItem', item);
     };
     vm.uploaderMain.onProgressItem = function(fileItem, progress) {
-      console.info('onProgressItem', fileItem, progress);
+      // console.info('onProgressItem', fileItem, progress);
     };
     vm.uploaderMain.onProgressAll = function(progress) {
-      console.info('onProgressAll', progress);
+      // console.info('onProgressAll', progress);
     };
     vm.uploaderMain.onSuccessItem = function(fileItem, response, status, headers) {
-      console.info('onSuccessItem', fileItem, response, status, headers);
+      // console.info('onSuccessItem', fileItem, response, status, headers);
     };
     vm.uploaderMain.onErrorItem = function(fileItem, response, status, headers) {
-      console.info('onErrorItem', fileItem, response, status, headers);
+      // console.info('onErrorItem', fileItem, response, status, headers);
     };
     vm.uploaderMain.onCancelItem = function(fileItem, response, status, headers) {
-      console.info('onCancelItem', fileItem, response, status, headers);
+      // console.info('onCancelItem', fileItem, response, status, headers);
     };
     vm.uploaderMain.onCompleteItem = function(fileItem, response, status, headers) {
-      console.info('onCompleteItem', fileItem, response, status, headers);
+      console.info('onCompleteItem, uploaderMain:', fileItem, response, status, headers);
       console.info('Response:');
       console.dir(response);
       vm.formData.imgMain = response.files[0].fd.slice(response.files[0].fd.indexOf('img') + 4);
     };
-    vm.uploaderMain.onCompleteAll = function() {
-      var deferred = $q.defer();
+/*
+    vm.uploaderMain.onCompleteAll = function(cb) {
+      // var deferred = $q.defer();
 
-      console.info('onCompleteAll');
+      console.info('onCompleteAll, uploaderMain:');
       console.info('Queue:');
       console.dir(vm.uploaderMain.queue);
 
-      deferred.resolve({element: 'uploaderMain'});
-      return deferred.promise;
-    };
+      cb(null, {element: 'uploaderMain'});
 
+      // deferred.resolve({element: 'uploaderMain'});
+      // return deferred.promise;
+    };
+*/
+
+/*
     vm.uploaderMain_2.onCompleteAll = function() {
       var deferred = $q.defer();
 
-      console.info('onCompleteAll (uploaderMain_2)');
+      console.info('onCompleteAll, uploaderMain_2:');
       console.info('Queue:');
       console.dir(vm.uploaderMain_2.queue);
 
       deferred.resolve({element: 'uploaderMain_2'});
       return deferred.promise;
     };
+*/
 
     function _create() {
+
+      async.parallel({
+        uploaderMain: function (cb) {
+          vm.uploaderMain.uploadAll();
+          vm.uploaderMain.onCompleteAll = function() {
+
+            console.info('onCompleteAll, uploaderMain:');
+            console.info('Queue:');
+            console.dir(vm.uploaderMain.queue);
+
+            cb(null, {element: 'uploaderMain'});
+          };
+        },
+        uploader: function (cb) {
+          vm.uploader.uploadAll();
+          vm.uploader.onCompleteAll = function() {
+
+            console.info('onCompleteAll, uploader:');
+            console.info('Queue:');
+            console.dir(vm.uploader.queue);
+
+            cb(null, {element: 'uploader'});
+          };
+        },
+        uploaderMain_2: function (cb) {
+          vm.uploaderMain_2.uploadAll();
+          vm.uploaderMain_2.onCompleteAll = function() {
+
+            console.info('onCompleteAll, uploaderMain_2:');
+            console.info('Queue:');
+            console.dir(vm.uploaderMain_2.queue);
+
+            cb(null, {element: 'uploaderMain_2'});
+          };
+        },
+        uploader_2: function (cb) {
+          vm.uploader_2.uploadAll();
+          vm.uploader_2.onCompleteAll = function() {
+
+            console.info('onCompleteAll, uploader_2:');
+            console.info('Queue:');
+            console.dir(vm.uploader_2.queue);
+
+            cb(null, {element: 'uploader_2'});
+          };
+        },
+      }, function (err, results) {
+        console.log('async.parallel results:');
+        console.dir(results);
+
+        _write(vm.formData);
+      });
+
+
+
+/*
       vm.uploaderMain.uploadAll();
       vm.uploader.uploadAll();
 
@@ -256,47 +322,49 @@
         .then(function (results) {
           $log.info('All uploads results:');
           console.dir(results);
-          _write();
+          _write(vm.formData);
         })
         .catch(function (err) {
           $log.info('ERROR upload:');
           console.dir(err);
-        })
+        });
+*/
+
     } // _create
 
-    function _write() {
+    function _write(formData) {
       var createResult;
       var createRecords = {
         ru: {},
         en: {}
       };
 
-      $log.info('vm.formData:');
-      $log.info(vm.formData);
+      $log.info('formData:');
+      $log.info(formData);
 
-      createRecords['ru'].objnumber = vm.formData.objnumber;
+      createRecords['ru'].objnumber = formData.objnumber;
       createRecords['ru'].lang = 'ru';
       createRecords['ru'].show = 1;
       createRecords['ru'].home = 1;
-      createRecords['ru'].city = vm.formData.city.key;
-      createRecords['ru'].obj = vm.formData.obj.key;
-      createRecords['ru'].room = vm.formData.room.key;
+      createRecords['ru'].city = formData.city.key;
+      createRecords['ru'].obj = formData.obj.key;
+      createRecords['ru'].room = formData.room.key;
       createRecords['ru'].address = 'Адрес';
-      createRecords['ru'].imggallery = vm.formData.imgGallery;
-      createRecords['ru'].imgmain = vm.formData.imgMain;
+      createRecords['ru'].imggallery = formData.imgGallery;
+      createRecords['ru'].imgmain = formData.imgMain;
 
-      createRecords['en'].objnumber = vm.formData.objnumber;
+      createRecords['en'].objnumber = formData.objnumber;
       createRecords['en'].lang = 'en';
       createRecords['en'].show = 1;
       createRecords['en'].home = 1;
-      createRecords['en'].city = vm.formData.city.key;
-      createRecords['en'].obj = vm.formData.obj.key;
-      createRecords['en'].room = vm.formData.room.key;
+      createRecords['en'].city = formData.city.key;
+      createRecords['en'].obj = formData.obj.key;
+      createRecords['en'].room = formData.room.key;
       createRecords['en'].address = 'Address';
-      createRecords['en'].imggallery = vm.formData.imgGallery;
-      createRecords['en'].imgmain = vm.formData.imgMain;
+      createRecords['en'].imggallery = formData.imgGallery;
+      createRecords['en'].imgmain = formData.imgMain;
 
-      switch (vm.formData.exclusive) {
+      switch (formData.exclusive) {
         case 'exclusive': createResult = _createRecordExclusive(createRecords); break;
         case 'not_exclusive': createResult = _createRecordLong(createRecords); break;
       }
@@ -308,6 +376,10 @@
     } // _createRecordExclusive
 
     function _createRecordLong(data) {
+
+      console.log('_createRecordLong, data:');
+      console.dir(data);
+
       var someObj = {};
 
       _.forEach(data, function (val, key) {
