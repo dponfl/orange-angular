@@ -277,10 +277,10 @@
             badgeText: tagText,
             objNumber: oElem.objNumber,
             img: {
-              href: '../../images/' + oElem.imgMain,
+              href: '../../img/' + oElem.imgMain,
               dataLightbox: oElem.objNumber,
               dataTitle: '',
-              src: '../../images/' + oElem.imgMain,
+              src: '../../img/' + oElem.imgMain,
             },
             content: [],
             gallery: [],
@@ -337,7 +337,7 @@
           record.calendar = oElem.calendar;
           record.googleMap = oElem.googleMap;
           record.youtube = oElem.youtube;
-          record.youtubeshow = ((oElem.youtube != '') ? true : false);
+          record.youtubeshow = (oElem.youtube ? true : false);
 
 
           panels.push(record);

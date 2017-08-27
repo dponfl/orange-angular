@@ -18,6 +18,12 @@
       templateUrl: '../templates/view/busyAlert.html'
     });
 
+    console.log('!!!!!!! LongCtrl !!!!!!');
+    $log.info('!!!!!!! LongCtrl info !!!!!!');
+    $log.debug('!!!!!!! LongCtrl debug !!!!!!');
+    $log.warn('!!!!!!! LongCtrl warn !!!!!!');
+    $log.error('!!!!!!! LongCtrl error !!!!!!');
+
     $scope.longBusy = $rootScope.long.busy;
     $rootScope.long.showNotFound = false;
     $rootScope.long.showServerError = false;
@@ -511,7 +517,10 @@
           record.calendar = oElem.calendar;
           record.googleMap = oElem.googleMap;
           record.youtube = oElem.youtube;
-          record.youtubeshow = ((oElem.youtube != '') ? true : false);
+          record.youtubeshow = (oElem.youtube ? true : false);
+
+          $log.info('long ctrl, record:');
+          $log.info(record);
 
 
           panels.push(record);

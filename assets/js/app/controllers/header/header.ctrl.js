@@ -36,8 +36,8 @@
     vm.cityList = $rootScope.orangeConfig.cityList[$rootScope.lang];
     vm.roomList = $rootScope.orangeConfig.roomList[$rootScope.lang];
 
-    $log.info('$rootScope.orangeConfig.objList[$rootScope.lang][0]:');
-    $log.info($rootScope.orangeConfig.objList[$rootScope.lang][0]);
+    // $log.info('$rootScope.orangeConfig.objList[$rootScope.lang][0]:');
+    // $log.info($rootScope.orangeConfig.objList[$rootScope.lang][0]);
 
     vm.formData.obj = $rootScope.orangeConfig.objList[$rootScope.lang][0];
     vm.formData.city = $rootScope.orangeConfig.cityList[$rootScope.lang][0];

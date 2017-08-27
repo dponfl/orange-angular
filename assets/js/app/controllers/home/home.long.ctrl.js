@@ -77,10 +77,10 @@
           badgetext: tagText,
           objNumber: oElem.objNumber,
           img: {
-            href: '../../images/' + oElem.imgMain,
+            href: '../../img/' + oElem.imgMain,
             dataLightbox: oElem.objNumber,
             dataTitle: '',
-            src: '../../images/' + oElem.imgMain,
+            src: '../../img/' + oElem.imgMain,
           },
           content: [],
         };
