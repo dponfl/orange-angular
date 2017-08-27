@@ -71,6 +71,10 @@ h1 > small {
     /*padding: 20px 10px;*/
 }
 
+.lbl-margin-left {
+    margin-left: 5px;
+}
+
 /*
     For AngularStrap
  */

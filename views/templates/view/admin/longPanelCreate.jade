@@ -110,27 +110,26 @@ data-ng-submit='$ctrl.create()').form-horisontal
     ).form-group.clearfix
       .row
         .col-md-3
-          h3 Select main image file
+          h4(translate="LBL_IMG_MAIN_LABEL_01")
           input(type="file",
           nv-file-select="",
           uploader="$ctrl.uploaderMain",
-          multiple,
           data-ng-disabled="!$ctrl.formData.objnumber.length"
           )
 
         .col-md-9.file-upload-block
-          h2 Upload main image
-          h3 The queue
-          p Queue length: {{$ctrl.uploaderMain.queue.length}}
+          h4(translate="LBL_IMG_MAIN_LABEL_02")
 
           table.table
             thead
               tr
-                th(width="50%") Name
-                th(data-ng-show="$ctrl.uploaderMain.isHTML5") Size
-                th(data-ng-show="$ctrl.uploaderMain.isHTML5") Progress
-                th Status
-                th Actions
+                th(width="50%", translate="LBL_IMG_TBL_LABEL_NAME")
+                th(data-ng-show="$ctrl.uploaderMain.isHTML5",
+                  translate="LBL_IMG_TBL_LABEL_SIZE")
+                th(data-ng-show="$ctrl.uploaderMain.isHTML5",
+                  translate="LBL_IMG_TBL_LABEL_PROGRESS")
+                th(translate="LBL_IMG_TBL_LABEL_STATUS")
+                th(translate="LBL_IMG_TBL_LABEL_ACTION")
             tbody
               tr(data-ng-repeat="item in $ctrl.uploaderMain.queue")
                 td
@@ -161,32 +160,19 @@ data-ng-submit='$ctrl.create()').form-horisontal
                   //).btn.btn-warning.btn-xs
                     span.glyphicon.glyphicon-ban-circle &nbsp;Cancel
                   button(type="button",
-                  data-ng-click="item.remove()"
+                  data-ng-click="item.remove()",
+                  data-ng-disabled="!$ctrl.uploaderMain.getNotUploadedItems().length"
                   ).btn.btn-danger.btn-xs
-                    span.glyphicon.glyphicon-trash &nbsp;Remove
+                    span.glyphicon.glyphicon-trash
+                    span.lbl-margin-left {{"LBL_IMG_MAIN_BTN_REMOVE" | translate}}
 
           div
-            div Queue progress:
+            div {{"LBL_IMG_MAIN_LABEL_03" | translate}}
               .progress.queue-progress
                 div(role="progressbar",
                 data-ng-style="{ 'width': $ctrl.uploaderMain.progress + '%' }"
                 ).progress-bar
 
-            button(type="button",
-            data-ng-click="$ctrl.uploaderMain.uploadAll()",
-            data-ng-disabled="!$ctrl.uploaderMain.getNotUploadedItems().length"
-            ).btn.btn-success.btn-s
-              span.glyphicon.glyphicon-upload &nbsp;Upload main
-            //button(type="button",
-              data-ng-click="$ctrl.uploader.cancelAll()",
-              data-ng-disabled="!$ctrl.uploader.isUploading"
-            //).btn.btn-warning.btn-s
-              span.glyphicon.glyphicon-ban-circle &nbsp;Cancel all
-            button(type="button",
-            data-ng-click="$ctrl.uploaderMain.clearQueue()",
-            data-ng-disabled="!$ctrl.uploaderMain.queue.length"
-            ).btn.btn-danger.btn-s
-              span.glyphicon.glyphicon-trash &nbsp;Remove main
 
     // Gallery img upload
 
@@ -195,7 +181,7 @@ data-ng-submit='$ctrl.create()').form-horisontal
     ).form-group.clearfix
       .row
         .col-md-3
-          h3 Select files
+          h4(translate="LBL_IMG_GALLERY_LABEL_01")
           input(type="file",
             nv-file-select="",
             uploader="$ctrl.uploader",
@@ -204,18 +190,19 @@ data-ng-submit='$ctrl.create()').form-horisontal
           )
 
         .col-md-9.file-upload-block
-          h2 Upload images
-          h3 The queue
-          p Queue length: {{$ctrl.uploader.queue.length}}
+          h4(translate="LBL_IMG_GALLERY_LABEL_02")
+          p {{"LBL_IMG_GALLERY_LABEL_04" | translate}} {{$ctrl.uploader.queue.length}}
 
           table.table
             thead
               tr
-                th(width="50%") Name
-                th(data-ng-show="$ctrl.uploader.isHTML5") Size
-                th(data-ng-show="$ctrl.uploader.isHTML5") Progress
-                th Status
-                th Actions
+                th(width="50%", translate="LBL_IMG_TBL_LABEL_NAME")
+                th(data-ng-show="$ctrl.uploader.isHTML5",
+                  translate="LBL_IMG_TBL_LABEL_SIZE")
+                th(data-ng-show="$ctrl.uploader.isHTML5",
+                  translate="LBL_IMG_TBL_LABEL_PROGRESS")
+                th(translate="LBL_IMG_TBL_LABEL_STATUS")
+                th(translate="LBL_IMG_TBL_LABEL_ACTION")
             tbody
               tr(data-ng-repeat="item in $ctrl.uploader.queue")
                 td
@@ -246,39 +233,32 @@ data-ng-submit='$ctrl.create()').form-horisontal
                   //).btn.btn-warning.btn-xs
                     span.glyphicon.glyphicon-ban-circle &nbsp;Cancel
                   button(type="button",
-                    data-ng-click="item.remove()"
+                    data-ng-click="item.remove()",
+                    data-ng-disabled="!$ctrl.uploader.getNotUploadedItems().length"
                   ).btn.btn-danger.btn-xs
-                    span.glyphicon.glyphicon-trash &nbsp;Remove
+                    span.glyphicon.glyphicon-trash
+                    span.lbl-margin-left {{"LBL_IMG_MAIN_BTN_REMOVE" | translate}}
 
           div
-            div Queue progress:
+            div {{"LBL_IMG_MAIN_LABEL_03" | translate}}
               .progress.queue-progress
                 div(role="progressbar",
                   data-ng-style="{ 'width': $ctrl.uploader.progress + '%' }"
                 ).progress-bar
 
             button(type="button",
-              data-ng-click="$ctrl.uploader.uploadAll()",
-              data-ng-disabled="!$ctrl.uploader.getNotUploadedItems().length"
-            ).btn.btn-success.btn-s
-              span.glyphicon.glyphicon-upload &nbsp;Upload all
-            //button(type="button",
-              data-ng-click="$ctrl.uploader.cancelAll()",
-              data-ng-disabled="!$ctrl.uploader.isUploading"
-            //).btn.btn-warning.btn-s
-              span.glyphicon.glyphicon-ban-circle &nbsp;Cancel all
-            button(type="button",
               data-ng-click="$ctrl.uploader.clearQueue()",
               data-ng-disabled="!$ctrl.uploader.queue.length"
             ).btn.btn-danger.btn-s
-              span.glyphicon.glyphicon-trash &nbsp;Remove all
+              span.glyphicon.glyphicon-trash
+              span.lbl-margin-left {{"LBL_IMG_MAIN_BTN_REMOVE_ALL" | translate}}
 
 
     .form-group.clearfix
       .col-lg-7.col-lg-offset-2.col-md-offset-1.col-sm-offset-1
         button(type='submit',
           translate='BTN_ADMIN_CREATE',
-          data-ng-disabled="!$ctrl.uploader.getNotUploadedItems().length"
+          data-ng-disabled="!($ctrl.uploader.getNotUploadedItems().length && $ctrl.uploaderMain.getNotUploadedItems().length)"
         ).btn.btn-success.btn-lg.btn-margin
         button(data-ng-click='$ctrl.clear()',
           translate='BTN_CLR'
