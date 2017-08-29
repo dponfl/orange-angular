@@ -19,9 +19,12 @@
 
 
     //Generale
+    $rootScope.numLang = 2;
     $rootScope.lang = 'en';
     $rootScope.langList = ['en', 'ru'];
-    $rootScope.numLang = 2;
+    $rootScope.langTitle = ['English', 'Русский'];
+    $rootScope.langActiveTab = ['lang_eng', 'lang_rus'];
+
     $rootScope.pagerNumRecords = 2;
     $rootScope.orangeConfig = configOrange;
     $rootScope.scrollDisabled = false;

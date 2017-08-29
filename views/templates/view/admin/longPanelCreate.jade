@@ -103,6 +103,15 @@ data-ng-submit='$ctrl.create()').form-horisontal
           object-form-select-validation
         ).form-control#rooms
 
+    .form-group.clearfix
+      label(for='youtube', translate='LBL_YOUTUBE').col-sm-2.control-label.text-right
+      .col-sm-5
+        input(type="text",
+        data-ng-pattern='/^[A-Za-z0-9_]{1,15}$/',
+        placeholder="{{'OBJ_YOUTUBE_PLACEHOLDER' | translate}}",
+        data-ng-model='$ctrl.formData.youtube'
+        ).form-control#youtube
+
     // Main img upload
 
     div(nv-file-drop="",
@@ -264,5 +273,13 @@ data-ng-submit='$ctrl.create()').form-horisontal
           translate='BTN_CLR'
         ).btn.btn-warning.btn-lg.btn-margin
 
-    //div
-      pre {{$ctrl.formData.exclusive}}
+    .row
+      div(bs-active-pane="$ctrl.activeTab", bs-tabs)
+
+        div(data-ng-repeat="lang in $ctrl.langSet",
+          data-title="{{lang.activeTabTitle}}",
+          name="{{lang.activeTab}}",
+          bs-pane
+        )
+          h2 {{lang.activeTabTitle}} !!!!!!!
+

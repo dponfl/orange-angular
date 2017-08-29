@@ -24,8 +24,42 @@
     vm.tagList = _.concat({key: 'none', val: 'Без тега'},
     $rootScope.orangeConfig.tagList[$rootScope.lang]);
 
+    vm.langSet = {};
+
+    vm.activeTab = $rootScope.langActiveTab[0];
 
     vm.formData = {};
+
+    vm.formData.langContent = [];
+
+    let useLang = '';
+
+    for (let i = 0; i < $rootScope.numLang; i++) {
+
+      useLang = $rootScope.langList[i];
+
+      $log.info('i:');
+      $log.info(i);
+      $log.info('useLang:');
+      $log.info(useLang);
+
+      vm.langSet[useLang] = {
+        lang: useLang,
+        activeTab: $rootScope.langActiveTab[i],
+        activeTabTitle: $rootScope.langTitle[i],
+      };
+
+      $log.info('vm.langSet[useLang]:');
+      console.dir(vm.langSet[useLang]);
+
+      vm.formData.langContent[useLang] = {};
+      vm.formData.langContent[useLang].address = '';
+      vm.formData.langContent[useLang].bathroom = '';
+      vm.formData.langContent[useLang].pool = '';
+      vm.formData.langContent[useLang].price = '';
+      vm.formData.langContent[useLang].description = '';
+      vm.formData.langContent[useLang].info = '';
+    }
 
     vm.formData.obj = vm.objList[0];
     vm.formData.city = vm.cityList[0];
@@ -37,6 +71,8 @@
     vm.formData.home = 'not_home';
     vm.formData.imgMain = '';
     vm.formData.imgGallery = '';
+    vm.formData.maps = '';
+    vm.formData.youtube = '';
 
     vm.uploader = new FileUploader({
       alias: 'someimg',
@@ -342,27 +378,24 @@
       $log.info('formData:');
       $log.info(formData);
 
-      createRecords['ru'].objnumber = formData.objnumber;
-      createRecords['ru'].lang = 'ru';
-      createRecords['ru'].show = 1;
-      createRecords['ru'].home = 1;
-      createRecords['ru'].city = formData.city.key;
-      createRecords['ru'].obj = formData.obj.key;
-      createRecords['ru'].room = formData.room.key;
-      createRecords['ru'].address = 'Адрес';
-      createRecords['ru'].imggallery = formData.imgGallery;
-      createRecords['ru'].imgmain = formData.imgMain;
+      let useLang = '';
 
-      createRecords['en'].objnumber = formData.objnumber;
-      createRecords['en'].lang = 'en';
-      createRecords['en'].show = 1;
-      createRecords['en'].home = 1;
-      createRecords['en'].city = formData.city.key;
-      createRecords['en'].obj = formData.obj.key;
-      createRecords['en'].room = formData.room.key;
-      createRecords['en'].address = 'Address';
-      createRecords['en'].imggallery = formData.imgGallery;
-      createRecords['en'].imgmain = formData.imgMain;
+      for (let i = 0; i <= 1; i++) {
+
+        useLang = $rootScope.langList[i];
+
+        createRecords[useLang].lang = useLang;
+        createRecords[useLang].objnumber = formData.objnumber;
+        createRecords[useLang].lang = 'ru';
+        createRecords[useLang].show = (formData.show == "show" ? 1 : 0);
+        createRecords[useLang].home = (formData.home == "home" ? 1 : 0);
+        createRecords[useLang].tag = formData.tag.key;
+        createRecords[useLang].obj = formData.obj.key;
+        createRecords[useLang].city = formData.city.key;
+        createRecords[useLang].room = formData.room.key;
+        createRecords[useLang].imggallery = formData.imgGallery;
+        createRecords[useLang].imgmain = formData.imgMain;
+      }
 
       switch (formData.exclusive) {
         case 'exclusive': createResult = _createRecordExclusive(createRecords); break;
