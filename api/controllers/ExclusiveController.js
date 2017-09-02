@@ -146,6 +146,37 @@ module.exports = {
       });
 
 
-  } // findPager
+  }, // findPager
+
+  put: function (req, res) {
+    console.log('<== ExclusiveController.js:put ==>');
+
+    // todo: make parameters validation
+    var newRecordParams = req.allParams();
+    var newObj = {};
+
+    _.forEach(newRecordParams, function (val, key) {
+      if (val) {
+        newObj[key] = val;
+      }
+    });
+
+    console.log('Ready to create new record:');
+    console.dir(newObj);
+
+    Exclusive.create(newObj)
+      .exec(function (err, data) {
+        if (err) {
+          return res.serverError(err);
+        }
+
+        console.log('data: ' + data);
+
+        return res.created({
+          code: 201,
+          message: 'OK',
+          result: data});
+      });
+  } // put
 };
 

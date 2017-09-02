@@ -197,7 +197,7 @@
 
       function successCb(data) {
 
-        $log.info('successCb, data:');
+        $log.info('_putLongObject, successCb, data:');
         $log.info(data);
 
         if (!_.isArray(data.data.result)) {

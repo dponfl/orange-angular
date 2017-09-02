@@ -5,11 +5,11 @@
     .module('OrangeClient')
     .controller('LongAdminCtrl', LongAdminCtrl);
 
-  LongAdminCtrl.$inject = ['LongService', '$log', '$rootScope', '$scope', '$q',
+  LongAdminCtrl.$inject = ['LongService', 'ExclusiveService', '$log', '$rootScope', '$scope', '$q',
     'lodash', 'FileUploader'];
 
   /* @ngInject */
-  function LongAdminCtrl(LongService, $log, $rootScope, $scope, $q,
+  function LongAdminCtrl(LongService, ExclusiveService, $log, $rootScope, $scope, $q,
                          lodash, FileUploader) {
     var vm = this;
     var _ = lodash;
@@ -305,6 +305,7 @@
         useLang = $rootScope.langList[i];
         createRecords[useLang] = {};
         createRecords[useLang].lang = useLang;
+        createRecords[useLang].deal = 'long_term';
         createRecords[useLang].objnumber = formData.objnumber;
         createRecords[useLang].show = (formData.show == "show" ? 1 : 0);
         createRecords[useLang].home = (formData.home == "home" ? 1 : 0);
@@ -320,6 +321,11 @@
         createRecords[useLang].price = formData.langContent[useLang].price;
         createRecords[useLang].description = formData.langContent[useLang].description;
         createRecords[useLang].info = formData.langContent[useLang].info;
+
+        if (formData.youtube) {
+          createRecords[useLang].youtube = formData.youtube;
+        }
+
       }
 
       switch (formData.exclusive) {
@@ -330,6 +336,41 @@
     } // _write
 
     function _createRecordExclusive(data) {
+
+      console.log('_createRecordExclusive, data:');
+      console.dir(data);
+
+      var someObj = {};
+
+      _.forEach(data, function (val, key) {
+        someObj['record' + key] = ExclusiveService.putExclusiveObject(val);
+      });
+
+      $q.all(someObj)
+        .then(function (results) {
+          if (results.recorden.status == 201) {
+            return {
+              performed: true,
+              reason: 'ok',
+              data: {
+                record: results
+              },
+            };
+          }
+        })
+        .catch(function (err) {
+          // todo: change by Log
+          $log.warn('Error...');
+          $log.error(err);
+
+          return {
+            performed: false,
+            reason: 'error',
+            data: {
+              error: err,
+            },
+          };
+        });
 
     } // _createRecordExclusive
 
@@ -382,12 +423,25 @@
       vm.formData.exclusive = 'not_exclusive';
       vm.formData.show = 'show';
       vm.formData.home = 'not_home';
+
+      for (let i = 0; i < $rootScope.numLang; i++) {
+
+        useLang = $rootScope.langList[i];
+
+        vm.formData.langContent[useLang] = {};
+        vm.formData.langContent[useLang].address = '';
+        vm.formData.langContent[useLang].bathroom = '';
+        vm.formData.langContent[useLang].pool = '';
+        vm.formData.langContent[useLang].price = '';
+        vm.formData.langContent[useLang].description = '';
+        vm.formData.langContent[useLang].info = '';
+      }
+
       vm.uploader.clearQueue();
       vm.uploaderMain.clearQueue();
       vm.uploader_2.clearQueue();
       vm.uploaderMain_2.clearQueue();
     } // _clear
-
 
   }
 })();

@@ -365,10 +365,10 @@
           _gallery = oElem.imgGallery.replace(/^\s+|\s+$/gm,'').split(';');
           _gallery.map(function (el) {
             record.gallery.push({
-              href: '../../images/' + el,
+              href: '../../img/' + el,
               dataLightbox: 'gallery-' + oElem.objNumber,
               dataTitle: '',
-              src: '../../images/' + el,
+              src: '../../img/' + el,
             });
           });
           record.price = oElem.price;
