@@ -271,8 +271,8 @@ data-ng-submit='$ctrl.create()').form-horisontal
         bs-pane
         )
 
-          .form-group.clearfix.top-element
-            label(for='address', translate='LBL_ADDRESS').col-sm-2.control-label.text-right
+          .form-group.clearfix
+            label(for='address', translate='LBL_ADDRESS').col-sm-2.control-label.text-right.top-element
             .col-sm-9
               textarea(type="text",
               placeholder="{{'OBJ_ADDRESS_PLACEHOLDER' | translate}}",
@@ -296,29 +296,17 @@ data-ng-submit='$ctrl.create()').form-horisontal
               ).form-control#pool
 
           .form-group.clearfix
-            label(for='price', translate='LBL_PRICE').col-sm-2.control-label.text-right
-            .col-sm-9
+            label(translate='LBL_PRICE').col-sm-2.control-label.text-right
+            div(data-ng-repeat="p in $ctrl.formData.langContent[lang.lang].price").col-sm-9
               input(type="text",
-              placeholder="{{'OBJ_PRICE_PLACEHOLDER' | translate}}",
-              data-ng-model='$ctrl.formData.langContent[lang.lang].price'
-              ).form-control#price
-
-          .form-group.clearfix
-            label(for='description', translate='LBL_DESCRIPTION').col-sm-2.control-label.text-right
-            .col-sm-9
-              textarea(type="text",
-              placeholder="{{'OBJ_DESCRIPTION_PLACEHOLDER' | translate}}",
-              data-ng-model='$ctrl.formData.langContent[lang.lang].description'
-              ).form-control#description
-
-          .form-group.clearfix
-            label(for='info', translate='LBL_INFO').col-sm-2.control-label.text-right
-            .col-sm-9
-              textarea(type="text",
-              placeholder="{{'OBJ_INFO_PLACEHOLDER' | translate}}",
-              data-ng-model='$ctrl.formData.langContent[lang.lang].info'
-              ).form-control#info
-
+              data-ng-model='p.periodStart'
+              ).form-control
+              input(type="text",
+              data-ng-model='p.periodEnd'
+              ).form-control
+              input(type="text",
+              data-ng-model='p.periodPrice'
+              ).form-control
 
 
     .form-group.clearfix

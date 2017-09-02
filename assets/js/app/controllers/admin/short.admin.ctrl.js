@@ -3,13 +3,13 @@
 
   angular
     .module('OrangeClient')
-    .controller('LongAdminCtrl', LongAdminCtrl);
+    .controller('ShortAdminCtrl', ShortAdminCtrl);
 
-  LongAdminCtrl.$inject = ['LongService', '$log', '$rootScope', '$scope', '$q',
+  ShortAdminCtrl.$inject = ['ShortService', '$log', '$rootScope', '$scope', '$q',
     'lodash', 'FileUploader'];
 
   /* @ngInject */
-  function LongAdminCtrl(LongService, $log, $rootScope, $scope, $q,
+  function ShortAdminCtrl(ShortService, $log, $rootScope, $scope, $q,
                          lodash, FileUploader) {
     var vm = this;
     var _ = lodash;
@@ -56,10 +56,21 @@
       vm.formData.langContent[useLang].address = '';
       vm.formData.langContent[useLang].bathroom = '';
       vm.formData.langContent[useLang].pool = '';
-      vm.formData.langContent[useLang].price = '';
+      vm.formData.langContent[useLang].price = [];
+
+      for (let j = 0; j < 5; j++) {
+        vm.formData.langContent[useLang].price[j] = {
+          periodStart: '',
+          periodEnd: '',
+          periodPrice: '',
+        };
+      }
+
       vm.formData.langContent[useLang].description = '';
       vm.formData.langContent[useLang].info = '';
     }
+
+
 
     vm.formData.obj = vm.objList[0];
     vm.formData.city = vm.cityList[0];
@@ -184,6 +195,33 @@
         firstImg = false;
       }
     };
+/*
+    vm.uploader.onCompleteAll = function() {
+      var deferred = $q.defer();
+
+      console.info('onCompleteAll, uploader:');
+      console.info('Queue:');
+      console.dir(vm.uploader.queue);
+
+      deferred.resolve({element: 'uploader'});
+      return deferred.promise;
+    };
+*/
+
+/*
+    vm.uploader_2.onCompleteAll = function() {
+      var deferred = $q.defer();
+
+      console.info('onCompleteAll, uploader_2:');
+      console.info('Queue:');
+      console.dir(vm.uploader_2.queue);
+
+      deferred.resolve({element: 'uploader_2'});
+      return deferred.promise;
+    };
+*/
+
+
 
     vm.uploaderMain.onWhenAddingFileFailed = function(item /*{File|FileLikeObject}*/, filter, options) {
       // console.info('onWhenAddingFileFailed', item, filter, options);
@@ -231,6 +269,33 @@
       console.dir(response);
       vm.formData.imgMain = response.files[0].fd.slice(response.files[0].fd.indexOf('img') + 4);
     };
+/*
+    vm.uploaderMain.onCompleteAll = function(cb) {
+      // var deferred = $q.defer();
+
+      console.info('onCompleteAll, uploaderMain:');
+      console.info('Queue:');
+      console.dir(vm.uploaderMain.queue);
+
+      cb(null, {element: 'uploaderMain'});
+
+      // deferred.resolve({element: 'uploaderMain'});
+      // return deferred.promise;
+    };
+*/
+
+/*
+    vm.uploaderMain_2.onCompleteAll = function() {
+      var deferred = $q.defer();
+
+      console.info('onCompleteAll, uploaderMain_2:');
+      console.info('Queue:');
+      console.dir(vm.uploaderMain_2.queue);
+
+      deferred.resolve({element: 'uploaderMain_2'});
+      return deferred.promise;
+    };
+*/
 
     function _create() {
 
@@ -288,7 +353,41 @@
 
         _write(vm.formData);
       });
+
+
+
+/*
+      vm.uploaderMain.uploadAll();
+      vm.uploader.uploadAll();
+
+      vm.uploaderMain_2.uploadAll();
+      vm.uploader_2.uploadAll();
+
+      $q.all({
+        u: vm.uploader.onCompleteAll(),
+        um: vm.uploaderMain.onCompleteAll(),
+        u2: vm.uploader_2.onCompleteAll(),
+        um2: vm.uploaderMain_2.onCompleteAll(),
+      })
+        .then(function (results) {
+          $log.info('All uploads results:');
+          console.dir(results);
+          _write(vm.formData);
+        })
+        .catch(function (err) {
+          $log.info('ERROR upload:');
+          console.dir(err);
+        });
+*/
+
     } // _create
+    
+    function _convertPrice(price) {
+      let res = '';
+      price.map(function (elem) {
+        
+      })
+    } // _convertPrice
 
     function _write(formData) {
       var createResult;
@@ -324,7 +423,7 @@
 
       switch (formData.exclusive) {
         case 'exclusive': createResult = _createRecordExclusive(createRecords); break;
-        case 'not_exclusive': createResult = _createRecordLong(createRecords); break;
+        case 'not_exclusive': createResult = _createRecordShort(createRecords); break;
       }
 
     } // _write
@@ -333,16 +432,19 @@
 
     } // _createRecordExclusive
 
-    function _createRecordLong(data) {
+    function _createRecordShort(data) {
 
-      console.log('_createRecordLong, data:');
+      console.log('_createRecordShort, data:');
       console.dir(data);
 
       var someObj = {};
 
+      // todo: create ShortService.putShortObject and un-comment
+/*
       _.forEach(data, function (val, key) {
-        someObj['record' + key] = LongService.putLongObject(val);
+        someObj['record' + key] = ShortService.putShortObject(val);
       });
+*/
 
       $q.all(someObj)
         .then(function (results) {
@@ -370,7 +472,7 @@
           };
         });
 
-    } // _createRecordLong
+    } // _createRecordShort
 
     function _clear() {
 
