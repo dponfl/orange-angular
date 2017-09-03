@@ -204,8 +204,8 @@
         $log.info('_putExclusiveObject, successCb, data:');
         $log.info(data);
 
-        if (!_.isArray(data.data.result)) {
-          return new Error('Exclusive data is not an array');
+        if (!_.isNumber(data.data.result.id)) {
+          return new Error('Exclusive data has wrong format');
         }
 
         var response = data.data.result;

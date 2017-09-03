@@ -200,8 +200,8 @@
         $log.info('_putLongObject, successCb, data:');
         $log.info(data);
 
-        if (!_.isArray(data.data.result)) {
-          return new Error('Long data is not an array');
+        if (!_.isNumber(data.data.result.id)) {
+          return new Error('Long data has wrong format');
         }
 
         var response = data.data.result;

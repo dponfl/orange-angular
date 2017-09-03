@@ -5,14 +5,15 @@
     .module('OrangeClient')
     .controller('LongAdminCtrl', LongAdminCtrl);
 
-  LongAdminCtrl.$inject = ['LongService', 'ExclusiveService', '$log', '$rootScope', '$scope', '$q',
-    'lodash', 'FileUploader'];
+  LongAdminCtrl.$inject = ['GeneralConfigService', 'LongService', 'ExclusiveService', '$log', '$rootScope', '$scope', '$q',
+    'lodash', 'FileUploader', 'toaster'];
 
   /* @ngInject */
-  function LongAdminCtrl(LongService, ExclusiveService, $log, $rootScope, $scope, $q,
-                         lodash, FileUploader) {
+  function LongAdminCtrl(GeneralConfigService, LongService, ExclusiveService, $log, $rootScope, $scope, $q,
+                         lodash, FileUploader, toaster) {
     var vm = this;
     var _ = lodash;
+    var __=GeneralConfigService;
 
     var firstImg = true;
     vm.create = _create;
@@ -349,11 +350,44 @@
       $q.all(someObj)
         .then(function (results) {
           if (results.recorden.status == 201) {
+
+            toaster.pop({
+              type: 'success',
+              title: __.t('ADMIN_CREATE_SUCCESS_TITLE'),
+              body: __.t('ADMIN_CREATE_SUCCESS_BODY_1'),
+              toasterId: '111111',
+              showCloseButton: true,
+              timeout: 15000,
+            });
+
+            _clear();
+
             return {
               performed: true,
               reason: 'ok',
               data: {
                 record: results
+              },
+            };
+          } else {
+            // todo: change by Log
+            $log.warn('Error...');
+            $log.error(err);
+
+            toaster.pop({
+              type: 'error',
+              title: __.t('ADMIN_CREATE_ERROR_TITLE'),
+              body: __.t('ADMIN_CREATE_ERROR_BODY_1'),
+              toasterId: '111111',
+              showCloseButton: true,
+              timeout: 15000,
+            });
+
+            return {
+              performed: false,
+              reason: 'error',
+              data: {
+                error: err,
               },
             };
           }
@@ -362,6 +396,15 @@
           // todo: change by Log
           $log.warn('Error...');
           $log.error(err);
+
+          toaster.pop({
+            type: 'error',
+            title: __.t('ADMIN_CREATE_ERROR_TITLE'),
+            body: __.t('ADMIN_CREATE_ERROR_BODY_1'),
+            toasterId: '111111',
+            showCloseButton: true,
+            timeout: 15000,
+          });
 
           return {
             performed: false,
@@ -387,12 +430,51 @@
 
       $q.all(someObj)
         .then(function (results) {
+
+/*
+          $log.warn('_createRecordLong, results:');
+          console.dir(results);
+*/
+
           if (results.recorden.status == 201) {
+
+            toaster.pop({
+              type: 'success',
+              title: __.t('ADMIN_CREATE_SUCCESS_TITLE'),
+              body: __.t('ADMIN_CREATE_SUCCESS_BODY_1'),
+              toasterId: '111111',
+              showCloseButton: true,
+              timeout: 15000,
+            });
+
+            _clear();
+
             return {
               performed: true,
               reason: 'ok',
               data: {
                 record: results
+              },
+            };
+          } else {
+            // todo: change by Log
+            $log.warn('Error...');
+            $log.error(err);
+
+            toaster.pop({
+              type: 'error',
+              title: __.t('ADMIN_CREATE_ERROR_TITLE'),
+              body: __.t('ADMIN_CREATE_ERROR_BODY_1'),
+              toasterId: '111111',
+              showCloseButton: true,
+              timeout: 15000,
+            });
+
+            return {
+              performed: false,
+              reason: 'error',
+              data: {
+                error: err,
               },
             };
           }
@@ -401,6 +483,15 @@
           // todo: change by Log
           $log.warn('Error...');
           $log.error(err);
+
+          toaster.pop({
+            type: 'error',
+            title: __.t('ADMIN_CREATE_ERROR_TITLE'),
+            body: __.t('ADMIN_CREATE_ERROR_BODY_1'),
+            toasterId: '111111',
+            showCloseButton: true,
+            timeout: 15000,
+          });
 
           return {
             performed: false,

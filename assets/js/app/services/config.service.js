@@ -49,6 +49,24 @@
           'INFO_ERROR_BODY_1': 'Unfortunately your request for booking object #',
           'INFO_ERROR_BODY_2': ' was not submitted. Please try again later or contact admin.',
 
+          'ADMIN_CREATE_SUCCESS_TITLE': 'Create record request',
+          'ADMIN_CREATE_SUCCESS_BODY_1': 'was successfully performed',
+
+          'ADMIN_EDIT_SUCCESS_TITLE': 'Edit record request',
+          'ADMIN_EDIT_SUCCESS_BODY_1': 'was successfully performed',
+
+          'ADMIN_DELETE_SUCCESS_TITLE': 'Delete record request',
+          'ADMIN_DELETE_SUCCESS_BODY_1': 'was successfully performed',
+
+          'ADMIN_CREATE_ERROR_TITLE': 'Create record request',
+          'ADMIN_CREATE_ERROR_BODY_1': 'was NOT performed',
+
+          'ADMIN_EDIT_ERROR_TITLE': 'Edit record request',
+          'ADMIN_EDIT_ERROR_BODY_1': 'was NOT performed',
+
+          'ADMIN_DELETE_ERROR_TITLE': 'Delete record request',
+          'ADMIN_DELETE_ERROR_BODY_1': 'was NOT performed',
+
         },
         ru: {
           'BOOKING_SUCCESS_TITLE': 'Благодарим за бронирование!',
@@ -67,6 +85,24 @@
           'INFO_ERROR_BODY_1': 'К сожалению ваш запрос',
           'INFO_ERROR_BODY_2': ' не был отправлен. Повторите попытку немного позже или ' +
           'свяжитесь с администратором сайта.',
+
+          'ADMIN_CREATE_SUCCESS_TITLE': 'Создание объекта',
+          'ADMIN_CREATE_SUCCESS_BODY_1': 'было успешно выполнено',
+
+          'ADMIN_EDIT_SUCCESS_TITLE': 'Редактирование объекта',
+          'ADMIN_EDIT_SUCCESS_BODY_1': 'было успешно выполнено',
+
+          'ADMIN_DELETE_SUCCESS_TITLE': 'Удаление объекта',
+          'ADMIN_DELETE_SUCCESS_BODY_1': 'было успешно выполнено',
+
+          'ADMIN_CREATE_ERROR_TITLE': 'Создание объекта',
+          'ADMIN_CREATE_ERROR_BODY_1': 'НЕ БЫЛО выполнено',
+
+          'ADMIN_EDIT_ERROR_TITLE': 'Редактирование объекта',
+          'ADMIN_EDIT_ERROR_BODY_1': 'НЕ БЫЛО выполнено',
+
+          'ADMIN_DELETE_ERROR_TITLE': 'Удаление объекта',
+          'ADMIN_DELETE_ERROR_BODY_1': 'НЕ БЫЛО выполнено',
 
         },
       }
