@@ -4,20 +4,6 @@ data-ng-submit='$ctrl.create()').form-horisontal
   fieldset
 
     .form-group.clearfix
-      label(for='objectNumber', translate='LBL_OBJ_NUM').col-sm-2.control-label.text-right
-      .col-sm-3
-        input(type="text",
-          required,
-          data-ng-pattern='/^[A-Za-z0-9_]{1,15}$/',
-          data-ng-minLength='5',
-          data-ng-minLength-err-type='tooShort',
-          data-ng-required-err-type="{{'AV_REQ' | translate}}",
-          placeholder="{{'OBJ_NUM_PLACEHOLDER' | translate}}",
-          data-ng-model='$ctrl.formData.objnumber'
-        ).form-control#objectNumber
-
-
-    .form-group.clearfix
       label(for='objectShowLabel', translate='LBL_OBJ_SHOW').col-sm-2.control-label.text-right
       .col-sm-4
         #objectShowLabel

@@ -5,11 +5,13 @@
     .module('OrangeClient')
     .controller('LongAdminCtrl', LongAdminCtrl);
 
-  LongAdminCtrl.$inject = ['GeneralConfigService', 'LongService', 'ExclusiveService', '$log', '$rootScope', '$scope', '$q',
+  LongAdminCtrl.$inject = ['GeneralConfigService', 'LongService', 'ExclusiveService',
+    'EditObjectService', '$log', '$rootScope', '$scope', '$q',
     'lodash', 'FileUploader', 'toaster'];
 
   /* @ngInject */
-  function LongAdminCtrl(GeneralConfigService, LongService, ExclusiveService, $log, $rootScope, $scope, $q,
+  function LongAdminCtrl(GeneralConfigService, LongService, ExclusiveService,
+                         EditObjectService, $log, $rootScope, $scope, $q,
                          lodash, FileUploader, toaster) {
     var vm = this;
     var _ = lodash;
@@ -19,6 +21,9 @@
     vm.create = _create;
     vm.clear = _clear;
 
+    vm.obj = {
+      name: 'SomeName',
+    };
     vm.objList = $rootScope.orangeConfig.objList[$rootScope.lang];
     vm.cityList = $rootScope.orangeConfig.cityList[$rootScope.lang];
     vm.roomList = $rootScope.orangeConfig.roomList[$rootScope.lang];
@@ -233,6 +238,25 @@
       vm.formData.imgMain = response.files[0].fd.slice(response.files[0].fd.indexOf('img') + 4);
     };
 
+    $rootScope.$watch('admin.long.editObjSelected', function (newVal, oldVal) {
+      if (newVal && !oldVal) {
+        $rootScope.admin.long.editPanelShow = true;
+        var obj = EditObjectService.getEditLongObject();
+        $rootScope.admin.long.editObjSelected = false;
+        $log.warn('<<<<<<>>>>>>>');
+        $log.warn(obj.objNumber);
+        $rootScope.admin.long.formData.objnumber = obj.objNumber;
+        $rootScope.admin.long.formData.address = obj.contentObj.address.text;
+      }
+    });
+
+/*
+    vm.$onInit = function () {
+      var ttt = EditObjectService.getEditLongObject();
+      vm.formData.objnumber = ttt.objNumber;
+    };
+*/
+
     function _create() {
 
       $log.info('_create, vm.formData:');
@@ -329,10 +353,14 @@
 
       }
 
+/*
       switch (formData.exclusive) {
         case 'exclusive': createResult = _createRecordExclusive(createRecords); break;
         case 'not_exclusive': createResult = _createRecordLong(createRecords); break;
       }
+*/
+
+      createResult = _createRecordLong(createRecords);
 
     } // _write
 
@@ -505,6 +533,10 @@
     } // _createRecordLong
 
     function _clear() {
+
+      $log.info('!!!!!!!!! $rootScope.admin.long.formData:');
+      console.dir($rootScope.admin.long.formData);
+      console.dir(vm);
 
       vm.formData.obj = vm.objList[0];
       vm.formData.city = vm.cityList[0];

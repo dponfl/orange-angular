@@ -83,6 +83,14 @@
     $rootScope.exclusive.panels = [];
     $rootScope.exclusive.busy = false;
 
+    // Admin
+    $rootScope.admin = {};
+    $rootScope.admin.long = {};
+    $rootScope.admin.long.editObjSelected = false;
+    $rootScope.admin.long.objNumber = '';
+    $rootScope.admin.long.editPanelShow = false;
+    $rootScope.admin.long.formData = {};
+
     $log.info('OrangeClient, $rootScope:');
     $log.info($rootScope);
   }

@@ -23,6 +23,7 @@ function translateConfig ($translateProvider) {
     'BTN_ADMIN_CREATE': 'Create',
     'BTN_ADMIN_LOGIN': 'Login',
     'BTN_ADMIN_CLEAR': 'Clear',
+    'HEADER_PANEL_EDIT': 'Edit object #',
 
     // Footer
     'FOOTER_ABOUT_COMPANY_TITLE': 'About us',
@@ -237,6 +238,8 @@ function translateConfig ($translateProvider) {
     'LBL_IMG_TBL_LABEL_PROGRESS': 'Прогресс',
     'LBL_IMG_TBL_LABEL_STATUS': 'Статус',
     'LBL_IMG_TBL_LABEL_ACTION': 'Действие',
+    'HEADER_PANEL_EDIT': 'Редактирование объекта #',
+
 
     // Footer
     'FOOTER_ABOUT_COMPANY_TITLE': 'О нас',

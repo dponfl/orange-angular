@@ -519,8 +519,10 @@
           record.youtube = oElem.youtube;
           record.youtubeshow = (oElem.youtube ? true : false);
 
+/*
           $log.info('long ctrl, record:');
           $log.info(record);
+*/
 
 
           panels.push(record);

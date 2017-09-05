@@ -34,6 +34,8 @@
               bs-pane
             ).tabs-block
               .row#block-long-filter-admin
+                pre
+                  div {{admin.long.formData}}
                 .col-sm-6.col-sm-offset-3#longFilterWrapper
                   .panel.panel-info#longFilter
                     .panel-heading
@@ -66,33 +68,32 @@
                             span(data-ng-show="p.sortKey=='contentObj.city.text'",
                             data-ng-class="{'glyphicon-chevron-up':!p.reverse,'glyphicon-chevron-down':p.reverse}").glyphicon.sort-icon
                           th Адрес объекта
+                          th Действие
                       tbody
-                        tr(data-dir-paginate='panel in long.panels|orderBy:p.sortKey:p.reverse|itemsPerPage:2')
+                        tr(data-dir-paginate='panel in long.panels|orderBy:p.sortKey:p.reverse|itemsPerPage:7')
                           td {{panel.objNumber}}
                           td {{panel.contentObj.obj.text}}
                           td {{panel.contentObj.city.text}}
                           td {{panel.contentObj.address.text}}
+                          td
+                             button(data-ng-click='p.edit(panel);').btn.btn-sm.btn-warning Редактировать
+                             button(data-ng-click='p.delete(panel);').btn.btn-sm.btn-danger Удалить
 
                     dir-pagination-controls(max-size="3", boundary-links="true")
 
-                .row
-                  div(bs-active-pane="p.activeTabEdit", bs-tabs)
-
-                    //=================
-                    // Existing objects
-                    //=================
-
-                    div(data-title="English",
-                    name="lang_eng",
-                    bs-pane
+              div(data-ng-controller='LongAdminCtrl as lac',
+                data-ng-if='admin.long.editPanelShow'
+              )
+                .panel.panel-info
+                  .panel-heading
+                    h3 {{"HEADER_PANEL_EDIT" | translate}}
+                      | {{admin.long.formData.objnumber}}
+                  .panel.panel-body
+                    long-admin-edit(obj-list='lac.objList',
+                      city-list='lac.cityList',
+                      room-list='lac.roomList',
+                      obj='lac.obj',
                     )
-                      h2 English !!!!!!!
-
-                    div(data-title="Русский",
-                    name="lang_rus",
-                    bs-pane
-                    )
-                      h2 Russian !!!!!!
 
   toaster-container(data-toaster-options="{'toaster-id': '111111'}")
 
