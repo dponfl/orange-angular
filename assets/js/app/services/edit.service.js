@@ -30,8 +30,8 @@
       return longObject;
     } // _getLongObject
 
-    function _setEditLongObject(val) {
-      editLongObject = val;
+    function _setEditLongObject(obj) {
+      editLongObject = obj;
       $rootScope.admin.long.editObjSelected = true;
     } // _setEditLongObject
 

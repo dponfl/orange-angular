@@ -5,10 +5,12 @@
     .module('OrangeClient')
     .controller('PanelAdminTblCtrl', PanelAdminTblCtrl);
 
-  PanelAdminTblCtrl.$inject = ['GeneralConfigService', 'EditObjectService', '$rootScope', '$scope', '$log','lodash'];
+  PanelAdminTblCtrl.$inject = ['GeneralConfigService', 'EditObjectService', '$rootScope',
+    '$scope', '$log','lodash'];
 
   /* @ngInject */
-  function PanelAdminTblCtrl(GeneralConfigService, EditObjectService, $rootScope, $scope, $log, lodash) {
+  function PanelAdminTblCtrl(GeneralConfigService, EditObjectService, $rootScope,
+                             $scope, $log, lodash) {
     var _ = lodash;
     var __=GeneralConfigService;
     var vm = this;
@@ -63,14 +65,10 @@
       EditObjectService.setEditLongObject(obj);
 
       $log.error('Edit record button was pressed...');
-      $log.info('Object: ');
-      console.dir(obj);
     } // _edit
 
-    function _delete(obj) {
+    function _delete() {
       $log.error('Delete record button was pressed...');
-      $log.info('Object: ');
-      console.dir(obj);
     } // _delete
 
 

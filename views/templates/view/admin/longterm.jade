@@ -77,23 +77,19 @@
                           td {{panel.contentObj.address.text}}
                           td
                              button(data-ng-click='p.edit(panel);').btn.btn-sm.btn-warning Редактировать
-                             button(data-ng-click='p.delete(panel);').btn.btn-sm.btn-danger Удалить
+                             button(data-ng-click='p.delete();').btn.btn-sm.btn-danger Удалить
 
                     dir-pagination-controls(max-size="3", boundary-links="true")
 
               div(data-ng-controller='LongAdminCtrl as lac',
-                data-ng-if='admin.long.editPanelShow'
+                data-ng-show='admin.long.editPanelShow'
               )
                 .panel.panel-info
                   .panel-heading
                     h3 {{"HEADER_PANEL_EDIT" | translate}}
                       | {{admin.long.formData.objnumber}}
                   .panel.panel-body
-                    long-admin-edit(obj-list='lac.objList',
-                      city-list='lac.cityList',
-                      room-list='lac.roomList',
-                      obj='lac.obj',
-                    )
+                    long-admin-edit-directive()
 
   toaster-container(data-toaster-options="{'toaster-id': '111111'}")
 

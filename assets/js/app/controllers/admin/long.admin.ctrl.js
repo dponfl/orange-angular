@@ -7,12 +7,12 @@
 
   LongAdminCtrl.$inject = ['GeneralConfigService', 'LongService', 'ExclusiveService',
     'EditObjectService', '$log', '$rootScope', '$scope', '$q',
-    'lodash', 'FileUploader', 'toaster'];
+    'lodash', 'FileUploader', 'toaster', '$timeout'];
 
   /* @ngInject */
   function LongAdminCtrl(GeneralConfigService, LongService, ExclusiveService,
                          EditObjectService, $log, $rootScope, $scope, $q,
-                         lodash, FileUploader, toaster) {
+                         lodash, FileUploader, toaster, $timeout) {
     var vm = this;
     var _ = lodash;
     var __=GeneralConfigService;
@@ -240,13 +240,16 @@
 
     $rootScope.$watch('admin.long.editObjSelected', function (newVal, oldVal) {
       if (newVal && !oldVal) {
-        $rootScope.admin.long.editPanelShow = true;
-        var obj = EditObjectService.getEditLongObject();
-        $rootScope.admin.long.editObjSelected = false;
-        $log.warn('<<<<<<>>>>>>>');
-        $log.warn(obj.objNumber);
-        $rootScope.admin.long.formData.objnumber = obj.objNumber;
-        $rootScope.admin.long.formData.address = obj.contentObj.address.text;
+        $rootScope.admin.long.editPanelShow = false;
+        $timeout(function () {
+          var obj = EditObjectService.getEditLongObject();
+          $rootScope.admin.long.editObjSelected = false;
+          $rootScope.admin.long.editPanelShow = true;
+          $log.warn('<<<<<<>>>>>>>');
+          $log.warn(obj.objNumber);
+          $rootScope.admin.long.formData.objnumber = obj.objNumber;
+          $rootScope.admin.long.formData.address = obj.contentObj.address.text;
+        }, 1000);
       }
     });
 

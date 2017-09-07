@@ -5,12 +5,6 @@
     .module('OrangeClient')
     .component('longAdminEdit', {
       controller: 'LongAdminCtrl',
-      bindings: {
-        objList: '=',
-        cityList: '=',
-        roomList: '=',
-        obj: '='
-      },
       templateUrl: 'templates/view/admin/longPanelEdit.html'
     });
 })();
