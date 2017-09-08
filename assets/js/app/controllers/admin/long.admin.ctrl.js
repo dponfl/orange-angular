@@ -245,11 +245,15 @@
           var obj = EditObjectService.getEditLongObject();
           $rootScope.admin.long.editObjSelected = false;
           $rootScope.admin.long.editPanelShow = true;
-          $log.warn('<<<<<<>>>>>>>');
-          $log.warn(obj.objNumber);
+          // $log.warn('<<<<<<>>>>>>>');
+          // $log.warn(obj.objNumber);
           $rootScope.admin.long.formData.objnumber = obj.objNumber;
           $rootScope.admin.long.formData.address = obj.contentObj.address.text;
-        }, 1000);
+          vm.passedObject = obj;
+          vm.formData.objnumber = vm.passedObject.objNumber;
+          vm.formData.langContent.en.address = vm.passedObject.contentObj.address.text;
+          vm.formData.langContent.ru.description = vm.passedObject.contentObj.description.text;
+        }, 500);
       }
     });
 
