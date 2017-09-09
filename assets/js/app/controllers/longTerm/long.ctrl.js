@@ -18,11 +18,13 @@
       templateUrl: '../templates/view/busyAlert.html'
     });
 
+/*
     console.log('!!!!!!! LongCtrl !!!!!!');
     $log.info('!!!!!!! LongCtrl info !!!!!!');
     $log.debug('!!!!!!! LongCtrl debug !!!!!!');
     $log.warn('!!!!!!! LongCtrl warn !!!!!!');
     $log.error('!!!!!!! LongCtrl error !!!!!!');
+*/
 
     $scope.longBusy = $rootScope.long.busy;
     $rootScope.long.showNotFound = false;

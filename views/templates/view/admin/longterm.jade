@@ -18,11 +18,8 @@
             bs-pane
             ).tabs-block
 
-              div(data-ng-controller='LongAdminCtrl as lac')
-                long-admin-create(obj-list='lac.objList',
-                  city-list='lac.cityList',
-                  room-list='lac.roomList'
-                )
+              div(data-ng-controller='LongCreateAdminCtrl')
+                long-admin-create()
 
 
             //=================
@@ -76,12 +73,12 @@
                           td {{panel.contentObj.city.text}}
                           td {{panel.contentObj.address.text}}
                           td
-                             button(data-ng-click='p.edit(panel);').btn.btn-sm.btn-warning Редактировать
+                             button(data-ng-click='p.edit(panel);').btn.btn-sm.btn-info Редактировать
                              button(data-ng-click='p.delete();').btn.btn-sm.btn-danger Удалить
 
                     dir-pagination-controls(max-size="3", boundary-links="true")
 
-              div(data-ng-controller='LongAdminCtrl',
+              div(data-ng-controller='LongEditAdminCtrl',
                 data-ng-show='admin.long.editPanelShow'
               )
                 .panel.panel-info

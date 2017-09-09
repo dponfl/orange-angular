@@ -7,7 +7,7 @@ div(data-ng-controller="LoginController as lc").form-container
       label(for="username").col-sm-2.control-label.text-right Username
       .col-sm-4
         input(type="text", placeholder="Enter username",
-        name="username", data-ng-model="lc.username")#username
+        name="username", data-ng-model="lc.username", autofocus)#username
 
     .form-group.clearfix
       label(for="password").col-sm-2.control-label.text-right Password

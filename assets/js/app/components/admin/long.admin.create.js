@@ -4,12 +4,7 @@
   angular
     .module('OrangeClient')
     .component('longAdminCreate', {
-      controller: 'LongAdminCtrl',
-      bindings: {
-        objList: '=',
-        cityList: '=',
-        roomList: '='
-      },
+      controller: 'LongCreateAdminCtrl',
       templateUrl: 'templates/view/admin/longPanelCreate.html'
     });
 })();

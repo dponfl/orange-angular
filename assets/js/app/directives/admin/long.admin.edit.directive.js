@@ -11,7 +11,7 @@
   function longAdminEditDirective($log) {
     var directive = {
       bindToController: true,
-      controller: 'LongAdminCtrl',
+      controller: 'LongEditAdminCtrl',
       controllerAs: 'vm',
       link: _link,
       restrict: 'AE',
@@ -21,8 +21,10 @@
     return directive;
 
     function _link(scope, element, attrs) {
+/*
       $log.info('<<< !!! >>> longAdminEditDirective, _link, scope:');
       console.log(scope);
+*/
 
 
     } // _link

@@ -3,14 +3,14 @@
 
   angular
     .module('OrangeClient')
-    .controller('LongAdminCtrl', LongAdminCtrl);
+    .controller('LongCreateAdminCtrl', LongCreateAdminCtrl);
 
-  LongAdminCtrl.$inject = ['GeneralConfigService', 'LongService', 'ExclusiveService',
+  LongCreateAdminCtrl.$inject = ['GeneralConfigService', 'LongService', 'ExclusiveService',
     'EditObjectService', '$log', '$rootScope', '$scope', '$q',
     'lodash', 'FileUploader', 'toaster', '$timeout'];
 
   /* @ngInject */
-  function LongAdminCtrl(GeneralConfigService, LongService, ExclusiveService,
+  function LongCreateAdminCtrl(GeneralConfigService, LongService, ExclusiveService,
                          EditObjectService, $log, $rootScope, $scope, $q,
                          lodash, FileUploader, toaster, $timeout) {
     var vm = this;
@@ -237,32 +237,6 @@
       console.dir(response);
       vm.formData.imgMain = response.files[0].fd.slice(response.files[0].fd.indexOf('img') + 4);
     };
-
-    $rootScope.$watch('admin.long.editObjSelected', function (newVal, oldVal) {
-      if (newVal && !oldVal) {
-        $rootScope.admin.long.editPanelShow = false;
-        $timeout(function () {
-          var obj = EditObjectService.getEditLongObject();
-          $rootScope.admin.long.editObjSelected = false;
-          $rootScope.admin.long.editPanelShow = true;
-          // $log.warn('<<<<<<>>>>>>>');
-          // $log.warn(obj.objNumber);
-          $rootScope.admin.long.formData.objnumber = obj.objNumber;
-          $rootScope.admin.long.formData.address = obj.contentObj.address.text;
-          vm.passedObject = obj;
-          vm.formData.objnumber = vm.passedObject.objNumber;
-          vm.formData.langContent.en.address = vm.passedObject.contentObj.address.text;
-          vm.formData.langContent.ru.description = vm.passedObject.contentObj.description.text;
-        }, 500);
-      }
-    });
-
-/*
-    vm.$onInit = function () {
-      var ttt = EditObjectService.getEditLongObject();
-      vm.formData.objnumber = ttt.objNumber;
-    };
-*/
 
     function _create() {
 
@@ -540,10 +514,6 @@
     } // _createRecordLong
 
     function _clear() {
-
-      $log.info('!!!!!!!!! $rootScope.admin.long.formData:');
-      console.dir($rootScope.admin.long.formData);
-      console.dir(vm);
 
       vm.formData.obj = vm.objList[0];
       vm.formData.city = vm.cityList[0];
