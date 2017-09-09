@@ -64,14 +64,12 @@
 
       EditObjectService.setEditLongObject(objNumb);
 
-      $log.error('Edit record button was pressed...');
+      $log.warn('Edit record button was pressed...');
     } // _edit
 
     function _delete(objNumb) {
-      $log.error('Delete record button was pressed...');
+      $log.warn('Delete record button was pressed...');
     } // _delete
-
-
   }
 
 })();

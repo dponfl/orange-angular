@@ -440,9 +440,13 @@
         panelObjs.map(function (oElem) {
           var tagText = '';
           var _gallery = [];
+          var keyVal = '';
 
           $rootScope.orangeConfig.tagList[lang].map(function (listElem) {
-            if (listElem.key == oElem.tag) tagText = listElem.val;
+            if (listElem.key == oElem.tag) {
+              tagText = listElem.val;
+              keyVal = listElem.key;
+            }
           });
 
           record = {
@@ -469,17 +473,26 @@
             switch (kElem.key) {
               case 'city':
                 $rootScope.orangeConfig.cityList[lang].map(function (listElem) {
-                  if (listElem.key == oElem.city) tokenVal = listElem.val;
+                  if (listElem.key == oElem.city) {
+                    tokenVal = listElem.val;
+                    keyVal = listElem.key;
+                  }
                 });
                 break;
               case 'obj':
                 $rootScope.orangeConfig.objList[lang].map(function (listElem) {
-                  if (listElem.key == oElem.obj) tokenVal = listElem.val;
+                  if (listElem.key == oElem.obj) {
+                    tokenVal = listElem.val;
+                    keyVal = listElem.key;
+                  }
                 });
                 break;
               case 'room':
                 $rootScope.orangeConfig.roomList[lang].map(function (listElem) {
-                  if (listElem.key == oElem.room) tokenVal = listElem.val;
+                  if (listElem.key == oElem.room) {
+                    tokenVal = listElem.val;
+                    keyVal = listElem.key;
+                  }
                 });
                 break;
               default:
@@ -499,6 +512,7 @@
               });
 
               record.contentObj[kElem.key] = {
+                key: keyVal,
                 label: kElem.label,
                 text:tokenVal,
               }

@@ -16,6 +16,7 @@
       setEditLongObject: _setEditLongObject,
       getEditLongObject: _getEditLongObject,
       convertObjectData: _convertObjectData,
+      getIndexByKey: _getIndexByKey,
     };
 
     return self;
@@ -51,39 +52,59 @@
     } // _getEditLongObject
 
     function _convertObjectData(obj) {
-      var newObj = {langContent: []};
+
+      var langContent = [];
+      var tag = _.concat({key: 'none', val: 'Без тега'},
+        $rootScope.orangeConfig.tagList['en']);
 
       _.forEach(obj, function (value, key) {
-
-        var tag = _.concat({key: 'none', val: 'Без тега'},
-          $rootScope.orangeConfig.tagList[key]);
-
-        newObj = _.concat(newObj, {
-          objnumber: value.objNumber,
-          show: ((value.show == '1') ? 'show' : 'not_show'),
-          home: ((value.home == '1') ? 'home' : 'not_home'),
-          imgMain: '',
-          imgGallery: '',
-          maps: '',
-          youtube: value.youtube,
-          obj: $rootScope.orangeConfig.objList[key][0],
-          city: $rootScope.orangeConfig.cityList[key][0],
-          room: $rootScope.orangeConfig.roomList[key][0],
-          tag: tag[0],
-        }) ;
-
-        newObj.langContent[key] = {
-          address: value.contentObj.address,
-          bathroom: value.contentObj.bathroom,
-          pool: value.contentObj.pool,
-          price: value.contentObj.price,
-          description: value.contentObj.description,
-          info: value.contentObj.info,
+        langContent[key] = {
+          address: value.contentObj.address.text,
+          bathroom: value.contentObj.bathroom.text,
+          pool: value.contentObj.pool.text,
+          price: value.contentObj.price.text,
+          description: value.contentObj.description.text,
+          info: value.contentObj.info.text,
         }
       });
 
+      var newObj = {
+        objnumber: obj['en'].objNumber,
+        show: ((obj['en'].show == '1') ? 'show' : 'not_show'),
+        home: ((obj['en'].home == '1') ? 'home' : 'not_home'),
+        imgMain: '',
+        imgGallery: '',
+        maps: '',
+        youtube: obj['en'].youtube,
+        obj: $rootScope.orangeConfig.objList['en'][_getIndexByKey($rootScope.orangeConfig.objList['en'], obj.en.contentObj.obj.key)],
+        city: $rootScope.orangeConfig.cityList['en'][_getIndexByKey($rootScope.orangeConfig.cityList['en'], obj.en.contentObj.city.key)],
+        room: $rootScope.orangeConfig.roomList['en'][_getIndexByKey($rootScope.orangeConfig.roomList['en'], obj.en.contentObj.room.key)],
+        tag: tag[_getIndexByKey($rootScope.orangeConfig.tagList['en'], obj.en.type) + 1],
+        langContent: langContent,
+      };
+
       return newObj;
     } // _convertObjectData
+
+    function _getIndexByKey(arr, findKey) {
+      var res = null;
+
+      _.forEach(arr, function (value, key) {
+        if (value.key == findKey) {
+          res = key;
+        }
+      });
+
+      $log.warn('_getIndexByKey');
+      $log.warn('arr:');
+      console.dir(arr);
+      $log.warn('findKey:');
+      console.dir(findKey);
+      $log.warn('res:');
+      console.dir(res);
+
+      return res;
+    } // _getIndexByKey
 
   }
 
