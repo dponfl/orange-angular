@@ -450,6 +450,8 @@
             type: oElem.tag,
             badgeText: tagText,
             objNumber: oElem.objNumber,
+            show: oElem.show,
+            home: oElem.home,
             img: {
               href: '../../img/' + oElem.imgMain,
               dataLightbox: oElem.objNumber,

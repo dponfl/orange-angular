@@ -60,14 +60,14 @@
       vm.reverse = false;
     } // _clearSort
 
-    function _edit(obj) {
+    function _edit(objNumb) {
 
-      EditObjectService.setEditLongObject(obj);
+      EditObjectService.setEditLongObject(objNumb);
 
       $log.error('Edit record button was pressed...');
     } // _edit
 
-    function _delete() {
+    function _delete(objNumb) {
       $log.error('Delete record button was pressed...');
     } // _delete
 

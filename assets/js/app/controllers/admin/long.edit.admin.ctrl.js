@@ -85,19 +85,16 @@
       url: '/file/upload',
       formData: []
     });
-
     vm.uploaderMain = new FileUploader({
       alias: 'someimgmain',
       url: '/file/uploadmain',
       formData: []
     });
-
     vm.uploader_2 = new FileUploader({
       alias: 'someimg2',
       url: '/file/upload2',
       formData: []
     });
-
     vm.uploaderMain_2 = new FileUploader({
       alias: 'someimgmain2',
       url: '/file/uploadmain2',
@@ -113,7 +110,6 @@
         return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
       }
     });
-
     vm.uploaderMain.filters.push({
       name: 'imageFilter',
       fn: function(item /*{File|FileLikeObject}*/, options) {
@@ -121,7 +117,6 @@
         return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
       }
     });
-
     vm.uploader_2.filters.push({
       name: 'imageFilter',
       fn: function(item /*{File|FileLikeObject}*/, options) {
@@ -129,7 +124,6 @@
         return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
       }
     });
-
     vm.uploaderMain_2.filters.push({
       name: 'imageFilter',
       fn: function(item /*{File|FileLikeObject}*/, options) {
@@ -245,14 +239,23 @@
           var obj = EditObjectService.getEditLongObject();
           $rootScope.admin.long.editObjSelected = false;
           $rootScope.admin.long.editPanelShow = true;
-          // $log.warn('<<<<<<>>>>>>>');
-          // $log.warn(obj.objNumber);
+
+          $log.warn('<<<<<< obj >>>>>>>');
+          console.dir(obj);
+
+          vm.formData = EditObjectService.convertObjectData(obj);
+
+          $log.warn('<<<<<< vm.formData >>>>>>>');
+          console.dir(vm.formData);
+
+/*
           $rootScope.admin.long.formData.objnumber = obj.objNumber;
           $rootScope.admin.long.formData.address = obj.contentObj.address.text;
           vm.passedObject = obj;
           vm.formData.objnumber = vm.passedObject.objNumber;
           vm.formData.langContent.en.address = vm.passedObject.contentObj.address.text;
           vm.formData.langContent.ru.description = vm.passedObject.contentObj.description.text;
+*/
         }, 500);
       }
     });
