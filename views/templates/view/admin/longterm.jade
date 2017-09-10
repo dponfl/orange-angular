@@ -31,8 +31,6 @@
               bs-pane
             ).tabs-block
               .row#block-long-filter-admin
-                pre
-                  div {{admin.long.formData}}
                 .col-sm-6.col-sm-offset-3#longFilterWrapper
                   .panel.panel-info#longFilter
                     .panel-heading
@@ -78,13 +76,13 @@
 
                     dir-pagination-controls(max-size="3", boundary-links="true")
 
-              div(data-ng-controller='LongEditAdminCtrl',
+              div(data-ng-controller='LongEditAdminCtrl as leac',
                 data-ng-show='admin.long.editPanelShow'
               )
                 .panel.panel-info
                   .panel-heading
                     h3 {{"HEADER_PANEL_EDIT" | translate}}
-                      | {{admin.long.formData.objnumber}}
+                      | {{leac.formData.objnumber}}
                   .panel.panel-body
                     long-admin-edit-directive()
 

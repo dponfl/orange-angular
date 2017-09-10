@@ -95,6 +95,7 @@
         }
       });
 
+/*
       $log.warn('_getIndexByKey');
       $log.warn('arr:');
       console.dir(arr);
@@ -102,6 +103,7 @@
       console.dir(findKey);
       $log.warn('res:');
       console.dir(res);
+*/
 
       return res;
     } // _getIndexByKey
