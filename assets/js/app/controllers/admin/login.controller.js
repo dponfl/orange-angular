@@ -64,7 +64,7 @@
           first_name: data.first_name,
           last_name: data.last_name,
         };
-        $state.go('account');
+        $state.go('admin_longterm');
       }).catch(function (err) {
         $log.info('_loginUser, error:');
         $log.info(err);

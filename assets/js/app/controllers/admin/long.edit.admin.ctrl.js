@@ -18,7 +18,7 @@
     var __=GeneralConfigService;
 
     var firstImg = true;
-    vm.create = _create;
+    vm.update = _update;
     vm.clear = _clear;
 
     vm.obj = {
@@ -267,9 +267,9 @@
     };
 */
 
-    function _create() {
+    function _update() {
 
-      $log.info('_create, vm.formData:');
+      $log.info('_update, vm.formData:');
       $log.info(vm.formData);
 
       async.parallel({
@@ -323,7 +323,7 @@
 
         _write(vm.formData);
       });
-    } // _create
+    } // _update
 
     function _write(formData) {
       var createResult;
@@ -370,7 +370,7 @@
       }
 */
 
-      createResult = _createRecordLong(createRecords);
+      createResult = _updateRecordLong(createRecords);
 
     } // _write
 
@@ -455,26 +455,24 @@
 
     } // _createRecordExclusive
 
-    function _createRecordLong(data) {
+    function _updateRecordLong(data) {
 
-      console.log('_createRecordLong, data:');
+      console.log('_updateRecordLong, data:');
       console.dir(data);
 
       var someObj = {};
 
       _.forEach(data, function (val, key) {
-        someObj['record' + key] = LongService.putLongObject(val);
+        someObj['record' + key] = LongService.updateLongObject(val);
       });
 
       $q.all(someObj)
         .then(function (results) {
 
-/*
-          $log.warn('_createRecordLong, results:');
+          $log.warn('_updateRecordLong, results:');
           console.dir(results);
-*/
 
-          if (results.recorden.status == 201) {
+          if (results.recorden.status == 200) {
 
             toaster.pop({
               type: 'success',
@@ -486,6 +484,8 @@
             });
 
             _clear();
+
+            $rootScope.admin.long.editPanelShow = false;
 
             return {
               performed: true,
@@ -540,7 +540,7 @@
           };
         });
 
-    } // _createRecordLong
+    } // _updateRecordLong
 
     function _clear() {
 

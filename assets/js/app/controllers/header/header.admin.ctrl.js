@@ -43,10 +43,7 @@
           text: 'HEADER_ADMIN_LOGIN',
         },
 */
-        {
-          href: 'account',
-          text: 'HEADER_ADMIN_ACCOUNT',
-        },
+
         {
           href: 'admin_longterm',
           text: 'NAV_LONG_TERM',
@@ -54,6 +51,10 @@
         {
           href: 'sale_admin',
           text: 'NAV_SALES',
+        },
+        {
+          href: 'account',
+          text: 'HEADER_ADMIN_ACCOUNT',
         },
       ];
 

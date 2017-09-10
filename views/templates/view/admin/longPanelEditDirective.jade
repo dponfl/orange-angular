@@ -1,5 +1,5 @@
 form(novalidate='novalidate',
-data-ng-submit='$ctrl.create()').form-horisontal
+data-ng-submit='vm.update()').form-horisontal
 
   fieldset
 
@@ -293,7 +293,7 @@ data-ng-submit='$ctrl.create()').form-horisontal
     .form-group.clearfix
       .col-lg-7.col-lg-offset-2.col-md-offset-1.col-sm-offset-1
         button(type='submit',
-          translate='BTN_ADMIN_CREATE',
+          translate='BTN_ADMIN_UPDATE',
           data-ng-disabled="!(vm.uploader.getNotUploadedItems().length && vm.uploaderMain.getNotUploadedItems().length)"
         ).btn.btn-success.btn-lg.btn-margin
         button(data-ng-click='vm.clear()',

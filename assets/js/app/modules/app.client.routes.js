@@ -187,20 +187,6 @@
         },
         url: '/login',
       })
-      .state('account', {
-        views: {
-          header: {
-            templateUrl: 'templates/view/admin/headerAdmin.html'
-          },
-          main: {
-            templateUrl: 'templates/view/admin/account.html',
-          },
-          footer: {
-            templateUrl: 'templates/view/admin/footerAdmin.html',
-          },
-        },
-        url: '/account',
-      })
       .state('admin_longterm', {
         views: {
           header: {
@@ -214,6 +200,20 @@
           },
         },
         url: '/admin_longterm',
+      })
+      .state('account', {
+        views: {
+          header: {
+            templateUrl: 'templates/view/admin/headerAdmin.html'
+          },
+          main: {
+            templateUrl: 'templates/view/admin/account.html',
+          },
+          footer: {
+            templateUrl: 'templates/view/admin/footerAdmin.html',
+          },
+        },
+        url: '/account',
       });
 
     // todo: delete
