@@ -23,9 +23,9 @@
       ngModel.$validators.objectFormSelectValidation = function (modelValue) {
 
         $log.info('modelValue:');
-        $log.info(modelValue);
+        console.dir(modelValue);
         $log.info('scope.objectFormSelectValidation:');
-        $log.info(scope.objectFormSelectValidation);
+        console.dir(scope.objectFormSelectValidation);
 
         return (modelValue.key != 'any');
       };

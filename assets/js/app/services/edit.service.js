@@ -55,7 +55,7 @@
 
       var langContent = [];
       var tag = _.concat({key: 'none', val: 'Без тега'},
-        $rootScope.orangeConfig.tagList['en']);
+        $rootScope.orangeConfig.tagList[$rootScope.lang]);
 
       _.forEach(obj, function (value, key) {
         langContent[key] = {
@@ -79,7 +79,9 @@
         obj: $rootScope.orangeConfig.objList['en'][_getIndexByKey($rootScope.orangeConfig.objList['en'], obj.en.contentObj.obj.key)],
         city: $rootScope.orangeConfig.cityList['en'][_getIndexByKey($rootScope.orangeConfig.cityList['en'], obj.en.contentObj.city.key)],
         room: $rootScope.orangeConfig.roomList['en'][_getIndexByKey($rootScope.orangeConfig.roomList['en'], obj.en.contentObj.room.key)],
-        tag: tag[_getIndexByKey($rootScope.orangeConfig.tagList['en'], obj.en.type) + 1],
+        tag: tag[(_getIndexByKey($rootScope.orangeConfig.tagList['en'], obj.en.type) !== null
+          ? _getIndexByKey($rootScope.orangeConfig.tagList['en'], obj.en.type) + 1
+          : 0)],
         langContent: langContent,
       };
 

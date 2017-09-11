@@ -42,7 +42,8 @@ data-ng-submit='vm.update()').form-horisontal
       .col-sm-4
         select(name='tagType',
           data-ng-options='option.val for option in vm.tagList track by option.key',
-          data-ng-model='vm.formData.tag'
+          data-ng-model='vm.formData.tag',
+          object-form-select-validation
         ).form-control#tagType
 
     .form-group.clearfix
@@ -51,7 +52,7 @@ data-ng-submit='vm.update()').form-horisontal
         select(name='objectType',
           data-ng-options='option.val for option in vm.objList track by option.key',
           data-ng-model='vm.formData.obj',
-          object-form-select-validation
+          object-form-select-validation='vm.formData.obj.key'
         ).form-control#objectType
 
     .form-group.clearfix
@@ -291,14 +292,17 @@ data-ng-submit='vm.update()').form-horisontal
 
 
     .form-group.clearfix
-      .col-lg-7.col-lg-offset-2.col-md-offset-1.col-sm-offset-1
+      .col-lg-9.col-lg-offset-2.col-md-offset-1.col-sm-offset-1
         button(type='submit',
           translate='BTN_ADMIN_UPDATE',
           data-ng-disabled="!(vm.uploader.getNotUploadedItems().length && vm.uploaderMain.getNotUploadedItems().length)"
         ).btn.btn-success.btn-lg.btn-margin
         button(data-ng-click='vm.clear()',
-          translate='BTN_CLR'
+          translate='BTN_ADMIN_CLEAR'
         ).btn.btn-warning.btn-lg.btn-margin
+        button(data-ng-click='vm.cancel()',
+          translate='BTN_ADMIN_DECLINE'
+        ).btn.btn-danger.btn-lg.btn-margin
 
 
 

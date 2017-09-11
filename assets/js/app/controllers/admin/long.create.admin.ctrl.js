@@ -21,9 +21,6 @@
     vm.create = _create;
     vm.clear = _clear;
 
-    vm.obj = {
-      name: 'SomeName',
-    };
     vm.objList = $rootScope.orangeConfig.objList[$rootScope.lang];
     vm.cityList = $rootScope.orangeConfig.cityList[$rootScope.lang];
     vm.roomList = $rootScope.orangeConfig.roomList[$rootScope.lang];
@@ -315,7 +312,7 @@
         createRecords[useLang].objnumber = formData.objnumber;
         createRecords[useLang].show = (formData.show == "show" ? 1 : 0);
         createRecords[useLang].home = (formData.home == "home" ? 1 : 0);
-        createRecords[useLang].tag = formData.tag.key;
+        createRecords[useLang].tag = (formData.tag.key == 'none' ? null : formData.tag.key);
         createRecords[useLang].obj = formData.obj.key;
         createRecords[useLang].city = formData.city.key;
         createRecords[useLang].room = formData.room.key;

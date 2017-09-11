@@ -20,65 +20,9 @@
     var firstImg = true;
     vm.update = _update;
     vm.clear = _clear;
+    vm.cancel = _cancel;
 
-    vm.obj = {
-      name: 'SomeName',
-    };
-    vm.objList = $rootScope.orangeConfig.objList[$rootScope.lang];
-    vm.cityList = $rootScope.orangeConfig.cityList[$rootScope.lang];
-    vm.roomList = $rootScope.orangeConfig.roomList[$rootScope.lang];
-    vm.tagList = _.concat({key: 'none', val: 'Без тега'},
-    $rootScope.orangeConfig.tagList[$rootScope.lang]);
-
-    vm.langSet = {};
-
-    vm.activeTab = $rootScope.langActiveTab[0];
-
-    vm.formData = {};
-
-    vm.formData.langContent = [];
-
-    let useLang = '';
-
-    for (let i = 0; i < $rootScope.numLang; i++) {
-
-      useLang = $rootScope.langList[i];
-
-      $log.info('i:');
-      $log.info(i);
-      $log.info('useLang:');
-      $log.info(useLang);
-
-      vm.langSet[useLang] = {
-        lang: useLang,
-        activeTab: $rootScope.langActiveTab[i],
-        activeTabTitle: $rootScope.langTitle[i],
-      };
-
-      $log.info('vm.langSet[useLang]:');
-      console.dir(vm.langSet[useLang]);
-
-      vm.formData.langContent[useLang] = {};
-      vm.formData.langContent[useLang].address = '';
-      vm.formData.langContent[useLang].bathroom = '';
-      vm.formData.langContent[useLang].pool = '';
-      vm.formData.langContent[useLang].price = '';
-      vm.formData.langContent[useLang].description = '';
-      vm.formData.langContent[useLang].info = '';
-    }
-
-    vm.formData.obj = vm.objList[0];
-    vm.formData.city = vm.cityList[0];
-    vm.formData.room = vm.roomList[0];
-    vm.formData.tag = vm.tagList[0];
-    vm.formData.objnumber = '';
-    vm.formData.exclusive = 'not_exclusive';
-    vm.formData.show = 'show';
-    vm.formData.home = 'not_home';
-    vm.formData.imgMain = '';
-    vm.formData.imgGallery = '';
-    vm.formData.maps = '';
-    vm.formData.youtube = '';
+    _setDataInInitialState();
 
     vm.uploader = new FileUploader({
       alias: 'someimg',
@@ -267,6 +211,65 @@
     };
 */
 
+    function _setDataInInitialState() {
+      vm.objList = $rootScope.orangeConfig.objList[$rootScope.lang];
+      vm.cityList = $rootScope.orangeConfig.cityList[$rootScope.lang];
+      vm.roomList = $rootScope.orangeConfig.roomList[$rootScope.lang];
+      vm.tagList = _.concat({key: 'none', val: 'Без тега'},
+        $rootScope.orangeConfig.tagList[$rootScope.lang]);
+
+      vm.langSet = {};
+
+      vm.activeTab = $rootScope.langActiveTab[0];
+
+      vm.formData = {};
+
+      vm.formData.langContent = [];
+
+      let useLang = '';
+
+      for (let i = 0; i < $rootScope.numLang; i++) {
+
+        useLang = $rootScope.langList[i];
+
+        $log.info('i:');
+        $log.info(i);
+        $log.info('useLang:');
+        $log.info(useLang);
+
+        vm.langSet[useLang] = {
+          lang: useLang,
+          activeTab: $rootScope.langActiveTab[i],
+          activeTabTitle: $rootScope.langTitle[i],
+        };
+
+        $log.info('vm.langSet[useLang]:');
+        console.dir(vm.langSet[useLang]);
+
+        vm.formData.langContent[useLang] = {};
+        vm.formData.langContent[useLang].address = '';
+        vm.formData.langContent[useLang].bathroom = '';
+        vm.formData.langContent[useLang].pool = '';
+        vm.formData.langContent[useLang].price = '';
+        vm.formData.langContent[useLang].description = '';
+        vm.formData.langContent[useLang].info = '';
+      }
+
+/*
+      vm.formData.obj = vm.objList[0];
+      vm.formData.city = vm.cityList[0];
+      vm.formData.room = vm.roomList[0];
+      vm.formData.tag = vm.tagList[0];
+*/
+      vm.formData.objnumber = '';
+      vm.formData.show = 'show';
+      vm.formData.home = 'not_home';
+      vm.formData.imgMain = '';
+      vm.formData.imgGallery = '';
+      vm.formData.maps = '';
+      vm.formData.youtube = '';
+    } // _setDataInInitialState
+
     function _update() {
 
       $log.info('_update, vm.formData:');
@@ -344,7 +347,7 @@
         createRecords[useLang].objnumber = formData.objnumber;
         createRecords[useLang].show = (formData.show == "show" ? 1 : 0);
         createRecords[useLang].home = (formData.home == "home" ? 1 : 0);
-        createRecords[useLang].tag = formData.tag.key;
+        createRecords[useLang].tag = (formData.tag.key == 'none' ? null : formData.tag.key);
         createRecords[useLang].obj = formData.obj.key;
         createRecords[useLang].city = formData.city.key;
         createRecords[useLang].room = formData.room.key;
@@ -363,97 +366,9 @@
 
       }
 
-/*
-      switch (formData.exclusive) {
-        case 'exclusive': createResult = _createRecordExclusive(createRecords); break;
-        case 'not_exclusive': createResult = _createRecordLong(createRecords); break;
-      }
-*/
-
       createResult = _updateRecordLong(createRecords);
 
     } // _write
-
-    function _createRecordExclusive(data) {
-
-      console.log('_createRecordExclusive, data:');
-      console.dir(data);
-
-      var someObj = {};
-
-      _.forEach(data, function (val, key) {
-        someObj['record' + key] = ExclusiveService.putExclusiveObject(val);
-      });
-
-      $q.all(someObj)
-        .then(function (results) {
-          if (results.recorden.status == 201) {
-
-            toaster.pop({
-              type: 'success',
-              title: __.t('ADMIN_CREATE_SUCCESS_TITLE'),
-              body: __.t('ADMIN_CREATE_SUCCESS_BODY_1'),
-              toasterId: '111111',
-              showCloseButton: true,
-              timeout: 15000,
-            });
-
-            _clear();
-
-            return {
-              performed: true,
-              reason: 'ok',
-              data: {
-                record: results
-              },
-            };
-          } else {
-            // todo: change by Log
-            $log.warn('Error...');
-            $log.error(err);
-
-            toaster.pop({
-              type: 'error',
-              title: __.t('ADMIN_CREATE_ERROR_TITLE'),
-              body: __.t('ADMIN_CREATE_ERROR_BODY_1'),
-              toasterId: '111111',
-              showCloseButton: true,
-              timeout: 15000,
-            });
-
-            return {
-              performed: false,
-              reason: 'error',
-              data: {
-                error: err,
-              },
-            };
-          }
-        })
-        .catch(function (err) {
-          // todo: change by Log
-          $log.warn('Error...');
-          $log.error(err);
-
-          toaster.pop({
-            type: 'error',
-            title: __.t('ADMIN_CREATE_ERROR_TITLE'),
-            body: __.t('ADMIN_CREATE_ERROR_BODY_1'),
-            toasterId: '111111',
-            showCloseButton: true,
-            timeout: 15000,
-          });
-
-          return {
-            performed: false,
-            reason: 'error',
-            data: {
-              error: err,
-            },
-          };
-        });
-
-    } // _createRecordExclusive
 
     function _updateRecordLong(data) {
 
@@ -544,16 +459,19 @@
 
     function _clear() {
 
+      let useLang = '';
+
       $log.info('!!!!!!!!! $rootScope.admin.long.formData:');
       console.dir($rootScope.admin.long.formData);
       console.dir(vm);
 
+/*
       vm.formData.obj = vm.objList[0];
       vm.formData.city = vm.cityList[0];
       vm.formData.room = vm.roomList[0];
       vm.formData.tag = vm.tagList[0];
+*/
       vm.formData.objnumber = '';
-      vm.formData.exclusive = 'not_exclusive';
       vm.formData.show = 'show';
       vm.formData.home = 'not_home';
 
@@ -575,6 +493,12 @@
       vm.uploader_2.clearQueue();
       vm.uploaderMain_2.clearQueue();
     } // _clear
+
+    function _cancel() {
+      _clear();
+      _setDataInInitialState();
+      $rootScope.admin.long.editPanelShow = false;
+    } // _cancel
 
   }
 })();
