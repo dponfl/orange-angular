@@ -30,6 +30,10 @@
     $rootScope.scrollDisabled = false;
     $rootScope.panelsAllLangs = {};
 
+    // Images upload config
+
+    $rootScope.imgFileNameElement = '$$$_-_$$$';
+
 
     // Short term
     $rootScope.short = {};

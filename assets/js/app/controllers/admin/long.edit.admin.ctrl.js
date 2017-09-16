@@ -515,24 +515,76 @@
       var imgSize = null;
       var imgType = null;
       var imgFile = null;
+      var imgName = 'none';
       var test01 = '';
       var test02 = '';
+
+      var elemMain = obj.en.img;
+
+      // Main image
+
+      url = elemMain.src;
+      $http.get(url, getConf)
+        .then(function (response) {
+          // success
+          $log.warn('<<< Main image, Success response >>>');
+          console.dir(response);
+
+          imgUrl = response.config.url;
+          imgSize = response.data.size;
+          imgType = response.data.type;
+
+          if (imgUrl.indexOf($rootScope.imgFileNameElement)) {
+            imgName = imgUrl.slice(imgUrl.indexOf($rootScope.imgFileNameElement) +
+              $rootScope.imgFileNameElement.length + 1);
+          }
+
+          imgFile = new File(
+            [response.data],
+            imgName,
+            {
+              size: imgSize,
+              type: imgType
+            }
+          );
+
+          test01 = vm.uploaderMain.isFile(imgFile);
+          test02 = vm.uploaderMain.isFileLikeObject(imgFile);
+
+          $log.warn('imgFile check results:');
+          console.log('isFile: ' + test01);
+          console.log('isFileLikeObject: ' + test02);
+
+          vm.uploaderMain.addToQueue(imgFile);
+
+        }, function (response) {
+          // error
+          $log.warn('<<< Main image, Error response >>>');
+          console.dir(response);
+        });
+
+      // Gallery images
 
       _.forEach(obj.en.gallery, function (elem) {
         url = elem.src;
         $http.get(url, getConf)
           .then(function (response) {
             // success
-            $log.warn('<<< Success response >>>');
+            $log.warn('<<< Gallery images, Success response >>>');
             console.dir(response);
 
             imgUrl = response.config.url;
             imgSize = response.data.size;
             imgType = response.data.type;
 
+            if (imgUrl.indexOf($rootScope.imgFileNameElement)) {
+              imgName = imgUrl.slice(imgUrl.indexOf($rootScope.imgFileNameElement) +
+                $rootScope.imgFileNameElement.length + 1);
+            }
+
             imgFile = new File(
               [response.data],
-              'some.jpg',
+              imgName,
               {
                 size: imgSize,
                 type: imgType
@@ -550,10 +602,11 @@
 
           }, function (response) {
             // error
-            $log.warn('<<< Error response >>>');
+            $log.warn('<<< Gallery images, Error response >>>');
             console.dir(response);
           });
-      })
+      });
+
     } // _loadGallery
 
   }

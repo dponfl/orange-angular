@@ -2,6 +2,7 @@
 
 const _ = require('lodash');
 let objNum = '';
+const imgFileNameElement = '$$$_-_$$$';
 
 module.exports = {
   upload: function (req, res) {
@@ -125,9 +126,11 @@ function setFileName(__newFileStream, next) {
   console.log('field: ', __newFileStream.field);
 */
 
-  return next(undefined, objNum + '_' + __newFileStream.filename);
+  return next(undefined, objNum + '_' +
+    imgFileNameElement + '_' + __newFileStream.filename);
 } // setFileName
 
 function setFileNameMain(__newFileStream, next) {
-  return next(undefined, objNum + '_main_' + __newFileStream.filename);
+  return next(undefined, objNum + '_main_' +
+    imgFileNameElement + '_' + __newFileStream.filename);
 } // setFileNameMain
