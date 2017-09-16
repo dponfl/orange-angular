@@ -7,12 +7,12 @@
 
   LongEditAdminCtrl.$inject = ['GeneralConfigService', 'LongService', 'ExclusiveService',
     'EditObjectService', '$log', '$rootScope', '$scope', '$q',
-    'lodash', 'FileUploader', 'toaster', '$timeout'];
+    'lodash', 'FileUploader', 'toaster', '$timeout', '$http'];
 
   /* @ngInject */
   function LongEditAdminCtrl(GeneralConfigService, LongService, ExclusiveService,
                          EditObjectService, $log, $rootScope, $scope, $q,
-                         lodash, FileUploader, toaster, $timeout) {
+                         lodash, FileUploader, toaster, $timeout, $http) {
     var vm = this;
     var _ = lodash;
     var __=GeneralConfigService;
@@ -79,10 +79,10 @@
     // CALLBACKS
 
     vm.uploader.onWhenAddingFileFailed = function(item /*{File|FileLikeObject}*/, filter, options) {
-      // console.info('onWhenAddingFileFailed, uploader:', item, filter, options);
+      console.info('onWhenAddingFileFailed, uploader:', item, filter, options);
     };
     vm.uploader.onAfterAddingFile = function(fileItem) {
-      // console.info('onAfterAddingFile, uploader:', fileItem);
+      console.info('onAfterAddingFile, uploader:', fileItem);
     };
     vm.uploader.onAfterAddingAll = function(addedFileItems) {
       console.info('onAfterAddingAll, uploader:', addedFileItems);
@@ -191,6 +191,8 @@
 
           $log.warn('<<<<<< vm.formData >>>>>>>');
           console.dir(vm.formData);
+
+          _loadGallery(obj);
 
 /*
           $rootScope.admin.long.formData.objnumber = obj.objNumber;
@@ -499,6 +501,60 @@
       _setDataInInitialState();
       $rootScope.admin.long.editPanelShow = false;
     } // _cancel
+
+    // Load gallery images to file uploader queue
+    function _loadGallery(obj) {
+
+      $log.info('_loadGallery...');
+
+      var url = '';
+      var getConf = {
+        responseType:'blob'
+      };
+      var imgUrl = null;
+      var imgSize = null;
+      var imgType = null;
+      var imgFile = null;
+      var test01 = '';
+      var test02 = '';
+
+      _.forEach(obj.en.gallery, function (elem) {
+        url = elem.src;
+        $http.get(url, getConf)
+          .then(function (response) {
+            // success
+            $log.warn('<<< Success response >>>');
+            console.dir(response);
+
+            imgUrl = response.config.url;
+            imgSize = response.data.size;
+            imgType = response.data.type;
+
+            imgFile = new File(
+              [response.data],
+              'some.jpg',
+              {
+                size: imgSize,
+                type: imgType
+              }
+            );
+
+            test01 = vm.uploader.isFile(imgFile);
+            test02 = vm.uploader.isFileLikeObject(imgFile);
+
+            $log.warn('imgFile check results:');
+            console.log('isFile: ' + test01);
+            console.log('isFileLikeObject: ' + test02);
+
+            vm.uploader.addToQueue(imgFile);
+
+          }, function (response) {
+            // error
+            $log.warn('<<< Error response >>>');
+            console.dir(response);
+          });
+      })
+    } // _loadGallery
 
   }
 })();

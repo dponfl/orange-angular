@@ -22,10 +22,12 @@
     function _link(scope, element, attrs, ngModel) {
       ngModel.$validators.objectFormSelectValidation = function (modelValue) {
 
+/*
         $log.info('modelValue:');
         console.dir(modelValue);
         $log.info('scope.objectFormSelectValidation:');
         console.dir(scope.objectFormSelectValidation);
+*/
 
         return (modelValue.key != 'any');
       };
