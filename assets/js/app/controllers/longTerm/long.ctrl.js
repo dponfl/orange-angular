@@ -51,6 +51,7 @@
     $rootScope.$watch('long.FindActivated', function () {
       if ($rootScope.useAll) {
         _updateDataAll();
+        _updateDataEdit();
       } else {
         _updateData();
       }
@@ -240,6 +241,12 @@
       }
       if (typeof reqParams.room == 'object' && reqParams.room.key != 'any') {
         objReqParams.room = reqParams.room.key;
+      }
+      if (typeof reqParams.show == 'object' && reqParams.show.key != 'any') {
+        objReqParams.show = (reqParams.show.key == 'show' ? '1' : '0');
+      }
+      if (typeof reqParams.home == 'object' && reqParams.home.key != 'any') {
+        objReqParams.home = (reqParams.home.key == 'home' ? '1' : '0');
       }
 
 

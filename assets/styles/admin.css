@@ -92,3 +92,11 @@ canvas {
 .top-element {
   margin-top: 30px;
 }
+
+.admin-text-green {
+  color: green;
+}
+
+.admin-text-red {
+  color: red;
+}

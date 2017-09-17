@@ -8,7 +8,9 @@
       bindings: {
         objList: '=',
         cityList: '=',
-        roomList: '='
+        roomList: '=',
+        showList: '=',
+        homeList: '='
       },
       templateUrl: 'templates/view/admin/filter.html'
     });

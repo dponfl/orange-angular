@@ -4,6 +4,20 @@ data-ng-submit='$ctrl.find()').form-horisontal
   fieldset(data-ng-attr-disabled='{{$ctrl.filterDisabled || undefined}}')
 
     .form-group.clearfix
+      label(for='showType', translate='LBL_SHOW').col-sm-4.control-label.text-right
+      .col-sm-8
+        select(name='showType',
+        data-ng-options='option.val for option in $ctrl.showList track by option.key',
+        data-ng-model='$ctrl.formData.show').form-control#showType
+
+    .form-group.clearfix
+      label(for='homeType', translate='LBL_HOME').col-sm-4.control-label.text-right
+      .col-sm-8
+        select(name='homeType',
+        data-ng-options='option.val for option in $ctrl.homeList track by option.key',
+        data-ng-model='$ctrl.formData.home').form-control#homeType
+
+    .form-group.clearfix
       label(for='objectType', translate='LBL_OBJ').col-sm-4.control-label.text-right
       .col-sm-8
         select(name='objectType',

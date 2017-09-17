@@ -38,7 +38,9 @@
                     div(data-ng-controller='AdminFiltersCtrl as e').panel-body
                       admin-object-filter(obj-list='e.objList',
                       city-list='e.cityList',
-                      room-list='e.roomList'
+                      room-list='e.roomList',
+                      show-list='e.showList',
+                      home-list='e.homeList'
                       )
 
               div(data-ng-controller='LongCtrl', data-ng-init="updateDataEdit()")
@@ -63,15 +65,28 @@
                             span(data-ng-show="p.sortKey=='contentObj.city.text'",
                             data-ng-class="{'glyphicon-chevron-up':!p.reverse,'glyphicon-chevron-down':p.reverse}").glyphicon.sort-icon
                           th Адрес объекта
-                          th Открыт для показа
-                          th Действие
+                          th
+                            div.text-center Открыт для показа
+                          th
+                            div.text-center На главной странице
+                          th
+                            div.text-center Действие
                       tbody
                         tr(data-dir-paginate='panel in long.panelsEdit|orderBy:p.sortKey:p.reverse|itemsPerPage:7')
                           td {{panel.objNumber}}
                           td {{panel.contentObj.obj.text}}
                           td {{panel.contentObj.city.text}}
                           td {{panel.contentObj.address.text}}
-                          td {{panel.show}}
+                          td
+                           div(data-ng-if="panel.show").text-center
+                             span(aria-hidden="true").glyphicon.glyphicon-ok.admin-text-green
+                           div(data-ng-if="!panel.show").text-center
+                             span(aria-hidden="true").glyphicon.glyphicon-remove.admin-text-red
+                          td
+                           div(data-ng-if="panel.home").text-center
+                             span(aria-hidden="true").glyphicon.glyphicon-ok.admin-text-green
+                           div(data-ng-if="!panel.home").text-center
+                             span(aria-hidden="true").glyphicon.glyphicon-remove.admin-text-red
                           td
                              button(data-ng-click='p.edit(panel.objNumber)',
                               data-ng-disabled="!admin.long.editObjEnableButton"

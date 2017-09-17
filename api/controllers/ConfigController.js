@@ -141,13 +141,75 @@ module.exports = {
           });
         });
 
+        result['showList'] = {
+          en: [
+            {
+              key: 'any',
+              val: 'Any',
+            },
+            {
+              key: 'show',
+              val: 'Show',
+            },
+            {
+              key: 'not_show',
+              val: 'Do not show',
+            },
+          ],
+          ru: [
+            {
+              key: 'any',
+              val: 'Любой',
+            },
+            {
+              key: 'show',
+              val: 'Показывать',
+            },
+            {
+              key: 'not_show',
+              val: 'Не показывать',
+            },
+          ],
+        };
+
+        result['homeList'] = {
+          en: [
+            {
+              key: 'any',
+              val: 'Any',
+            },
+            {
+              key: 'home',
+              val: 'Place at home',
+            },
+            {
+              key: 'not_home',
+              val: 'Do not place at home',
+            },
+          ],
+          ru: [
+            {
+              key: 'any',
+              val: 'Любой',
+            },
+            {
+              key: 'home',
+              val: 'Размещать',
+            },
+            {
+              key: 'not_home',
+              val: 'Не размещать',
+            },
+          ],
+        };
+
         console.log('loadConfig, result:');
-        console.log(result);
+        console.dir(result);
 
         return res.ok({result: 'ok', data: result, token: '123'});
       }, function (reason) {
         console.log('Promise.all error, reason:');
-        console.log(reason);
+        console.dir(reason);
       });
 
     /**
