@@ -176,6 +176,10 @@
       vm.formData.imgMain = response.files[0].fd.slice(response.files[0].fd.indexOf('img') + 4);
     };
 
+    //=============================================
+    // $watch
+    //=============================================
+
     $rootScope.$watch('admin.long.editObjSelected', function (newVal, oldVal) {
       if (newVal && !oldVal) {
         $rootScope.admin.long.editPanelShow = false;
@@ -234,10 +238,12 @@
 
         useLang = $rootScope.langList[i];
 
+/*
         $log.info('i:');
         $log.info(i);
         $log.info('useLang:');
         $log.info(useLang);
+*/
 
         vm.langSet[useLang] = {
           lang: useLang,
@@ -245,8 +251,10 @@
           activeTabTitle: $rootScope.langTitle[i],
         };
 
+/*
         $log.info('vm.langSet[useLang]:');
         console.dir(vm.langSet[useLang]);
+*/
 
         vm.formData.langContent[useLang] = {};
         vm.formData.langContent[useLang].address = '';
@@ -500,6 +508,7 @@
       _clear();
       _setDataInInitialState();
       $rootScope.admin.long.editPanelShow = false;
+      $rootScope.admin.long.editObjEnableButton = true;
     } // _cancel
 
     // Load gallery images to file uploader queue
@@ -516,8 +525,11 @@
       var imgType = null;
       var imgFile = null;
       var imgName = 'none';
+
+/*
       var test01 = '';
       var test02 = '';
+*/
 
       var elemMain = obj.en.img;
 
@@ -548,12 +560,14 @@
             }
           );
 
+/*
           test01 = vm.uploaderMain.isFile(imgFile);
           test02 = vm.uploaderMain.isFileLikeObject(imgFile);
 
           $log.warn('imgFile check results:');
           console.log('isFile: ' + test01);
           console.log('isFileLikeObject: ' + test02);
+*/
 
           vm.uploaderMain.addToQueue(imgFile);
 
@@ -591,12 +605,14 @@
               }
             );
 
+/*
             test01 = vm.uploader.isFile(imgFile);
             test02 = vm.uploader.isFileLikeObject(imgFile);
 
             $log.warn('imgFile check results:');
             console.log('isFile: ' + test01);
             console.log('isFileLikeObject: ' + test02);
+*/
 
             vm.uploader.addToQueue(imgFile);
 

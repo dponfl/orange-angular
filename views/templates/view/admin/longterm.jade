@@ -41,7 +41,7 @@
                       room-list='e.roomList'
                       )
 
-              div(data-ng-controller='LongCtrl', data-ng-init="updateDataAll()")
+              div(data-ng-controller='LongCtrl', data-ng-init="updateDataEdit()")
 
                 div(data-ng-if='long.showFoundNothing')
                   nothing-found
@@ -63,15 +63,19 @@
                             span(data-ng-show="p.sortKey=='contentObj.city.text'",
                             data-ng-class="{'glyphicon-chevron-up':!p.reverse,'glyphicon-chevron-down':p.reverse}").glyphicon.sort-icon
                           th Адрес объекта
+                          th Открыт для показа
                           th Действие
                       tbody
-                        tr(data-dir-paginate='panel in long.panels|orderBy:p.sortKey:p.reverse|itemsPerPage:7')
+                        tr(data-dir-paginate='panel in long.panelsEdit|orderBy:p.sortKey:p.reverse|itemsPerPage:7')
                           td {{panel.objNumber}}
                           td {{panel.contentObj.obj.text}}
                           td {{panel.contentObj.city.text}}
                           td {{panel.contentObj.address.text}}
+                          td {{panel.show}}
                           td
-                             button(data-ng-click='p.edit(panel.objNumber);').btn.btn-sm.btn-info Редактировать
+                             button(data-ng-click='p.edit(panel.objNumber)',
+                              data-ng-disabled="!admin.long.editObjEnableButton"
+                             ).btn.btn-sm.btn-info Редактировать
 
                     dir-pagination-controls(max-size="3", boundary-links="true")
 

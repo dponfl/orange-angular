@@ -26,10 +26,10 @@
     function _setEditLongObject(objNumb) {
       var obj = {};
       // Get object from $rootScope using objNumb
-      _.forEach($rootScope.long.panelsAllLangs, function (value, key) {
+      _.forEach($rootScope.long.panelsAllLangsEdit, function (value, key) {
 
 /*
-        $log.info('EditObjectService, _setEditLongObject, panelsAllLangs:');
+        $log.info('EditObjectService, _setEditLongObject, panelsAllLangsEdit:');
         $log.info('key:');
         console.dir(key);
         $log.info('value:');
@@ -45,6 +45,7 @@
 
       editLongObject = obj;
       $rootScope.admin.long.editObjSelected = true;
+      $rootScope.admin.long.editObjEnableButton = false;
     } // _setEditLongObject
 
     function _getEditLongObject() {

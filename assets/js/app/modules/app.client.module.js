@@ -34,7 +34,6 @@
 
     $rootScope.imgFileNameElement = '$$$_-_$$$';
 
-
     // Short term
     $rootScope.short = {};
     $rootScope.short.showNotFound = false;
@@ -58,7 +57,9 @@
     $rootScope.long.showFoundNothing = false;
     $rootScope.long.showServerError = false;
     $rootScope.long.panelsAllLangs = {};
+    $rootScope.long.panelsAllLangsEdit = {};
     $rootScope.long.panels = [];
+    $rootScope.long.panelsEdit = [];
     $rootScope.long.busy = false;
 
     // Sale
@@ -94,6 +95,7 @@
     $rootScope.admin.long.objNumber = '';
     $rootScope.admin.long.editPanelShow = false;
     $rootScope.admin.long.formData = {};
+    $rootScope.admin.long.editObjEnableButton = true;
 
     $log.info('OrangeClient, $rootScope:');
     $log.info($rootScope);

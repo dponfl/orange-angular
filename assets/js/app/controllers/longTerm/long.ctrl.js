@@ -45,6 +45,7 @@
     $scope.activateNextPage = _activateNextPage;
     $scope.updateData = _updateData;
     $scope.updateDataAll = _updateDataAll;
+    $scope.updateDataEdit = _updateDataEdit;
 
     // $rootScope.$watch('long.FindActivated', _updateData);
     $rootScope.$watch('long.FindActivated', function () {
@@ -104,6 +105,41 @@
 
     } // _updateDataAll
 
+    function _updateDataEdit() {
+      $log.info('_updateDataAll activated...');
+
+      $rootScope.useAll = true;
+
+      $rootScope.long.panels = [];
+      $rootScope.long.busy = false;
+      $rootScope.long.FindActivated = false;
+
+      $rootScope.long.page = 1;
+      $rootScope.long.showNotFound = false;
+      $rootScope.long.showServerError = false;
+      $rootScope.long.showFoundNothing = false;
+
+      $q.when(_performRequestAll($rootScope.long.FilterData, true))
+        .then(function (res) {
+
+          if (!res.performed &&
+            (res.reason == 'notFound' || res.reason == 'serverError')) {
+            return;
+          }
+
+          var buildResult = _buildPanel(res);
+
+          if (!buildResult.performed) return;
+
+          $rootScope.long.panelsAllLangsEdit = buildResult.data;
+
+          _updateEdit();
+
+          return;
+        });
+
+    } // _updateDataEdit
+
 
 
     function _updateData () {
@@ -145,7 +181,15 @@
       }
     } // _updateData
 
-    function _performRequestAll(reqParams) {
+    function _performRequestAll(reqParams, showAll = false) {
+
+      var getRecordsConfig = {};
+      var objReqParams = {};
+
+      if (!showAll) {
+        getRecordsConfig = {show: 1};
+        objReqParams = {show: 1};
+      }
 
       if ($rootScope.long.busy) {
 
@@ -185,8 +229,6 @@
 
       $rootScope.long.busy = true;
 
-      var objReqParams = {show: 1};
-
       if (typeof reqParams.objnumber != 'undefined' && reqParams.objnumber) {
         objReqParams.objnumber = reqParams.objnumber;
       }
@@ -201,7 +243,9 @@
       }
 
 
-      return $q.all({keys: LongService.getAllLongObjectsKeys({show: 1}),
+
+
+      return $q.all({keys: LongService.getAllLongObjectsKeys(getRecordsConfig),
         objs: LongService.getAllLongObjectsObjs(objReqParams)})
         .then(function (results) {
           $rootScope.long.busy = false;
@@ -560,6 +604,16 @@
       $rootScope.long.panels = $rootScope.long.panelsAllLangs[$rootScope.lang];
 
     } // update
+
+    function _updateEdit() {
+      $rootScope.objList = $rootScope.orangeConfig.objList[$rootScope.lang];
+      $rootScope.cityList = $rootScope.orangeConfig.cityList[$rootScope.lang];
+      $rootScope.roomList = $rootScope.orangeConfig.roomList[$rootScope.lang];
+      $rootScope.tagList = $rootScope.orangeConfig.tagList[$rootScope.lang];
+
+      $rootScope.long.panelsEdit = $rootScope.long.panelsAllLangsEdit[$rootScope.lang];
+
+    } // updateEdit
 
     function _activateNextPage() {
       if ($rootScope.long.scrollDisabled) return;

@@ -29,7 +29,7 @@
         console.dir(scope.objectFormSelectValidation);
 */
 
-        return (modelValue.key != 'any');
+        return ((modelValue.key) ? modelValue.key != 'any' : false);
       };
 
       scope.$watch('objectFormSelectValidation', function () {

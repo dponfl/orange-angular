@@ -52,7 +52,7 @@ data-ng-submit='vm.update()').form-horisontal
         select(name='objectType',
           data-ng-options='option.val for option in vm.objList track by option.key',
           data-ng-model='vm.formData.obj',
-          object-form-select-validation='vm.formData.obj.key'
+          object-form-select-validation
         ).form-control#objectType
 
     .form-group.clearfix
