@@ -22,7 +22,7 @@
     vm.clear = _clear;
     vm.cancel = _cancel;
 
-    _cancel();
+    // _cancel();
     _setDataInInitialState();
 
     vm.uploader = new FileUploader({
@@ -354,7 +354,7 @@
         useLang = $rootScope.langList[i];
         createRecords[useLang] = {};
         createRecords[useLang].lang = useLang;
-        createRecords[useLang].deal = 'long_term';
+        // createRecords[useLang].deal = 'long_term';
         createRecords[useLang].objnumber = formData.objnumber;
         createRecords[useLang].show = (formData.show == "show" ? 1 : 0);
         createRecords[useLang].home = (formData.home == "home" ? 1 : 0);
@@ -474,9 +474,11 @@
 
       let useLang = '';
 
+/*
       $log.info('!!!!!!!!! $rootScope.admin.long.formData:');
       console.dir($rootScope.admin.long.formData);
       console.dir(vm);
+*/
 
 /*
       vm.formData.obj = vm.objList[0];

@@ -11,10 +11,12 @@
   /* @ngInject */
   function SaleService(GeneralConfigService, $log, $rootScope, $http, oSaleKey, oSale, lodash, $q) {
     var _ = lodash;
+    var name = 'SaleService';
     var self = {
       getAllSaleObjectsKeys: _getAllSaleObjectsKeys,
       getAllSaleObjectsObjs: _getAllSaleObjectsObjs,
       getAllSaleObjectsObjsPager: _getAllSaleObjectsObjsPager,
+      putSaleObject: _putSaleObject,
     };
 
     return self;
@@ -30,7 +32,7 @@
         var __keys = {};
 
         if (!_.isArray(data)) {
-          deferred.reject(new Error('SaleKey data is not an array'))
+          deferred.reject(new Error(name + ', _getAllSaleObjectsKeys: SaleKey data is not an array'))
         }
 
         sortedData = _.sortBy(data, 'order');
@@ -76,7 +78,7 @@
       function successCb(data) {
 
         if (!_.isArray(data.data.result)) {
-          return new Error('Sale data is not an array');
+          return new Error(name + ', _getAllSaleObjectsObjs: Sale data is not an array');
         }
 
         var response = data.data.result;
@@ -137,7 +139,7 @@
       function successCb(data) {
 
         if (!_.isArray(data.data.result)) {
-          return new Error('Sale data is not an array');
+          return new Error(name + ', _getAllSaleObjectsObjsPager: Sale data is not an array');
         }
 
         var response = data.data.result;
@@ -187,7 +189,72 @@
       }
     } // _getAllSaleObjectsObjsPager
 
+    function _putSaleObject(reqObj) {
+
+      // todo: return object having result code (200, 404, etc.) and data
+
+      return $http.post($rootScope.orangeConfig.host + '/sale/put', reqObj)
+        .then(successCb, errorCb);
+
+      function successCb(data) {
+
+        $log.info(name + ', _putSaleObject, successCb, data:');
+        $log.info(data);
+
+        if (!_.isNumber(data.data.result.id)) {
+          return new Error(name + ', _putSaleObject: Sale data has wrong format');
+        }
+
+        var response = data.data.result;
+
+        var __objs = {};
+
+        for (var i = 0; i < response.length; i++) {
+
+          if (!_.isArray(__objs[response[i].lang]))
+            __objs[response[i].lang] = [];
+
+          __objs[response[i].lang].push({
+            objNumber: response[i].objnumber,
+            show: response[i].show,
+            home: response[i].home,
+            tag: response[i].tag,
+            city: response[i].city,
+            address: response[i].address,
+            obj: response[i].obj,
+            room: response[i].room,
+            bathroom: response[i].bathroom,
+            pool: response[i].pool,
+            price: response[i].price,
+            description: response[i].description,
+            info: response[i].info,
+            googleMap: response[i].maps,
+            imgMain: response[i].imgmain,
+            imgGallery: response[i].imggallery,
+            youtube: response[i].youtube,
+            createdAt: response[i].createdAt,
+            updatedAt: response[i].updatedAt,
+          })
+        }
+
+        return {
+          status: 201,
+          data: __objs,
+        };
+      }
+
+      function errorCb(err) {
+
+        return {
+          status: err.status,
+          error: err,
+        }
+      }
+    } // _putSaleObject
+
+
   } // SaleService
+
 
 })();
 

@@ -152,14 +152,14 @@
       console.info(vm.name + ', onAfterAddingAll, uploader:', addedFileItems);
 
       vm.uploader.queue.map(function (el) {
-        el.formData = [{obj: vm.formData.objnumber + '_long'}];
+        el.formData = [{obj: vm.formData.objnumber + '_sale'}];
       });
 
       vm.uploader_2.queue = _.cloneDeep(vm.uploader.queue);
       vm.uploader_2.queue.map(function (el) {
         el.alias = vm.uploader_2.alias;
         el.url = vm.uploader_2.url;
-        el.formData = [{obj: vm.formData.objnumber + '_long'}];
+        el.formData = [{obj: vm.formData.objnumber + '_sale'}];
         el.uploader = vm.uploader_2;
       });
 
@@ -203,14 +203,14 @@
       console.info(vm.name + ', onAfterAddingAll, uploaderMain:', addedFileItems);
 
       vm.uploaderMain.queue.map(function (el) {
-        el.formData = [{obj: vm.formData.objnumber + '_long'}];
+        el.formData = [{obj: vm.formData.objnumber + '_sale'}];
       });
 
       vm.uploaderMain_2.queue = _.cloneDeep(vm.uploaderMain.queue);
       vm.uploaderMain_2.queue.map(function (el) {
         el.alias = vm.uploaderMain_2.alias;
         el.url = vm.uploaderMain_2.url;
-        el.formData = [{obj: vm.formData.objnumber + '_long'}];
+        el.formData = [{obj: vm.formData.objnumber + '_sale'}];
         el.uploader = vm.uploaderMain_2;
       });
 
@@ -303,7 +303,7 @@
 
       var createRecords = {};
 
-      $log.info('formData:');
+      $log.info(vm.name + ', _write, formData:');
       $log.info(formData);
 
       let useLang = '';
@@ -313,7 +313,7 @@
         useLang = $rootScope.langList[i];
         createRecords[useLang] = {};
         createRecords[useLang].lang = useLang;
-        createRecords[useLang].deal = 'long_term';
+        // createRecords[useLang].deal = 'long_term';
         createRecords[useLang].objnumber = formData.objnumber;
         createRecords[useLang].show = (formData.show == "show" ? 1 : 0);
         createRecords[useLang].home = (formData.home == "home" ? 1 : 0);
@@ -336,114 +336,26 @@
 
       }
 
-/*
-      switch (formData.exclusive) {
-        case 'exclusive': createResult = _createRecordExclusive(createRecords); break;
-        case 'not_exclusive': createResult = _createRecordLong(createRecords); break;
-      }
-*/
-
-      createResult = _createRecordLong(createRecords);
+      createResult = _createRecordSale(createRecords);
 
     } // _write
 
-    function _createRecordExclusive(data) {
+    function _createRecordSale(data) {
 
-      console.log('_createRecordExclusive, data:');
+      $log.info(vm.name + ', _createRecordSale, data:');
       console.dir(data);
 
       var someObj = {};
 
       _.forEach(data, function (val, key) {
-        someObj['record' + key] = ExclusiveService.putExclusiveObject(val);
-      });
-
-      $q.all(someObj)
-        .then(function (results) {
-          if (results.recorden.status == 201) {
-
-            toaster.pop({
-              type: 'success',
-              title: __.t('ADMIN_CREATE_SUCCESS_TITLE'),
-              body: __.t('ADMIN_CREATE_SUCCESS_BODY_1'),
-              toasterId: '111111',
-              showCloseButton: true,
-              timeout: 15000,
-            });
-
-            _clear();
-
-            return {
-              performed: true,
-              reason: 'ok',
-              data: {
-                record: results
-              },
-            };
-          } else {
-            // todo: change by Log
-            $log.warn('Error...');
-            $log.error(err);
-
-            toaster.pop({
-              type: 'error',
-              title: __.t('ADMIN_CREATE_ERROR_TITLE'),
-              body: __.t('ADMIN_CREATE_ERROR_BODY_1'),
-              toasterId: '111111',
-              showCloseButton: true,
-              timeout: 15000,
-            });
-
-            return {
-              performed: false,
-              reason: 'error',
-              data: {
-                error: err,
-              },
-            };
-          }
-        })
-        .catch(function (err) {
-          // todo: change by Log
-          $log.warn('Error...');
-          $log.error(err);
-
-          toaster.pop({
-            type: 'error',
-            title: __.t('ADMIN_CREATE_ERROR_TITLE'),
-            body: __.t('ADMIN_CREATE_ERROR_BODY_1'),
-            toasterId: '111111',
-            showCloseButton: true,
-            timeout: 15000,
-          });
-
-          return {
-            performed: false,
-            reason: 'error',
-            data: {
-              error: err,
-            },
-          };
-        });
-
-    } // _createRecordExclusive
-
-    function _createRecordLong(data) {
-
-      console.log('_createRecordLong, data:');
-      console.dir(data);
-
-      var someObj = {};
-
-      _.forEach(data, function (val, key) {
-        someObj['record' + key] = LongService.putLongObject(val);
+        someObj['record' + key] = SaleService.putSaleObject(val);
       });
 
       $q.all(someObj)
         .then(function (results) {
 
 /*
-          $log.warn('_createRecordLong, results:');
+          $log.warn(vm.name + ', _createRecordSale, results:');
           console.dir(results);
 */
 
@@ -513,7 +425,7 @@
           };
         });
 
-    } // _createRecordLong
+    } // _createRecordSale
 
     function _clear() {
 

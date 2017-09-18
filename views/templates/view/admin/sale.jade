@@ -18,8 +18,8 @@
             bs-pane
             ).tabs-block
 
-              div(data-ng-controller='LongCreateAdminCtrl')
-                long-admin-create()
+              div(data-ng-controller='SaleCreateAdminCtrl')
+                sale-admin-create()
 
 
             //=================
@@ -30,9 +30,9 @@
               name="existing_obj",
               bs-pane
             ).tabs-block
-              .row#block-long-filter-admin
-                .col-sm-6.col-sm-offset-3#longFilterWrapper
-                  .panel.panel-info#longFilter
+              .row#block-sale-filter-admin
+                .col-sm-6.col-sm-offset-3#saleFilterWrapper
+                  .panel.panel-info#saleFilter
                     .panel-heading
                       h3(translate='PANEL_HEADER')
                     div(data-ng-controller='AdminFiltersCtrl as e').panel-body
@@ -43,66 +43,7 @@
                       home-list='e.homeList'
                       )
 
-              div(data-ng-controller='LongCtrl', data-ng-init="updateDataEdit()")
 
-                div(data-ng-if='long.showFoundNothing')
-                  nothing-found
-
-                div(data-ng-hide='long.showFoundNothing').row
-                  .col-sm-10
-                    h2 Список объектов
-                    button(data-ng-click='p.clearSort();').btn.btn-info Очистить сортировку
-                    table.table.table-striped.table-hover
-                      thead
-                        tr
-                          th(data-ng-click='p.sort("objNumber");').sort-th Номер объекта
-                            span(data-ng-show="p.sortKey=='objNumber'",
-                            data-ng-class="{'glyphicon-chevron-up':!p.reverse,'glyphicon-chevron-down':p.reverse}").glyphicon.sort-icon
-                          th(data-ng-click='p.sort("contentObj.obj.text");').sort-th Тип объекта
-                            span(data-ng-show="p.sortKey=='contentObj.obj.text'",
-                            data-ng-class="{'glyphicon-chevron-up':!p.reverse,'glyphicon-chevron-down':p.reverse}").glyphicon.sort-icon
-                          th(data-ng-click='p.sort("contentObj.city.text");').sort-th Город
-                            span(data-ng-show="p.sortKey=='contentObj.city.text'",
-                            data-ng-class="{'glyphicon-chevron-up':!p.reverse,'glyphicon-chevron-down':p.reverse}").glyphicon.sort-icon
-                          th Адрес объекта
-                          th
-                            div.text-center Открыт для показа
-                          th
-                            div.text-center На главной странице
-                          th
-                            div.text-center Действие
-                      tbody
-                        tr(data-dir-paginate='panel in long.panelsEdit|orderBy:p.sortKey:p.reverse|itemsPerPage:7')
-                          td {{panel.objNumber}}
-                          td {{panel.contentObj.obj.text}}
-                          td {{panel.contentObj.city.text}}
-                          td {{panel.contentObj.address.text}}
-                          td
-                           div(data-ng-if="panel.show").text-center
-                             span(aria-hidden="true").glyphicon.glyphicon-ok.admin-text-green
-                           div(data-ng-if="!panel.show").text-center
-                             span(aria-hidden="true").glyphicon.glyphicon-remove.admin-text-red
-                          td
-                           div(data-ng-if="panel.home").text-center
-                             span(aria-hidden="true").glyphicon.glyphicon-ok.admin-text-green
-                           div(data-ng-if="!panel.home").text-center
-                             span(aria-hidden="true").glyphicon.glyphicon-remove.admin-text-red
-                          td
-                             button(data-ng-click='p.edit(panel.objNumber)',
-                              data-ng-disabled="!admin.long.editObjEnableButton"
-                             ).btn.btn-sm.btn-info Редактировать
-
-                    dir-pagination-controls(max-size="3", boundary-links="true")
-
-              div(data-ng-controller='LongEditAdminCtrl as leac',
-                data-ng-show='admin.long.editPanelShow'
-              )
-                .panel.panel-info
-                  .panel-heading
-                    h3 {{"HEADER_PANEL_EDIT" | translate}}
-                      | {{leac.formData.objnumber}}
-                  .panel.panel-body
-                    long-admin-edit-directive()
 
   toaster-container(data-toaster-options="{'toaster-id': '111111'}")
 

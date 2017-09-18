@@ -146,6 +146,114 @@ module.exports = {
       });
 
 
-  } // findPager
+  }, // findPager
+
+  put: function (req, res) {
+    /*
+     console.log('=======================');
+     console.log('req.body:');
+     console.dir(req.body);
+     console.log('req.headers:');
+     console.dir(req.headers);
+     console.log('req.ip:');
+     console.dir(req.ip);
+     console.log('req.ips:');
+     console.dir(req.ips);
+     console.log('req.method:');
+     console.dir(req.method);
+     console.log('req.params:');
+     console.dir(req.params);
+     console.log('req.allParams():');
+     console.dir(req.allParams());
+     */
+
+    console.log('<== SaleController.js:put ==>');
+
+    // todo: make parameters validation
+    var newRecordParams = req.allParams();
+    var newObj = {};
+
+    _.forEach(newRecordParams, function (val, key) {
+      if (val) {
+        newObj[key] = val;
+      }
+    });
+
+    console.log('Ready to create new record:');
+    console.dir(newObj);
+
+    Sale.create(newObj)
+      .exec(function (err, data) {
+        if (err) {
+          return res.serverError(err);
+        }
+
+        console.log('data: ');
+        console.dir(data);
+
+        return res.created({
+          code: 201,
+          message: 'OK',
+          result: data});
+      });
+
+
+  }, // put
+
+  update: function (req, res) {
+    /*
+     console.log('=======================');
+     console.log('req.body:');
+     console.dir(req.body);
+     console.log('req.headers:');
+     console.dir(req.headers);
+     console.log('req.ip:');
+     console.dir(req.ip);
+     console.log('req.ips:');
+     console.dir(req.ips);
+     console.log('req.method:');
+     console.dir(req.method);
+     console.log('req.params:');
+     console.dir(req.params);
+     console.log('req.allParams():');
+     console.dir(req.allParams());
+     */
+
+    console.log('<== SaleController.js:update ==>');
+
+    // todo: make parameters validation
+    var newRecordParams = req.allParams();
+    var newObj = {};
+
+    _.forEach(newRecordParams, function (val, key) {
+      if (val) {
+        newObj[key] = val;
+      }
+    });
+
+    console.log('Ready to update record:');
+    console.dir(newObj);
+
+    var findCriteria = {
+      objnumber: newObj.objnumber,
+      lang: newObj.lang
+    };
+
+    Sale.update(findCriteria, newObj)
+      .exec(function (err, data) {
+        if (err) {
+          return res.serverError(err);
+        }
+
+        console.log('data: ');
+        console.dir(data);
+
+        return res.json({
+          code: 200,
+          message: 'OK',
+          result: data});
+      });
+
+  }, // update
 };
 

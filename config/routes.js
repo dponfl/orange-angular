@@ -92,6 +92,9 @@ module.exports.routes = {
 
   'POST /sale/find': 'SaleController.find',
   'POST /sale/findp': 'SaleController.findPager',
+  'POST /sale/put': 'SaleController.put',
+  'POST /sale/update': 'SaleController.update',
+
 
   'POST /exclusive/find': 'ExclusiveController.find',
   'POST /exclusive/findp': 'ExclusiveController.findPager',

@@ -308,7 +308,7 @@
         useLang = $rootScope.langList[i];
         createRecords[useLang] = {};
         createRecords[useLang].lang = useLang;
-        createRecords[useLang].deal = 'long_term';
+        // createRecords[useLang].deal = 'long_term';
         createRecords[useLang].objnumber = formData.objnumber;
         createRecords[useLang].show = (formData.show == "show" ? 1 : 0);
         createRecords[useLang].home = (formData.home == "home" ? 1 : 0);
