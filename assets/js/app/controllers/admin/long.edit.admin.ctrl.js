@@ -409,8 +409,10 @@
             });
 
             _clear();
+            _setDataInInitialState();
 
             $rootScope.admin.long.editPanelShow = false;
+            $rootScope.admin.long.editObjEnableButton = true;
 
             return {
               performed: true,
