@@ -289,7 +289,7 @@ function translateConfig ($translateProvider) {
     'LBL_ADDRESS': 'Адрес',
     'LBL_BATHROOM': 'Сан. узел',
     'LBL_POOL': 'Бассейн',
-    'LBL_PRICE': 'Стоимость аренды',
+    'LBL_PRICE': 'Стоимость',
     'LBL_DESCRIPTION': 'Описание',
     'LBL_INFO': 'Доп. информация',
     'OBJ_NUM_PLACEHOLDER': '№ объекта',

@@ -22,6 +22,7 @@
     vm.clear = _clear;
     vm.cancel = _cancel;
 
+    _cancel();
     _setDataInInitialState();
 
     vm.uploader = new FileUploader({

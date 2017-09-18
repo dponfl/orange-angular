@@ -72,7 +72,9 @@
     $rootScope.sale.showFoundNothing = false;
     $rootScope.sale.showServerError = false;
     $rootScope.sale.panelsAllLangs = {};
+    $rootScope.sale.panelsAllLangsEdit = {};
     $rootScope.sale.panels = [];
+    $rootScope.sale.panelsEdit = [];
     $rootScope.sale.busy = false;
 
     // Exclusive

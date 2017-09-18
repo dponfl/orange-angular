@@ -3,16 +3,20 @@
 
   angular
     .module('OrangeClient')
-    .controller('ShortAdminCtrl', ShortAdminCtrl);
+    .controller('SaleCreateAdminCtrl', SaleCreateAdminCtrl);
 
-  ShortAdminCtrl.$inject = ['ShortService', '$log', '$rootScope', '$scope', '$q',
-    'lodash', 'FileUploader'];
+  SaleCreateAdminCtrl.$inject = ['GeneralConfigService', 'SaleService',
+    'EditObjectService', '$log', '$rootScope', '$scope', '$q',
+    'lodash', 'FileUploader', 'toaster', '$timeout'];
 
   /* @ngInject */
-  function ShortAdminCtrl(ShortService, $log, $rootScope, $scope, $q,
-                         lodash, FileUploader) {
+  function SaleCreateAdminCtrl(GeneralConfigService, SaleService,
+                         EditObjectService, $log, $rootScope, $scope, $q,
+                         lodash, FileUploader, toaster, $timeout) {
     var vm = this;
+    vm.name = 'SaleCreateAdminCtrl';
     var _ = lodash;
+    var __=GeneralConfigService;
 
     var firstImg = true;
     vm.create = _create;
@@ -38,10 +42,12 @@
 
       useLang = $rootScope.langList[i];
 
+/*
       $log.info('i:');
       $log.info(i);
       $log.info('useLang:');
       $log.info(useLang);
+*/
 
       vm.langSet[useLang] = {
         lang: useLang,
@@ -49,28 +55,19 @@
         activeTabTitle: $rootScope.langTitle[i],
       };
 
+/*
       $log.info('vm.langSet[useLang]:');
       console.dir(vm.langSet[useLang]);
+*/
 
       vm.formData.langContent[useLang] = {};
       vm.formData.langContent[useLang].address = '';
       vm.formData.langContent[useLang].bathroom = '';
       vm.formData.langContent[useLang].pool = '';
-      vm.formData.langContent[useLang].price = [];
-
-      for (let j = 0; j < 5; j++) {
-        vm.formData.langContent[useLang].price[j] = {
-          periodStart: '',
-          periodEnd: '',
-          periodPrice: '',
-        };
-      }
-
+      vm.formData.langContent[useLang].price = '';
       vm.formData.langContent[useLang].description = '';
       vm.formData.langContent[useLang].info = '';
     }
-
-
 
     vm.formData.obj = vm.objList[0];
     vm.formData.city = vm.cityList[0];
@@ -152,7 +149,7 @@
       // console.info('onAfterAddingFile, uploader:', fileItem);
     };
     vm.uploader.onAfterAddingAll = function(addedFileItems) {
-      console.info('onAfterAddingAll, uploader:', addedFileItems);
+      console.info(vm.name + ', onAfterAddingAll, uploader:', addedFileItems);
 
       vm.uploader.queue.map(function (el) {
         el.formData = [{obj: vm.formData.objnumber + '_long'}];
@@ -186,7 +183,7 @@
       // console.info('onCancelItem', fileItem, response, status, headers);
     };
     vm.uploader.onCompleteItem = function(fileItem, response, status, headers) {
-      console.info('onCompleteItem, uploader:', fileItem, response, status, headers);
+      console.info(vm.name + ', onCompleteItem, uploader:', fileItem, response, status, headers);
       console.info('Response:');
       console.dir(response);
       vm.formData.imgGallery += (!firstImg ? ';' : '' ) +
@@ -195,33 +192,6 @@
         firstImg = false;
       }
     };
-/*
-    vm.uploader.onCompleteAll = function() {
-      var deferred = $q.defer();
-
-      console.info('onCompleteAll, uploader:');
-      console.info('Queue:');
-      console.dir(vm.uploader.queue);
-
-      deferred.resolve({element: 'uploader'});
-      return deferred.promise;
-    };
-*/
-
-/*
-    vm.uploader_2.onCompleteAll = function() {
-      var deferred = $q.defer();
-
-      console.info('onCompleteAll, uploader_2:');
-      console.info('Queue:');
-      console.dir(vm.uploader_2.queue);
-
-      deferred.resolve({element: 'uploader_2'});
-      return deferred.promise;
-    };
-*/
-
-
 
     vm.uploaderMain.onWhenAddingFileFailed = function(item /*{File|FileLikeObject}*/, filter, options) {
       // console.info('onWhenAddingFileFailed', item, filter, options);
@@ -230,7 +200,7 @@
       // console.info('onAfterAddingFile', fileItem);
     };
     vm.uploaderMain.onAfterAddingAll = function(addedFileItems) {
-      console.info('onAfterAddingAll, uploaderMain:', addedFileItems);
+      console.info(vm.name + ', onAfterAddingAll, uploaderMain:', addedFileItems);
 
       vm.uploaderMain.queue.map(function (el) {
         el.formData = [{obj: vm.formData.objnumber + '_long'}];
@@ -264,42 +234,15 @@
       // console.info('onCancelItem', fileItem, response, status, headers);
     };
     vm.uploaderMain.onCompleteItem = function(fileItem, response, status, headers) {
-      console.info('onCompleteItem, uploaderMain:', fileItem, response, status, headers);
+      console.info(vm.name + ', onCompleteItem, uploaderMain:', fileItem, response, status, headers);
       console.info('Response:');
       console.dir(response);
       vm.formData.imgMain = response.files[0].fd.slice(response.files[0].fd.indexOf('img') + 4);
     };
-/*
-    vm.uploaderMain.onCompleteAll = function(cb) {
-      // var deferred = $q.defer();
-
-      console.info('onCompleteAll, uploaderMain:');
-      console.info('Queue:');
-      console.dir(vm.uploaderMain.queue);
-
-      cb(null, {element: 'uploaderMain'});
-
-      // deferred.resolve({element: 'uploaderMain'});
-      // return deferred.promise;
-    };
-*/
-
-/*
-    vm.uploaderMain_2.onCompleteAll = function() {
-      var deferred = $q.defer();
-
-      console.info('onCompleteAll, uploaderMain_2:');
-      console.info('Queue:');
-      console.dir(vm.uploaderMain_2.queue);
-
-      deferred.resolve({element: 'uploaderMain_2'});
-      return deferred.promise;
-    };
-*/
 
     function _create() {
 
-      $log.info('_create, vm.formData:');
+      $log.info(vm.name + ', _create, vm.formData:');
       $log.info(vm.formData);
 
       async.parallel({
@@ -307,7 +250,7 @@
           vm.uploaderMain.uploadAll();
           vm.uploaderMain.onCompleteAll = function() {
 
-            console.info('onCompleteAll, uploaderMain:');
+            console.info(vm.name + ', onCompleteAll, uploaderMain:');
             console.info('Queue:');
             console.dir(vm.uploaderMain.queue);
 
@@ -318,7 +261,7 @@
           vm.uploader.uploadAll();
           vm.uploader.onCompleteAll = function() {
 
-            console.info('onCompleteAll, uploader:');
+            console.info(vm.name + ', onCompleteAll, uploader:');
             console.info('Queue:');
             console.dir(vm.uploader.queue);
 
@@ -329,7 +272,7 @@
           vm.uploaderMain_2.uploadAll();
           vm.uploaderMain_2.onCompleteAll = function() {
 
-            console.info('onCompleteAll, uploaderMain_2:');
+            console.info(vm.name + ', onCompleteAll, uploaderMain_2:');
             console.info('Queue:');
             console.dir(vm.uploaderMain_2.queue);
 
@@ -340,7 +283,7 @@
           vm.uploader_2.uploadAll();
           vm.uploader_2.onCompleteAll = function() {
 
-            console.info('onCompleteAll, uploader_2:');
+            console.info(vm.name + ', onCompleteAll, uploader_2:');
             console.info('Queue:');
             console.dir(vm.uploader_2.queue);
 
@@ -348,46 +291,12 @@
           };
         },
       }, function (err, results) {
-        console.log('async.parallel results:');
+        console.log(vm.name + ', async.parallel results:');
         console.dir(results);
 
         _write(vm.formData);
       });
-
-
-
-/*
-      vm.uploaderMain.uploadAll();
-      vm.uploader.uploadAll();
-
-      vm.uploaderMain_2.uploadAll();
-      vm.uploader_2.uploadAll();
-
-      $q.all({
-        u: vm.uploader.onCompleteAll(),
-        um: vm.uploaderMain.onCompleteAll(),
-        u2: vm.uploader_2.onCompleteAll(),
-        um2: vm.uploaderMain_2.onCompleteAll(),
-      })
-        .then(function (results) {
-          $log.info('All uploads results:');
-          console.dir(results);
-          _write(vm.formData);
-        })
-        .catch(function (err) {
-          $log.info('ERROR upload:');
-          console.dir(err);
-        });
-*/
-
     } // _create
-    
-    function _convertPrice(price) {
-      let res = '';
-      price.map(function (elem) {
-        
-      })
-    } // _convertPrice
 
     function _write(formData) {
       var createResult;
@@ -404,10 +313,11 @@
         useLang = $rootScope.langList[i];
         createRecords[useLang] = {};
         createRecords[useLang].lang = useLang;
+        createRecords[useLang].deal = 'long_term';
         createRecords[useLang].objnumber = formData.objnumber;
         createRecords[useLang].show = (formData.show == "show" ? 1 : 0);
         createRecords[useLang].home = (formData.home == "home" ? 1 : 0);
-        createRecords[useLang].tag = formData.tag.key;
+        createRecords[useLang].tag = (formData.tag.key == 'none' ? null : formData.tag.key);
         createRecords[useLang].obj = formData.obj.key;
         createRecords[useLang].city = formData.city.key;
         createRecords[useLang].room = formData.room.key;
@@ -419,41 +329,76 @@
         createRecords[useLang].price = formData.langContent[useLang].price;
         createRecords[useLang].description = formData.langContent[useLang].description;
         createRecords[useLang].info = formData.langContent[useLang].info;
+
+        if (formData.youtube) {
+          createRecords[useLang].youtube = formData.youtube;
+        }
+
       }
 
+/*
       switch (formData.exclusive) {
         case 'exclusive': createResult = _createRecordExclusive(createRecords); break;
-        case 'not_exclusive': createResult = _createRecordShort(createRecords); break;
+        case 'not_exclusive': createResult = _createRecordLong(createRecords); break;
       }
+*/
+
+      createResult = _createRecordLong(createRecords);
 
     } // _write
 
     function _createRecordExclusive(data) {
 
-    } // _createRecordExclusive
-
-    function _createRecordShort(data) {
-
-      console.log('_createRecordShort, data:');
+      console.log('_createRecordExclusive, data:');
       console.dir(data);
 
       var someObj = {};
 
-      // todo: create ShortService.putShortObject and un-comment
-/*
       _.forEach(data, function (val, key) {
-        someObj['record' + key] = ShortService.putShortObject(val);
+        someObj['record' + key] = ExclusiveService.putExclusiveObject(val);
       });
-*/
 
       $q.all(someObj)
         .then(function (results) {
           if (results.recorden.status == 201) {
+
+            toaster.pop({
+              type: 'success',
+              title: __.t('ADMIN_CREATE_SUCCESS_TITLE'),
+              body: __.t('ADMIN_CREATE_SUCCESS_BODY_1'),
+              toasterId: '111111',
+              showCloseButton: true,
+              timeout: 15000,
+            });
+
+            _clear();
+
             return {
               performed: true,
               reason: 'ok',
               data: {
                 record: results
+              },
+            };
+          } else {
+            // todo: change by Log
+            $log.warn('Error...');
+            $log.error(err);
+
+            toaster.pop({
+              type: 'error',
+              title: __.t('ADMIN_CREATE_ERROR_TITLE'),
+              body: __.t('ADMIN_CREATE_ERROR_BODY_1'),
+              toasterId: '111111',
+              showCloseButton: true,
+              timeout: 15000,
+            });
+
+            return {
+              performed: false,
+              reason: 'error',
+              data: {
+                error: err,
               },
             };
           }
@@ -462,6 +407,15 @@
           // todo: change by Log
           $log.warn('Error...');
           $log.error(err);
+
+          toaster.pop({
+            type: 'error',
+            title: __.t('ADMIN_CREATE_ERROR_TITLE'),
+            body: __.t('ADMIN_CREATE_ERROR_BODY_1'),
+            toasterId: '111111',
+            showCloseButton: true,
+            timeout: 15000,
+          });
 
           return {
             performed: false,
@@ -472,7 +426,94 @@
           };
         });
 
-    } // _createRecordShort
+    } // _createRecordExclusive
+
+    function _createRecordLong(data) {
+
+      console.log('_createRecordLong, data:');
+      console.dir(data);
+
+      var someObj = {};
+
+      _.forEach(data, function (val, key) {
+        someObj['record' + key] = LongService.putLongObject(val);
+      });
+
+      $q.all(someObj)
+        .then(function (results) {
+
+/*
+          $log.warn('_createRecordLong, results:');
+          console.dir(results);
+*/
+
+          if (results.recorden.status == 201) {
+
+            toaster.pop({
+              type: 'success',
+              title: __.t('ADMIN_CREATE_SUCCESS_TITLE'),
+              body: __.t('ADMIN_CREATE_SUCCESS_BODY_1'),
+              toasterId: '111111',
+              showCloseButton: true,
+              timeout: 15000,
+            });
+
+            _clear();
+
+            return {
+              performed: true,
+              reason: 'ok',
+              data: {
+                record: results
+              },
+            };
+          } else {
+            // todo: change by Log
+            $log.warn('Error...');
+            $log.error(err);
+
+            toaster.pop({
+              type: 'error',
+              title: __.t('ADMIN_CREATE_ERROR_TITLE'),
+              body: __.t('ADMIN_CREATE_ERROR_BODY_1'),
+              toasterId: '111111',
+              showCloseButton: true,
+              timeout: 15000,
+            });
+
+            return {
+              performed: false,
+              reason: 'error',
+              data: {
+                error: err,
+              },
+            };
+          }
+        })
+        .catch(function (err) {
+          // todo: change by Log
+          $log.warn('Error...');
+          $log.error(err);
+
+          toaster.pop({
+            type: 'error',
+            title: __.t('ADMIN_CREATE_ERROR_TITLE'),
+            body: __.t('ADMIN_CREATE_ERROR_BODY_1'),
+            toasterId: '111111',
+            showCloseButton: true,
+            timeout: 15000,
+          });
+
+          return {
+            performed: false,
+            reason: 'error',
+            data: {
+              error: err,
+            },
+          };
+        });
+
+    } // _createRecordLong
 
     function _clear() {
 
@@ -484,12 +525,25 @@
       vm.formData.exclusive = 'not_exclusive';
       vm.formData.show = 'show';
       vm.formData.home = 'not_home';
+
+      for (let i = 0; i < $rootScope.numLang; i++) {
+
+        useLang = $rootScope.langList[i];
+
+        vm.formData.langContent[useLang] = {};
+        vm.formData.langContent[useLang].address = '';
+        vm.formData.langContent[useLang].bathroom = '';
+        vm.formData.langContent[useLang].pool = '';
+        vm.formData.langContent[useLang].price = '';
+        vm.formData.langContent[useLang].description = '';
+        vm.formData.langContent[useLang].info = '';
+      }
+
       vm.uploader.clearQueue();
       vm.uploaderMain.clearQueue();
       vm.uploader_2.clearQueue();
       vm.uploaderMain_2.clearQueue();
     } // _clear
-
 
   }
 })();

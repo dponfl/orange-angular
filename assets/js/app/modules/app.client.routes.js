@@ -201,6 +201,20 @@
         },
         url: '/admin_longterm',
       })
+      .state('admin_sale', {
+        views: {
+          header: {
+            templateUrl: 'templates/view/admin/headerAdmin.html'
+          },
+          main: {
+            templateUrl: 'templates/view/admin/sale.html',
+          },
+          footer: {
+            templateUrl: 'templates/view/admin/footerAdmin.html',
+          },
+        },
+        url: '/admin_sale',
+      })
       .state('account', {
         views: {
           header: {

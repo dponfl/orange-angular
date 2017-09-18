@@ -49,7 +49,7 @@
           text: 'NAV_LONG_TERM',
         },
         {
-          href: 'sale_admin',
+          href: 'admin_sale',
           text: 'NAV_SALES',
         },
         {
