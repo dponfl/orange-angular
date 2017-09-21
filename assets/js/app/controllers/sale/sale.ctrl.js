@@ -10,6 +10,7 @@
   function SaleCtrl(GeneralConfigService, SaleService,
                      $log, $rootScope, $scope, lodash, $q, $alert) {
     var _ = lodash;
+    var name = 'SaleCtrl';
     var saleBusyAlert = $alert({
       title: 'Title',
       content: 'Content',
@@ -35,8 +36,19 @@
     $rootScope.tagList = $rootScope.orangeConfig.tagList[$rootScope.lang];
 
     $scope.activateNextPage = _activateNextPage;
+    $scope.updateData = _updateData;
+    $scope.updateDataAll = _updateDataAll;
+    $scope.updateDataEdit = _updateDataEdit;
 
-    $rootScope.$watch('sale.FindActivated', _updateData);
+    // $rootScope.$watch('sale.FindActivated', _updateData);
+    $rootScope.$watch('sale.FindActivated', function () {
+      if ($rootScope.useAll) {
+        _updateDataAll();
+        _updateDataEdit();
+      } else {
+        _updateData();
+      }
+    });
 
     $rootScope.$watch('lang', _update);
 
@@ -51,6 +63,79 @@
         saleBusyAlert.$promise.then(saleBusyAlert.hide);
       }
     });
+
+    function _updateDataAll() {
+      $log.info(name + ', _updateDataAll activated...');
+
+      $rootScope.useAll = true;
+
+      $rootScope.sale.panels = [];
+      $rootScope.sale.busy = false;
+      $rootScope.sale.FindActivated = false;
+
+      $rootScope.sale.page = 1;
+      $rootScope.sale.showNotFound = false;
+      $rootScope.sale.showServerError = false;
+      $rootScope.sale.showFoundNothing = false;
+
+      $q.when(_performRequestAll($rootScope.sale.FilterData))
+        .then(function (res) {
+
+          if (!res.performed &&
+            (res.reason == 'notFound' || res.reason == 'serverError')) {
+            return;
+          }
+
+          var buildResult = _buildPanel(res);
+
+          if (!buildResult.performed) return;
+
+          $rootScope.sale.panelsAllLangs = buildResult.data;
+
+          _update();
+
+          return;
+        });
+
+    } // _updateDataAll
+
+    function _updateDataEdit() {
+      $log.info(name + ', _updateDataAll activated...');
+
+      $rootScope.useAll = true;
+
+      $rootScope.sale.panels = [];
+      $rootScope.sale.busy = false;
+      $rootScope.sale.FindActivated = false;
+
+      $rootScope.sale.page = 1;
+      $rootScope.sale.showNotFound = false;
+      $rootScope.sale.showServerError = false;
+      $rootScope.sale.showFoundNothing = false;
+
+      $q.when(_performRequestAll($rootScope.sale.FilterData, true))
+        .then(function (res) {
+
+          if (!res.performed &&
+            (res.reason == 'notFound' || res.reason == 'serverError')) {
+            return;
+          }
+
+          $log.info(name + ', _updateDataEdit, res:');
+          console.dir(res);
+
+          var buildResult = _buildPanel(res);
+
+          if (!buildResult.performed) return;
+
+          $rootScope.sale.panelsAllLangsEdit = buildResult.data;
+
+          _updateEdit();
+
+          return;
+        });
+
+    } // _updateDataEdit
 
     function _updateData () {
 
@@ -88,6 +173,142 @@
 
       }
     } // _updateData
+
+    function _performRequestAll(reqParams, showAll = false) {
+
+      var getRecordsConfig = {};
+      var objReqParams = {};
+
+      if (!showAll) {
+        getRecordsConfig = {show: 1};
+        objReqParams = {show: 1};
+      }
+
+      if ($rootScope.sale.busy) {
+
+        return {
+          performed: false,
+          reason: 'busy',
+          data: {
+            keys: {},
+            objs: {},
+          },
+        };
+      }
+
+      if ($rootScope.sale.showNotFound) {
+
+        return {
+          performed: false,
+          reason: 'notFound',
+          data: {
+            keys: {},
+            objs: {},
+          },
+        };
+      }
+
+      if ($rootScope.sale.showServerError) {
+
+        return {
+          performed: false,
+          reason: 'serverError',
+          data: {
+            keys: {},
+            objs: {},
+          },
+        };
+      }
+
+      $rootScope.sale.busy = true;
+
+      if (typeof reqParams.objnumber != 'undefined' && reqParams.objnumber) {
+        objReqParams.objnumber = reqParams.objnumber;
+      }
+      if (typeof reqParams.city == 'object' && reqParams.city.key != 'any') {
+        objReqParams.city = reqParams.city.key;
+      }
+      if (typeof reqParams.obj == 'object' && reqParams.obj.key != 'any') {
+        objReqParams.obj = reqParams.obj.key;
+      }
+      if (typeof reqParams.room == 'object' && reqParams.room.key != 'any') {
+        objReqParams.room = reqParams.room.key;
+      }
+      if (typeof reqParams.show == 'object' && reqParams.show.key != 'any') {
+        objReqParams.show = (reqParams.show.key == 'show' ? '1' : '0');
+      }
+      if (typeof reqParams.home == 'object' && reqParams.home.key != 'any') {
+        objReqParams.home = (reqParams.home.key == 'home' ? '1' : '0');
+      }
+
+
+
+
+      return $q.all({keys: SaleService.getAllSaleObjectsKeys(getRecordsConfig),
+        objs: SaleService.getAllSaleObjectsObjs(objReqParams)})
+        .then(function (results) {
+
+          $log.info(name + ', _performRequestAll, results:');
+          console.dir(results);
+
+          $rootScope.sale.busy = false;
+
+          if (results.objs.status == 404) {
+            $rootScope.sale.showNotFound = true;
+            $rootScope.sale.showFoundNothing = true;
+
+            return {
+              performed: false,
+              reason: 'notFound',
+              data: {
+                keys: {},
+                objs: {},
+              },
+            };
+          }
+
+          if (results.objs.status == 500) {
+            $rootScope.sale.showServerError = true;
+
+            return {
+              performed: false,
+              reason: 'serverError',
+              data: {
+                keys: {},
+                objs: {},
+              },
+            };
+          }
+
+          if (results.objs.status == 200) {
+            $rootScope.sale.showNotFound = false;
+            $rootScope.sale.showServerError = false;
+
+            return {
+              performed: true,
+              reason: 'ok',
+              data: {
+                keys: results.keys,
+                objs: results.objs.data,
+              },
+            };
+          }
+
+        })
+        .catch(function (err) {
+          // todo: change by Log
+          $log.warn(name + ', Error...');
+          $log.error(err);
+
+          return {
+            performed: false,
+            reason: 'error',
+            data: {
+              error: err,
+            },
+          };
+        });
+    } // _performRequestAll
 
     /**
      *
@@ -212,7 +433,7 @@
         })
         .catch(function (err) {
           // todo: change by Log
-          $log.warn('Error...');
+          $log.warn(name + ', Error...');
           $log.error(err);
 
           return {
@@ -266,9 +487,13 @@
         panelObjs.map(function (oElem) {
           var tagText = '';
           var _gallery = [];
+          var keyVal = '';
 
           $rootScope.orangeConfig.tagList[lang].map(function (listElem) {
-            if (listElem.key == oElem.tag) tagText = listElem.val;
+            if (listElem.key == oElem.tag) {
+              tagText = listElem.val;
+              keyVal = listElem.key;
+            }
           });
 
           record = {
@@ -276,6 +501,8 @@
             type: oElem.tag,
             badgeText: tagText,
             objNumber: oElem.objNumber,
+            show: oElem.show,
+            home: oElem.home,
             img: {
               href: '../../img/' + oElem.imgMain,
               dataLightbox: oElem.objNumber,
@@ -283,6 +510,7 @@
               src: '../../img/' + oElem.imgMain,
             },
             content: [],
+            contentObj: {},
             gallery: [],
           };
 
@@ -292,17 +520,26 @@
             switch (kElem.key) {
               case 'city':
                 $rootScope.orangeConfig.cityList[lang].map(function (listElem) {
-                  if (listElem.key == oElem.city) tokenVal = listElem.val;
+                  if (listElem.key == oElem.city) {
+                    tokenVal = listElem.val;
+                    keyVal = listElem.key;
+                  }
                 });
                 break;
               case 'obj':
                 $rootScope.orangeConfig.objList[lang].map(function (listElem) {
-                  if (listElem.key == oElem.obj) tokenVal = listElem.val;
+                  if (listElem.key == oElem.obj) {
+                    tokenVal = listElem.val;
+                    keyVal = listElem.key;
+                  }
                 });
                 break;
               case 'room':
                 $rootScope.orangeConfig.roomList[lang].map(function (listElem) {
-                  if (listElem.key == oElem.room) tokenVal = listElem.val;
+                  if (listElem.key == oElem.room) {
+                    tokenVal = listElem.val;
+                    keyVal = listElem.key;
+                  }
                 });
                 break;
               default:
@@ -319,7 +556,13 @@
                 key: kElem.key,
                 label: kElem.label,
                 text:tokenVal,
-              })
+              });
+
+              record.contentObj[kElem.key] = {
+                key: keyVal,
+                label: kElem.label,
+                text:tokenVal,
+              }
             }
 
           });
@@ -327,9 +570,11 @@
           _gallery = oElem.imgGallery.replace(/^\s+|\s+$/gm,'').split(';');
           _gallery.map(function (el) {
             record.gallery.push({
+              // href: '../../images/' + el,
               href: '../../img/' + el,
               dataLightbox: 'gallery-' + oElem.objNumber,
               dataTitle: '',
+              // src: '../../images/' + el,
               src: '../../img/' + el,
             });
           });
@@ -338,6 +583,11 @@
           record.googleMap = oElem.googleMap;
           record.youtube = oElem.youtube;
           record.youtubeshow = (oElem.youtube ? true : false);
+
+          /*
+           $log.info('long ctrl, record:');
+           $log.info(record);
+           */
 
 
           panels.push(record);
@@ -357,6 +607,17 @@
       $rootScope.sale.panels = $rootScope.sale.panelsAllLangs[$rootScope.lang];
 
     } // update
+
+    function _updateEdit() {
+      $rootScope.objList = $rootScope.orangeConfig.objList[$rootScope.lang];
+      $rootScope.cityList = $rootScope.orangeConfig.cityList[$rootScope.lang];
+      $rootScope.roomList = $rootScope.orangeConfig.roomList[$rootScope.lang];
+      $rootScope.tagList = $rootScope.orangeConfig.tagList[$rootScope.lang];
+
+      $rootScope.sale.panelsEdit = $rootScope.sale.panelsAllLangsEdit[$rootScope.lang];
+
+    } // updateEdit
+
 
     function _activateNextPage() {
       if ($rootScope.sale.scrollDisabled) return;

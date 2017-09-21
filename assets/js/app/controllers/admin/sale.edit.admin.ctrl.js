@@ -3,17 +3,18 @@
 
   angular
     .module('OrangeClient')
-    .controller('LongEditAdminCtrl', LongEditAdminCtrl);
+    .controller('SaleEditAdminCtrl', SaleEditAdminCtrl);
 
-  LongEditAdminCtrl.$inject = ['GeneralConfigService', 'LongService', 'ExclusiveService',
+  SaleEditAdminCtrl.$inject = ['GeneralConfigService', 'SaleService', 'ExclusiveService',
     'EditObjectService', '$log', '$rootScope', '$scope', '$q',
     'lodash', 'FileUploader', 'toaster', '$timeout', '$http'];
 
   /* @ngInject */
-  function LongEditAdminCtrl(GeneralConfigService, LongService, ExclusiveService,
+  function SaleEditAdminCtrl(GeneralConfigService, SaleService, ExclusiveService,
                          EditObjectService, $log, $rootScope, $scope, $q,
                          lodash, FileUploader, toaster, $timeout, $http) {
     var vm = this;
+    var name = 'SaleEditAdminCtrl';
     var _ = lodash;
     var __=GeneralConfigService;
 
@@ -89,14 +90,14 @@
       console.info('onAfterAddingAll, uploader:', addedFileItems);
 
       vm.uploader.queue.map(function (el) {
-        el.formData = [{obj: vm.formData.objnumber + '_long'}];
+        el.formData = [{obj: vm.formData.objnumber + '_sale'}];
       });
 
       vm.uploader_2.queue = _.cloneDeep(vm.uploader.queue);
       vm.uploader_2.queue.map(function (el) {
         el.alias = vm.uploader_2.alias;
         el.url = vm.uploader_2.url;
-        el.formData = [{obj: vm.formData.objnumber + '_long'}];
+        el.formData = [{obj: vm.formData.objnumber + '_sale'}];
         el.uploader = vm.uploader_2;
       });
 
@@ -140,14 +141,14 @@
       console.info('onAfterAddingAll, uploaderMain:', addedFileItems);
 
       vm.uploaderMain.queue.map(function (el) {
-        el.formData = [{obj: vm.formData.objnumber + '_long'}];
+        el.formData = [{obj: vm.formData.objnumber + '_sale'}];
       });
 
       vm.uploaderMain_2.queue = _.cloneDeep(vm.uploaderMain.queue);
       vm.uploaderMain_2.queue.map(function (el) {
         el.alias = vm.uploaderMain_2.alias;
         el.url = vm.uploaderMain_2.url;
-        el.formData = [{obj: vm.formData.objnumber + '_long'}];
+        el.formData = [{obj: vm.formData.objnumber + '_sale'}];
         el.uploader = vm.uploaderMain_2;
       });
 
@@ -181,27 +182,27 @@
     // $watch
     //=============================================
 
-    $rootScope.$watch('admin.long.editObjSelected', function (newVal, oldVal) {
+    $rootScope.$watch('admin.sale.editObjSelected', function (newVal, oldVal) {
       if (newVal && !oldVal) {
-        $rootScope.admin.long.editPanelShow = false;
+        $rootScope.admin.sale.editPanelShow = false;
         $timeout(function () {
-          var obj = EditObjectService.getEditLongObject();
-          $rootScope.admin.long.editObjSelected = false;
-          $rootScope.admin.long.editPanelShow = true;
+          var obj = EditObjectService.getEditSaleObject();
+          $rootScope.admin.sale.editObjSelected = false;
+          $rootScope.admin.sale.editPanelShow = true;
 
-          $log.warn('<<<<<< obj >>>>>>>');
+          $log.warn(name + ', <<<<<< obj >>>>>>>');
           console.dir(obj);
 
-          vm.formData = EditObjectService.convertLongObjectData(obj);
+          vm.formData = EditObjectService.convertSaleObjectData(obj);
 
-          $log.warn('<<<<<< vm.formData >>>>>>>');
+          $log.warn(name + ', <<<<<< vm.formData >>>>>>>');
           console.dir(vm.formData);
 
           _loadGallery(obj);
 
 /*
-          $rootScope.admin.long.formData.objnumber = obj.objNumber;
-          $rootScope.admin.long.formData.address = obj.contentObj.address.text;
+          $rootScope.admin.sale.formData.objnumber = obj.objNumber;
+          $rootScope.admin.sale.formData.address = obj.contentObj.address.text;
           vm.passedObject = obj;
           vm.formData.objnumber = vm.passedObject.objNumber;
           vm.formData.langContent.en.address = vm.passedObject.contentObj.address.text;
@@ -213,7 +214,7 @@
 
 /*
     vm.$onInit = function () {
-      var ttt = EditObjectService.getEditLongObject();
+      var ttt = EditObjectService.getEditSaleObject();
       vm.formData.objnumber = ttt.objNumber;
     };
 */
@@ -283,7 +284,7 @@
 
     function _update() {
 
-      $log.info('_update, vm.formData:');
+      $log.info(name + ', _update, vm.formData:');
       $log.info(vm.formData);
 
       async.parallel({
@@ -344,7 +345,7 @@
 
       var createRecords = {};
 
-      $log.info('formData:');
+      $log.info(name + ', _write, formData:');
       $log.info(formData);
 
       let useLang = '';
@@ -354,7 +355,7 @@
         useLang = $rootScope.langList[i];
         createRecords[useLang] = {};
         createRecords[useLang].lang = useLang;
-        // createRecords[useLang].deal = 'long_term';
+        // createRecords[useLang].deal = 'sale';
         createRecords[useLang].objnumber = formData.objnumber;
         createRecords[useLang].show = (formData.show == "show" ? 1 : 0);
         createRecords[useLang].home = (formData.home == "home" ? 1 : 0);
@@ -377,25 +378,25 @@
 
       }
 
-      createResult = _updateRecordLong(createRecords);
+      createResult = _updateRecordSale(createRecords);
 
     } // _write
 
-    function _updateRecordLong(data) {
+    function _updateRecordSale(data) {
 
-      console.log('_updateRecordLong, data:');
+      console.log('_updateRecordSale, data:');
       console.dir(data);
 
       var someObj = {};
 
       _.forEach(data, function (val, key) {
-        someObj['record' + key] = LongService.updateLongObject(val);
+        someObj['record' + key] = SaleService.updateSaleObject(val);
       });
 
       $q.all(someObj)
         .then(function (results) {
 
-          $log.warn('_updateRecordLong, results:');
+          $log.warn(name + ', _updateRecordSale, results:');
           console.dir(results);
 
           if (results.recorden.status == 200) {
@@ -412,8 +413,8 @@
             _clear();
             _setDataInInitialState();
 
-            $rootScope.admin.long.editPanelShow = false;
-            $rootScope.admin.long.editObjEnableButton = true;
+            $rootScope.admin.sale.editPanelShow = false;
+            $rootScope.admin.sale.editObjEnableButton = true;
 
             return {
               performed: true,
@@ -424,7 +425,7 @@
             };
           } else {
             // todo: change by Log
-            $log.warn('Error...');
+            $log.warn(name + ', Error...');
             $log.error(err);
 
             toaster.pop({
@@ -447,7 +448,7 @@
         })
         .catch(function (err) {
           // todo: change by Log
-          $log.warn('Error...');
+          $log.warn(name + ', Error...');
           $log.error(err);
 
           toaster.pop({
@@ -468,15 +469,15 @@
           };
         });
 
-    } // _updateRecordLong
+    } // _updateRecordSale
 
     function _clear() {
 
       let useLang = '';
 
 /*
-      $log.info('!!!!!!!!! $rootScope.admin.long.formData:');
-      console.dir($rootScope.admin.long.formData);
+      $log.info(name + ', !!!!!!!!! $rootScope.admin.sale.formData:');
+      console.dir($rootScope.admin.sale.formData);
       console.dir(vm);
 */
 
@@ -512,14 +513,14 @@
     function _cancel() {
       _clear();
       _setDataInInitialState();
-      $rootScope.admin.long.editPanelShow = false;
-      $rootScope.admin.long.editObjEnableButton = true;
+      $rootScope.admin.sale.editPanelShow = false;
+      $rootScope.admin.sale.editObjEnableButton = true;
     } // _cancel
 
     // Load gallery images to file uploader queue
     function _loadGallery(obj) {
 
-      $log.info('_loadGallery...');
+      $log.info(name + ', _loadGallery...');
 
       var url = '';
       var getConf = {
@@ -544,7 +545,7 @@
       $http.get(url, getConf)
         .then(function (response) {
           // success
-          $log.warn('<<< Main image, Success response >>>');
+          $log.warn(name + ', <<< Main image, Success response >>>');
           console.dir(response);
 
           imgUrl = response.config.url;
@@ -569,7 +570,7 @@
           test01 = vm.uploaderMain.isFile(imgFile);
           test02 = vm.uploaderMain.isFileLikeObject(imgFile);
 
-          $log.warn('imgFile check results:');
+          $log.warn(name + ', imgFile check results:');
           console.log('isFile: ' + test01);
           console.log('isFileLikeObject: ' + test02);
 */
@@ -578,7 +579,7 @@
 
         }, function (response) {
           // error
-          $log.warn('<<< Main image, Error response >>>');
+          $log.warn(name + ', <<< Main image, Error response >>>');
           console.dir(response);
         });
 
@@ -589,7 +590,7 @@
         $http.get(url, getConf)
           .then(function (response) {
             // success
-            $log.warn('<<< Gallery images, Success response >>>');
+            $log.warn(name + ', <<< Gallery images, Success response >>>');
             console.dir(response);
 
             imgUrl = response.config.url;
@@ -614,7 +615,7 @@
             test01 = vm.uploader.isFile(imgFile);
             test02 = vm.uploader.isFileLikeObject(imgFile);
 
-            $log.warn('imgFile check results:');
+            $log.warn(name + ', imgFile check results:');
             console.log('isFile: ' + test01);
             console.log('isFileLikeObject: ' + test02);
 */
@@ -623,7 +624,7 @@
 
           }, function (response) {
             // error
-            $log.warn('<<< Gallery images, Error response >>>');
+            $log.warn(name + ', <<< Gallery images, Error response >>>');
             console.dir(response);
           });
       });

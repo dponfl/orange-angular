@@ -12,7 +12,7 @@
     var directive = {
       link: _link,
       restrict: 'A',
-      require: 'ngModel',
+      require: '?ngModel',
       scope: {
         objectFormSelectValidation: '=objectFormSelectValidation',
       },
@@ -20,6 +20,11 @@
     return directive;
 
     function _link(scope, element, attrs, ngModel) {
+
+      if (!ngModel) {
+        return;
+      }
+
       ngModel.$validators.objectFormSelectValidation = function (modelValue) {
 
 /*
