@@ -29,13 +29,16 @@ module.exports = {
 
     // todo: make parameters validation
     var requestParams = req.allParams();
-    var whereObj = {};
+    // var whereObj = {};
+    var whereObj = requestParams;
 
+/*
     _.forEach(requestParams, function (val, key) {
       if (val) {
         whereObj[key] = val;
       }
     });
+*/
 
     console.log('whereObj:');
     console.dir(whereObj);
@@ -89,16 +92,18 @@ module.exports = {
 
     // todo: make parameters validation
     var requestParams = req.allParams();
-    var whereObj = {};
-    var pager = 0;
+    // var whereObj = {};
+    var whereObj = requestParams.conditions;
 
+/*
     _.forEach(requestParams.conditions, function (val, key) {
       if (val) {
         whereObj[key] = val;
       }
     });
+*/
 
-    pager = requestParams.pager;
+    var pager = requestParams.pager;
 
     console.log('requestParams:');
     console.dir(requestParams);
@@ -153,13 +158,16 @@ module.exports = {
 
     // todo: make parameters validation
     var newRecordParams = req.allParams();
-    var newObj = {};
+    // var newObj = {};
+    var newObj = newRecordParams;
 
+/*
     _.forEach(newRecordParams, function (val, key) {
       if (val) {
         newObj[key] = val;
       }
     });
+*/
 
     console.log('Ready to create new record:');
     console.dir(newObj);
@@ -170,13 +178,75 @@ module.exports = {
           return res.serverError(err);
         }
 
-        console.log('data: ' + data);
+        console.log('data: ');
+        console.dir(data);
 
         return res.created({
           code: 201,
           message: 'OK',
           result: data});
       });
-  } // put
+
+
+  }, // put
+
+  update: function (req, res) {
+    /*
+     console.log('=======================');
+     console.log('req.body:');
+     console.dir(req.body);
+     console.log('req.headers:');
+     console.dir(req.headers);
+     console.log('req.ip:');
+     console.dir(req.ip);
+     console.log('req.ips:');
+     console.dir(req.ips);
+     console.log('req.method:');
+     console.dir(req.method);
+     console.log('req.params:');
+     console.dir(req.params);
+     console.log('req.allParams():');
+     console.dir(req.allParams());
+     */
+
+    console.log('<== ExclusiveController.js:update ==>');
+
+    // todo: make parameters validation
+    var newRecordParams = req.allParams();
+    // var newObj = {};
+    var newObj = newRecordParams;
+
+/*
+    _.forEach(newRecordParams, function (val, key) {
+      if (val) {
+        newObj[key] = val;
+      }
+    });
+*/
+
+    console.log('Ready to update record:');
+    console.dir(newObj);
+
+    var findCriteria = {
+      objnumber: newObj.objnumber,
+      lang: newObj.lang
+    };
+
+    Exclusive.update(findCriteria, newObj)
+      .exec(function (err, data) {
+        if (err) {
+          return res.serverError(err);
+        }
+
+        console.log('data: ');
+        console.dir(data);
+
+        return res.json({
+          code: 200,
+          message: 'OK',
+          result: data});
+      });
+
+  }, // update
 };
 

@@ -29,13 +29,16 @@ module.exports = {
 
     // todo: make parameters validation
     var requestParams = req.allParams();
-    var whereObj = {};
+    // var whereObj = {};
+    var whereObj = requestParams;
 
+/*
     _.forEach(requestParams, function (val, key) {
       if (val) {
         whereObj[key] = val;
       }
     });
+*/
 
     console.log('whereObj:');
     console.dir(whereObj);
@@ -89,16 +92,18 @@ module.exports = {
 
     // todo: make parameters validation
     var requestParams = req.allParams();
-    var whereObj = {};
-    var pager = 0;
+    // var whereObj = {};
+    var whereObj = requestParams.conditions;
 
+/*
     _.forEach(requestParams.conditions, function (val, key) {
       if (val) {
         whereObj[key] = val;
       }
     });
+*/
 
-    pager = requestParams.pager;
+    var pager = requestParams.pager;
 
     console.log('requestParams:');
     console.dir(requestParams);
@@ -171,13 +176,16 @@ module.exports = {
 
     // todo: make parameters validation
     var newRecordParams = req.allParams();
-    var newObj = {};
+    // var newObj = {};
+    var newObj = newRecordParams;
 
+/*
     _.forEach(newRecordParams, function (val, key) {
       if (val) {
         newObj[key] = val;
       }
     });
+*/
 
     console.log('Ready to create new record:');
     console.dir(newObj);
@@ -188,7 +196,8 @@ module.exports = {
           return res.serverError(err);
         }
 
-        console.log('data: ' + data);
+        console.log('data: ');
+        console.dir(data);
 
         return res.created({
           code: 201,
@@ -246,7 +255,8 @@ module.exports = {
           return res.serverError(err);
         }
 
-        console.log('data: ' + data);
+        console.log('data: ');
+        console.dir(data);
 
         return res.json({
           code: 200,
@@ -255,6 +265,5 @@ module.exports = {
       });
 
   }, // update
-
 };
 
