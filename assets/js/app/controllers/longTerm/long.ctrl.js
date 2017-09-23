@@ -10,6 +10,7 @@
   function LongCtrl(GeneralConfigService, LongService,
                      $log, $rootScope, $scope, lodash, $q, $alert) {
     var _ = lodash;
+    var ctrlTitle = 'LongCtrl';
     var longBusyAlert = $alert({
       title: 'Title',
       content: 'Content',
@@ -17,14 +18,6 @@
       show: true,
       templateUrl: '../templates/view/busyAlert.html'
     });
-
-/*
-    console.log('!!!!!!! LongCtrl !!!!!!');
-    $log.info('!!!!!!! LongCtrl info !!!!!!');
-    $log.debug('!!!!!!! LongCtrl debug !!!!!!');
-    $log.warn('!!!!!!! LongCtrl warn !!!!!!');
-    $log.error('!!!!!!! LongCtrl error !!!!!!');
-*/
 
     $scope.longBusy = $rootScope.long.busy;
     $rootScope.long.showNotFound = false;
@@ -57,6 +50,14 @@
       }
     });
 
+    $rootScope.$watch('admin.long.updateEditRecords', function (newVal, oldVal) {
+      if (newVal) {
+        _updateDataAll();
+        _updateDataEdit();
+        $rootScope.admin.long.updateEditRecords = false;
+      }
+    });
+
     $rootScope.$watch('lang', _update);
 
     $rootScope.$watch('long.busy', function (newVal, oldVal) {
@@ -72,7 +73,7 @@
     });
 
     function _updateDataAll() {
-      $log.info('_updateDataAll activated...');
+      $log.info(ctrlTitle + ', _updateDataAll activated...');
 
       $rootScope.useAll = true;
 
@@ -107,7 +108,7 @@
     } // _updateDataAll
 
     function _updateDataEdit() {
-      $log.info('_updateDataAll activated...');
+      $log.info(ctrlTitle + ', _updateDataAll activated...');
 
       $rootScope.useAll = true;
 
@@ -301,7 +302,7 @@
         })
         .catch(function (err) {
           // todo: change by Log
-          $log.warn('Error...');
+          $log.warn(ctrlTitle + ', Error...');
           $log.error(err);
 
           return {
@@ -437,7 +438,7 @@
         })
         .catch(function (err) {
           // todo: change by Log
-          $log.warn('Error...');
+          $log.warn(ctrlTitle + ', Error...');
           $log.error(err);
 
           return {
@@ -587,12 +588,6 @@
           record.googleMap = oElem.googleMap;
           record.youtube = oElem.youtube;
           record.youtubeshow = (oElem.youtube ? true : false);
-
-/*
-          $log.info('long ctrl, record:');
-          $log.info(record);
-*/
-
 
           panels.push(record);
         });

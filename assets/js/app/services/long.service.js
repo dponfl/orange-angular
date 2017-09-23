@@ -254,6 +254,9 @@
 
     function _updateLongObject(reqObj) {
 
+      $log.info('_updateLongObject, reqObj:');
+      console.dir(reqObj);
+
       // todo: return object having result code (200, 404, etc.) and data
 
       return $http.post($rootScope.orangeConfig.host + '/long/update', reqObj)
@@ -270,6 +273,14 @@
 
         var response = data.data.result[0];
 
+/*
+        $log.info('_updateLongObject, response:');
+        console.dir(response);
+        $log.info('_updateLongObject, response.length:');
+        console.dir(response.length);
+*/
+
+/*
         var __objs = {};
 
         for (var i = 0; i < response.length; i++) {
@@ -299,10 +310,11 @@
             updatedAt: response[i].updatedAt,
           })
         }
+*/
 
         return {
           status: 200,
-          data: __objs,
+          data: response,
         };
       }
 

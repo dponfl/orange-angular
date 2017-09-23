@@ -14,10 +14,10 @@
                          EditObjectService, $log, $rootScope, $scope, $q,
                          lodash, FileUploader, toaster, $timeout, $http) {
     var vm = this;
+    var ctrlTitle = 'LongEditAdminCtrl';
     var _ = lodash;
     var __=GeneralConfigService;
 
-    var firstImg = true;
     vm.update = _update;
     vm.clear = _clear;
     vm.cancel = _cancel;
@@ -120,14 +120,11 @@
       // console.info('onCancelItem', fileItem, response, status, headers);
     };
     vm.uploader.onCompleteItem = function(fileItem, response, status, headers) {
-      console.info('onCompleteItem, uploader:', fileItem, response, status, headers);
+      console.info(ctrlTitle + ', onCompleteItem, uploader:', fileItem, response, status, headers);
       console.info('Response:');
       console.dir(response);
-      vm.formData.imgGallery += (!firstImg ? ';' : '' ) +
+      vm.formData.imgGallery += (vm.formData.imgGallery.length ? ';' : '' ) +
         response.files[0].fd.slice(response.files[0].fd.indexOf('img') + 4);
-      if (firstImg) {
-        firstImg = false;
-      }
     };
 
     vm.uploaderMain.onWhenAddingFileFailed = function(item /*{File|FileLikeObject}*/, filter, options) {
@@ -171,7 +168,7 @@
       // console.info('onCancelItem', fileItem, response, status, headers);
     };
     vm.uploaderMain.onCompleteItem = function(fileItem, response, status, headers) {
-      console.info('onCompleteItem, uploaderMain:', fileItem, response, status, headers);
+      console.info(ctrlTitle + ', onCompleteItem, uploaderMain:', fileItem, response, status, headers);
       console.info('Response:');
       console.dir(response);
       vm.formData.imgMain = response.files[0].fd.slice(response.files[0].fd.indexOf('img') + 4);
@@ -189,12 +186,12 @@
           $rootScope.admin.long.editObjSelected = false;
           $rootScope.admin.long.editPanelShow = true;
 
-          $log.warn('<<<<<< obj >>>>>>>');
+          $log.warn(ctrlTitle + ', $watch, <<<<<< obj >>>>>>>');
           console.dir(obj);
 
           vm.formData = EditObjectService.convertLongObjectData(obj);
 
-          $log.warn('<<<<<< vm.formData >>>>>>>');
+          $log.warn(ctrlTitle + ', $watch, <<<<<< vm.formData >>>>>>>');
           console.dir(vm.formData);
 
           _loadGallery(obj);
@@ -283,15 +280,15 @@
 
     function _update() {
 
-      $log.info('_update, vm.formData:');
-      $log.info(vm.formData);
+      $log.info(ctrlTitle + ', _update, vm.formData:');
+      console.dir(vm.formData);
 
       async.parallel({
         uploaderMain: function (cb) {
           vm.uploaderMain.uploadAll();
           vm.uploaderMain.onCompleteAll = function() {
 
-            console.info('onCompleteAll, uploaderMain:');
+            console.info(ctrlTitle + ', onCompleteAll, uploaderMain:');
             console.info('Queue:');
             console.dir(vm.uploaderMain.queue);
 
@@ -302,7 +299,7 @@
           vm.uploader.uploadAll();
           vm.uploader.onCompleteAll = function() {
 
-            console.info('onCompleteAll, uploader:');
+            console.info(ctrlTitle + ', onCompleteAll, uploader:');
             console.info('Queue:');
             console.dir(vm.uploader.queue);
 
@@ -313,7 +310,7 @@
           vm.uploaderMain_2.uploadAll();
           vm.uploaderMain_2.onCompleteAll = function() {
 
-            console.info('onCompleteAll, uploaderMain_2:');
+            console.info(ctrlTitle + ', onCompleteAll, uploaderMain_2:');
             console.info('Queue:');
             console.dir(vm.uploaderMain_2.queue);
 
@@ -324,7 +321,7 @@
           vm.uploader_2.uploadAll();
           vm.uploader_2.onCompleteAll = function() {
 
-            console.info('onCompleteAll, uploader_2:');
+            console.info(ctrlTitle + ', onCompleteAll, uploader_2:');
             console.info('Queue:');
             console.dir(vm.uploader_2.queue);
 
@@ -332,7 +329,7 @@
           };
         },
       }, function (err, results) {
-        console.log('async.parallel results:');
+        console.log(ctrlTitle + ', async.parallel, results:');
         console.dir(results);
 
         _write(vm.formData);
@@ -344,8 +341,8 @@
 
       var createRecords = {};
 
-      $log.info('formData:');
-      $log.info(formData);
+      $log.info(ctrlTitle + ', _write, formData:');
+      console.dir(formData);
 
       let useLang = '';
 
@@ -383,7 +380,7 @@
 
     function _updateRecordLong(data) {
 
-      console.log('_updateRecordLong, data:');
+      console.log(ctrlTitle + ', _updateRecordLong, data:');
       console.dir(data);
 
       var someObj = {};
@@ -395,10 +392,12 @@
       $q.all(someObj)
         .then(function (results) {
 
-          $log.warn('_updateRecordLong, results:');
+          $log.warn(ctrlTitle + ', _updateRecordLong, results:');
           console.dir(results);
 
           if (results.recorden.status == 200) {
+
+            $rootScope.admin.long.updateEditRecords = true;
 
             toaster.pop({
               type: 'success',
@@ -519,7 +518,7 @@
     // Load gallery images to file uploader queue
     function _loadGallery(obj) {
 
-      $log.info('_loadGallery...');
+      $log.info(ctrlTitle + ', _loadGallery...');
 
       var url = '';
       var getConf = {
@@ -544,7 +543,7 @@
       $http.get(url, getConf)
         .then(function (response) {
           // success
-          $log.warn('<<< Main image, Success response >>>');
+          $log.warn(ctrlTitle + ', <<< Main image, Success response >>>');
           console.dir(response);
 
           imgUrl = response.config.url;
@@ -578,7 +577,7 @@
 
         }, function (response) {
           // error
-          $log.warn('<<< Main image, Error response >>>');
+          $log.warn(ctrlTitle + ', <<< Main image, Error response >>>');
           console.dir(response);
         });
 
@@ -589,7 +588,7 @@
         $http.get(url, getConf)
           .then(function (response) {
             // success
-            $log.warn('<<< Gallery images, Success response >>>');
+            $log.warn(ctrlTitle + ', <<< Gallery images, Success response >>>');
             console.dir(response);
 
             imgUrl = response.config.url;
@@ -623,7 +622,7 @@
 
           }, function (response) {
             // error
-            $log.warn('<<< Gallery images, Error response >>>');
+            $log.warn(ctrlTitle + ', <<< Gallery images, Error response >>>');
             console.dir(response);
           });
       });

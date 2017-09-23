@@ -10,7 +10,7 @@
   function SaleCtrl(GeneralConfigService, SaleService,
                      $log, $rootScope, $scope, lodash, $q, $alert) {
     var _ = lodash;
-    var name = 'SaleCtrl';
+    var ctrlTitle = 'SaleCtrl';
     var saleBusyAlert = $alert({
       title: 'Title',
       content: 'Content',
@@ -50,6 +50,16 @@
       }
     });
 
+    $rootScope.$watch('admin.sale.updateEditRecords', function (newVal, oldVal) {
+      if (newVal) {
+        $log.info(ctrlTitle + ' !!!!!!!!!!!!!!!!!!! new record was created !!!!!!!!!!!!!');
+        _updateDataAll();
+        _updateDataEdit();
+        $rootScope.admin.sale.updateEditRecords = false;
+      }
+    });
+
+
     $rootScope.$watch('lang', _update);
 
     $rootScope.$watch('sale.busy', function (newVal, oldVal) {
@@ -65,7 +75,7 @@
     });
 
     function _updateDataAll() {
-      $log.info(name + ', _updateDataAll activated...');
+      $log.info(ctrlTitle + ', _updateDataAll activated...');
 
       $rootScope.useAll = true;
 
@@ -100,7 +110,7 @@
     } // _updateDataAll
 
     function _updateDataEdit() {
-      $log.info(name + ', _updateDataAll activated...');
+      $log.info(ctrlTitle + ', _updateDataAll activated...');
 
       $rootScope.useAll = true;
 
@@ -121,9 +131,6 @@
             return;
           }
 
-          $log.info(name + ', _updateDataEdit, res:');
-          console.dir(res);
-
           var buildResult = _buildPanel(res);
 
           if (!buildResult.performed) return;
@@ -138,6 +145,8 @@
     } // _updateDataEdit
 
     function _updateData () {
+
+      $rootScope.useAll = false;
 
       if ($rootScope.sale.FindActivated) {
 
@@ -247,10 +256,6 @@
       return $q.all({keys: SaleService.getAllSaleObjectsKeys(getRecordsConfig),
         objs: SaleService.getAllSaleObjectsObjs(objReqParams)})
         .then(function (results) {
-
-          $log.info(name + ', _performRequestAll, results:');
-          console.dir(results);
-
           $rootScope.sale.busy = false;
 
           if (results.objs.status == 404) {
@@ -297,7 +302,7 @@
         })
         .catch(function (err) {
           // todo: change by Log
-          $log.warn(name + ', Error...');
+          $log.warn(ctrlTitle + ', Error...');
           $log.error(err);
 
           return {
@@ -433,7 +438,7 @@
         })
         .catch(function (err) {
           // todo: change by Log
-          $log.warn(name + ', Error...');
+          $log.warn(ctrlTitle + ', Error...');
           $log.error(err);
 
           return {
@@ -584,12 +589,6 @@
           record.youtube = oElem.youtube;
           record.youtubeshow = (oElem.youtube ? true : false);
 
-          /*
-           $log.info('long ctrl, record:');
-           $log.info(record);
-           */
-
-
           panels.push(record);
         });
 
@@ -617,7 +616,6 @@
       $rootScope.sale.panelsEdit = $rootScope.sale.panelsAllLangsEdit[$rootScope.lang];
 
     } // updateEdit
-
 
     function _activateNextPage() {
       if ($rootScope.sale.scrollDisabled) return;

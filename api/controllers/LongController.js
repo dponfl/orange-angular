@@ -221,13 +221,16 @@ module.exports = {
 
     // todo: make parameters validation
     var newRecordParams = req.allParams();
-    var newObj = {};
+    // var newObj = {};
+    var newObj = newRecordParams;
 
+/*
     _.forEach(newRecordParams, function (val, key) {
       if (val) {
         newObj[key] = val;
       }
     });
+*/
 
     console.log('Ready to update record:');
     console.dir(newObj);

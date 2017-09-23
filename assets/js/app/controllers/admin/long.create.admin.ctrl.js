@@ -444,6 +444,8 @@
 
           if (results.recorden.status == 201) {
 
+            $rootScope.admin.long.updateEditRecords = true;
+
             toaster.pop({
               type: 'success',
               title: __.t('ADMIN_CREATE_SUCCESS_TITLE'),

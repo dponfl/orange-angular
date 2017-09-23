@@ -18,7 +18,7 @@
     var _ = lodash;
     var __=GeneralConfigService;
 
-    var firstImg = true;
+    // var firstImg = true;
     vm.update = _update;
     vm.clear = _clear;
     vm.cancel = _cancel;
@@ -124,11 +124,13 @@
       console.info('onCompleteItem, uploader:', fileItem, response, status, headers);
       console.info('Response:');
       console.dir(response);
-      vm.formData.imgGallery += (!firstImg ? ';' : '' ) +
+      vm.formData.imgGallery += (vm.formData.imgGallery.length > 0 ? ';' : '' ) +
         response.files[0].fd.slice(response.files[0].fd.indexOf('img') + 4);
+/*
       if (firstImg) {
         firstImg = false;
       }
+*/
     };
 
     vm.uploaderMain.onWhenAddingFileFailed = function(item /*{File|FileLikeObject}*/, filter, options) {
@@ -400,6 +402,8 @@
           console.dir(results);
 
           if (results.recorden.status == 200) {
+
+            $rootScope.admin.sale.updateEditRecords = true;
 
             toaster.pop({
               type: 'success',
