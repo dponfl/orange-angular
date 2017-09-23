@@ -1,38 +1,7 @@
 form(novalidate='novalidate',
-data-ng-submit='$ctrl.create()').form-horisontal
+data-ng-submit='vm.update()').form-horisontal
 
   fieldset
-
-    .form-group.clearfix
-      label(for='objectNumber', translate='LBL_OBJ_NUM').col-sm-2.control-label.text-right
-      .col-sm-3
-        input(type="text",
-          required,
-          data-ng-pattern='/^[A-Za-z0-9_]{1,15}$/',
-          data-ng-minLength='5',
-          data-ng-minLength-err-type='tooShort',
-          data-ng-required-err-type="{{'AV_REQ' | translate}}",
-          placeholder="{{'OBJ_NUM_PLACEHOLDER' | translate}}",
-          data-ng-model='$ctrl.formData.objnumber'
-        ).form-control#objectNumber
-
-
-    .form-group.clearfix
-      label(for='objectExclusiveLabel', translate='LBL_OBJ_EXCLUSIVE').col-sm-2.control-label.text-right
-      .col-sm-4
-        #objectExclusiveLabel
-          label(for='objectExclusive')
-            input(type='radio',
-              data-ng-model='$ctrl.formData.exclusive',
-              value="exclusive"
-            )#objectExclusive
-            | Да
-          label(for='objectNotExclusive')
-            input(type='radio',
-              data-ng-model='$ctrl.formData.exclusive',
-              value="not_exclusive"
-            )#objectNotExclusive
-            | Нет
 
     .form-group.clearfix
       label(for='objectShowLabel', translate='LBL_OBJ_SHOW').col-sm-2.control-label.text-right
@@ -40,13 +9,13 @@ data-ng-submit='$ctrl.create()').form-horisontal
         #objectShowLabel
           label(for='objectShow')
             input(type='radio',
-              data-ng-model='$ctrl.formData.show',
+              data-ng-model='vm.formData.show',
               value="show"
             )#objectShow
             | Да
           label(for='objectNotShow')
             input(type='radio',
-              data-ng-model='$ctrl.formData.show',
+              data-ng-model='vm.formData.show',
               value="not_show"
             )#objectNotShow
             | Нет
@@ -57,13 +26,13 @@ data-ng-submit='$ctrl.create()').form-horisontal
         #objectHomeLabel
           label(for='objectHome')
             input(type='radio',
-              data-ng-model='$ctrl.formData.home',
+              data-ng-model='vm.formData.home',
               value="home"
             )#objectHome
             | Да
           label(for='objectNotHome')
             input(type='radio',
-              data-ng-model='$ctrl.formData.home',
+              data-ng-model='vm.formData.home',
               value="not_home"
             )#objectNotHome
             | Нет
@@ -72,16 +41,17 @@ data-ng-submit='$ctrl.create()').form-horisontal
       label(for='tagType', translate='LBL_TAG').col-sm-2.control-label.text-right
       .col-sm-4
         select(name='tagType',
-          data-ng-options='option.val for option in $ctrl.tagList track by option.key',
-          data-ng-model='$ctrl.formData.tag'
+          data-ng-options='option.val for option in vm.tagList track by option.key',
+          data-ng-model='vm.formData.tag',
+          object-form-select-validation
         ).form-control#tagType
 
     .form-group.clearfix
       label(for='objectType', translate='LBL_OBJ').col-sm-2.control-label.text-right
       .col-sm-4
         select(name='objectType',
-          data-ng-options='option.val for option in $ctrl.objList track by option.key',
-          data-ng-model='$ctrl.formData.obj',
+          data-ng-options='option.val for option in vm.objList track by option.key',
+          data-ng-model='vm.formData.obj',
           object-form-select-validation
         ).form-control#objectType
 
@@ -89,8 +59,8 @@ data-ng-submit='$ctrl.create()').form-horisontal
       label(for='city', translate='LBL_CITY').col-sm-2.control-label.text-right
       .col-sm-4
         select(name='city',
-          data-ng-options='option.val for option in $ctrl.cityList track by option.key',
-          data-ng-model='$ctrl.formData.city',
+          data-ng-options='option.val for option in vm.cityList track by option.key',
+          data-ng-model='vm.formData.city',
           object-form-select-validation
         ).form-control#city
 
@@ -98,8 +68,8 @@ data-ng-submit='$ctrl.create()').form-horisontal
       label(for='rooms', translate='LBL_ROOM').col-sm-2.control-label.text-right
       .col-sm-4
         select(name='rooms',
-          data-ng-options='option.val for option in $ctrl.roomList track by option.key',
-          data-ng-model='$ctrl.formData.room',
+          data-ng-options='option.val for option in vm.roomList track by option.key',
+          data-ng-model='vm.formData.room',
           object-form-select-validation
         ).form-control#rooms
 
@@ -108,21 +78,21 @@ data-ng-submit='$ctrl.create()').form-horisontal
       .col-sm-5
         input(type="text",
         placeholder="{{'OBJ_YOUTUBE_PLACEHOLDER' | translate}}",
-        data-ng-model='$ctrl.formData.youtube'
+        data-ng-model='vm.formData.youtube'
         ).form-control#youtube
 
     // Main img upload
 
     div(nv-file-drop="",
-    uploader="$ctrl.uploaderMain",
+    uploader="vm.uploaderMain",
     ).form-group.clearfix
       .row
         .col-md-3
           h4(translate="LBL_IMG_MAIN_LABEL_01")
           input(type="file",
           nv-file-select="",
-          uploader="$ctrl.uploaderMain",
-          data-ng-disabled="!$ctrl.formData.objnumber.length"
+          uploader="vm.uploaderMain",
+          data-ng-disabled="!vm.formData.objnumber.length"
           )
 
         .col-md-9.file-upload-block
@@ -132,20 +102,20 @@ data-ng-submit='$ctrl.create()').form-horisontal
             thead
               tr
                 th(width="50%", translate="LBL_IMG_TBL_LABEL_NAME")
-                th(data-ng-show="$ctrl.uploaderMain.isHTML5",
+                th(data-ng-show="vm.uploaderMain.isHTML5",
                   translate="LBL_IMG_TBL_LABEL_SIZE")
-                th(data-ng-show="$ctrl.uploaderMain.isHTML5",
+                th(data-ng-show="vm.uploaderMain.isHTML5",
                   translate="LBL_IMG_TBL_LABEL_PROGRESS")
                 th(translate="LBL_IMG_TBL_LABEL_STATUS")
                 th(translate="LBL_IMG_TBL_LABEL_ACTION")
             tbody
-              tr(data-ng-repeat="item in $ctrl.uploaderMain.queue")
+              tr(data-ng-repeat="item in vm.uploaderMain.queue")
                 td
                   strong {{ item.file.name }}
-                  div(ng-show="$ctrl.uploaderMain.isHTML5",
+                  div(ng-show="vm.uploaderMain.isHTML5",
                   ng-thumb="{ file: item._file, height: 100 }")
-                td(data-ng-show="$ctrl.uploaderMain.isHTML5" nowrap) {{ item.file.size/1024/1024|number:2 }} MB
-                td(data-ng-show="$ctrl.uploaderMain.isHTML5")
+                td(data-ng-show="vm.uploaderMain.isHTML5" nowrap) {{ item.file.size/1024/1024|number:2 }} MB
+                td(data-ng-show="vm.uploaderMain.isHTML5")
                   .progress
                     div(role="progressbar",
                     data-ng-style="{ 'width': item.progress + '%' }").progress-bar
@@ -169,7 +139,7 @@ data-ng-submit='$ctrl.create()').form-horisontal
                     span.glyphicon.glyphicon-ban-circle &nbsp;Cancel
                   button(type="button",
                   data-ng-click="item.remove()",
-                  data-ng-disabled="!$ctrl.uploaderMain.getNotUploadedItems().length"
+                  data-ng-disabled="!vm.uploaderMain.getNotUploadedItems().length"
                   ).btn.btn-danger.btn-xs
                     span.glyphicon.glyphicon-trash
                     span.lbl-margin-left {{"LBL_IMG_MAIN_BTN_REMOVE" | translate}}
@@ -178,47 +148,47 @@ data-ng-submit='$ctrl.create()').form-horisontal
             div {{"LBL_IMG_MAIN_LABEL_03" | translate}}
               .progress.queue-progress
                 div(role="progressbar",
-                data-ng-style="{ 'width': $ctrl.uploaderMain.progress + '%' }"
+                data-ng-style="{ 'width': vm.uploaderMain.progress + '%' }"
                 ).progress-bar
 
 
     // Gallery img upload
 
     div(nv-file-drop="",
-    uploader="$ctrl.uploader",
+    uploader="vm.uploader",
     ).form-group.clearfix
       .row
         .col-md-3
           h4(translate="LBL_IMG_GALLERY_LABEL_01")
           input(type="file",
             nv-file-select="",
-            uploader="$ctrl.uploader",
+            uploader="vm.uploader",
             multiple,
-            data-ng-disabled="!$ctrl.formData.objnumber.length"
+            data-ng-disabled="!vm.formData.objnumber.length"
           )
 
         .col-md-9.file-upload-block
           h4(translate="LBL_IMG_GALLERY_LABEL_02")
-          p {{"LBL_IMG_GALLERY_LABEL_04" | translate}} {{$ctrl.uploader.queue.length}}
+          p {{"LBL_IMG_GALLERY_LABEL_04" | translate}} {{vm.uploader.queue.length}}
 
           table.table
             thead
               tr
                 th(width="50%", translate="LBL_IMG_TBL_LABEL_NAME")
-                th(data-ng-show="$ctrl.uploader.isHTML5",
+                th(data-ng-show="vm.uploader.isHTML5",
                   translate="LBL_IMG_TBL_LABEL_SIZE")
-                th(data-ng-show="$ctrl.uploader.isHTML5",
+                th(data-ng-show="vm.uploader.isHTML5",
                   translate="LBL_IMG_TBL_LABEL_PROGRESS")
                 th(translate="LBL_IMG_TBL_LABEL_STATUS")
                 th(translate="LBL_IMG_TBL_LABEL_ACTION")
             tbody
-              tr(data-ng-repeat="item in $ctrl.uploader.queue")
+              tr(data-ng-repeat="item in vm.uploader.queue")
                 td
                   strong {{ item.file.name }}
-                  div(ng-show="$ctrl.uploader.isHTML5",
+                  div(ng-show="vm.uploader.isHTML5",
                     ng-thumb="{ file: item._file, height: 100 }")
-                td(data-ng-show="$ctrl.uploader.isHTML5" nowrap) {{ item.file.size/1024/1024|number:2 }} MB
-                td(data-ng-show="$ctrl.uploader.isHTML5")
+                td(data-ng-show="vm.uploader.isHTML5" nowrap) {{ item.file.size/1024/1024|number:2 }} MB
+                td(data-ng-show="vm.uploader.isHTML5")
                   .progress
                     div(role="progressbar",
                     data-ng-style="{ 'width': item.progress + '%' }").progress-bar
@@ -242,7 +212,7 @@ data-ng-submit='$ctrl.create()').form-horisontal
                     span.glyphicon.glyphicon-ban-circle &nbsp;Cancel
                   button(type="button",
                     data-ng-click="item.remove()",
-                    data-ng-disabled="!$ctrl.uploader.getNotUploadedItems().length"
+                    data-ng-disabled="!vm.uploader.getNotUploadedItems().length"
                   ).btn.btn-danger.btn-xs
                     span.glyphicon.glyphicon-trash
                     span.lbl-margin-left {{"LBL_IMG_MAIN_BTN_REMOVE" | translate}}
@@ -251,32 +221,32 @@ data-ng-submit='$ctrl.create()').form-horisontal
             div {{"LBL_IMG_MAIN_LABEL_03" | translate}}
               .progress.queue-progress
                 div(role="progressbar",
-                  data-ng-style="{ 'width': $ctrl.uploader.progress + '%' }"
+                  data-ng-style="{ 'width': vm.uploader.progress + '%' }"
                 ).progress-bar
 
             button(type="button",
-              data-ng-click="$ctrl.uploader.clearQueue()",
-              data-ng-disabled="!$ctrl.uploader.queue.length"
+              data-ng-click="vm.uploader.clearQueue()",
+              data-ng-disabled="!vm.uploader.queue.length"
             ).btn.btn-danger.btn-s
               span.glyphicon.glyphicon-trash
               span.lbl-margin-left {{"LBL_IMG_MAIN_BTN_REMOVE_ALL" | translate}}
 
 
     .row
-      div(bs-active-pane="$ctrl.activeTab", bs-tabs).edit-lang-container
+      div(bs-active-pane="vm.activeTab", bs-tabs).edit-lang-container
 
-        div(data-ng-repeat="lang in $ctrl.langSet",
+        div(data-ng-repeat="lang in vm.langSet",
         data-title="{{lang.activeTabTitle}}",
         name="{{lang.activeTab}}",
         bs-pane
         )
 
-          .form-group.clearfix
-            label(for='address', translate='LBL_ADDRESS').col-sm-2.control-label.text-right.top-element
+          .form-group.clearfix.top-element
+            label(for='address', translate='LBL_ADDRESS').col-sm-2.control-label.text-right
             .col-sm-9
               textarea(type="text",
               placeholder="{{'OBJ_ADDRESS_PLACEHOLDER' | translate}}",
-              data-ng-model='$ctrl.formData.langContent[lang.lang].address'
+              data-ng-model='vm.formData.langContent[lang.lang].address'
               ).form-control#address
 
           .form-group.clearfix
@@ -284,7 +254,7 @@ data-ng-submit='$ctrl.create()').form-horisontal
             .col-sm-9
               input(type="text",
               placeholder="{{'OBJ_BATHROOM_PLACEHOLDER' | translate}}",
-              data-ng-model='$ctrl.formData.langContent[lang.lang].bathroom'
+              data-ng-model='vm.formData.langContent[lang.lang].bathroom'
               ).form-control#bathroom
 
           .form-group.clearfix
@@ -292,7 +262,7 @@ data-ng-submit='$ctrl.create()').form-horisontal
             .col-sm-9
               input(type="text",
               placeholder="{{'OBJ_POOL_PLACEHOLDER' | translate}}",
-              data-ng-model='$ctrl.formData.langContent[lang.lang].pool'
+              data-ng-model='vm.formData.langContent[lang.lang].pool'
               ).form-control#pool
 
           .form-group.clearfix
@@ -300,7 +270,7 @@ data-ng-submit='$ctrl.create()').form-horisontal
             .col-sm-9
               input(type="text",
               placeholder="{{'OBJ_PRICE_PLACEHOLDER' | translate}}",
-              data-ng-model='$ctrl.formData.langContent[lang.lang].price'
+              data-ng-model='vm.formData.langContent[lang.lang].price'
               ).form-control#price
 
           .form-group.clearfix
@@ -308,7 +278,7 @@ data-ng-submit='$ctrl.create()').form-horisontal
             .col-sm-9
               textarea(type="text",
               placeholder="{{'OBJ_DESCRIPTION_PLACEHOLDER' | translate}}",
-              data-ng-model='$ctrl.formData.langContent[lang.lang].description'
+              data-ng-model='vm.formData.langContent[lang.lang].description'
               ).form-control#description
 
           .form-group.clearfix
@@ -316,19 +286,23 @@ data-ng-submit='$ctrl.create()').form-horisontal
             .col-sm-9
               textarea(type="text",
               placeholder="{{'OBJ_INFO_PLACEHOLDER' | translate}}",
-              data-ng-model='$ctrl.formData.langContent[lang.lang].info'
+              data-ng-model='vm.formData.langContent[lang.lang].info'
               ).form-control#info
 
 
+
     .form-group.clearfix
-      .col-lg-7.col-lg-offset-2.col-md-offset-1.col-sm-offset-1
+      .col-lg-9.col-lg-offset-2.col-md-offset-1.col-sm-offset-1
         button(type='submit',
-          translate='BTN_ADMIN_CREATE',
-          data-ng-disabled="!($ctrl.uploader.getNotUploadedItems().length && $ctrl.uploaderMain.getNotUploadedItems().length)"
+          translate='BTN_ADMIN_UPDATE',
+          data-ng-disabled="!(vm.uploader.getNotUploadedItems().length && vm.uploaderMain.getNotUploadedItems().length)"
         ).btn.btn-success.btn-lg.btn-margin
-        button(data-ng-click='$ctrl.clear()',
-          translate='BTN_CLR'
+        button(data-ng-click='vm.clear()',
+          translate='BTN_ADMIN_CLEAR'
         ).btn.btn-warning.btn-lg.btn-margin
+        button(data-ng-click='vm.cancel()',
+          translate='BTN_ADMIN_DECLINE'
+        ).btn.btn-danger.btn-lg.btn-margin
 
 
 

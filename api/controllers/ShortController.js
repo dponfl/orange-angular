@@ -6,24 +6,24 @@
  */
 
 module.exports = {
-	find: function (req, res) {
-/*
-	  console.log('=======================');
-	  console.log('req.body:');
-	  console.dir(req.body);
-	  console.log('req.headers:');
-	  console.dir(req.headers);
-    console.log('req.ip:');
-    console.dir(req.ip);
-    console.log('req.ips:');
-    console.dir(req.ips);
-    console.log('req.method:');
-    console.dir(req.method);
-    console.log('req.params:');
-    console.dir(req.params);
-    console.log('req.allParams():');
-    console.dir(req.allParams());
-*/
+  find: function (req, res) {
+    /*
+     console.log('=======================');
+     console.log('req.body:');
+     console.dir(req.body);
+     console.log('req.headers:');
+     console.dir(req.headers);
+     console.log('req.ip:');
+     console.dir(req.ip);
+     console.log('req.ips:');
+     console.dir(req.ips);
+     console.log('req.method:');
+     console.dir(req.method);
+     console.log('req.params:');
+     console.dir(req.params);
+     console.log('req.allParams():');
+     console.dir(req.allParams());
+     */
 
     console.log('<== ShortController.js:find ==>');
 
@@ -70,23 +70,23 @@ module.exports = {
   }, // find
 
   findPager: function (req, res) {
-/*
-	  console.log('=======================');
-	  console.log('req.body:');
-	  console.dir(req.body);
-	  console.log('req.headers:');
-	  console.dir(req.headers);
-    console.log('req.ip:');
-    console.dir(req.ip);
-    console.log('req.ips:');
-    console.dir(req.ips);
-    console.log('req.method:');
-    console.dir(req.method);
-    console.log('req.params:');
-    console.dir(req.params);
-    console.log('req.allParams():');
-    console.dir(req.allParams());
-*/
+    /*
+     console.log('=======================');
+     console.log('req.body:');
+     console.dir(req.body);
+     console.log('req.headers:');
+     console.dir(req.headers);
+     console.log('req.ip:');
+     console.dir(req.ip);
+     console.log('req.ips:');
+     console.dir(req.ips);
+     console.log('req.method:');
+     console.dir(req.method);
+     console.log('req.params:');
+     console.dir(req.params);
+     console.log('req.allParams():');
+     console.dir(req.allParams());
+     */
 
     console.log('<== ShortController.js:findPager ==>');
 

@@ -53,6 +53,10 @@
           text: 'NAV_SALES',
         },
         {
+          href: 'admin_short',
+          text: 'NAV_DAILY',
+        },
+        {
           href: 'account',
           text: 'HEADER_ADMIN_ACCOUNT',
         },

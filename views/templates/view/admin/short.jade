@@ -1,0 +1,112 @@
+#short
+  .row#shortCallout
+    .cal-12
+      .well
+        .page-header.page-primary
+          h1 {{'SHORTTERM_PAGE_HEADER_TITLE' | translate}}
+
+        div(data-ng-controller='ShortPanelAdminTblCtrl as p').page-body#block-long
+
+          div(bs-active-pane="p.activeTabMain", bs-tabs)
+
+            //=================
+            // New objects
+            //=================
+
+            div(data-title="Создание новых объектов",
+            name="new_obj",
+            bs-pane
+            ).tabs-block
+
+              div(data-ng-controller='ShortCreateAdminCtrl')
+                short-admin-create()
+
+
+            //=================
+            // Existing objects
+            //=================
+
+            div(data-title="Редактирование объектов",
+              name="existing_obj",
+              bs-pane
+            ).tabs-block
+              .row#block-short-filter-admin
+                .col-sm-6.col-sm-offset-3#shortFilterWrapper
+                  .panel.panel-info#shortFilter
+                    .panel-heading
+                      h3(translate='PANEL_HEADER')
+                    div(data-ng-controller='AdminFiltersCtrl as e').panel-body
+                      admin-object-filter(obj-list='e.objList',
+                      city-list='e.cityList',
+                      room-list='e.roomList',
+                      show-list='e.showList',
+                      home-list='e.homeList'
+                      )
+
+              div(data-ng-controller='ShortCtrl', data-ng-init="updateDataEdit()")
+
+                div(data-ng-if='short.showFoundNothing')
+                  nothing-found
+
+                div(data-ng-hide='short.showFoundNothing').row
+                  .col-sm-10
+                    h2 Список объектов
+                    button(data-ng-click='p.clearSort();').btn.btn-info Очистить сортировку
+                    table.table.table-striped.table-hover
+                      thead
+                        tr
+                          th(data-ng-click='p.sort("objNumber");').sort-th Номер объекта
+                            span(data-ng-show="p.sortKey=='objNumber'",
+                            data-ng-class="{'glyphicon-chevron-up':!p.reverse,'glyphicon-chevron-down':p.reverse}").glyphicon.sort-icon
+                          th(data-ng-click='p.sort("contentObj.obj.text");').sort-th Тип объекта
+                            span(data-ng-show="p.sortKey=='contentObj.obj.text'",
+                            data-ng-class="{'glyphicon-chevron-up':!p.reverse,'glyphicon-chevron-down':p.reverse}").glyphicon.sort-icon
+                          th(data-ng-click='p.sort("contentObj.city.text");').sort-th Город
+                            span(data-ng-show="p.sortKey=='contentObj.city.text'",
+                            data-ng-class="{'glyphicon-chevron-up':!p.reverse,'glyphicon-chevron-down':p.reverse}").glyphicon.sort-icon
+                          th Адрес объекта
+                          th
+                            div.text-center Открыт для показа
+                          th
+                            div.text-center На главной странице
+                          th
+                            div.text-center Действие
+                      tbody
+                        tr(data-dir-paginate='panel in short.panelsEdit|orderBy:p.sortKey:p.reverse|itemsPerPage:7')
+                          td {{panel.objNumber}}
+                          td {{panel.contentObj.obj.text}}
+                          td {{panel.contentObj.city.text}}
+                          td {{panel.contentObj.address.text}}
+                          td
+                            div(data-ng-if="panel.show").text-center
+                              span(aria-hidden="true").glyphicon.glyphicon-ok.admin-text-green
+                            div(data-ng-if="!panel.show").text-center
+                              span(aria-hidden="true").glyphicon.glyphicon-remove.admin-text-red
+                          td
+                            div(data-ng-if="panel.home").text-center
+                              span(aria-hidden="true").glyphicon.glyphicon-ok.admin-text-green
+                            div(data-ng-if="!panel.home").text-center
+                              span(aria-hidden="true").glyphicon.glyphicon-remove.admin-text-red
+                          td
+                            button(data-ng-click='p.edit(panel.objNumber)',
+                            data-ng-disabled="!admin.short.editObjEnableButton"
+                            ).btn.btn-sm.btn-info Редактировать
+
+                    dir-pagination-controls(max-size="3", boundary-links="true")
+
+              div(data-ng-controller='ShortEditAdminCtrl as leac',
+              data-ng-show='admin.short.editPanelShow'
+              )
+                .panel.panel-info
+                  .panel-heading
+                    h3 {{"HEADER_PANEL_EDIT" | translate}}
+                      | {{leac.formData.objnumber}}
+                  .panel.panel-body
+                    short-admin-edit-directive()
+
+
+  toaster-container(data-toaster-options="{'toaster-id': '111111'}")
+
+
+
+

@@ -108,6 +108,14 @@
     $rootScope.admin.sale.editObjEnableButton = true;
     $rootScope.admin.sale.updateEditRecords = false;
 
+    $rootScope.admin.short = {};
+    $rootScope.admin.short.editObjSelected = false;
+    $rootScope.admin.short.objNumber = '';
+    $rootScope.admin.short.editPanelShow = false;
+    $rootScope.admin.short.formData = {};
+    $rootScope.admin.short.editObjEnableButton = true;
+    $rootScope.admin.short.updateEditRecords = false;
+
 
     $log.info('OrangeClient, $rootScope:');
     $log.info($rootScope);

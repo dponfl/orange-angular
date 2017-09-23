@@ -215,6 +215,20 @@
         },
         url: '/admin_sale',
       })
+      .state('admin_short', {
+        views: {
+          header: {
+            templateUrl: 'templates/view/admin/headerAdmin.html'
+          },
+          main: {
+            templateUrl: 'templates/view/admin/short.html',
+          },
+          footer: {
+            templateUrl: 'templates/view/admin/footerAdmin.html',
+          },
+        },
+        url: '/admin_short',
+      })
       .state('account', {
         views: {
           header: {
