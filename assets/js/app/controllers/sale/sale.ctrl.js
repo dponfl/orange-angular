@@ -42,17 +42,20 @@
 
     // $rootScope.$watch('sale.FindActivated', _updateData);
     $rootScope.$watch('sale.FindActivated', function () {
-      if ($rootScope.admin.sale.useAll) {
-        _updateDataAll();
+      _updateData();
+    });
+
+    $rootScope.$watch('admin.sale.FindActivated', function (newVal, oldVal) {
+      if (newVal) {
+        // _updateDataAll();
         _updateDataEdit();
-      } else {
-        _updateData();
+        $rootScope.admin.sale.FindActivated = false;
       }
+
     });
 
     $rootScope.$watch('admin.sale.updateEditRecords', function (newVal, oldVal) {
       if (newVal) {
-        $log.info(ctrlTitle + ' !!!!!!!!!!!!!!!!!!! new record was created !!!!!!!!!!!!!');
         _updateDataAll();
         _updateDataEdit();
         $rootScope.admin.sale.updateEditRecords = false;

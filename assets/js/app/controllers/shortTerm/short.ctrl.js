@@ -42,17 +42,20 @@
 
     // $rootScope.$watch('short.FindActivated', _updateData);
     $rootScope.$watch('short.FindActivated', function () {
-      if ($rootScope.admin.short.useAll) {
-        _updateDataAll();
+      _updateData();
+    });
+
+    $rootScope.$watch('admin.short.FindActivated', function (newVal, oldVal) {
+      if (newVal) {
+        // _updateDataAll();
         _updateDataEdit();
-      } else {
-        _updateData();
+        $rootScope.admin.short.FindActivated = false;
       }
+
     });
 
     $rootScope.$watch('admin.short.updateEditRecords', function (newVal, oldVal) {
       if (newVal) {
-        $log.info(ctrlTitle + ' !!!!!!!!!!!!!!!!!!! new record was created !!!!!!!!!!!!!');
         _updateDataAll();
         _updateDataEdit();
         $rootScope.admin.short.updateEditRecords = false;

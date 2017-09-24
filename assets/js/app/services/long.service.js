@@ -265,11 +265,11 @@
         $log.info('_updateLongObject, successCb, data:');
         $log.info(data);
 
-        if (!_.isNumber(data.data.result.id)) {
+        if (!_.isNumber(data.data.result[0].id)) {
           return new Error('Long data has wrong format');
         }
 
-        var response = data.data.result;
+        var response = data.data.result[0];
 
 /*
         $log.info('_updateLongObject, response:');

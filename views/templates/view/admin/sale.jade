@@ -35,8 +35,8 @@
                   .panel.panel-info#saleFilter
                     .panel-heading
                       h3(translate='PANEL_HEADER')
-                    div(data-ng-controller='AdminFiltersCtrl as e').panel-body
-                      admin-object-filter(obj-list='e.objList',
+                    div(data-ng-controller='AdminSaleFiltersCtrl as e').panel-body
+                      admin-sale-object-filter(obj-list='e.objList',
                       city-list='e.cityList',
                       room-list='e.roomList',
                       show-list='e.showList',
@@ -76,7 +76,7 @@
                           td {{panel.objNumber}}
                           td {{panel.contentObj.obj.text}}
                           td {{panel.contentObj.city.text}}
-                          td {{panel.contentObj.address.text}}
+                          td {{panel.address}}
                           td
                             div(data-ng-if="panel.show").text-center
                               span(aria-hidden="true").glyphicon.glyphicon-ok.admin-text-green

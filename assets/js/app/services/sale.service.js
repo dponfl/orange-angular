@@ -263,11 +263,11 @@
         $log.info('_updateSaleObject, successCb, data:');
         $log.info(data);
 
-        if (!_.isNumber(data.data.result.id)) {
+        if (!_.isNumber(data.data.result[0].id)) {
           return new Error('Sale data has wrong format');
         }
 
-        var response = data.data.result;
+        var response = data.data.result[0];
 
         var __objs = {};
 

@@ -277,11 +277,11 @@
         $log.info('_updateShortObject, successCb, data:');
         $log.info(data);
 
-        if (!_.isNumber(data.data.result.id)) {
+        if (!_.isNumber(data.data.result[0].id)) {
           return new Error('Short data has wrong format');
         }
 
-        var response = data.data.result;
+        var response = data.data.result[0];
 
 /*
         $log.info('_updateShortObject, response:');

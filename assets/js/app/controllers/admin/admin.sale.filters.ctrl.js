@@ -3,18 +3,18 @@
 
   angular
     .module('OrangeClient')
-    .controller('AdminFiltersCtrl', AdminFiltersCtrl);
+    .controller('AdminSaleFiltersCtrl', AdminSaleFiltersCtrl);
 
-  AdminFiltersCtrl.$inject = ['$log', '$rootScope', '$scope'];
+  AdminSaleFiltersCtrl.$inject = ['$log', '$rootScope', '$scope'];
 
   /* @ngInject */
-  function AdminFiltersCtrl($log, $rootScope, $scope) {
+  function AdminSaleFiltersCtrl($log, $rootScope, $scope) {
     var vm = this;
     vm.find = _find;
     vm.clear = _clear;
 
     // todo: delete
-    vm.longBusy = $rootScope.long.busy;
+    vm.saleBusy = $rootScope.sale.busy;
 
     vm.filterDisabled = false;
 
@@ -34,11 +34,11 @@
     vm.formData.objnumber = '';
     vm.formData.objnumber = $scope.$parent.directLinkObjectNumber || '';
 
-    $rootScope.long.FilterData = vm.formData;
+    $rootScope.sale.FilterData = vm.formData;
 
     $rootScope.$watch('lang', update);
 
-    $rootScope.$watch('long.busy', function (newVal, oldVal) {
+    $rootScope.$watch('sale.busy', function (newVal, oldVal) {
       vm.busy = newVal;
       vm.filterDisabled = newVal;
 /*
@@ -64,8 +64,8 @@
       }
 
       // vm.filterDisabled = true;
-      $rootScope.long.FilterData = vm.formData;
-      $rootScope.admin.long.FindActivated = true;
+      $rootScope.sale.FilterData = vm.formData;
+      $rootScope.admin.sale.FindActivated = true;
     };
 
     function _clear() {
@@ -81,8 +81,8 @@
       vm.formData.show = $rootScope.orangeConfig.showList[$rootScope.lang][0];
       vm.formData.home = $rootScope.orangeConfig.homeList[$rootScope.lang][0];
       vm.formData.objnumber = '';
-      $rootScope.long.FilterData = vm.formData;
-      $rootScope.admin.long.FindActivated = true;
+      $rootScope.sale.FilterData = vm.formData;
+      $rootScope.admin.sale.FindActivated = true;
     };
   }
 })();

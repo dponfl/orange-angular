@@ -3,8 +3,8 @@
 
   angular
     .module('OrangeClient')
-    .component('adminObjectFilter', {
-      controller: 'AdminFiltersCtrl',
+    .component('adminSaleObjectFilter', {
+      controller: 'AdminSaleFiltersCtrl',
       bindings: {
         objList: '=',
         cityList: '=',
@@ -12,6 +12,6 @@
         showList: '=',
         homeList: '='
       },
-      templateUrl: 'templates/view/admin/filter.html'
+      templateUrl: 'templates/view/admin/sale_filter.html'
     });
 })();
