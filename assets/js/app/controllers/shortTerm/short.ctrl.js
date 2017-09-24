@@ -587,7 +587,7 @@
                 key: keyVal,
                 label: kElem.label,
                 text:tokenVal,
-              }
+              };
             // }
 
           });

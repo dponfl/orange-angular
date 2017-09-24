@@ -212,34 +212,33 @@
 
         var __objs = {};
 
-        for (var i = 0; i < response.length; i++) {
 
-          if (!_.isArray(__objs[response[i].lang]))
-            __objs[response[i].lang] = [];
+        if (!_.isArray(__objs[response.lang]))
+          __objs[response.lang] = [];
 
-          __objs[response[i].lang].push({
-            objNumber: response[i].objnumber,
-            show: response[i].show,
-            home: response[i].home,
-            tag: response[i].tag,
-            city: response[i].city,
-            address: response[i].address,
-            obj: response[i].obj,
-            room: response[i].room,
-            bathroom: response[i].bathroom,
-            pool: response[i].pool,
-            price: response[i].price,
-            calendar: response[i].calendar,
-            description: response[i].description,
-            info: response[i].info,
-            googleMap: response[i].maps,
-            imgMain: response[i].imgmain,
-            imgGallery: response[i].imggallery,
-            youtube: response[i].youtube,
-            createdAt: response[i].createdAt,
-            updatedAt: response[i].updatedAt,
-          })
-        }
+        __objs[response.lang].push({
+          objNumber: response.objnumber,
+          show: response.show,
+          home: response.home,
+          tag: response.tag,
+          city: response.city,
+          address: response.address,
+          deal: response.deal,
+          obj: response.obj,
+          room: response.room,
+          bathroom: response.bathroom,
+          pool: response.pool,
+          price: response.price,
+          calendar: response.calendar,
+          description: response.description,
+          info: response.info,
+          googleMap: response.maps,
+          imgMain: response.imgmain,
+          imgGallery: response.imggallery,
+          youtube: response.youtube,
+          createdAt: response.createdAt,
+          updatedAt: response.updatedAt,
+        });
 
         return {
           status: 201,
