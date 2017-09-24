@@ -76,12 +76,12 @@
 
       _.forEach(obj, function (value, key) {
         langContent[key] = {
-          address: value.contentObj.address.text,
-          bathroom: value.contentObj.bathroom.text,
-          pool: value.contentObj.pool.text,
-          price: value.contentObj.price.text,
-          description: value.contentObj.description.text,
-          info: value.contentObj.info.text,
+          address: value.address,
+          bathroom: value.bathroom,
+          pool: value.pool,
+          price: value.price,
+          description: value.description,
+          info: value.info,
         }
       });
 
@@ -146,12 +146,12 @@
 
       _.forEach(obj, function (value, key) {
         langContent[key] = {
-          address: value.contentObj.address.text,
-          bathroom: value.contentObj.bathroom.text,
-          pool: value.contentObj.pool.text,
-          price: value.contentObj.price.text,
-          description: value.contentObj.description.text,
-          info: value.contentObj.info.text,
+          address: value.address,
+          bathroom: value.bathroom,
+          pool: value.pool,
+          price: value.price,
+          description: value.description,
+          info: value.info,
         }
       });
 

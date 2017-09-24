@@ -42,12 +42,16 @@
 
     // $rootScope.$watch('long.FindActivated', _updateData);
     $rootScope.$watch('long.FindActivated', function () {
-      if ($rootScope.useAll) {
-        _updateDataAll();
-        _updateDataEdit();
-      } else {
         _updateData();
+    });
+
+    $rootScope.$watch('admin.long.FindActivated', function (newVal, oldVal) {
+      if (newVal) {
+        // _updateDataAll();
+        _updateDataEdit();
+        $rootScope.admin.long.FindActivated = false;
       }
+
     });
 
     $rootScope.$watch('admin.long.updateEditRecords', function (newVal, oldVal) {
@@ -74,8 +78,6 @@
 
     function _updateDataAll() {
       $log.info(ctrlTitle + ', _updateDataAll activated...');
-
-      $rootScope.useAll = true;
 
       $rootScope.long.panels = [];
       $rootScope.long.busy = false;
@@ -110,8 +112,6 @@
     function _updateDataEdit() {
       $log.info(ctrlTitle + ', _updateDataAll activated...');
 
-      $rootScope.useAll = true;
-
       $rootScope.long.panels = [];
       $rootScope.long.busy = false;
       $rootScope.long.FindActivated = false;
@@ -145,8 +145,6 @@
 
 
     function _updateData () {
-
-      $rootScope.useAll = false;
 
       if ($rootScope.long.FindActivated) {
 
@@ -517,6 +515,15 @@
             content: [],
             contentObj: {},
             gallery: [],
+            address: oElem.address,
+            bathroom: oElem.bathroom,
+            description: oElem.description,
+            googleMap: oElem.googleMap,
+            info: oElem.info,
+            pool: oElem.pool,
+            price: oElem.price,
+            youtube: oElem.youtube,
+            youtubeshow: (oElem.youtube ? true : false),
           };
 
           panelKeys.map(function (kElem) {
@@ -556,7 +563,7 @@
               record.content[kElem.group - 1] = [];
             }
 
-            if (kElem.key !== 'deal') {
+            // if (kElem.key !== 'deal') {
               record.content[kElem.group - 1].push({
                 key: kElem.key,
                 label: kElem.label,
@@ -567,8 +574,8 @@
                 key: keyVal,
                 label: kElem.label,
                 text:tokenVal,
-              }
-            }
+              };
+            // }
 
           });
 
@@ -583,11 +590,13 @@
               src: '../../img/' + el,
             });
           });
+/*
           record.price = oElem.price;
           record.calendar = oElem.calendar;
           record.googleMap = oElem.googleMap;
           record.youtube = oElem.youtube;
           record.youtubeshow = (oElem.youtube ? true : false);
+*/
 
           panels.push(record);
         });

@@ -42,7 +42,7 @@
 
     // $rootScope.$watch('sale.FindActivated', _updateData);
     $rootScope.$watch('sale.FindActivated', function () {
-      if ($rootScope.useAll) {
+      if ($rootScope.admin.sale.useAll) {
         _updateDataAll();
         _updateDataEdit();
       } else {
@@ -77,7 +77,7 @@
     function _updateDataAll() {
       $log.info(ctrlTitle + ', _updateDataAll activated...');
 
-      $rootScope.useAll = true;
+      $rootScope.admin.sale.useAll = false;
 
       $rootScope.sale.panels = [];
       $rootScope.sale.busy = false;
@@ -112,7 +112,7 @@
     function _updateDataEdit() {
       $log.info(ctrlTitle + ', _updateDataAll activated...');
 
-      $rootScope.useAll = true;
+      $rootScope.admin.sale.useAll = false;
 
       $rootScope.sale.panels = [];
       $rootScope.sale.busy = false;
@@ -145,8 +145,6 @@
     } // _updateDataEdit
 
     function _updateData () {
-
-      $rootScope.useAll = false;
 
       if ($rootScope.sale.FindActivated) {
 
@@ -517,6 +515,15 @@
             content: [],
             contentObj: {},
             gallery: [],
+            address: oElem.address,
+            bathroom: oElem.bathroom,
+            description: oElem.description,
+            googleMap: oElem.googleMap,
+            info: oElem.info,
+            pool: oElem.pool,
+            price: oElem.price,
+            youtube: oElem.youtube,
+            youtubeshow: (oElem.youtube ? true : false),
           };
 
           panelKeys.map(function (kElem) {
@@ -583,11 +590,13 @@
               src: '../../img/' + el,
             });
           });
+/*
           record.price = oElem.price;
           record.calendar = oElem.calendar;
           record.googleMap = oElem.googleMap;
           record.youtube = oElem.youtube;
           record.youtubeshow = (oElem.youtube ? true : false);
+*/
 
           panels.push(record);
         });

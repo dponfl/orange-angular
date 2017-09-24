@@ -99,6 +99,7 @@
     $rootScope.admin.long.formData = {};
     $rootScope.admin.long.editObjEnableButton = true;
     $rootScope.admin.long.updateEditRecords = false;
+    $rootScope.admin.long.FindActivated = false;
 
     $rootScope.admin.sale = {};
     $rootScope.admin.sale.editObjSelected = false;
@@ -107,6 +108,7 @@
     $rootScope.admin.sale.formData = {};
     $rootScope.admin.sale.editObjEnableButton = true;
     $rootScope.admin.sale.updateEditRecords = false;
+    $rootScope.admin.sale.FindActivated = false;
 
     $rootScope.admin.short = {};
     $rootScope.admin.short.editObjSelected = false;
@@ -115,6 +117,7 @@
     $rootScope.admin.short.formData = {};
     $rootScope.admin.short.editObjEnableButton = true;
     $rootScope.admin.short.updateEditRecords = false;
+    $rootScope.admin.short.FindActivated = false;
 
 
     $log.info('OrangeClient, $rootScope:');

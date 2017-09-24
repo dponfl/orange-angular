@@ -42,7 +42,7 @@
 
     // $rootScope.$watch('short.FindActivated', _updateData);
     $rootScope.$watch('short.FindActivated', function () {
-      if ($rootScope.useAll) {
+      if ($rootScope.admin.short.useAll) {
         _updateDataAll();
         _updateDataEdit();
       } else {
@@ -77,7 +77,7 @@
     function _updateDataAll() {
       $log.info(ctrlTitle + ', _updateDataAll activated...');
 
-      $rootScope.useAll = true;
+      $rootScope.admin.short.useAll = false;
 
       $rootScope.short.panels = [];
       $rootScope.short.busy = false;
@@ -112,7 +112,7 @@
     function _updateDataEdit() {
       $log.info(ctrlTitle + ', _updateDataAll activated...');
 
-      $rootScope.useAll = true;
+      $rootScope.admin.short.useAll = false;
 
       $rootScope.short.panels = [];
       $rootScope.short.busy = false;
@@ -145,8 +145,6 @@
     } // _updateDataEdit
 
     function _updateData () {
-
-      $rootScope.useAll = false;
 
       if ($rootScope.short.FindActivated) {
 

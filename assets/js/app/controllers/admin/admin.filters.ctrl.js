@@ -65,7 +65,7 @@
 
       // vm.filterDisabled = true;
       $rootScope.long.FilterData = vm.formData;
-      $rootScope.long.FindActivated = true;
+      $rootScope.admin.long.FindActivated = true;
     };
 
     function _clear() {
@@ -82,7 +82,7 @@
       vm.formData.home = $rootScope.orangeConfig.homeList[$rootScope.lang][0];
       vm.formData.objnumber = '';
       $rootScope.long.FilterData = vm.formData;
-      $rootScope.long.FindActivated = true;
+      $rootScope.admin.long.FindActivated = true;
     };
   }
 })();
