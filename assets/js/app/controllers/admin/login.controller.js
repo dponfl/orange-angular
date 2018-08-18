@@ -51,6 +51,10 @@
 
     function _loginUser() {
       vm.wrongLogin = false;
+
+
+      $state.go('admin_longterm');
+
       UserService.loginUser({
         identifier: vm.username,
         password: vm.password

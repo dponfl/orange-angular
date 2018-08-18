@@ -42,10 +42,10 @@ module.exports.connections = {
   ***************************************************************************/
   orangeMysqlServer: {
     adapter: 'sails-mysql',
-    host: 'localhost',
-    user: 'root', //optional
-    password: '', //optional
-    database: 'orange' //optional
+    host: process.env.DB_HOST || 'localhost',
+    user: process.env.DB_USER || 'root',
+    password: process.env.DB_PASSWORD || '',
+    database: process.env.DB_NAME || 'orange'
   },
 
   /***************************************************************************

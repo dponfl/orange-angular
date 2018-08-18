@@ -9,8 +9,8 @@ module.exports = {
     return cb({emailOptions: options});
   },
   sendEmail: function (subject, html) {
-    var api_key = 'key-c3d2a9801173b2ac5edd206c0c469601';
-    var domain = 'sandbox39dd8ba22aad4440ac6be87d983d89ac.mailgun.org';
+    var api_key = process.env.MAILGUN_API_KEY || 'none';
+    var domain = process.env.MAILGUN_DOMAIN || 'none';
 
     var data = {
       from: 'order@orangevillas.com',
