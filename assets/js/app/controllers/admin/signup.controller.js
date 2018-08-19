@@ -49,7 +49,7 @@
       $q.all({
         user: UserService.checkLogInUser()
       })
-        .then((rec) => {
+        .then(function(rec) {
 
           // $log.info('checkLogInUser, user:');
           // $log.info(rec);
@@ -60,11 +60,11 @@
             vm.authorized = true;
 
             if (rec.user.data.result.admin) {
-              setTimeout(() => {
+              setTimeout(function() {
                 $state.go('admin');
               }, 3000);
             } else {
-              setTimeout(() => {
+              setTimeout(function() {
                 $state.go('home');
               }, 3000);
             }
@@ -73,7 +73,7 @@
 
 
         })
-        .catch((error) => {
+        .catch(function(error) {
 
           // $log.info(_getFullModuleName(moduleName) + ', error: ');
           // $log.info(error);
@@ -111,7 +111,7 @@
           deleted: false,
         })
       })
-        .then((data) => {
+        .then(function(data) {
 
         // $log.info(_getFullModuleName(moduleName) + ', data: ');
         // $log.info(data);
@@ -137,7 +137,7 @@
 
                 if (data.user.data.result.pw) {
                   vm.wrongSignup = true;
-                  setTimeout(() => {
+                  setTimeout(function() {
                     $state.go('login', {login: data.user.data.result.username});
                   }, 3000);
                   return;
@@ -159,13 +159,13 @@
                       pw: vm.password
                     })
                   })
-                    .then((rec) => {
+                    .then(function(rec) {
 
                     // $log.info('updated user: ');
                     // $log.info(rec);
                     $state.go('admin');
                   })
-                    .catch((error) => {
+                    .catch(function(error) {
 
                       // $log.info(_getFullModuleName(moduleName) + ', error: ');
                       // $log.info(err);
@@ -188,14 +188,14 @@
                       pw: vm.password
                     })
                   })
-                    .then((rec) => {
+                    .then(function(rec) {
 
                       // $log.info('updated user: ');
                       // $log.info(rec);
                       vm.userNotAdmin = true;
                       $state.go('home');
                     })
-                    .catch((error) => {
+                    .catch(function(error) {
 
                       // $log.info(_getFullModuleName(moduleName) + ', error: ');
                       // $log.info(error);
@@ -215,7 +215,7 @@
         }
 
       })
-        .catch((err) => {
+        .catch(function(err) {
 
         // $log.info(_getFullModuleName(moduleName) + ', error: ');
         // $log.info(err);

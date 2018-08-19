@@ -48,7 +48,7 @@
       $q.all({
         user: UserService.checkLogInUser()
       })
-        .then((rec) => {
+        .then(function(rec) {
 
           // $log.info('onInit, user:');
           // $log.info(rec);
@@ -59,17 +59,17 @@
             vm.authorized = true;
 
             if (rec.user.data.result.admin) {
-              setTimeout(() => {
+              setTimeout(function() {
                 $state.go('admin');
               }, 3000);
             } else {
-              setTimeout(() => {
+              setTimeout(function() {
                 $state.go('home');
               }, 3000);
             }
           }
         })
-        .catch((error) => {
+        .catch(function(error) {
 
           // $log.info(_getFullModuleName(moduleName) + ', error: ');
           // $log.info(error);
@@ -100,7 +100,7 @@
           pw: vm.password
         })
       })
-        .then((rec) => {
+        .then(function(rec) {
 
           // $log.info('user: ');
           // $log.info(rec);
@@ -117,12 +117,12 @@
                 if (!_.isNil(rec.user.data.result.admin)
                   && rec.user.data.result.admin
                 ) {
-                  setTimeout(() => {
+                  setTimeout(function() {
                     $state.go('admin');
                   }, 3000);
                 } else {
                   vm.userNotAdmin = true;
-                  setTimeout(() => {
+                  setTimeout(function() {
                     $state.go('home');
                   }, 3000);
                 }
@@ -138,7 +138,7 @@
 
 
         })
-        .catch((error) => {
+        .catch(function(error) {
 
           // $log.info(_getFullModuleName(moduleName) + ', error: ');
           // $log.info(error);

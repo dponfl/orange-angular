@@ -35,9 +35,9 @@
 
     vm.formData.langContent = [];
 
-    let useLang = '';
+    var useLang = '';
 
-    for (let i = 0; i < $rootScope.numLang; i++) {
+    for (var i = 0; i < $rootScope.numLang; i++) {
 
       useLang = $rootScope.langList[i];
 
@@ -301,9 +301,9 @@
       $log.info('formData:');
       $log.info(formData);
 
-      let useLang = '';
+      var useLang = '';
 
-      for (let i = 0; i < $rootScope.numLang; i++) {
+      for (var i = 0; i < $rootScope.numLang; i++) {
 
         useLang = $rootScope.langList[i];
         createRecords[useLang] = {};
@@ -523,7 +523,7 @@
       vm.formData.show = 'show';
       vm.formData.home = 'not_home';
 
-      for (let i = 0; i < $rootScope.numLang; i++) {
+      for (var i = 0; i < $rootScope.numLang; i++) {
 
         useLang = $rootScope.langList[i];
 

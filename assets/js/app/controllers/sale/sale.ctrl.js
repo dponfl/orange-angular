@@ -91,7 +91,7 @@
       $rootScope.sale.showServerError = false;
       $rootScope.sale.showFoundNothing = false;
 
-      $q.when(_performRequestAll($rootScope.sale.FilterData))
+      $q.when(_performRequestAll($rootScope.sale.FilterData, false))
         .then(function (res) {
 
           if (!res.performed &&
@@ -184,7 +184,7 @@
       }
     } // _updateData
 
-    function _performRequestAll(reqParams, showAll = false) {
+    function _performRequestAll(reqParams, showAll) {
 
       var getRecordsConfig = {};
       var objReqParams = {};

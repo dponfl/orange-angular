@@ -91,7 +91,7 @@
       $rootScope.short.showServerError = false;
       $rootScope.short.showFoundNothing = false;
 
-      $q.when(_performRequestAll($rootScope.short.FilterData))
+      $q.when(_performRequestAll($rootScope.short.FilterData, false))
         .then(function (res) {
 
           if (!res.performed &&
@@ -184,7 +184,7 @@
       }
     } // _updateData
 
-    function _performRequestAll(reqParams, showAll = false) {
+    function _performRequestAll(reqParams, showAll) {
 
       var getRecordsConfig = {};
       var objReqParams = {};
