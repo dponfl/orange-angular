@@ -105,17 +105,10 @@ module.exports.routes = {
 
   'GET /config': 'ConfigController.loadConfig',
 
-  // orange-sails-auth
-
-  'POST /register': 'UserController.create',
-  'GET /me': 'UserController.me',
-
-  'POST /update': 'UserController.update',
-
-  'POST /logout': 'AuthController.logout',
-
-  'POST /auth/local': 'AuthController.callback',
-  'POST /auth/local/:action': 'AuthController.callback',
+  'POST /user/find': 'UserController.find',
+  'POST /user/update': 'UserController.update',
+  'POST /user/logout': 'UserController.logout',
+  'POST /user/check': 'UserController.check',
 
   // FileUpload
 

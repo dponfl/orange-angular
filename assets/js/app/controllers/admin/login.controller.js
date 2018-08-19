@@ -5,82 +5,157 @@
     .module('OrangeClient')
     .controller('LoginController', LoginController);
 
-  LoginController.$inject = ['UserService', '$log', '$state', 'lodash', '$rootScope'];
+  LoginController.$inject = ['$log', '$state', 'lodash', '$translate', 'GeneralConfigService',
+  'UserService', '$q', '$stateParams'];
 
   /* @ngInject */
-  function LoginController(UserService, $log, $state, lodash, $rootScope) {
+  function LoginController($log, $state, lodash, $translate, GeneralConfigService,
+                           UserService, $q, $stateParams) {
+
+    // $log.info('LoginController');
+
     var _ = lodash;
     var vm = this;
     vm.title = 'LoginController';
-    vm.init = _initController;
+
+    // vm.init = _init;
     vm.login = _loginUser;
     vm.clear = _clear;
 
-    vm.user = null;
     vm.username = '';
     vm.password = '';
-    vm.wrongLogin = false;
+    vm.authorized = false;
+    vm.userNotFound = false;
+    vm.userNotAdmin = false;
 
-    _initController();
+    this.$onInit = function () {
+
+      var moduleName = 'onInit';
+
+      // $log.info('$onInit...');
+
+      $translate.use('ru');
+      GeneralConfigService.setLang('ru');
+
+      vm.username = $stateParams.login;
+
+      /**
+       * check if the user already logged in (based on session)
+       * and if "yes" + admin => pass to admin section
+       * if "yes" + not admin => pass to home
+       */
+
+      $q.all({
+        user: UserService.checkLogInUser()
+      })
+        .then((rec) => {
+
+          // $log.info('onInit, user:');
+          // $log.info(rec);
+
+          if (!_.isNil(rec.user.data.activeSession)
+            && rec.user.data.activeSession) {
+
+            vm.authorized = true;
+
+            if (rec.user.data.result.admin) {
+              setTimeout(() => {
+                $state.go('admin');
+              }, 3000);
+            } else {
+              setTimeout(() => {
+                $state.go('home');
+              }, 3000);
+            }
+          }
+        })
+        .catch((error) => {
+
+          // $log.info(_getFullModuleName(moduleName) + ', error: ');
+          // $log.info(error);
+        });
+
+    }; // $onInit
+
 
     ////////////////
 
-    function _initController() {
-      // get current user
-      UserService.getCurrentUser().then(function (data) {
+    function _getFullModuleName(moduleName) {
+      return vm.title + "::" + moduleName;
+    } // _getFullModuleName
 
-        $log.info('_initController, data:');
-        $log.info(data);
-
-        if (_.has(data, 'session')
-          && _.has(data.session, 'authenticated')
-          && _.has(data.session, 'passport')
-          && _.has(data.session.passport, 'user')
-          && _.has($rootScope.currentUser, 'username')
-          && _.has($rootScope.currentUser, 'id')
-          && $rootScope.currentUser.id == data.session.passport.user
-        ) {
-
-          vm.username = $rootScope.currentUser.username;
-        } else {
-          vm.username = '';
-          vm.password = '';
-        }
-      });
-    } // _initController
+    // function _init(params) {
+    //   vm.username = params;
+    // } // _init
 
     function _loginUser() {
-      vm.wrongLogin = false;
+
+      var moduleName = '_loginUser';
+
+      // $log.info(_getFullModuleName(moduleName));
+
+      $q.all({
+        user: UserService.loginUser({
+          username: vm.username,
+          pw: vm.password
+        })
+      })
+        .then((rec) => {
+
+          // $log.info('user: ');
+          // $log.info(rec);
+
+          if (!_.isNil(rec)
+            && !_.isNil(rec.user)
+            && !_.isNil(rec.user.status)
+          ) {
+
+            switch (rec.user.status) {
+
+              case 200:
+
+                if (!_.isNil(rec.user.data.result.admin)
+                  && rec.user.data.result.admin
+                ) {
+                  setTimeout(() => {
+                    $state.go('admin');
+                  }, 3000);
+                } else {
+                  vm.userNotAdmin = true;
+                  setTimeout(() => {
+                    $state.go('home');
+                  }, 3000);
+                }
+                break;
+
+              case 404:
+
+                vm.userNotFound = true;
+                vm.password = '';
+                break;
+            }
+          }
 
 
-      $state.go('admin_longterm');
+        })
+        .catch((error) => {
 
-      UserService.loginUser({
-        identifier: vm.username,
-        password: vm.password
-      }).then(function (data) {
-        $log.info('_loginUser, data:');
-        $log.info(data);
-        $rootScope.currentUser = {
-          id: data.id,
-          username: data.username,
-          email: data.email,
-          first_name: data.first_name,
-          last_name: data.last_name,
-        };
-        $state.go('admin_longterm');
-      }).catch(function (err) {
-        $log.info('_loginUser, error:');
-        $log.info(err);
-        vm.wrongLogin = true;
-      });
-
+          // $log.info(_getFullModuleName(moduleName) + ', error: ');
+          // $log.info(error);
+        });
     } // _loginUser
 
     function _clear() {
+
+      var moduleName = '_clear';
+
+      // $log.info(_getFullModuleName(moduleName));
+
       vm.username = '';
       vm.password = '';
-      vm.wrongLogin = false;
+      vm.authorized = false;
+      vm.userNotFound = false;
+      vm.userNotAdmin = false;
     } // _clear
 
   } // LoginController

@@ -37,13 +37,6 @@
       __.setLang('ru');
 
       vm.navMeny = [
-/*
-        {
-          href: 'login',
-          text: 'HEADER_ADMIN_LOGIN',
-        },
-*/
-
         {
           href: 'admin_longterm',
           text: 'NAV_LONG_TERM',
@@ -55,10 +48,6 @@
         {
           href: 'admin_short',
           text: 'NAV_DAILY',
-        },
-        {
-          href: 'account',
-          text: 'HEADER_ADMIN_ACCOUNT',
         },
       ];
 

@@ -5,19 +5,26 @@
  * @docs        :: http://sailsjs.org/documentation/concepts/models-and-orm/models
  */
 
-var _ = require('lodash');
-var _super = require('orange-sails-auth/api/models/User');
-
-var extObj = {
+module.exports = {
+  tableName: 'user',
   attributes: {
-    first_name: {
-      type: 'string',
-    },
-    last_name: {
-      type: 'string',
-    },
-  }
-};
 
-_.merge(module.exports, _super);
-_.merge(module.exports, extObj);
+    username: {
+      type: 'string',
+      unique: 'true'
+    },
+
+    pw: {
+      type: 'string'
+    },
+
+    admin: {
+      type: 'boolean'
+    },
+
+    deleted: {
+      type: 'boolean'
+    },
+
+  },
+};

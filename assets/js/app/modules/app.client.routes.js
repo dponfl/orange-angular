@@ -187,6 +187,20 @@
         },
         url: '/login',
       })
+      .state('admin', {
+        views: {
+          header: {
+            templateUrl: 'templates/view/admin/headerAdmin.html'
+          },
+          main: {
+            templateUrl: 'templates/view/admin/admin.html',
+          },
+          footer: {
+            templateUrl: 'templates/view/admin/footerAdmin.html'
+          },
+        },
+        url: '/admin',
+      })
       .state('admin_longterm', {
         views: {
           header: {
@@ -228,41 +242,12 @@
           },
         },
         url: '/admin_short',
-      })
-      .state('account', {
-        views: {
-          header: {
-            templateUrl: 'templates/view/admin/headerAdmin.html'
-          },
-          main: {
-            templateUrl: 'templates/view/admin/account.html',
-          },
-          footer: {
-            templateUrl: 'templates/view/admin/footerAdmin.html',
-          },
-        },
-        url: '/account',
       });
 
     // todo: delete
     console.log('app.client.routes: OrangeClientRoutes');
 
     $urlRouterProvider
-/*
-      .when('/qa', '/qa')
-*/
-/*
-     .when('/qa', ['$state', function ($state) {
-     $state.go('qa');
-     }])
-*/
-/*
-      .when(state.url, ['$match', '$stateParams', function ($match, $stateParams) {
-        if ($state.$current.navigable != state || !equalForKeys($match, $stateParams)) {
-          $state.transitionTo(state, $match, false);
-        }
-      }])
-*/
       .otherwise('/');
 
     $locationProvider.hashPrefix('');
