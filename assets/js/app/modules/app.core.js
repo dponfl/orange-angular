@@ -8,7 +8,6 @@
       'ngLodash',
       'jcs-autoValidate',
       'infinite-scroll',
-      'angularSpinner',
       'angular-ladda',
       'mgcrea.ngStrap',
       'ngSanitize',
