@@ -21,6 +21,8 @@
     var firstImg = true;
     vm.create = _create;
     vm.clear = _clear;
+    vm.deleteInterval = _deleteInterval;
+    vm.addInterval = _addInterval;
 
     vm.objList = $rootScope.orangeConfig.objList[$rootScope.lang];
     vm.cityList = $rootScope.orangeConfig.cityList[$rootScope.lang];
@@ -35,6 +37,15 @@
     vm.formData = {};
 
     vm.formData.langContent = [];
+
+    vm.formData.calendar = [
+      {start: new Date(2018, 8, 10), end: new Date(2018, 8, 14)},
+      {start: new Date(2018, 8, 18), end: new Date(2018, 8, 25)},
+    ];
+    vm.formData.calendarBookedDates = [
+      {start: new Date(2018, 8, 10), end: new Date(2018, 8, 14)},
+      {start: new Date(2018, 8, 18), end: new Date(2018, 8, 25)},
+    ];
 
     var useLang = '';
 
@@ -336,7 +347,7 @@
 
       }
 
-      createResult = _createRecordShort(createRecords);
+      // createResult = _createRecordShort(createRecords);
 
     } // _write
 
@@ -440,6 +451,16 @@
       vm.formData.show = 'show';
       vm.formData.home = 'not_home';
 
+      vm.formData.calendar = [
+        {start: new Date(2018, 8, 10), end: new Date(2018, 8, 14)},
+        {start: new Date(2018, 8, 18), end: new Date(2018, 8, 25)},
+      ];
+      vm.formData.calendarBookedDates = [
+        {start: new Date(2018, 8, 10), end: new Date(2018, 8, 14)},
+        {start: new Date(2018, 8, 18), end: new Date(2018, 8, 25)},
+      ];
+
+
       for (var i = 0; i < $rootScope.numLang; i++) {
 
         useLang = $rootScope.langList[i];
@@ -458,6 +479,16 @@
       vm.uploader_2.clearQueue();
       vm.uploaderMain_2.clearQueue();
     } // _clear
+
+    function _deleteInterval(ind) {
+      vm.formData.calendar.splice(ind, 1);
+      vm.formData.calendarBookedDates.splice(ind, 1);
+    } // _deleteInterval
+
+    function _addInterval() {
+      vm.formData.calendar.push({start: '', end: ''});
+      vm.formData.calendarBookedDates.push({start: '', end: ''});
+    } // _addInterval
 
   }
 })();

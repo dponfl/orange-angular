@@ -3,6 +3,7 @@
 
   angular.module('app.client.config', [])
     .config(ModalConfig)
+    .config(DatepickerConfig)
     .config(DynamicLocale)
     .provider('configOrange', configOrange);
 
@@ -12,6 +13,15 @@
       html: true
     });
   } // ModalConfig
+
+  DatepickerConfig.$inject = ['$datepickerProvider'];
+  function DatepickerConfig($datepickerProvider) {
+    angular.extend($datepickerProvider.defaults, {
+      dateFormat: 'dd/MM/yyyy',
+      autoclose: true,
+      // startWeek: 1,
+    });
+  } // DatepickerConfig
 
   DynamicLocale.$inject = ['tmhDynamicLocaleProvider'];
   function DynamicLocale(tmhDynamicLocaleProvider) {

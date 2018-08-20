@@ -67,8 +67,11 @@ function translateConfig ($translateProvider) {
     'LBL_ROOM': 'Number of rooms',
     'LBL_OBJ_NUM': 'Object number',
     'LBL_YOUTUBE': 'YouTube',
+    'LBL_CALENDAR': 'Calendar',
     'OBJ_NUM_PLACEHOLDER': 'Object #',
     'OBJ_YOUTUBE_PLACEHOLDER': 'YouTube',
+    'OBJ_FROM_PLACEHOLDER': 'From',
+    'OBJ_TO_PLACEHOLDER': 'Until',
     'BTN_FIND': 'Find',
     'BTN_CLR': 'Clear',
     'AV_REQ': 'reqEn',
@@ -77,6 +80,8 @@ function translateConfig ($translateProvider) {
     'LBL_FIELD_OBJ': 'Object',
     'LBL_FIELD_DATE_START': 'Date start',
     'LBL_FIELD_DATE_END': 'Date end',
+    'LBL_FIELD_DATE_FROM': 'from',
+    'LBL_FIELD_DATE_TO': 'until',
     'LBL_FIELD_NAME': 'Your name',
     'LBL_FIELD_EMAIL': 'Email',
     'LBL_FIELD_PHONE': 'Phone',
@@ -96,6 +101,9 @@ function translateConfig ($translateProvider) {
     'FIELD_EMAIL_ERR': 'emailErrEn',
     'BTN_SUBMIT': 'Submit',
     'HEADER_INFO_MODAL_FOOTER_CLOSE_BUTTON': 'Close',
+    'BTN_DELETE_INTERVAL': 'Delete',
+    'BTN_ADD_INTERVAL': 'Add',
+
 
 
     // Home - Carousel
@@ -286,6 +294,7 @@ function translateConfig ($translateProvider) {
     'LBL_ROOM': 'Кол-во комнат',
     'LBL_OBJ_NUM': 'Номер объекта',
     'LBL_YOUTUBE': 'YouTube',
+    'LBL_CALENDAR': 'Календарь',
     'LBL_ADDRESS': 'Адрес',
     'LBL_BATHROOM': 'Сан. узел',
     'LBL_POOL': 'Бассейн',
@@ -300,6 +309,8 @@ function translateConfig ($translateProvider) {
     'OBJ_PRICE_PLACEHOLDER': 'Введите стоимость аренды объекта',
     'OBJ_DESCRIPTION_PLACEHOLDER': 'Введите общее объекта',
     'OBJ_INFO_PLACEHOLDER': 'Введите дополнительную информацию по объекту',
+    'OBJ_FROM_PLACEHOLDER': 'Дата начала',
+    'OBJ_TO_PLACEHOLDER': 'Дата окончания',
     'BTN_FIND': 'Найти',
     'BTN_CLR': 'Очистить',
     'AV_REQ': 'reqRu',
@@ -308,6 +319,8 @@ function translateConfig ($translateProvider) {
     'LBL_FIELD_OBJ': 'Объект',
     'LBL_FIELD_DATE_START': 'Дата начала',
     'LBL_FIELD_DATE_END': 'Дата окончания',
+    'LBL_FIELD_DATE_FROM': 'с',
+    'LBL_FIELD_DATE_TO': 'по',
     'LBL_FIELD_NAME': 'Ваше имя',
     'LBL_FIELD_EMAIL': 'Email',
     'LBL_FIELD_PHONE': 'Телефон',
@@ -327,6 +340,9 @@ function translateConfig ($translateProvider) {
     'FIELD_EMAIL_ERR': 'emailErrRu',
     'BTN_SUBMIT': 'Отправить',
     'HEADER_INFO_MODAL_FOOTER_CLOSE_BUTTON': 'Закрыть',
+    'BTN_DELETE_INTERVAL': 'Удалить',
+    'BTN_ADD_INTERVAL': 'Добавить',
+
 
 
 
