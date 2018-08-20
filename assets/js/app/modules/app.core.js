@@ -7,6 +7,7 @@
       'ui.router',
       'ngLodash',
       'jcs-autoValidate',
+      'infinite-scroll',
       'mgcrea.ngStrap',
       'ngSanitize',
       'ngAnimate',
