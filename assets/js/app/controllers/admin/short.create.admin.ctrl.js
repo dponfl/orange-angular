@@ -38,14 +38,7 @@
 
     vm.formData.langContent = [];
 
-    vm.formData.calendar = [
-      {start: new Date(2018, 8, 10), end: new Date(2018, 8, 14)},
-      {start: new Date(2018, 8, 18), end: new Date(2018, 8, 25)},
-    ];
-    vm.formData.calendarBookedDates = [
-      {start: new Date(2018, 8, 10), end: new Date(2018, 8, 14)},
-      {start: new Date(2018, 8, 18), end: new Date(2018, 8, 25)},
-    ];
+    vm.formData.calendar = [];
 
     var useLang = '';
 
@@ -347,6 +340,8 @@
 
       }
 
+      // todo: un-comment after investigation
+
       // createResult = _createRecordShort(createRecords);
 
     } // _write
@@ -452,14 +447,9 @@
       vm.formData.home = 'not_home';
 
       vm.formData.calendar = [
-        {start: new Date(2018, 8, 10), end: new Date(2018, 8, 14)},
-        {start: new Date(2018, 8, 18), end: new Date(2018, 8, 25)},
+        {start: new Date(2018, 7, 10), end: new Date(2018, 7, 14)},
+        {start: new Date(2018, 7, 18), end: new Date(2018, 7, 25)},
       ];
-      vm.formData.calendarBookedDates = [
-        {start: new Date(2018, 8, 10), end: new Date(2018, 8, 14)},
-        {start: new Date(2018, 8, 18), end: new Date(2018, 8, 25)},
-      ];
-
 
       for (var i = 0; i < $rootScope.numLang; i++) {
 

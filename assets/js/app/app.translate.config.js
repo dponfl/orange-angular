@@ -341,7 +341,7 @@ function translateConfig ($translateProvider) {
     'BTN_SUBMIT': 'Отправить',
     'HEADER_INFO_MODAL_FOOTER_CLOSE_BUTTON': 'Закрыть',
     'BTN_DELETE_INTERVAL': 'Удалить',
-    'BTN_ADD_INTERVAL': 'Добавить',
+    'BTN_ADD_INTERVAL': 'Добавить интервал',
 
 
 

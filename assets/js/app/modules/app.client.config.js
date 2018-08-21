@@ -19,7 +19,7 @@
     angular.extend($datepickerProvider.defaults, {
       dateFormat: 'dd/MM/yyyy',
       autoclose: true,
-      // startWeek: 1,
+      startWeek: 1,
     });
   } // DatepickerConfig
 

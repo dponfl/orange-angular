@@ -118,7 +118,7 @@ data-ng-submit='$ctrl.create()').form-horisontal
       .col-sm-2
         input(type="text",
         data-ng-model='$ctrl.formData.calendar[$index]["start"]',
-        data-disabled-dates='$ctrl.formData.calendarBookedDates',
+        data-disabled-dates='$ctrl.formData.calendar',
         bs-datepicker).form-control#dateStart
         span '{{$ctrl.formData.calendar[$index]["start"]}}'
 
@@ -126,7 +126,7 @@ data-ng-submit='$ctrl.create()').form-horisontal
       .col-sm-2
         input(type="text",
         data-ng-model='$ctrl.formData.calendar[$index]["end"]',
-        data-disabled-dates='$ctrl.formData.calendarBookedDates',
+        data-disabled-dates='$ctrl.formData.calendar',
         bs-datepicker).form-control#dateEnd
         span '{{$ctrl.formData.calendar[$index]["end"]}}'
 
@@ -136,7 +136,7 @@ data-ng-submit='$ctrl.create()').form-horisontal
         translate='BTN_DELETE_INTERVAL').btn.btn-danger.btn-sm.btn-margin
 
     .form-group.clearfix
-      .col-sm-offset-2.col-sm-2
+      .col-sm-offset-1.col-sm-2
         button(type='button',
         data-ng-click='$ctrl.addInterval()',
         translate='BTN_ADD_INTERVAL').btn.btn-success.btn-lg.btn-margin
