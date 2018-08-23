@@ -472,12 +472,10 @@
 
     function _deleteInterval(ind) {
       vm.formData.calendar.splice(ind, 1);
-      vm.formData.calendarBookedDates.splice(ind, 1);
     } // _deleteInterval
 
     function _addInterval() {
       vm.formData.calendar.push({start: '', end: ''});
-      vm.formData.calendarBookedDates.push({start: '', end: ''});
     } // _addInterval
 
   }

@@ -119,6 +119,9 @@ data-ng-submit='$ctrl.create()').form-horisontal
         input(type="text",
         data-ng-model='$ctrl.formData.calendar[$index]["start"]',
         data-disabled-dates='$ctrl.formData.calendar',
+        data-date-type="number",
+        data-max-date='{{$ctrl.formData.calendar[$index]["end"]}}',
+        object-form-date-range-validation-start,
         bs-datepicker).form-control#dateStart
         span '{{$ctrl.formData.calendar[$index]["start"]}}'
 
@@ -127,6 +130,9 @@ data-ng-submit='$ctrl.create()').form-horisontal
         input(type="text",
         data-ng-model='$ctrl.formData.calendar[$index]["end"]',
         data-disabled-dates='$ctrl.formData.calendar',
+        data-date-type="number",
+        data-min-date='{{$ctrl.formData.calendar[$index]["start"]}}',
+        object-form-date-range-validation-end,
         bs-datepicker).form-control#dateEnd
         span '{{$ctrl.formData.calendar[$index]["end"]}}'
 
