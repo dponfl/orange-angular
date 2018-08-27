@@ -2,8 +2,8 @@
   'use strict';
 
   var dates = {
-    date1: 0,
-    date2: 0,
+    dateStart: 0,
+    dateEnd: 0,
   };
 
   angular
@@ -34,12 +34,10 @@
 
       ngModel.$validators.objectFormSelectValidation = function (modelValue) {
 
-/*
-        $log.info('modelValue:');
-        console.dir(modelValue);
-        $log.info('scope.objectFormSelectValidation:');
-        console.dir(scope.objectFormSelectValidation);
-*/
+        // $log.info('modelValue:');
+        // console.dir(modelValue);
+        // $log.info('scope.objectFormSelectValidation:');
+        // console.dir(scope.objectFormSelectValidation);
 
         return ((modelValue.key) ? modelValue.key != 'any' : false);
       };
@@ -72,18 +70,20 @@
 
       ngModel.$validators.objectFormDateRangeValidationStart = function (modelValue) {
 
-        dates.date1 = modelValue;
+        dates.dateStart = modelValue;
 
-        $log.info('modelValue:');
-        console.dir(modelValue);
-        $log.info('dates.date1:');
-        console.dir(dates.date1);
-        $log.info('dates.date2:');
-        console.dir(dates.date2);
-        $log.info('scope.objectFormDateRangeValidationStart:');
-        console.dir(scope.objectFormDateRangeValidationStart);
+        // $log.info('modelValue:');
+        // console.dir(modelValue);
+        // $log.info('dates.dateStart:');
+        // console.dir(dates.dateStart);
+        // $log.info('dates.dateEnd:');
+        // console.dir(dates.dateEnd);
+        // $log.info('scope.objectFormDateRangeValidationStart:');
+        // console.dir(scope.objectFormDateRangeValidationStart);
 
-        return true;
+        return ((dates.dateStart > 0 && dates.dateEnd)
+          ? dates.dateStart < dates.dateEnd
+          : true);
       };
 
       scope.$watch('objectFormDateRangeValidationStart', function () {
@@ -114,18 +114,20 @@
 
       ngModel.$validators.objectFormDateRangeValidationEnd = function (modelValue) {
 
-        dates.date2 = modelValue;
+        dates.dateEnd = modelValue;
 
-        $log.info('modelValue:');
-        console.dir(modelValue);
-        $log.info('dates.date1:');
-        console.dir(dates.date1);
-        $log.info('dates.date2:');
-        console.dir(dates.date2);
-        $log.info('scope.objectFormDateRangeValidationEnd:');
-        console.dir(scope.objectFormDateRangeValidationEnd);
+        // $log.info('modelValue:');
+        // console.dir(modelValue);
+        // $log.info('dates.dateStart:');
+        // console.dir(dates.dateStart);
+        // $log.info('dates.dateEnd:');
+        // console.dir(dates.dateEnd);
+        // $log.info('scope.objectFormDateRangeValidationEnd:');
+        // console.dir(scope.objectFormDateRangeValidationEnd);
 
-        return true;
+        return ((dates.dateStart > 0 && dates.dateEnd)
+          ? dates.dateStart < dates.dateEnd
+          : true);
       };
 
       scope.$watch('objectFormDateRangeValidationEnd', function () {

@@ -475,6 +475,20 @@
     } // _deleteInterval
 
     function _addInterval() {
+      var tempCalendar = vm.formData.calendar;
+
+      console.log('calendar before sort:');
+      console.dir(tempCalendar);
+
+      vm.formData.calendar = _.sortBy(tempCalendar, [function (o) {
+        return o.start;
+      }]);
+
+      console.log('calendar after sort:');
+      console.dir(vm.formData.calendar);
+
+      // todo: prevent push new empty record if any empty record exists
+      
       vm.formData.calendar.push({start: '', end: ''});
     } // _addInterval
 

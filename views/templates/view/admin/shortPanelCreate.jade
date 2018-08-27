@@ -120,10 +120,8 @@ data-ng-submit='$ctrl.create()').form-horisontal
         data-ng-model='$ctrl.formData.calendar[$index]["start"]',
         data-disabled-dates='$ctrl.formData.calendar',
         data-date-type="number",
-        data-max-date='{{$ctrl.formData.calendar[$index]["end"]}}',
-        object-form-date-range-validation-start,
+        object-form-date-range-validation-start='$ctrl.formData.calendar[$index]["start"]',
         bs-datepicker).form-control#dateStart
-        span '{{$ctrl.formData.calendar[$index]["start"]}}'
 
       label(for='dateEnd', translate='LBL_FIELD_DATE_TO').col-sm-1.control-label.text-right
       .col-sm-2
@@ -131,10 +129,8 @@ data-ng-submit='$ctrl.create()').form-horisontal
         data-ng-model='$ctrl.formData.calendar[$index]["end"]',
         data-disabled-dates='$ctrl.formData.calendar',
         data-date-type="number",
-        data-min-date='{{$ctrl.formData.calendar[$index]["start"]}}',
-        object-form-date-range-validation-end,
+        object-form-date-range-validation-end='$ctrl.formData.calendar[$index]["end"]',
         bs-datepicker).form-control#dateEnd
-        span '{{$ctrl.formData.calendar[$index]["end"]}}'
 
       .col-sm-1
         button(type='button',
