@@ -477,19 +477,32 @@
     function _addInterval() {
       var tempCalendar = vm.formData.calendar;
 
-      console.log('calendar before sort:');
-      console.dir(tempCalendar);
+      // console.log('calendar before sort:');
+      // console.dir(tempCalendar);
 
-      vm.formData.calendar = _.sortBy(tempCalendar, [function (o) {
-        return o.start;
-      }]);
+      if (
+        vm.formData.calendar.length > 0
+        && !_.isNil(vm.formData.calendar[vm.formData.calendar.length - 1])
+        && _.trim(vm.formData.calendar[vm.formData.calendar.length - 1].start) != ''
+      ) {
+        vm.formData.calendar = _.sortBy(tempCalendar, [function (o) {
+          return o.start;
+        }]);
+      }
 
-      console.log('calendar after sort:');
-      console.dir(vm.formData.calendar);
 
-      // todo: prevent push new empty record if any empty record exists
-      
-      vm.formData.calendar.push({start: '', end: ''});
+      // console.log('calendar after sort:');
+      // console.dir(vm.formData.calendar);
+
+      if (
+        vm.formData.calendar.length > 0
+        && !_.isNil(vm.formData.calendar[vm.formData.calendar.length - 1])
+        && _.trim(vm.formData.calendar[vm.formData.calendar.length - 1].start) != ''
+      ) {
+        vm.formData.calendar.push({start: '', end: ''});
+      } else if (vm.formData.calendar.length == 0) {
+        vm.formData.calendar.push({start: '', end: ''});
+      }
     } // _addInterval
 
   }
