@@ -7,15 +7,16 @@
 
   ShortCreateAdminCtrl.$inject = ['GeneralConfigService', 'ShortService',
     'EditObjectService', '$log', '$rootScope', '$scope', '$q',
-    'lodash', 'FileUploader', 'toaster', '$timeout'];
+    'lodash', 'FileUploader', 'toaster', '$timeout', 'moment'];
 
   /* @ngInject */
   function ShortCreateAdminCtrl(GeneralConfigService, ShortService,
                          EditObjectService, $log, $rootScope, $scope, $q,
-                         lodash, FileUploader, toaster, $timeout) {
+                         lodash, FileUploader, toaster, $timeout, moment) {
     var vm = this;
     vm.name = 'ShortCreateAdminCtrl';
     var _ = lodash;
+    var _m = moment;
     var __=GeneralConfigService;
 
     var firstImg = true;
@@ -23,6 +24,14 @@
     vm.clear = _clear;
     vm.deleteInterval = _deleteInterval;
     vm.addInterval = _addInterval;
+
+    var ttt = moment(1535497200000).format('MMMM Do YYYY, h:mm:ss a');
+    console.log('moment test:');
+    console.dir(ttt);
+
+    var tt = moment(1535497200000).tz('America/Los_Angeles').format('MMMM Do YYYY, h:mm:ss a');
+    console.log('moment-timezone test:');
+    console.dir(tt);
 
     vm.objList = $rootScope.orangeConfig.objList[$rootScope.lang];
     vm.cityList = $rootScope.orangeConfig.cityList[$rootScope.lang];
@@ -311,6 +320,21 @@
       $log.info(formData);
 
       var useLang = '';
+      var useCalendarRaw = [];
+      var useCalendar = '';
+
+      if (
+        !_.isNil(formData.calendar)
+        && _.isArray(formData.calendar)
+        && formData.calendar.length > 0
+      ) {
+        if (_.trim(formData.calendar[length - 1]) == '') {
+          formData.calendar.splice(length - 1, 1);
+        }
+        _.forEach(formData.calendar, function (val) {
+          useCalendarRaw.push({start: '', end: ''});
+        });
+      }
 
       for (var i = 0; i < $rootScope.numLang; i++) {
 
@@ -332,6 +356,7 @@
         createRecords[useLang].pool = formData.langContent[useLang].pool;
         createRecords[useLang].price = formData.langContent[useLang].price;
         createRecords[useLang].description = formData.langContent[useLang].description;
+        createRecords[useLang].info = formData.langContent[useLang].info;
         createRecords[useLang].info = formData.langContent[useLang].info;
 
         if (formData.youtube) {

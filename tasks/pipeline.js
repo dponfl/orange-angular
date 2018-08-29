@@ -91,6 +91,15 @@ var jsFilesToInject = [
   // Load angular-file-upload
   'vendor/angular-file-upload/dist/angular-file-upload.js',
 
+  // Load moment
+  'vendor/moment/moment.js',
+
+  // Load moment-timezone
+  'vendor/moment-timezone/builds/moment-timezone-with-data-2012-2022.js',
+
+  // Load angular-moment
+  'vendor/angular-moment/angular-moment.js',
+
   // Load async
   'vendor/async/dist/async.js',
 

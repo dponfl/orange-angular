@@ -20,6 +20,7 @@
       dateFormat: 'dd/MM/yyyy',
       autoclose: true,
       startWeek: 1,
+      timezone: 'UTC',
     });
   } // DatepickerConfig
 

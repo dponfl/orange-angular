@@ -15,6 +15,7 @@
       'tmh.dynamicLocale',
       'angularUtils.directives.dirPagination',
       'angularFileUpload',
+      'angularMoment',
     ])
     .run(errorMsgResolver);
 
