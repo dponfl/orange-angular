@@ -211,6 +211,9 @@
 			}
 		});
 
+		// console.log('<<<<<<<<<< dates: >>>>>>>>>>');
+		// console.dir(dates);
+
 		this.each(function () {
 			new AvailabilityCalendar(this, dates, lang);
 		});

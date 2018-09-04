@@ -30,6 +30,8 @@
     errorMessages['emailErrEn'] = 'Wrong email';
     errorMessages['emailErrRu'] = 'Неверный email';
     errorMessages['objectFormSelectValidation'] = 'Выберите значение кроме "Любой"';
+    errorMessages['objectFormDateRangeValidationStart'] = 'Дата начала интервала позже или равна дате окончания';
+    errorMessages['objectFormDateRangeValidationEnd'] = 'Дата окончания интервала раньше или равна дате начала';
   }
 
   function errorMsgResolver(defaultErrorMessageResolver) {

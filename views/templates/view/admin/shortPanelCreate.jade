@@ -82,7 +82,7 @@ data-ng-submit='$ctrl.create()').form-horisontal
         select(name='objectType',
           data-ng-options='option.val for option in $ctrl.objList track by option.key',
           data-ng-model='$ctrl.formData.obj',
-          object-form-select-validation
+          object-form-select-validation="option"
         ).form-control#objectType
 
     .form-group.clearfix
@@ -91,7 +91,7 @@ data-ng-submit='$ctrl.create()').form-horisontal
         select(name='city',
           data-ng-options='option.val for option in $ctrl.cityList track by option.key',
           data-ng-model='$ctrl.formData.city',
-          object-form-select-validation
+          object-form-select-validation="option"
         ).form-control#city
 
     .form-group.clearfix
@@ -100,7 +100,7 @@ data-ng-submit='$ctrl.create()').form-horisontal
         select(name='rooms',
           data-ng-options='option.val for option in $ctrl.roomList track by option.key',
           data-ng-model='$ctrl.formData.room',
-          object-form-select-validation
+          object-form-select-validation="option"
         ).form-control#rooms
 
     .form-group.clearfix

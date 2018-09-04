@@ -12,10 +12,11 @@
     .directive('objectFormDateRangeValidationStart', objectFormDateRangeValidationStart)
     .directive('objectFormDateRangeValidationEnd', objectFormDateRangeValidationEnd);
 
-  objectFormSelectValidation.$inject = ['$log'];
+  objectFormSelectValidation.$inject = ['$log', 'lodash'];
 
   /* @ngInject */
-  function objectFormSelectValidation($log) {
+  function objectFormSelectValidation($log, lodash) {
+    var _ = lodash;
     var directive = {
       link: _link,
       restrict: 'A',
@@ -38,6 +39,10 @@
         // console.dir(modelValue);
         // $log.info('scope.objectFormSelectValidation:');
         // console.dir(scope.objectFormSelectValidation);
+
+        if (_.isNil(modelValue)) {
+          return false;
+        }
 
         return ((modelValue.key) ? modelValue.key != 'any' : false);
       };

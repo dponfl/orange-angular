@@ -25,13 +25,13 @@
     vm.deleteInterval = _deleteInterval;
     vm.addInterval = _addInterval;
 
-    var ttt = moment(1535497200000).format('MMMM Do YYYY, h:mm:ss a');
-    console.log('moment test:');
-    console.dir(ttt);
+    // var ttt = moment(1535497200000).tz('Europe/London').format('MMMM Do YYYY, h:mm:ss a');
+    // console.log('moment Europe/London timezone test:');
+    // console.dir(ttt);
 
-    var tt = moment(1535497200000).tz('America/Los_Angeles').format('MMMM Do YYYY, h:mm:ss a');
-    console.log('moment-timezone test:');
-    console.dir(tt);
+    // var tt = moment(1535497200000).tz('America/Los_Angeles').format('MMMM Do YYYY, h:mm:ss a');
+    // console.log('moment America/Los_Angeles timezone test:');
+    // console.dir(tt);
 
     vm.objList = $rootScope.orangeConfig.objList[$rootScope.lang];
     vm.cityList = $rootScope.orangeConfig.cityList[$rootScope.lang];
@@ -334,6 +334,8 @@
         _.forEach(formData.calendar, function (val) {
           useCalendarRaw.push({start: '', end: ''});
         });
+
+        useCalendar = JSON.stringify(useCalendarRaw);
       }
 
       for (var i = 0; i < $rootScope.numLang; i++) {
@@ -357,13 +359,16 @@
         createRecords[useLang].price = formData.langContent[useLang].price;
         createRecords[useLang].description = formData.langContent[useLang].description;
         createRecords[useLang].info = formData.langContent[useLang].info;
-        createRecords[useLang].info = formData.langContent[useLang].info;
+        createRecords[useLang].calendar = useCalendar;
 
         if (formData.youtube) {
           createRecords[useLang].youtube = formData.youtube;
         }
 
       }
+
+      console.log('<<<<<<<<<<<< createRecords: >>>>>>>>>>>');
+      console.dir(createRecords);
 
       // todo: un-comment after investigation
 
@@ -471,10 +476,7 @@
       vm.formData.show = 'show';
       vm.formData.home = 'not_home';
 
-      vm.formData.calendar = [
-        {start: new Date(2018, 7, 10), end: new Date(2018, 7, 14)},
-        {start: new Date(2018, 7, 18), end: new Date(2018, 7, 25)},
-      ];
+      vm.formData.calendar = [];
 
       for (var i = 0; i < $rootScope.numLang; i++) {
 
