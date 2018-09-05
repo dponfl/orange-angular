@@ -332,7 +332,7 @@
           formData.calendar.splice(length - 1, 1);
         }
         _.forEach(formData.calendar, function (val) {
-          useCalendarRaw.push({start: '', end: ''});
+          useCalendarRaw.push({start: val.start, end: val.end});
         });
 
         useCalendar = JSON.stringify(useCalendarRaw);
@@ -367,12 +367,10 @@
 
       }
 
-      console.log('<<<<<<<<<<<< createRecords: >>>>>>>>>>>');
-      console.dir(createRecords);
+      // console.log('<<<<<<<<<<<< createRecords: >>>>>>>>>>>');
+      // console.dir(createRecords);
 
-      // todo: un-comment after investigation
-
-      // createResult = _createRecordShort(createRecords);
+      createResult = _createRecordShort(createRecords);
 
     } // _write
 
