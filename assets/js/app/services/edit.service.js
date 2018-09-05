@@ -212,6 +212,7 @@
     function _convertShortObjectData(obj) {
 
       var langContent = [];
+      var useCalendarRaw = '';
       var tag = _.concat({key: 'none', val: 'Без тега'},
         $rootScope.orangeConfig.tagList[$rootScope.lang]);
 
@@ -223,7 +224,9 @@
           price: value.price,
           description: value.description,
           info: value.info,
-        }
+        };
+
+        useCalendarRaw = value.calendar;
       });
 
       var newObj = {
@@ -241,6 +244,7 @@
           ? _getIndexByKey($rootScope.orangeConfig.tagList['en'], obj.en.type) + 1
           : 0)],
         langContent: langContent,
+        calendar: JSON.parse(useCalendarRaw),
       };
 
       return newObj;

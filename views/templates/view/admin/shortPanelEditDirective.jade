@@ -81,6 +81,38 @@ data-ng-submit='vm.update()').form-horisontal
         data-ng-model='vm.formData.youtube'
         ).form-control#youtube
 
+    h4(translate="LBL_CALENDAR").clearfix
+
+    div(data-ng-repeat='period in vm.formData.calendar').form-group.clearfix
+      label(for='dateStart', translate='LBL_FIELD_DATE_FROM').col-sm-1.control-label.text-right
+      .col-sm-2
+        input(type="text",
+        data-ng-model='vm.formData.calendar[$index]["start"]',
+        data-disabled-dates='vm.formData.calendar',
+        data-date-type="number",
+        object-form-date-range-validation-start='vm.formData.calendar[$index]["start"]',
+        bs-datepicker).form-control#dateStart
+
+      label(for='dateEnd', translate='LBL_FIELD_DATE_TO').col-sm-1.control-label.text-right
+      .col-sm-2
+        input(type="text",
+        data-ng-model='vm.formData.calendar[$index]["end"]',
+        data-disabled-dates='vm.formData.calendar',
+        data-date-type="number",
+        object-form-date-range-validation-end='vm.formData.calendar[$index]["end"]',
+        bs-datepicker).form-control#dateEnd
+
+      .col-sm-1
+        button(type='button',
+        data-ng-click='vm.deleteInterval($index)',
+        translate='BTN_DELETE_INTERVAL').btn.btn-danger.btn-sm.btn-margin
+
+    .form-group.clearfix
+      .col-sm-offset-1.col-sm-2
+        button(type='button',
+        data-ng-click='vm.addInterval()',
+        translate='BTN_ADD_INTERVAL').btn.btn-success.btn-lg.btn-margin
+
     // Main img upload
 
     div(nv-file-drop="",

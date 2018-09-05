@@ -22,6 +22,8 @@
     vm.update = _update;
     vm.clear = _clear;
     vm.cancel = _cancel;
+    vm.deleteInterval = _deleteInterval;
+    vm.addInterval = _addInterval;
 
     // _cancel();
     _setDataInInitialState();
@@ -236,6 +238,8 @@
 
       vm.formData.langContent = [];
 
+      vm.formData.calendar = [];
+
       var useLang = '';
 
       for (var i = 0; i < $rootScope.numLang; i++) {
@@ -351,6 +355,28 @@
       $log.info(formData);
 
       var useLang = '';
+      var useCalendarRaw = [];
+      var useCalendar = '';
+
+      if (
+        !_.isNil(formData.calendar)
+        && _.isArray(formData.calendar)
+        && formData.calendar.length > 0
+      ) {
+        if (
+          _.trim(formData.calendar[formData.calendar.length - 1].start) == ''
+          || _.trim(formData.calendar[formData.calendar.length - 1].end) == ''
+        ) {
+          formData.calendar.splice(formData.calendar.length - 1, 1);
+        }
+
+        _.forEach(formData.calendar, function (val) {
+          useCalendarRaw.push({start: val.start, end: val.end});
+        });
+
+        useCalendar = JSON.stringify(useCalendarRaw);
+      }
+
 
       for (var i = 0; i < $rootScope.numLang; i++) {
 
@@ -373,6 +399,8 @@
         createRecords[useLang].price = formData.langContent[useLang].price;
         createRecords[useLang].description = formData.langContent[useLang].description;
         createRecords[useLang].info = formData.langContent[useLang].info;
+        createRecords[useLang].calendar = useCalendar;
+
 
         if (formData.youtube) {
           createRecords[useLang].youtube = formData.youtube;
@@ -495,6 +523,9 @@
       vm.formData.show = 'show';
       vm.formData.home = 'not_home';
 
+      vm.formData.calendar = [];
+
+
       for (var i = 0; i < $rootScope.numLang; i++) {
 
         useLang = $rootScope.langList[i];
@@ -520,6 +551,42 @@
       $rootScope.admin.short.editPanelShow = false;
       $rootScope.admin.short.editObjEnableButton = true;
     } // _cancel
+
+    function _deleteInterval(ind) {
+      vm.formData.calendar.splice(ind, 1);
+    } // _deleteInterval
+
+    function _addInterval() {
+      var tempCalendar = vm.formData.calendar;
+
+      // console.log('calendar before sort:');
+      // console.dir(tempCalendar);
+
+      if (
+        vm.formData.calendar.length > 0
+        && !_.isNil(vm.formData.calendar[vm.formData.calendar.length - 1])
+        && _.trim(vm.formData.calendar[vm.formData.calendar.length - 1].start) != ''
+      ) {
+        vm.formData.calendar = _.sortBy(tempCalendar, [function (o) {
+          return o.start;
+        }]);
+      }
+
+
+      // console.log('calendar after sort:');
+      // console.dir(vm.formData.calendar);
+
+      if (
+        vm.formData.calendar.length > 0
+        && !_.isNil(vm.formData.calendar[vm.formData.calendar.length - 1])
+        && _.trim(vm.formData.calendar[vm.formData.calendar.length - 1].start) != ''
+      ) {
+        vm.formData.calendar.push({start: '', end: ''});
+      } else if (vm.formData.calendar.length == 0) {
+        vm.formData.calendar.push({start: '', end: ''});
+      }
+    } // _addInterval
+
 
     // Load gallery images to file uploader queue
     function _loadGallery(obj) {

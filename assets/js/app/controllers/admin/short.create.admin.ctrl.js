@@ -328,9 +328,13 @@
         && _.isArray(formData.calendar)
         && formData.calendar.length > 0
       ) {
-        if (_.trim(formData.calendar[length - 1]) == '') {
-          formData.calendar.splice(length - 1, 1);
+        if (
+          _.trim(formData.calendar[formData.calendar.length - 1].start) == ''
+          || _.trim(formData.calendar[formData.calendar.length - 1].end) == ''
+        ) {
+          formData.calendar.splice(formData.calendar.length - 1, 1);
         }
+
         _.forEach(formData.calendar, function (val) {
           useCalendarRaw.push({start: val.start, end: val.end});
         });
