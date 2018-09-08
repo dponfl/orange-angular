@@ -84,6 +84,8 @@ module.exports.routes = {
   ***************************************************************************/
   'POST /short/find': 'ShortController.find',
   'POST /short/findp': 'ShortController.findPager',
+  'POST /short/put': 'ShortController.put',
+  'POST /short/update': 'ShortController.update',
 
   'POST /long/find': 'LongController.find',
   'POST /long/findp': 'LongController.findPager',

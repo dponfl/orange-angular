@@ -2,10 +2,24 @@
 
 const _ = require('lodash');
 let objNum = '';
-const imgFileNameElement = '$$$_-_$$$';
+// const imgFileNameElement = '_$$$_-_$$$_';
+const imgFileNameElement = '';
+
+const cloud = require('cloudinary');
+const controllerName = 'FileController.';
+
+cloud.config({
+  cloud_name: process.env.C_NAME || 'none',
+  api_key: process.env.C_KEY || 'none',
+  api_secret: process.env.C_SECRET || 'none'
+});
 
 module.exports = {
   upload: function (req, res) {
+
+    const methodName = 'upload';
+
+    var fileName = '';
 
     console.log('<== FileController.js:upload ==>');
 
@@ -24,15 +38,42 @@ module.exports = {
         files: uploadedFiles
       };
 
-      console.log('FileController, upload result:');
-      console.dir(result);
+      // console.log('FileController, upload result:');
+      // console.dir(result);
 
-      return res.json(result);
+      fileName = result.files[0].fd.slice(result.files[0].fd.indexOf('assets')).split('\\').join('/');
+
+      // console.log('Transformed file name: ' + fileName);
+
+      cloud.v2.uploader.upload(fileName, {
+        use_filename: true
+      }, function (errCloud, resCloud) {
+
+        if (errCloud) {
+
+          console.log(controllerName + methodName + ', Cloudinary error:');
+          console.dir(errCloud);
+
+          return res.send(500, errCloud);
+        }
+
+        console.log(controllerName + methodName + ', Cloudinary success:');
+        console.dir(resCloud);
+
+        result.url = resCloud.url;
+
+        return res.json(result);
+
+      });
     });
 
   }, // upload
 
   uploadmain: function (req, res) {
+
+    const methodName = 'uploadmain';
+
+    var fileName = '';
 
     console.log('<== FileController.js:uploadmain ==>');
 
@@ -51,10 +92,34 @@ module.exports = {
         files: uploadedFiles
       };
 
-      console.log('FileController, uploadmain result:');
-      console.dir(result);
+      // console.log('FileController, uploadmain result:');
+      // console.dir(result);
 
-      return res.json(result);
+      fileName = result.files[0].fd.slice(result.files[0].fd.indexOf('assets')).split('\\').join('/');
+
+      // console.log('Transformed file name: ' + fileName);
+
+      cloud.v2.uploader.upload(fileName, {
+        use_filename: true
+      }, function (errCloud, resCloud) {
+
+        if (errCloud) {
+
+          console.log(controllerName + methodName + ', Cloudinary error:');
+          console.dir(errCloud);
+
+          return res.send(500, errCloud);
+        }
+
+        console.log(controllerName + methodName + ', Cloudinary success:');
+        console.dir(resCloud);
+
+        result.url = resCloud.url;
+
+        return res.json(result);
+
+      });
+
     });
 
   }, // uploadmain
@@ -126,11 +191,11 @@ function setFileName(__newFileStream, next) {
   console.log('field: ', __newFileStream.field);
 */
 
-  return next(undefined, objNum + '_' +
+  return next(undefined, objNum + '' +
     imgFileNameElement + '_' + __newFileStream.filename);
 } // setFileName
 
 function setFileNameMain(__newFileStream, next) {
-  return next(undefined, objNum + '_main_' +
+  return next(undefined, objNum + '_main' +
     imgFileNameElement + '_' + __newFileStream.filename);
 } // setFileNameMain

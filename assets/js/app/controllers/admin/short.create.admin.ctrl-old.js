@@ -199,10 +199,8 @@
       console.info(vm.name + ', onCompleteItem, uploader:', fileItem, response, status, headers);
       console.info('Response:');
       console.dir(response);
-      // vm.formData.imgGallery += (!firstImg ? ';' : '' ) +
-      //   response.files[0].fd.slice(response.files[0].fd.indexOf('img') + 4);
       vm.formData.imgGallery += (!firstImg ? ';' : '' ) +
-        response.url;
+        response.files[0].fd.slice(response.files[0].fd.indexOf('img') + 4);
       if (firstImg) {
         firstImg = false;
       }
@@ -252,8 +250,7 @@
       console.info(vm.name + ', onCompleteItem, uploaderMain:', fileItem, response, status, headers);
       console.info('Response:');
       console.dir(response);
-      // vm.formData.imgMain = response.files[0].fd.slice(response.files[0].fd.indexOf('img') + 4);
-      vm.formData.imgMain = response.url;
+      vm.formData.imgMain = response.files[0].fd.slice(response.files[0].fd.indexOf('img') + 4);
     };
 
     function _create() {

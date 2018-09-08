@@ -520,10 +520,12 @@
             show: oElem.show,
             home: oElem.home,
             img: {
-              href: '../../img/' + oElem.imgMain,
+              // href: '../../img/' + oElem.imgMain,
+              href: oElem.imgMain,
               dataLightbox: oElem.objNumber,
               dataTitle: '',
-              src: '../../img/' + oElem.imgMain,
+              // src: '../../img/' + oElem.imgMain,
+              src: oElem.imgMain,
             },
             content: [],
             contentObj: {},
@@ -596,10 +598,12 @@
           _gallery = oElem.imgGallery.replace(/^\s+|\s+$/gm,'').split(';');
           _gallery.map(function (el) {
             record.gallery.push({
-              href: '../../img/' + el,
+              // href: '../../img/' + el,
+              href: el,
               dataLightbox: 'gallery-' + oElem.objNumber,
               dataTitle: '',
-              src: '../../img/' + el,
+              // src: '../../img/' + el,
+              src: el,
             });
           });
 

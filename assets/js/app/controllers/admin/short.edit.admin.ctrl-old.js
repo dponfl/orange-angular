@@ -3,116 +3,46 @@
 
   angular
     .module('OrangeClient')
-    .controller('ShortCreateAdminCtrl', ShortCreateAdminCtrl);
+    .controller('ShortEditAdminCtrl', ShortEditAdminCtrl);
 
-  ShortCreateAdminCtrl.$inject = ['GeneralConfigService', 'ShortService',
+  ShortEditAdminCtrl.$inject = ['GeneralConfigService', 'ShortService', 'ExclusiveService',
     'EditObjectService', '$log', '$rootScope', '$scope', '$q',
-    'lodash', 'FileUploader', 'toaster', '$timeout', 'moment'];
+    'lodash', 'FileUploader', 'toaster', '$timeout', '$http'];
 
   /* @ngInject */
-  function ShortCreateAdminCtrl(GeneralConfigService, ShortService,
+  function ShortEditAdminCtrl(GeneralConfigService, ShortService, ExclusiveService,
                          EditObjectService, $log, $rootScope, $scope, $q,
-                         lodash, FileUploader, toaster, $timeout, moment) {
+                         lodash, FileUploader, toaster, $timeout, $http) {
     var vm = this;
-    vm.name = 'ShortCreateAdminCtrl';
+    var name = 'ShortEditAdminCtrl';
     var _ = lodash;
-    var _m = moment;
     var __=GeneralConfigService;
 
-    var firstImg = true;
-    vm.create = _create;
+    // var firstImg = true;
+    vm.update = _update;
     vm.clear = _clear;
+    vm.cancel = _cancel;
     vm.deleteInterval = _deleteInterval;
     vm.addInterval = _addInterval;
 
-    // var ttt = moment(1535497200000).tz('Europe/London').format('MMMM Do YYYY, h:mm:ss a');
-    // console.log('moment Europe/London timezone test:');
-    // console.dir(ttt);
-
-    // var tt = moment(1535497200000).tz('America/Los_Angeles').format('MMMM Do YYYY, h:mm:ss a');
-    // console.log('moment America/Los_Angeles timezone test:');
-    // console.dir(tt);
-
-    vm.objList = $rootScope.orangeConfig.objList[$rootScope.lang];
-    vm.cityList = $rootScope.orangeConfig.cityList[$rootScope.lang];
-    vm.roomList = $rootScope.orangeConfig.roomList[$rootScope.lang];
-    vm.tagList = _.concat({key: 'none', val: 'Без тега'},
-    $rootScope.orangeConfig.tagList[$rootScope.lang]);
-
-    vm.langSet = {};
-
-    vm.activeTab = $rootScope.langActiveTab[0];
-
-    vm.formData = {};
-
-    vm.formData.langContent = [];
-
-    vm.formData.calendar = [];
-
-    var useLang = '';
-
-    for (var i = 0; i < $rootScope.numLang; i++) {
-
-      useLang = $rootScope.langList[i];
-
-/*
-      $log.info('i:');
-      $log.info(i);
-      $log.info('useLang:');
-      $log.info(useLang);
-*/
-
-      vm.langSet[useLang] = {
-        lang: useLang,
-        activeTab: $rootScope.langActiveTab[i],
-        activeTabTitle: $rootScope.langTitle[i],
-      };
-
-/*
-      $log.info('vm.langSet[useLang]:');
-      console.dir(vm.langSet[useLang]);
-*/
-
-      vm.formData.langContent[useLang] = {};
-      vm.formData.langContent[useLang].address = '';
-      vm.formData.langContent[useLang].bathroom = '';
-      vm.formData.langContent[useLang].pool = '';
-      vm.formData.langContent[useLang].price = '';
-      vm.formData.langContent[useLang].description = '';
-      vm.formData.langContent[useLang].info = '';
-    }
-
-    vm.formData.obj = vm.objList[0];
-    vm.formData.city = vm.cityList[0];
-    vm.formData.room = vm.roomList[0];
-    vm.formData.tag = vm.tagList[0];
-    vm.formData.objnumber = '';
-    vm.formData.exclusive = 'not_exclusive';
-    vm.formData.show = 'show';
-    vm.formData.home = 'not_home';
-    vm.formData.imgMain = '';
-    vm.formData.imgGallery = '';
-    vm.formData.maps = '';
-    vm.formData.youtube = '';
+    // _cancel();
+    _setDataInInitialState();
 
     vm.uploader = new FileUploader({
       alias: 'someimg',
       url: '/file/upload',
       formData: []
     });
-
     vm.uploaderMain = new FileUploader({
       alias: 'someimgmain',
       url: '/file/uploadmain',
       formData: []
     });
-
     vm.uploader_2 = new FileUploader({
       alias: 'someimg2',
       url: '/file/upload2',
       formData: []
     });
-
     vm.uploaderMain_2 = new FileUploader({
       alias: 'someimgmain2',
       url: '/file/uploadmain2',
@@ -128,7 +58,6 @@
         return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
       }
     });
-
     vm.uploaderMain.filters.push({
       name: 'imageFilter',
       fn: function(item /*{File|FileLikeObject}*/, options) {
@@ -136,7 +65,6 @@
         return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
       }
     });
-
     vm.uploader_2.filters.push({
       name: 'imageFilter',
       fn: function(item /*{File|FileLikeObject}*/, options) {
@@ -144,7 +72,6 @@
         return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
       }
     });
-
     vm.uploaderMain_2.filters.push({
       name: 'imageFilter',
       fn: function(item /*{File|FileLikeObject}*/, options) {
@@ -156,13 +83,13 @@
     // CALLBACKS
 
     vm.uploader.onWhenAddingFileFailed = function(item /*{File|FileLikeObject}*/, filter, options) {
-      // console.info('onWhenAddingFileFailed, uploader:', item, filter, options);
+      console.info('onWhenAddingFileFailed, uploader:', item, filter, options);
     };
     vm.uploader.onAfterAddingFile = function(fileItem) {
-      // console.info('onAfterAddingFile, uploader:', fileItem);
+      console.info('onAfterAddingFile, uploader:', fileItem);
     };
     vm.uploader.onAfterAddingAll = function(addedFileItems) {
-      console.info(vm.name + ', onAfterAddingAll, uploader:', addedFileItems);
+      console.info('onAfterAddingAll, uploader:', addedFileItems);
 
       vm.uploader.queue.map(function (el) {
         el.formData = [{obj: vm.formData.objnumber + '_short'}];
@@ -196,16 +123,16 @@
       // console.info('onCancelItem', fileItem, response, status, headers);
     };
     vm.uploader.onCompleteItem = function(fileItem, response, status, headers) {
-      console.info(vm.name + ', onCompleteItem, uploader:', fileItem, response, status, headers);
+      console.info('onCompleteItem, uploader:', fileItem, response, status, headers);
       console.info('Response:');
       console.dir(response);
-      // vm.formData.imgGallery += (!firstImg ? ';' : '' ) +
-      //   response.files[0].fd.slice(response.files[0].fd.indexOf('img') + 4);
-      vm.formData.imgGallery += (!firstImg ? ';' : '' ) +
-        response.url;
+      vm.formData.imgGallery += (vm.formData.imgGallery.length > 0 ? ';' : '' ) +
+        response.files[0].fd.slice(response.files[0].fd.indexOf('img') + 4);
+/*
       if (firstImg) {
         firstImg = false;
       }
+*/
     };
 
     vm.uploaderMain.onWhenAddingFileFailed = function(item /*{File|FileLikeObject}*/, filter, options) {
@@ -215,7 +142,7 @@
       // console.info('onAfterAddingFile', fileItem);
     };
     vm.uploaderMain.onAfterAddingAll = function(addedFileItems) {
-      console.info(vm.name + ', onAfterAddingAll, uploaderMain:', addedFileItems);
+      console.info('onAfterAddingAll, uploaderMain:', addedFileItems);
 
       vm.uploaderMain.queue.map(function (el) {
         el.formData = [{obj: vm.formData.objnumber + '_short'}];
@@ -249,16 +176,121 @@
       // console.info('onCancelItem', fileItem, response, status, headers);
     };
     vm.uploaderMain.onCompleteItem = function(fileItem, response, status, headers) {
-      console.info(vm.name + ', onCompleteItem, uploaderMain:', fileItem, response, status, headers);
+      console.info('onCompleteItem, uploaderMain:', fileItem, response, status, headers);
       console.info('Response:');
       console.dir(response);
-      // vm.formData.imgMain = response.files[0].fd.slice(response.files[0].fd.indexOf('img') + 4);
-      vm.formData.imgMain = response.url;
+      vm.formData.imgMain = response.files[0].fd.slice(response.files[0].fd.indexOf('img') + 4);
     };
 
-    function _create() {
+    //=============================================
+    // $watch
+    //=============================================
 
-      $log.info(vm.name + ', _create, vm.formData:');
+    $rootScope.$watch('admin.short.editObjSelected', function (newVal, oldVal) {
+      if (newVal && !oldVal) {
+        $rootScope.admin.short.editPanelShow = false;
+        $timeout(function () {
+          var obj = EditObjectService.getEditShortObject();
+          $rootScope.admin.short.editObjSelected = false;
+          $rootScope.admin.short.editPanelShow = true;
+
+          $log.warn(name + ', <<<<<< obj >>>>>>>');
+          console.dir(obj);
+
+          vm.formData = EditObjectService.convertShortObjectData(obj);
+
+          $log.warn(name + ', <<<<<< vm.formData >>>>>>>');
+          console.dir(vm.formData);
+
+          _loadGallery(obj);
+
+/*
+          $rootScope.admin.short.formData.objnumber = obj.objNumber;
+          $rootScope.admin.short.formData.address = obj.contentObj.address.text;
+          vm.passedObject = obj;
+          vm.formData.objnumber = vm.passedObject.objNumber;
+          vm.formData.langContent.en.address = vm.passedObject.contentObj.address.text;
+          vm.formData.langContent.ru.description = vm.passedObject.contentObj.description.text;
+*/
+        }, 500);
+      }
+    });
+
+/*
+    vm.$onInit = function () {
+      var ttt = EditObjectService.getEditShortObject();
+      vm.formData.objnumber = ttt.objNumber;
+    };
+*/
+
+    function _setDataInInitialState() {
+      vm.objList = $rootScope.orangeConfig.objList[$rootScope.lang];
+      vm.cityList = $rootScope.orangeConfig.cityList[$rootScope.lang];
+      vm.roomList = $rootScope.orangeConfig.roomList[$rootScope.lang];
+      vm.tagList = _.concat({key: 'none', val: 'Без тега'},
+        $rootScope.orangeConfig.tagList[$rootScope.lang]);
+
+      vm.langSet = {};
+
+      vm.activeTab = $rootScope.langActiveTab[0];
+
+      vm.formData = {};
+
+      vm.formData.langContent = [];
+
+      vm.formData.calendar = [];
+
+      var useLang = '';
+
+      for (var i = 0; i < $rootScope.numLang; i++) {
+
+        useLang = $rootScope.langList[i];
+
+/*
+        $log.info('i:');
+        $log.info(i);
+        $log.info('useLang:');
+        $log.info(useLang);
+*/
+
+        vm.langSet[useLang] = {
+          lang: useLang,
+          activeTab: $rootScope.langActiveTab[i],
+          activeTabTitle: $rootScope.langTitle[i],
+        };
+
+/*
+        $log.info('vm.langSet[useLang]:');
+        console.dir(vm.langSet[useLang]);
+*/
+
+        vm.formData.langContent[useLang] = {};
+        vm.formData.langContent[useLang].address = '';
+        vm.formData.langContent[useLang].bathroom = '';
+        vm.formData.langContent[useLang].pool = '';
+        vm.formData.langContent[useLang].price = '';
+        vm.formData.langContent[useLang].description = '';
+        vm.formData.langContent[useLang].info = '';
+      }
+
+/*
+      vm.formData.obj = vm.objList[0];
+      vm.formData.city = vm.cityList[0];
+      vm.formData.room = vm.roomList[0];
+      vm.formData.tag = vm.tagList[0];
+*/
+      vm.formData.objnumber = '';
+      vm.formData.show = 'show';
+      vm.formData.home = 'not_home';
+      vm.formData.imgMain = '';
+      vm.formData.imgGallery = '';
+      vm.formData.maps = '';
+      vm.formData.youtube = '';
+    } // _setDataInInitialState
+
+    function _update() {
+
+      $log.info(name + ', _update, vm.formData:');
       $log.info(vm.formData);
 
       async.parallel({
@@ -266,7 +298,7 @@
           vm.uploaderMain.uploadAll();
           vm.uploaderMain.onCompleteAll = function() {
 
-            console.info(vm.name + ', onCompleteAll, uploaderMain:');
+            console.info('onCompleteAll, uploaderMain:');
             console.info('Queue:');
             console.dir(vm.uploaderMain.queue);
 
@@ -277,7 +309,7 @@
           vm.uploader.uploadAll();
           vm.uploader.onCompleteAll = function() {
 
-            console.info(vm.name + ', onCompleteAll, uploader:');
+            console.info('onCompleteAll, uploader:');
             console.info('Queue:');
             console.dir(vm.uploader.queue);
 
@@ -288,7 +320,7 @@
           vm.uploaderMain_2.uploadAll();
           vm.uploaderMain_2.onCompleteAll = function() {
 
-            console.info(vm.name + ', onCompleteAll, uploaderMain_2:');
+            console.info('onCompleteAll, uploaderMain_2:');
             console.info('Queue:');
             console.dir(vm.uploaderMain_2.queue);
 
@@ -299,7 +331,7 @@
           vm.uploader_2.uploadAll();
           vm.uploader_2.onCompleteAll = function() {
 
-            console.info(vm.name + ', onCompleteAll, uploader_2:');
+            console.info('onCompleteAll, uploader_2:');
             console.info('Queue:');
             console.dir(vm.uploader_2.queue);
 
@@ -307,19 +339,19 @@
           };
         },
       }, function (err, results) {
-        console.log(vm.name + ', async.parallel results:');
+        console.log('async.parallel results:');
         console.dir(results);
 
         _write(vm.formData);
       });
-    } // _create
+    } // _update
 
     function _write(formData) {
       var createResult;
 
       var createRecords = {};
 
-      $log.info(vm.name + ', _write, formData:');
+      $log.info(name + ', _write, formData:');
       $log.info(formData);
 
       var useLang = '';
@@ -345,12 +377,13 @@
         useCalendar = JSON.stringify(useCalendarRaw);
       }
 
+
       for (var i = 0; i < $rootScope.numLang; i++) {
 
         useLang = $rootScope.langList[i];
         createRecords[useLang] = {};
         createRecords[useLang].lang = useLang;
-        // createRecords[useLang].deal = 'long_term';
+        // createRecords[useLang].deal = 'short';
         createRecords[useLang].objnumber = formData.objnumber;
         createRecords[useLang].show = (formData.show == "show" ? 1 : 0);
         createRecords[useLang].home = (formData.home == "home" ? 1 : 0);
@@ -368,39 +401,35 @@
         createRecords[useLang].info = formData.langContent[useLang].info;
         createRecords[useLang].calendar = useCalendar;
 
+
         if (formData.youtube) {
           createRecords[useLang].youtube = formData.youtube;
         }
 
       }
 
-      // console.log('<<<<<<<<<<<< createRecords: >>>>>>>>>>>');
-      // console.dir(createRecords);
-
-      createResult = _createRecordShort(createRecords);
+      createResult = _updateRecordShort(createRecords);
 
     } // _write
 
-    function _createRecordShort(data) {
+    function _updateRecordShort(data) {
 
-      $log.info(vm.name + ', _createRecordShort, data:');
+      console.log('_updateRecordShort, data:');
       console.dir(data);
 
       var someObj = {};
 
       _.forEach(data, function (val, key) {
-        someObj['record' + key] = ShortService.putShortObject(val);
+        someObj['record' + key] = ShortService.updateShortObject(val);
       });
 
       $q.all(someObj)
         .then(function (results) {
 
-/*
-          $log.warn(vm.name + ', _createRecordShort, results:');
+          $log.warn(name + ', _updateRecordShort, results:');
           console.dir(results);
-*/
 
-          if (results.recorden.status == 201) {
+          if (results.recorden.status == 200) {
 
             $rootScope.admin.short.updateEditRecords = true;
 
@@ -414,6 +443,10 @@
             });
 
             _clear();
+            _setDataInInitialState();
+
+            $rootScope.admin.short.editPanelShow = false;
+            $rootScope.admin.short.editObjEnableButton = true;
 
             return {
               performed: true,
@@ -424,7 +457,7 @@
             };
           } else {
             // todo: change by Log
-            $log.warn('Error...');
+            $log.warn(name + ', Error...');
             $log.error(err);
 
             toaster.pop({
@@ -447,7 +480,7 @@
         })
         .catch(function (err) {
           // todo: change by Log
-          $log.warn('Error...');
+          $log.warn(name + ', Error...');
           $log.error(err);
 
           toaster.pop({
@@ -468,20 +501,30 @@
           };
         });
 
-    } // _createRecordShort
+    } // _updateRecordShort
 
     function _clear() {
 
+      var useLang = '';
+
+/*
+      $log.info(name + ', !!!!!!!!! $rootScope.admin.short.formData:');
+      console.dir($rootScope.admin.short.formData);
+      console.dir(vm);
+*/
+
+/*
       vm.formData.obj = vm.objList[0];
       vm.formData.city = vm.cityList[0];
       vm.formData.room = vm.roomList[0];
       vm.formData.tag = vm.tagList[0];
+*/
       vm.formData.objnumber = '';
-      vm.formData.exclusive = 'not_exclusive';
       vm.formData.show = 'show';
       vm.formData.home = 'not_home';
 
       vm.formData.calendar = [];
+
 
       for (var i = 0; i < $rootScope.numLang; i++) {
 
@@ -501,6 +544,13 @@
       vm.uploader_2.clearQueue();
       vm.uploaderMain_2.clearQueue();
     } // _clear
+
+    function _cancel() {
+      _clear();
+      _setDataInInitialState();
+      $rootScope.admin.short.editPanelShow = false;
+      $rootScope.admin.short.editObjEnableButton = true;
+    } // _cancel
 
     function _deleteInterval(ind) {
       vm.formData.calendar.splice(ind, 1);
@@ -536,6 +586,121 @@
         vm.formData.calendar.push({start: '', end: ''});
       }
     } // _addInterval
+
+
+    // Load gallery images to file uploader queue
+    function _loadGallery(obj) {
+
+      $log.info(name + ', _loadGallery...');
+
+      var url = '';
+      var getConf = {
+        responseType:'blob'
+      };
+      var imgUrl = null;
+      var imgSize = null;
+      var imgType = null;
+      var imgFile = null;
+      var imgName = 'none';
+
+/*
+      var test01 = '';
+      var test02 = '';
+*/
+
+      var elemMain = obj.en.img;
+
+      // Main image
+
+      url = elemMain.src;
+      $http.get(url, getConf)
+        .then(function (response) {
+          // success
+          $log.warn(name + ', <<< Main image, Success response >>>');
+          console.dir(response);
+
+          imgUrl = response.config.url;
+          imgSize = response.data.size;
+          imgType = response.data.type;
+
+          if (imgUrl.indexOf($rootScope.imgFileNameElement)) {
+            imgName = imgUrl.slice(imgUrl.indexOf($rootScope.imgFileNameElement) +
+              $rootScope.imgFileNameElement.length + 1);
+          }
+
+          imgFile = new File(
+            [response.data],
+            imgName,
+            {
+              size: imgSize,
+              type: imgType
+            }
+          );
+
+/*
+          test01 = vm.uploaderMain.isFile(imgFile);
+          test02 = vm.uploaderMain.isFileLikeObject(imgFile);
+
+          $log.warn(name + ', imgFile check results:');
+          console.log('isFile: ' + test01);
+          console.log('isFileLikeObject: ' + test02);
+*/
+
+          vm.uploaderMain.addToQueue(imgFile);
+
+        }, function (response) {
+          // error
+          $log.warn(name + ', <<< Main image, Error response >>>');
+          console.dir(response);
+        });
+
+      // Gallery images
+
+      _.forEach(obj.en.gallery, function (elem) {
+        url = elem.src;
+        $http.get(url, getConf)
+          .then(function (response) {
+            // success
+            $log.warn(name + ', <<< Gallery images, Success response >>>');
+            console.dir(response);
+
+            imgUrl = response.config.url;
+            imgSize = response.data.size;
+            imgType = response.data.type;
+
+            if (imgUrl.indexOf($rootScope.imgFileNameElement)) {
+              imgName = imgUrl.slice(imgUrl.indexOf($rootScope.imgFileNameElement) +
+                $rootScope.imgFileNameElement.length + 1);
+            }
+
+            imgFile = new File(
+              [response.data],
+              imgName,
+              {
+                size: imgSize,
+                type: imgType
+              }
+            );
+
+/*
+            test01 = vm.uploader.isFile(imgFile);
+            test02 = vm.uploader.isFileLikeObject(imgFile);
+
+            $log.warn(name + ', imgFile check results:');
+            console.log('isFile: ' + test01);
+            console.log('isFileLikeObject: ' + test02);
+*/
+
+            vm.uploader.addToQueue(imgFile);
+
+          }, function (response) {
+            // error
+            $log.warn(name + ', <<< Gallery images, Error response >>>');
+            console.dir(response);
+          });
+      });
+
+    } // _loadGallery
 
   }
 })();
