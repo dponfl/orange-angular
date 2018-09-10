@@ -107,18 +107,6 @@
       formData: []
     });
 
-    vm.uploader_2 = new FileUploader({
-      alias: 'someimg2',
-      url: '/file/upload2',
-      formData: []
-    });
-
-    vm.uploaderMain_2 = new FileUploader({
-      alias: 'someimgmain2',
-      url: '/file/uploadmain2',
-      formData: []
-    });
-
     // FILTERS
 
     vm.uploader.filters.push({
@@ -130,22 +118,6 @@
     });
 
     vm.uploaderMain.filters.push({
-      name: 'imageFilter',
-      fn: function(item /*{File|FileLikeObject}*/, options) {
-        var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
-        return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
-      }
-    });
-
-    vm.uploader_2.filters.push({
-      name: 'imageFilter',
-      fn: function(item /*{File|FileLikeObject}*/, options) {
-        var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
-        return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
-      }
-    });
-
-    vm.uploaderMain_2.filters.push({
       name: 'imageFilter',
       fn: function(item /*{File|FileLikeObject}*/, options) {
         var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
@@ -166,14 +138,6 @@
 
       vm.uploader.queue.map(function (el) {
         el.formData = [{obj: vm.formData.objnumber + '_short'}];
-      });
-
-      vm.uploader_2.queue = _.cloneDeep(vm.uploader.queue);
-      vm.uploader_2.queue.map(function (el) {
-        el.alias = vm.uploader_2.alias;
-        el.url = vm.uploader_2.url;
-        el.formData = [{obj: vm.formData.objnumber + '_short'}];
-        el.uploader = vm.uploader_2;
       });
 
     };
@@ -219,14 +183,6 @@
 
       vm.uploaderMain.queue.map(function (el) {
         el.formData = [{obj: vm.formData.objnumber + '_short'}];
-      });
-
-      vm.uploaderMain_2.queue = _.cloneDeep(vm.uploaderMain.queue);
-      vm.uploaderMain_2.queue.map(function (el) {
-        el.alias = vm.uploaderMain_2.alias;
-        el.url = vm.uploaderMain_2.url;
-        el.formData = [{obj: vm.formData.objnumber + '_short'}];
-        el.uploader = vm.uploaderMain_2;
       });
 
     };
@@ -282,28 +238,6 @@
             console.dir(vm.uploader.queue);
 
             cb(null, {element: 'uploader'});
-          };
-        },
-        uploaderMain_2: function (cb) {
-          vm.uploaderMain_2.uploadAll();
-          vm.uploaderMain_2.onCompleteAll = function() {
-
-            console.info(vm.name + ', onCompleteAll, uploaderMain_2:');
-            console.info('Queue:');
-            console.dir(vm.uploaderMain_2.queue);
-
-            cb(null, {element: 'uploaderMain_2'});
-          };
-        },
-        uploader_2: function (cb) {
-          vm.uploader_2.uploadAll();
-          vm.uploader_2.onCompleteAll = function() {
-
-            console.info(vm.name + ', onCompleteAll, uploader_2:');
-            console.info('Queue:');
-            console.dir(vm.uploader_2.queue);
-
-            cb(null, {element: 'uploader_2'});
           };
         },
       }, function (err, results) {
@@ -498,8 +432,6 @@
 
       vm.uploader.clearQueue();
       vm.uploaderMain.clearQueue();
-      vm.uploader_2.clearQueue();
-      vm.uploaderMain_2.clearQueue();
     } // _clear
 
     function _deleteInterval(ind) {

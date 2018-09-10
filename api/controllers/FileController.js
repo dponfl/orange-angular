@@ -1,6 +1,7 @@
 "use strict";
 
 const _ = require('lodash');
+const del = require('del');
 let objNum = '';
 // const imgFileNameElement = '_$$$_-_$$$_';
 const imgFileNameElement = '';
@@ -61,6 +62,11 @@ module.exports = {
         console.dir(resCloud);
 
         result.url = resCloud.url;
+        
+        del([fileName])
+          .then(function (paths) {
+            console.log('Deleted file:\n', paths.join('\n'));
+          });
 
         return res.json(result);
 
@@ -115,6 +121,12 @@ module.exports = {
         console.dir(resCloud);
 
         result.url = resCloud.url;
+
+        del([fileName])
+          .then(function (paths) {
+            console.log('Deleted file:\n', paths.join('\n'));
+          });
+
 
         return res.json(result);
 
