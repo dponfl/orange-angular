@@ -613,10 +613,14 @@
       // Main image
 
       url = elemMain.src;
+
+      $log.info('Main image, url:');
+      $log.info(url);
+
       $http.get(url, getConf)
         .then(function (response) {
           // success
-          $log.warn(name + ', <<< Main image, Success response >>>');
+          $log.info(name + ', <<< Main image, Success response >>>');
           console.dir(response);
 
           imgUrl = response.config.url;
@@ -650,7 +654,7 @@
 
         }, function (response) {
           // error
-          $log.warn(name + ', <<< Main image, Error response >>>');
+          $log.error(name + ', <<< Main image, Error response >>>');
           console.dir(response);
         });
 
@@ -661,7 +665,7 @@
         $http.get(url, getConf)
           .then(function (response) {
             // success
-            $log.warn(name + ', <<< Gallery images, Success response >>>');
+            $log.info(name + ', <<< Gallery images, Success response >>>');
             console.dir(response);
 
             imgUrl = response.config.url;
@@ -695,7 +699,7 @@
 
           }, function (response) {
             // error
-            $log.warn(name + ', <<< Gallery images, Error response >>>');
+            $log.error(name + ', <<< Gallery images, Error response >>>');
             console.dir(response);
           });
       });

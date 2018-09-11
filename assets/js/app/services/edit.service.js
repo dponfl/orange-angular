@@ -226,7 +226,7 @@
           info: value.info,
         };
 
-        useCalendarRaw = value.calendar;
+        useCalendarRaw = value.calendar || "[]";
       });
 
       var newObj = {
