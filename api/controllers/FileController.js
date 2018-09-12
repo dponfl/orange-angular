@@ -30,7 +30,7 @@ module.exports = {
     objNum = req.allParams().obj;
 
     req.file('someimg').upload({
-      dirname: '../../assets/img',
+      dirname: '../../assets/img/abc',
       saveAs: setFileName,
     }, function (err, uploadedFiles) {
       if (err) return res.send(500, err);
@@ -89,7 +89,7 @@ module.exports = {
     objNum = req.allParams().obj;
 
     req.file('someimgmain').upload({
-      dirname: '../../assets/img',
+      dirname: '../../assets/img/abc',
       saveAs: setFileNameMain,
     }, function (err, uploadedFiles) {
       if (err) return res.send(500, err);

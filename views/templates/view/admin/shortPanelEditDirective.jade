@@ -143,7 +143,7 @@ data-ng-submit='vm.update()').form-horisontal
             tbody
               tr(data-ng-repeat="item in vm.uploaderMain.queue")
                 td
-                  strong {{ item.file.name }}
+                  strong {{ item.file.name.split('/')[item.file.name.split('/').length - 1] }}
                   div(ng-show="vm.uploaderMain.isHTML5",
                   ng-thumb="{ file: item._file, height: 100 }")
                 td(data-ng-show="vm.uploaderMain.isHTML5" nowrap) {{ item.file.size/1024/1024|number:2 }} MB
@@ -170,7 +170,7 @@ data-ng-submit='vm.update()').form-horisontal
                   //).btn.btn-warning.btn-xs
                     span.glyphicon.glyphicon-ban-circle &nbsp;Cancel
                   button(type="button",
-                  data-ng-click="item.remove()",
+                  data-ng-click="vm.deleteMain($index); item.remove();",
                   data-ng-disabled="!vm.uploaderMain.getNotUploadedItems().length"
                   ).btn.btn-danger.btn-xs
                     span.glyphicon.glyphicon-trash
@@ -216,7 +216,7 @@ data-ng-submit='vm.update()').form-horisontal
             tbody
               tr(data-ng-repeat="item in vm.uploader.queue")
                 td
-                  strong {{ item.file.name }}
+                  strong {{ item.file.name.split('/')[item.file.name.split('/').length - 1] }}
                   div(ng-show="vm.uploader.isHTML5",
                     ng-thumb="{ file: item._file, height: 100 }")
                 td(data-ng-show="vm.uploader.isHTML5" nowrap) {{ item.file.size/1024/1024|number:2 }} MB
@@ -243,7 +243,7 @@ data-ng-submit='vm.update()').form-horisontal
                   //).btn.btn-warning.btn-xs
                     span.glyphicon.glyphicon-ban-circle &nbsp;Cancel
                   button(type="button",
-                    data-ng-click="item.remove()",
+                    data-ng-click="vm.delete($index); item.remove();",
                     data-ng-disabled="!vm.uploader.getNotUploadedItems().length"
                   ).btn.btn-danger.btn-xs
                     span.glyphicon.glyphicon-trash

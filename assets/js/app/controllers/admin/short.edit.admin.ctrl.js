@@ -24,6 +24,8 @@
     vm.cancel = _cancel;
     vm.deleteInterval = _deleteInterval;
     vm.addInterval = _addInterval;
+    vm.deleteMain = _deleteMain;
+    vm.delete = _delete;
 
     // _cancel();
     _setDataInInitialState();
@@ -705,6 +707,16 @@
       });
 
     } // _loadGallery
+
+    function _deleteMain(ind) {
+      console.log('_deleteMain, index: ' + ind);
+      console.dir(vm.uploaderMain.queue[ind]);
+    } // _deleteMain
+
+    function _delete(ind) {
+      console.log('_delete, index: ' + ind);
+      console.dir(vm.uploader.queue[ind]);
+    } // _delete
 
   }
 })();
