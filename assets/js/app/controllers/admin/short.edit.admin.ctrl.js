@@ -24,8 +24,6 @@
     vm.cancel = _cancel;
     vm.deleteInterval = _deleteInterval;
     vm.addInterval = _addInterval;
-    vm.deleteMain = _deleteMain;
-    vm.delete = _delete;
 
     // _cancel();
     _setDataInInitialState();
@@ -128,8 +126,12 @@
       console.info('onCompleteItem, uploader:', fileItem, response, status, headers);
       console.info('Response:');
       console.dir(response);
+      // vm.formData.imgGallery += (vm.formData.imgGallery.length > 0 ? ';' : '' ) +
+      //   response.files[0].fd.slice(response.files[0].fd.indexOf('img') + 4);
+
       vm.formData.imgGallery += (vm.formData.imgGallery.length > 0 ? ';' : '' ) +
-        response.files[0].fd.slice(response.files[0].fd.indexOf('img') + 4);
+        response.url;
+
 /*
       if (firstImg) {
         firstImg = false;
@@ -181,7 +183,10 @@
       console.info('onCompleteItem, uploaderMain:', fileItem, response, status, headers);
       console.info('Response:');
       console.dir(response);
-      vm.formData.imgMain = response.files[0].fd.slice(response.files[0].fd.indexOf('img') + 4);
+      // vm.formData.imgMain = response.files[0].fd.slice(response.files[0].fd.indexOf('img') + 4);
+
+      vm.formData.imgMain = response.url;
+
     };
 
     //=============================================
@@ -295,6 +300,8 @@
       $log.info(name + ', _update, vm.formData:');
       $log.info(vm.formData);
 
+      _delete_by_tag(vm.formData.objnumber + '_short');
+
       async.parallel({
         uploaderMain: function (cb) {
           vm.uploaderMain.uploadAll();
@@ -316,28 +323,6 @@
             console.dir(vm.uploader.queue);
 
             cb(null, {element: 'uploader'});
-          };
-        },
-        uploaderMain_2: function (cb) {
-          vm.uploaderMain_2.uploadAll();
-          vm.uploaderMain_2.onCompleteAll = function() {
-
-            console.info('onCompleteAll, uploaderMain_2:');
-            console.info('Queue:');
-            console.dir(vm.uploaderMain_2.queue);
-
-            cb(null, {element: 'uploaderMain_2'});
-          };
-        },
-        uploader_2: function (cb) {
-          vm.uploader_2.uploadAll();
-          vm.uploader_2.onCompleteAll = function() {
-
-            console.info('onCompleteAll, uploader_2:');
-            console.info('Queue:');
-            console.dir(vm.uploader_2.queue);
-
-            cb(null, {element: 'uploader_2'});
           };
         },
       }, function (err, results) {
@@ -599,11 +584,7 @@
       var getConf = {
         responseType:'blob'
       };
-      var imgUrl = null;
-      var imgSize = null;
-      var imgType = null;
-      var imgFile = null;
-      var imgName = 'none';
+
 
 /*
       var test01 = '';
@@ -625,16 +606,22 @@
           $log.info(name + ', <<< Main image, Success response >>>');
           console.dir(response);
 
-          imgUrl = response.config.url;
-          imgSize = response.data.size;
-          imgType = response.data.type;
+          var imgName = 'none';
+          var imgNameOld = 'none';
+          var imgUrl = response.config.url;
+          var imgSize = response.data.size;
+          var imgType = response.data.type;
 
           if (imgUrl.indexOf($rootScope.imgFileNameElement)) {
-            imgName = imgUrl.slice(imgUrl.indexOf($rootScope.imgFileNameElement) +
-              $rootScope.imgFileNameElement.length + 1);
+            imgNameOld = imgUrl.slice(imgUrl.indexOf($rootScope.imgFileNameElement) +
+              $rootScope.imgFileNameElement.length + 2);
+
+            $log.info('imgNameOld: ' + imgNameOld);
+
+            imgName = 'main';
           }
 
-          imgFile = new File(
+          var imgFile = new File(
             [response.data],
             imgName,
             {
@@ -662,6 +649,8 @@
 
       // Gallery images
 
+      var imgNum = 0;
+
       _.forEach(obj.en.gallery, function (elem) {
         url = elem.src;
         $http.get(url, getConf)
@@ -670,16 +659,23 @@
             $log.info(name + ', <<< Gallery images, Success response >>>');
             console.dir(response);
 
-            imgUrl = response.config.url;
-            imgSize = response.data.size;
-            imgType = response.data.type;
+            var imgName = 'none';
+            var imgNameOld = 'none';
+            var imgUrl = response.config.url;
+            var imgSize = response.data.size;
+            var imgType = response.data.type;
 
             if (imgUrl.indexOf($rootScope.imgFileNameElement)) {
-              imgName = imgUrl.slice(imgUrl.indexOf($rootScope.imgFileNameElement) +
-                $rootScope.imgFileNameElement.length + 1);
+              imgNameOld = imgUrl.slice(imgUrl.indexOf($rootScope.imgFileNameElement) +
+                $rootScope.imgFileNameElement.length + 2);
+
+              $log.info('imgNameOld: ' + imgNameOld);
+
+              imgName = 'gallery_' + imgNum;
+              imgNum++;
             }
 
-            imgFile = new File(
+            var imgFile = new File(
               [response.data],
               imgName,
               {
@@ -708,15 +704,30 @@
 
     } // _loadGallery
 
-    function _deleteMain(ind) {
-      console.log('_deleteMain, index: ' + ind);
-      console.dir(vm.uploaderMain.queue[ind]);
-    } // _deleteMain
+    function _delete_by_tag(tag) {
+      console.log('_delete_by_tag, tag: ' + tag);
 
-    function _delete(ind) {
-      console.log('_delete, index: ' + ind);
-      console.dir(vm.uploader.queue[ind]);
-    } // _delete
+      var reqObj = {
+        tag: tag,
+      };
+
+      $http.post($rootScope.orangeConfig.host + '/file/destroy', reqObj)
+        .then(successCb, errorCb);
+
+      function successCb() {
+        $log.info('ShortEditAdminCtrl::_delete_by_tag, successCb, data:');
+        $log.info(data);
+
+
+      } // successCb
+
+      function errorCb() {
+        $log.info('ShortEditAdminCtrl::_delete_by_tag, errorCb, data:');
+        $log.info(data);
+
+
+      } // errorCb
+    } // _delete_by_tag
 
   }
 })();

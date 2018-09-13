@@ -116,6 +116,7 @@ module.exports.routes = {
 
   'POST /file/upload': 'FileController.upload',
   'POST /file/uploadmain': 'FileController.uploadmain',
+  'POST /file/destroy': 'FileController.destroy',
   'POST /file/upload2': 'FileController.upload2',
   'POST /file/uploadmain2': 'FileController.uploadmain2',
 

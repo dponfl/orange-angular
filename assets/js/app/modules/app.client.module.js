@@ -32,7 +32,7 @@
 
     // Images upload config
 
-    $rootScope.imgFileNameElement = '$$$_-_$$$';
+    $rootScope.imgFileNameElement = 'ABC_-_CBA';
 
     // Short term
     $rootScope.short = {};

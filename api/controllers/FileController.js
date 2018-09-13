@@ -3,8 +3,7 @@
 const _ = require('lodash');
 const del = require('del');
 let objNum = '';
-// const imgFileNameElement = '_$$$_-_$$$_';
-const imgFileNameElement = '';
+const imgFileNameElement = '_ABC_-_CBA_';
 
 const cloud = require('cloudinary');
 const controllerName = 'FileController.';
@@ -30,7 +29,7 @@ module.exports = {
     objNum = req.allParams().obj;
 
     req.file('someimg').upload({
-      dirname: '../../assets/img/abc',
+      dirname: '../../assets/img',
       saveAs: setFileName,
     }, function (err, uploadedFiles) {
       if (err) return res.send(500, err);
@@ -39,15 +38,16 @@ module.exports = {
         files: uploadedFiles
       };
 
-      // console.log('FileController, upload result:');
-      // console.dir(result);
+      console.log('FileController, upload result:');
+      console.dir(result);
 
       fileName = result.files[0].fd.slice(result.files[0].fd.indexOf('assets')).split('\\').join('/');
 
       // console.log('Transformed file name: ' + fileName);
 
       cloud.v2.uploader.upload(fileName, {
-        use_filename: true
+        use_filename: true,
+        tags: [objNum]
       }, function (errCloud, resCloud) {
 
         if (errCloud) {
@@ -89,7 +89,7 @@ module.exports = {
     objNum = req.allParams().obj;
 
     req.file('someimgmain').upload({
-      dirname: '../../assets/img/abc',
+      dirname: '../../assets/img',
       saveAs: setFileNameMain,
     }, function (err, uploadedFiles) {
       if (err) return res.send(500, err);
@@ -98,15 +98,16 @@ module.exports = {
         files: uploadedFiles
       };
 
-      // console.log('FileController, uploadmain result:');
-      // console.dir(result);
+      console.log('FileController, uploadmain result:');
+      console.dir(result);
 
       fileName = result.files[0].fd.slice(result.files[0].fd.indexOf('assets')).split('\\').join('/');
 
       // console.log('Transformed file name: ' + fileName);
 
       cloud.v2.uploader.upload(fileName, {
-        use_filename: true
+        use_filename: true,
+        tags: [objNum]
       }, function (errCloud, resCloud) {
 
         if (errCloud) {
@@ -190,6 +191,41 @@ module.exports = {
 
   }, // uploadmain2
 
+  destroy: function (req, res) {
+
+    const methodName = 'destroy';
+
+    console.log('<== FileController.js:destroy ==>');
+
+    console.log('req.allParams():');
+    console.dir(req.allParams());
+
+    if (!_.isNil(req.allParams().tag)) {
+
+      cloud.v2.api.delete_resources_by_tag(req.allParams().tag,
+        function (errCloud, resCloud) {
+
+        if (errCloud) {
+
+          console.log(controllerName + methodName + ', Cloudinary error:');
+          console.dir(errCloud);
+
+          return res.serverError({err: errCloud});
+        }
+
+        console.log(controllerName + methodName + ', Cloudinary success:');
+        console.dir(resCloud);
+
+        return res.ok({result: resCloud});
+
+      });
+    } else {
+
+      console.log(controllerName + methodName + ', No tag parameter');
+      return res.serverError({err: 'No tag parameter'});
+    }
+  }, // destroy
+
 };
 
 function setFileName(__newFileStream, next) {
@@ -203,11 +239,11 @@ function setFileName(__newFileStream, next) {
   console.log('field: ', __newFileStream.field);
 */
 
-  return next(undefined, objNum + '' +
+  return next(undefined, objNum + '_' +
     imgFileNameElement + '_' + __newFileStream.filename);
 } // setFileName
 
 function setFileNameMain(__newFileStream, next) {
-  return next(undefined, objNum + '_main' +
+  return next(undefined, objNum + '_main_' +
     imgFileNameElement + '_' + __newFileStream.filename);
 } // setFileNameMain

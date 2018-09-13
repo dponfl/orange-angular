@@ -165,8 +165,10 @@
       console.dir(response);
       // vm.formData.imgGallery += (!firstImg ? ';' : '' ) +
       //   response.files[0].fd.slice(response.files[0].fd.indexOf('img') + 4);
+
       vm.formData.imgGallery += (!firstImg ? ';' : '' ) +
         response.url;
+
       if (firstImg) {
         firstImg = false;
       }
