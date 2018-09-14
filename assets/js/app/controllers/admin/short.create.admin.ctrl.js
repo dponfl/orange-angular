@@ -288,6 +288,7 @@
         createRecords[useLang].lang = useLang;
         // createRecords[useLang].deal = 'long_term';
         createRecords[useLang].objnumber = formData.objnumber;
+        createRecords[useLang].exclusive = (formData.exclusive == "exclusive" ? 1 : 0);
         createRecords[useLang].show = (formData.show == "show" ? 1 : 0);
         createRecords[useLang].home = (formData.home == "home" ? 1 : 0);
         createRecords[useLang].tag = (formData.tag.key == 'none' ? null : formData.tag.key);

@@ -249,6 +249,7 @@
       vm.formData.tag = vm.tagList[0];
 */
       vm.formData.objnumber = '';
+      vm.formData.exclusive = 'not_exclusive';
       vm.formData.show = 'show';
       vm.formData.home = 'not_home';
       vm.formData.imgMain = '';
@@ -334,6 +335,7 @@
         createRecords[useLang].lang = useLang;
         // createRecords[useLang].deal = 'short';
         createRecords[useLang].objnumber = formData.objnumber;
+        createRecords[useLang].exclusive = (formData.exclusive == "exclusive" ? 1 : 0);
         createRecords[useLang].show = (formData.show == "show" ? 1 : 0);
         createRecords[useLang].home = (formData.home == "home" ? 1 : 0);
         createRecords[useLang].tag = (formData.tag.key == 'none' ? null : formData.tag.key);
@@ -469,6 +471,7 @@
       vm.formData.tag = vm.tagList[0];
 */
       vm.formData.objnumber = '';
+      vm.formData.exclusive = 'not_exclusive';
       vm.formData.show = 'show';
       vm.formData.home = 'not_home';
 

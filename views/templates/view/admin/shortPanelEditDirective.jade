@@ -4,6 +4,23 @@ data-ng-submit='vm.update()').form-horisontal
   fieldset
 
     .form-group.clearfix
+      label(for='objectExclusiveLabel', translate='LBL_OBJ_EXCLUSIVE').col-sm-2.control-label.text-right
+      .col-sm-4
+        #objectExclusiveLabel
+          label(for='objectExclusive')
+            input(type='radio',
+            data-ng-model='vm.formData.exclusive',
+            value="exclusive"
+            )#objectExclusive
+            | Да
+          label(for='objectNotExclusive')
+            input(type='radio',
+            data-ng-model='vm.formData.exclusive',
+            value="not_exclusive"
+            )#objectNotExclusive
+            | Нет
+
+    .form-group.clearfix
       label(for='objectShowLabel', translate='LBL_OBJ_SHOW').col-sm-2.control-label.text-right
       .col-sm-4
         #objectShowLabel

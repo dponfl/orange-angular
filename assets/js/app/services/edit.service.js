@@ -87,6 +87,7 @@
 
       var newObj = {
         objnumber: obj['en'].objNumber,
+        exclusive: ((obj['en'].exclusive) ? 'exclusive' : 'not_exclusive'),
         show: ((obj['en'].show == '1') ? 'show' : 'not_show'),
         home: ((obj['en'].home == '1') ? 'home' : 'not_home'),
         imgMain: '',
@@ -157,6 +158,7 @@
 
       var newObj = {
         objnumber: obj['en'].objNumber,
+        exclusive: ((obj['en'].exclusive) ? 'exclusive' : 'not_exclusive'),
         show: ((obj['en'].show == '1') ? 'show' : 'not_show'),
         home: ((obj['en'].home == '1') ? 'home' : 'not_home'),
         imgMain: '',
@@ -231,6 +233,7 @@
 
       var newObj = {
         objnumber: obj['en'].objNumber,
+        exclusive: ((obj['en'].exclusive) ? 'exclusive' : 'not_exclusive'),
         show: ((obj['en'].show == '1') ? 'show' : 'not_show'),
         home: ((obj['en'].home == '1') ? 'home' : 'not_home'),
         imgMain: '',
