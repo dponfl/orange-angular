@@ -38,16 +38,6 @@
       url: '/file/uploadmain',
       formData: []
     });
-    vm.uploader_2 = new FileUploader({
-      alias: 'someimg2',
-      url: '/file/upload2',
-      formData: []
-    });
-    vm.uploaderMain_2 = new FileUploader({
-      alias: 'someimgmain2',
-      url: '/file/uploadmain2',
-      formData: []
-    });
 
     // FILTERS
 
@@ -59,20 +49,6 @@
       }
     });
     vm.uploaderMain.filters.push({
-      name: 'imageFilter',
-      fn: function(item /*{File|FileLikeObject}*/, options) {
-        var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
-        return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
-      }
-    });
-    vm.uploader_2.filters.push({
-      name: 'imageFilter',
-      fn: function(item /*{File|FileLikeObject}*/, options) {
-        var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
-        return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
-      }
-    });
-    vm.uploaderMain_2.filters.push({
       name: 'imageFilter',
       fn: function(item /*{File|FileLikeObject}*/, options) {
         var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
@@ -95,13 +71,6 @@
         el.formData = [{obj: vm.formData.objnumber + '_short'}];
       });
 
-      vm.uploader_2.queue = _.cloneDeep(vm.uploader.queue);
-      vm.uploader_2.queue.map(function (el) {
-        el.alias = vm.uploader_2.alias;
-        el.url = vm.uploader_2.url;
-        el.formData = [{obj: vm.formData.objnumber + '_short'}];
-        el.uploader = vm.uploader_2;
-      });
 
     };
     vm.uploader.onBeforeUploadItem = function(item) {
@@ -152,13 +121,6 @@
         el.formData = [{obj: vm.formData.objnumber + '_short'}];
       });
 
-      vm.uploaderMain_2.queue = _.cloneDeep(vm.uploaderMain.queue);
-      vm.uploaderMain_2.queue.map(function (el) {
-        el.alias = vm.uploaderMain_2.alias;
-        el.url = vm.uploaderMain_2.url;
-        el.formData = [{obj: vm.formData.objnumber + '_short'}];
-        el.uploader = vm.uploaderMain_2;
-      });
 
     };
     vm.uploaderMain.onBeforeUploadItem = function(item) {
@@ -528,8 +490,6 @@
 
       vm.uploader.clearQueue();
       vm.uploaderMain.clearQueue();
-      vm.uploader_2.clearQueue();
-      vm.uploaderMain_2.clearQueue();
     } // _clear
 
     function _cancel() {
