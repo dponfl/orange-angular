@@ -61,7 +61,7 @@ module.exports = {
         console.log(controllerName + methodName + ', Cloudinary success:');
         console.dir(resCloud);
 
-        result.url = resCloud.url;
+        result.url = resCloud.url.slice(resCloud.url.indexOf('http:'));
         
         del([fileName])
           .then(function (paths) {
@@ -121,7 +121,7 @@ module.exports = {
         console.log(controllerName + methodName + ', Cloudinary success:');
         console.dir(resCloud);
 
-        result.url = resCloud.url;
+        result.url = resCloud.url.slice(resCloud.url.indexOf('http:'));
 
         del([fileName])
           .then(function (paths) {
