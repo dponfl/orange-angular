@@ -38,16 +38,16 @@
 
       vm.navMeny = [
         {
+          href: 'admin_short',
+          text: 'NAV_DAILY',
+        },
+        {
           href: 'admin_longterm',
           text: 'NAV_LONG_TERM',
         },
         {
           href: 'admin_sale',
           text: 'NAV_SALES',
-        },
-        {
-          href: 'admin_short',
-          text: 'NAV_DAILY',
         },
       ];
 

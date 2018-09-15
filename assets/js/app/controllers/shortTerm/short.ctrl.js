@@ -244,6 +244,9 @@
       if (typeof reqParams.room == 'object' && reqParams.room.key != 'any') {
         objReqParams.room = reqParams.room.key;
       }
+      if (typeof reqParams.exclusive == 'object' && reqParams.exclusive.key != 'any') {
+        objReqParams.exclusive = (reqParams.exclusive.key == 'exclusive');
+      }
       if (typeof reqParams.show == 'object' && reqParams.show.key != 'any') {
         objReqParams.show = (reqParams.show.key == 'show' ? '1' : '0');
       }
@@ -366,7 +369,7 @@
       $rootScope.short.busy = true;
 
       var params = {};
-      var objReqParams = {show: 1};
+      var objReqParams = {};
       var objReqPager = {};
 
       if (typeof reqParams.objnumber != 'undefined' && reqParams.objnumber) {
@@ -381,6 +384,17 @@
       if (typeof reqParams.room == 'object' && reqParams.room.key != 'any') {
         objReqParams.room = reqParams.room.key;
       }
+
+      if (typeof reqParams.exclusive == 'object' && reqParams.exclusive.key != 'any') {
+        objReqParams.exclusive = (reqParams.exclusive.key == 'exclusive');
+      }
+      if (typeof reqParams.show == 'object' && reqParams.show.key != 'any') {
+        objReqParams.show = (reqParams.show.key == 'show' ? '1' : '0');
+      }
+      if (typeof reqParams.home == 'object' && reqParams.home.key != 'any') {
+        objReqParams.home = (reqParams.home.key == 'home' ? '1' : '0');
+      }
+
 
       objReqPager.limit = $rootScope.pagerNumRecords*$rootScope.numLang;
       objReqPager.page = $rootScope.short.page;
@@ -517,6 +531,7 @@
             type: oElem.tag,
             badgeText: tagText,
             objNumber: oElem.objNumber,
+            exclusive: oElem.exclusive,
             exclusive: oElem.exclusive,
             show: oElem.show,
             home: oElem.home,

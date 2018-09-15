@@ -141,6 +141,37 @@ module.exports = {
           });
         });
 
+        result['exclusiveList'] = {
+          en: [
+            {
+              key: 'any',
+              val: 'Any',
+            },
+            {
+              key: 'exclusive',
+              val: 'Exclusive',
+            },
+            {
+              key: 'not_exclusive',
+              val: 'Not exclusive',
+            },
+          ],
+          ru: [
+            {
+              key: 'any',
+              val: 'Любой',
+            },
+            {
+              key: 'exclusive',
+              val: 'Эксклюзивные объекты',
+            },
+            {
+              key: 'not_exclusive',
+              val: 'Не эксклюзивные объекты',
+            },
+          ],
+        };
+
         result['showList'] = {
           en: [
             {
