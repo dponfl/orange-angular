@@ -532,7 +532,6 @@
             badgeText: tagText,
             objNumber: oElem.objNumber,
             exclusive: oElem.exclusive,
-            exclusive: oElem.exclusive,
             show: oElem.show,
             home: oElem.home,
             img: {
