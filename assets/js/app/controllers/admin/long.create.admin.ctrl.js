@@ -287,22 +287,22 @@
 
     } // _write
 
-    function _createRecordExclusive(data) {
+    function _createRecordLong(data) {
 
-      console.log('_createRecordExclusive, data:');
+      console.log('_createRecordLong, data:');
       console.dir(data);
 
       var someObj = {};
 
       _.forEach(data, function (val, key) {
-        someObj['record' + key] = ShortService.putLongObject(val);
+        someObj['record' + key] = LongService.putLongObject(val);
       });
 
       $q.all(someObj)
         .then(function (results) {
 
 /*
-          $log.warn(vm.name + ', _createRecordShort, results:');
+          $log.warn(vm.name + ', _createRecordLong, results:');
           console.dir(results);
 */
 
