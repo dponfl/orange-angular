@@ -5,6 +5,9 @@
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
 
+var _ = require('lodash');
+var controllerName = 'SaleController.';
+
 module.exports = {
   find: function (req, res) {
     /*
@@ -154,6 +157,7 @@ module.exports = {
   }, // findPager
 
   put: function (req, res) {
+    var methodName = 'put';
     /*
      console.log('=======================');
      console.log('req.body:');
@@ -204,8 +208,6 @@ module.exports = {
           message: 'OK',
           result: data});
       });
-
-
   }, // put
 
   update: function (req, res) {

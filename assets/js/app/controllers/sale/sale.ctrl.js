@@ -62,7 +62,6 @@
       }
     });
 
-
     $rootScope.$watch('lang', _update);
 
     $rootScope.$watch('sale.busy', function (newVal, oldVal) {
@@ -244,6 +243,9 @@
       if (typeof reqParams.room == 'object' && reqParams.room.key != 'any') {
         objReqParams.room = reqParams.room.key;
       }
+      if (typeof reqParams.exclusive == 'object' && reqParams.exclusive.key != 'any') {
+        objReqParams.exclusive = (reqParams.exclusive.key == 'exclusive');
+      }
       if (typeof reqParams.show == 'object' && reqParams.show.key != 'any') {
         objReqParams.show = (reqParams.show.key == 'show' ? '1' : '0');
       }
@@ -366,7 +368,7 @@
       $rootScope.sale.busy = true;
 
       var params = {};
-      var objReqParams = {show: 1};
+      var objReqParams = {};
       var objReqPager = {};
 
       if (typeof reqParams.objnumber != 'undefined' && reqParams.objnumber) {
@@ -381,6 +383,17 @@
       if (typeof reqParams.room == 'object' && reqParams.room.key != 'any') {
         objReqParams.room = reqParams.room.key;
       }
+
+      if (typeof reqParams.exclusive == 'object' && reqParams.exclusive.key != 'any') {
+        objReqParams.exclusive = (reqParams.exclusive.key == 'exclusive');
+      }
+      if (typeof reqParams.show == 'object' && reqParams.show.key != 'any') {
+        objReqParams.show = (reqParams.show.key == 'show' ? '1' : '0');
+      }
+      if (typeof reqParams.home == 'object' && reqParams.home.key != 'any') {
+        objReqParams.home = (reqParams.home.key == 'home' ? '1' : '0');
+      }
+
 
       objReqPager.limit = $rootScope.pagerNumRecords*$rootScope.numLang;
       objReqPager.page = $rootScope.sale.page;
@@ -507,13 +520,16 @@
             type: oElem.tag,
             badgeText: tagText,
             objNumber: oElem.objNumber,
+            exclusive: oElem.exclusive,
             show: oElem.show,
             home: oElem.home,
             img: {
-              href: '../../img/' + oElem.imgMain,
+              // href: '../../img/' + oElem.imgMain,
+              href: oElem.imgMain,
               dataLightbox: oElem.objNumber,
               dataTitle: '',
-              src: '../../img/' + oElem.imgMain,
+              // src: '../../img/' + oElem.imgMain,
+              src: oElem.imgMain,
             },
             content: [],
             contentObj: {},
@@ -566,7 +582,7 @@
               record.content[kElem.group - 1] = [];
             }
 
-            if (kElem.key !== 'deal') {
+            // if (kElem.key !== 'deal') {
               record.content[kElem.group - 1].push({
                 key: kElem.key,
                 label: kElem.label,
@@ -577,20 +593,20 @@
                 key: keyVal,
                 label: kElem.label,
                 text:tokenVal,
-              }
-            }
+              };
+            // }
 
           });
 
           _gallery = oElem.imgGallery.replace(/^\s+|\s+$/gm,'').split(';');
           _gallery.map(function (el) {
             record.gallery.push({
-              // href: '../../images/' + el,
-              href: '../../img/' + el,
+              // href: '../../img/' + el,
+              href: el,
               dataLightbox: 'gallery-' + oElem.objNumber,
               dataTitle: '',
-              // src: '../../images/' + el,
-              src: '../../img/' + el,
+              // src: '../../img/' + el,
+              src: el,
             });
           });
 /*

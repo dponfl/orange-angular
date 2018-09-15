@@ -94,18 +94,6 @@
       formData: []
     });
 
-    vm.uploader_2 = new FileUploader({
-      alias: 'someimg2',
-      url: '/file/upload2',
-      formData: []
-    });
-
-    vm.uploaderMain_2 = new FileUploader({
-      alias: 'someimgmain2',
-      url: '/file/uploadmain2',
-      formData: []
-    });
-
     // FILTERS
 
     vm.uploader.filters.push({
@@ -117,22 +105,6 @@
     });
 
     vm.uploaderMain.filters.push({
-      name: 'imageFilter',
-      fn: function(item /*{File|FileLikeObject}*/, options) {
-        var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
-        return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
-      }
-    });
-
-    vm.uploader_2.filters.push({
-      name: 'imageFilter',
-      fn: function(item /*{File|FileLikeObject}*/, options) {
-        var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
-        return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
-      }
-    });
-
-    vm.uploaderMain_2.filters.push({
       name: 'imageFilter',
       fn: function(item /*{File|FileLikeObject}*/, options) {
         var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
@@ -152,15 +124,7 @@
       console.info(vm.name + ', onAfterAddingAll, uploader:', addedFileItems);
 
       vm.uploader.queue.map(function (el) {
-        el.formData = [{obj: vm.formData.objnumber + '_sale'}];
-      });
-
-      vm.uploader_2.queue = _.cloneDeep(vm.uploader.queue);
-      vm.uploader_2.queue.map(function (el) {
-        el.alias = vm.uploader_2.alias;
-        el.url = vm.uploader_2.url;
-        el.formData = [{obj: vm.formData.objnumber + '_sale'}];
-        el.uploader = vm.uploader_2;
+        el.formData = [{obj: vm.formData.objnumber + '_short'}];
       });
 
     };
@@ -186,8 +150,12 @@
       console.info(vm.name + ', onCompleteItem, uploader:', fileItem, response, status, headers);
       console.info('Response:');
       console.dir(response);
+      // vm.formData.imgGallery += (!firstImg ? ';' : '' ) +
+      //   response.files[0].fd.slice(response.files[0].fd.indexOf('img') + 4);
+
       vm.formData.imgGallery += (!firstImg ? ';' : '' ) +
-        response.files[0].fd.slice(response.files[0].fd.indexOf('img') + 4);
+        response.url;
+
       if (firstImg) {
         firstImg = false;
       }
@@ -204,14 +172,6 @@
 
       vm.uploaderMain.queue.map(function (el) {
         el.formData = [{obj: vm.formData.objnumber + '_sale'}];
-      });
-
-      vm.uploaderMain_2.queue = _.cloneDeep(vm.uploaderMain.queue);
-      vm.uploaderMain_2.queue.map(function (el) {
-        el.alias = vm.uploaderMain_2.alias;
-        el.url = vm.uploaderMain_2.url;
-        el.formData = [{obj: vm.formData.objnumber + '_sale'}];
-        el.uploader = vm.uploaderMain_2;
       });
 
     };
@@ -237,7 +197,8 @@
       console.info(vm.name + ', onCompleteItem, uploaderMain:', fileItem, response, status, headers);
       console.info('Response:');
       console.dir(response);
-      vm.formData.imgMain = response.files[0].fd.slice(response.files[0].fd.indexOf('img') + 4);
+      // vm.formData.imgMain = response.files[0].fd.slice(response.files[0].fd.indexOf('img') + 4);
+      vm.formData.imgMain = response.url;
     };
 
     function _create() {
@@ -268,28 +229,6 @@
             cb(null, {element: 'uploader'});
           };
         },
-        uploaderMain_2: function (cb) {
-          vm.uploaderMain_2.uploadAll();
-          vm.uploaderMain_2.onCompleteAll = function() {
-
-            console.info(vm.name + ', onCompleteAll, uploaderMain_2:');
-            console.info('Queue:');
-            console.dir(vm.uploaderMain_2.queue);
-
-            cb(null, {element: 'uploaderMain_2'});
-          };
-        },
-        uploader_2: function (cb) {
-          vm.uploader_2.uploadAll();
-          vm.uploader_2.onCompleteAll = function() {
-
-            console.info(vm.name + ', onCompleteAll, uploader_2:');
-            console.info('Queue:');
-            console.dir(vm.uploader_2.queue);
-
-            cb(null, {element: 'uploader_2'});
-          };
-        },
       }, function (err, results) {
         console.log(vm.name + ', async.parallel results:');
         console.dir(results);
@@ -315,6 +254,7 @@
         createRecords[useLang].lang = useLang;
         // createRecords[useLang].deal = 'long_term';
         createRecords[useLang].objnumber = formData.objnumber;
+        createRecords[useLang].exclusive = (formData.exclusive == "exclusive" ? 1 : 0);
         createRecords[useLang].show = (formData.show == "show" ? 1 : 0);
         createRecords[useLang].home = (formData.home == "home" ? 1 : 0);
         createRecords[useLang].tag = (formData.tag.key == 'none' ? null : formData.tag.key);
@@ -455,8 +395,6 @@
 
       vm.uploader.clearQueue();
       vm.uploaderMain.clearQueue();
-      vm.uploader_2.clearQueue();
-      vm.uploaderMain_2.clearQueue();
     } // _clear
 
   }

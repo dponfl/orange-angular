@@ -11,7 +11,6 @@
   /* @ngInject */
   function SaleService(GeneralConfigService, $log, $rootScope, $http, oSaleKey, oSale, lodash, $q) {
     var _ = lodash;
-    var name = 'SaleService';
     var self = {
       getAllSaleObjectsKeys: _getAllSaleObjectsKeys,
       getAllSaleObjectsObjs: _getAllSaleObjectsObjs,
@@ -50,6 +49,7 @@
             group: sortedData[i].group,
             key: sortedData[i].key,
             label: sortedData[i].label,
+            exclusive: sortedData[i].exclusive,
             show: sortedData[i].show,
             home: sortedData[i].home,
             createdAt: sortedData[i].createdAt,
@@ -93,6 +93,7 @@
 
           __objs[response[i].lang].push({
             objNumber: response[i].objnumber,
+            exclusive: response[i].exclusive,
             show: response[i].show,
             home: response[i].home,
             tag: response[i].tag,
@@ -154,6 +155,7 @@
 
           __objs[response[i].lang].push({
             objNumber: response[i].objnumber,
+            exclusive: response[i].exclusive,
             show: response[i].show,
             home: response[i].home,
             tag: response[i].tag,
@@ -216,6 +218,7 @@
 
         __objs[response.lang].push({
           objNumber: response.objnumber,
+          exclusive: response.exclusive,
           show: response.show,
           home: response.home,
           tag: response.tag,
@@ -277,6 +280,7 @@
 
         __objs[response.lang].push({
           objNumber: response.objnumber,
+          exclusive: response.exclusive,
           show: response.show,
           home: response.home,
           tag: response.tag,

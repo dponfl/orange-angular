@@ -21,6 +21,7 @@
     vm.objList = $rootScope.orangeConfig.objList[$rootScope.lang];
     vm.cityList = $rootScope.orangeConfig.cityList[$rootScope.lang];
     vm.roomList = $rootScope.orangeConfig.roomList[$rootScope.lang];
+    vm.exclusiveList = $rootScope.orangeConfig.exclusiveList[$rootScope.lang];
     vm.showList = $rootScope.orangeConfig.showList[$rootScope.lang];
     vm.homeList = $rootScope.orangeConfig.homeList[$rootScope.lang];
 
@@ -29,6 +30,7 @@
     vm.formData.obj = $rootScope.orangeConfig.objList[$rootScope.lang][0];
     vm.formData.city = $rootScope.orangeConfig.cityList[$rootScope.lang][0];
     vm.formData.room = $rootScope.orangeConfig.roomList[$rootScope.lang][0];
+    vm.formData.exclusive = $rootScope.orangeConfig.exclusiveList[$rootScope.lang][0];
     vm.formData.show = $rootScope.orangeConfig.showList[$rootScope.lang][0];
     vm.formData.home = $rootScope.orangeConfig.homeList[$rootScope.lang][0];
     vm.formData.objnumber = '';
@@ -53,6 +55,7 @@
       vm.objList = $rootScope.orangeConfig.objList[$rootScope.lang];
       vm.cityList = $rootScope.orangeConfig.cityList[$rootScope.lang];
       vm.roomList = $rootScope.orangeConfig.roomList[$rootScope.lang];
+      vm.exclusiveList = $rootScope.orangeConfig.exclusiveList[$rootScope.lang];
       vm.showList = $rootScope.orangeConfig.showList[$rootScope.lang];
       vm.homeList = $rootScope.orangeConfig.homeList[$rootScope.lang];
     };
@@ -78,6 +81,7 @@
       vm.formData.obj = $rootScope.orangeConfig.objList[$rootScope.lang][0];
       vm.formData.city = $rootScope.orangeConfig.cityList[$rootScope.lang][0];
       vm.formData.room = $rootScope.orangeConfig.roomList[$rootScope.lang][0];
+      vm.formData.exclusive = $rootScope.orangeConfig.exclusiveList[$rootScope.lang][0];
       vm.formData.show = $rootScope.orangeConfig.showList[$rootScope.lang][0];
       vm.formData.home = $rootScope.orangeConfig.homeList[$rootScope.lang][0];
       vm.formData.objnumber = '';
