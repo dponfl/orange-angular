@@ -14,6 +14,7 @@
                          EditObjectService, $log, $rootScope, $scope, $q,
                          lodash, FileUploader, toaster, $timeout) {
     var vm = this;
+    vm.name = 'LongCreateAdminCtrl';
     var _ = lodash;
     var __=GeneralConfigService;
 
@@ -41,10 +42,12 @@
 
       useLang = $rootScope.langList[i];
 
+/*
       $log.info('i:');
       $log.info(i);
       $log.info('useLang:');
       $log.info(useLang);
+*/
 
       vm.langSet[useLang] = {
         lang: useLang,
@@ -52,8 +55,10 @@
         activeTabTitle: $rootScope.langTitle[i],
       };
 
+/*
       $log.info('vm.langSet[useLang]:');
       console.dir(vm.langSet[useLang]);
+*/
 
       vm.formData.langContent[useLang] = {};
       vm.formData.langContent[useLang].address = '';
@@ -89,18 +94,6 @@
       formData: []
     });
 
-    vm.uploader_2 = new FileUploader({
-      alias: 'someimg2',
-      url: '/file/upload2',
-      formData: []
-    });
-
-    vm.uploaderMain_2 = new FileUploader({
-      alias: 'someimgmain2',
-      url: '/file/uploadmain2',
-      formData: []
-    });
-
     // FILTERS
 
     vm.uploader.filters.push({
@@ -119,22 +112,6 @@
       }
     });
 
-    vm.uploader_2.filters.push({
-      name: 'imageFilter',
-      fn: function(item /*{File|FileLikeObject}*/, options) {
-        var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
-        return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
-      }
-    });
-
-    vm.uploaderMain_2.filters.push({
-      name: 'imageFilter',
-      fn: function(item /*{File|FileLikeObject}*/, options) {
-        var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
-        return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
-      }
-    });
-
     // CALLBACKS
 
     vm.uploader.onWhenAddingFileFailed = function(item /*{File|FileLikeObject}*/, filter, options) {
@@ -144,18 +121,10 @@
       // console.info('onAfterAddingFile, uploader:', fileItem);
     };
     vm.uploader.onAfterAddingAll = function(addedFileItems) {
-      console.info('onAfterAddingAll, uploader:', addedFileItems);
+      console.info(vm.name + ', onAfterAddingAll, uploader:', addedFileItems);
 
       vm.uploader.queue.map(function (el) {
-        el.formData = [{obj: vm.formData.objnumber + '_long'}];
-      });
-
-      vm.uploader_2.queue = _.cloneDeep(vm.uploader.queue);
-      vm.uploader_2.queue.map(function (el) {
-        el.alias = vm.uploader_2.alias;
-        el.url = vm.uploader_2.url;
-        el.formData = [{obj: vm.formData.objnumber + '_long'}];
-        el.uploader = vm.uploader_2;
+        el.formData = [{obj: vm.formData.objnumber + '_short'}];
       });
 
     };
@@ -178,11 +147,15 @@
       // console.info('onCancelItem', fileItem, response, status, headers);
     };
     vm.uploader.onCompleteItem = function(fileItem, response, status, headers) {
-      console.info('onCompleteItem, uploader:', fileItem, response, status, headers);
+      console.info(vm.name + ', onCompleteItem, uploader:', fileItem, response, status, headers);
       console.info('Response:');
       console.dir(response);
+      // vm.formData.imgGallery += (!firstImg ? ';' : '' ) +
+      //   response.files[0].fd.slice(response.files[0].fd.indexOf('img') + 4);
+
       vm.formData.imgGallery += (!firstImg ? ';' : '' ) +
-        response.files[0].fd.slice(response.files[0].fd.indexOf('img') + 4);
+        response.url;
+
       if (firstImg) {
         firstImg = false;
       }
@@ -195,18 +168,10 @@
       // console.info('onAfterAddingFile', fileItem);
     };
     vm.uploaderMain.onAfterAddingAll = function(addedFileItems) {
-      console.info('onAfterAddingAll, uploaderMain:', addedFileItems);
+      console.info(vm.name + ', onAfterAddingAll, uploaderMain:', addedFileItems);
 
       vm.uploaderMain.queue.map(function (el) {
-        el.formData = [{obj: vm.formData.objnumber + '_long'}];
-      });
-
-      vm.uploaderMain_2.queue = _.cloneDeep(vm.uploaderMain.queue);
-      vm.uploaderMain_2.queue.map(function (el) {
-        el.alias = vm.uploaderMain_2.alias;
-        el.url = vm.uploaderMain_2.url;
-        el.formData = [{obj: vm.formData.objnumber + '_long'}];
-        el.uploader = vm.uploaderMain_2;
+        el.formData = [{obj: vm.formData.objnumber + '_short'}];
       });
 
     };
@@ -229,15 +194,16 @@
       // console.info('onCancelItem', fileItem, response, status, headers);
     };
     vm.uploaderMain.onCompleteItem = function(fileItem, response, status, headers) {
-      console.info('onCompleteItem, uploaderMain:', fileItem, response, status, headers);
+      console.info(vm.name + ', onCompleteItem, uploaderMain:', fileItem, response, status, headers);
       console.info('Response:');
       console.dir(response);
-      vm.formData.imgMain = response.files[0].fd.slice(response.files[0].fd.indexOf('img') + 4);
+      // vm.formData.imgMain = response.files[0].fd.slice(response.files[0].fd.indexOf('img') + 4);
+      vm.formData.imgMain = response.url;
     };
 
     function _create() {
 
-      $log.info('_create, vm.formData:');
+      $log.info(vm.name + ', _create, vm.formData:');
       $log.info(vm.formData);
 
       async.parallel({
@@ -245,7 +211,7 @@
           vm.uploaderMain.uploadAll();
           vm.uploaderMain.onCompleteAll = function() {
 
-            console.info('onCompleteAll, uploaderMain:');
+            console.info(vm.name + ', onCompleteAll, uploaderMain:');
             console.info('Queue:');
             console.dir(vm.uploaderMain.queue);
 
@@ -256,37 +222,15 @@
           vm.uploader.uploadAll();
           vm.uploader.onCompleteAll = function() {
 
-            console.info('onCompleteAll, uploader:');
+            console.info(vm.name + ', onCompleteAll, uploader:');
             console.info('Queue:');
             console.dir(vm.uploader.queue);
 
             cb(null, {element: 'uploader'});
           };
         },
-        uploaderMain_2: function (cb) {
-          vm.uploaderMain_2.uploadAll();
-          vm.uploaderMain_2.onCompleteAll = function() {
-
-            console.info('onCompleteAll, uploaderMain_2:');
-            console.info('Queue:');
-            console.dir(vm.uploaderMain_2.queue);
-
-            cb(null, {element: 'uploaderMain_2'});
-          };
-        },
-        uploader_2: function (cb) {
-          vm.uploader_2.uploadAll();
-          vm.uploader_2.onCompleteAll = function() {
-
-            console.info('onCompleteAll, uploader_2:');
-            console.info('Queue:');
-            console.dir(vm.uploader_2.queue);
-
-            cb(null, {element: 'uploader_2'});
-          };
-        },
       }, function (err, results) {
-        console.log('async.parallel results:');
+        console.log(vm.name + ', async.parallel results:');
         console.dir(results);
 
         _write(vm.formData);
@@ -298,7 +242,7 @@
 
       var createRecords = {};
 
-      $log.info('formData:');
+      $log.info(vm.name + ', _write, formData:');
       $log.info(formData);
 
       var useLang = '';
@@ -310,6 +254,7 @@
         createRecords[useLang].lang = useLang;
         // createRecords[useLang].deal = 'long_term';
         createRecords[useLang].objnumber = formData.objnumber;
+        createRecords[useLang].exclusive = (formData.exclusive == "exclusive" ? 1 : 0);
         createRecords[useLang].show = (formData.show == "show" ? 1 : 0);
         createRecords[useLang].home = (formData.home == "home" ? 1 : 0);
         createRecords[useLang].tag = (formData.tag.key == 'none' ? null : formData.tag.key);
@@ -350,95 +295,14 @@
       var someObj = {};
 
       _.forEach(data, function (val, key) {
-        someObj['record' + key] = ExclusiveService.putExclusiveObject(val);
-      });
-
-      $q.all(someObj)
-        .then(function (results) {
-          if (results.recorden.status == 201) {
-
-            toaster.pop({
-              type: 'success',
-              title: __.t('ADMIN_CREATE_SUCCESS_TITLE'),
-              body: __.t('ADMIN_CREATE_SUCCESS_BODY_1'),
-              toasterId: '111111',
-              showCloseButton: true,
-              timeout: 15000,
-            });
-
-            _clear();
-
-            return {
-              performed: true,
-              reason: 'ok',
-              data: {
-                record: results
-              },
-            };
-          } else {
-            // todo: change by Log
-            $log.warn('Error...');
-            $log.error(err);
-
-            toaster.pop({
-              type: 'error',
-              title: __.t('ADMIN_CREATE_ERROR_TITLE'),
-              body: __.t('ADMIN_CREATE_ERROR_BODY_1'),
-              toasterId: '111111',
-              showCloseButton: true,
-              timeout: 15000,
-            });
-
-            return {
-              performed: false,
-              reason: 'error',
-              data: {
-                error: err,
-              },
-            };
-          }
-        })
-        .catch(function (err) {
-          // todo: change by Log
-          $log.warn('Error...');
-          $log.error(err);
-
-          toaster.pop({
-            type: 'error',
-            title: __.t('ADMIN_CREATE_ERROR_TITLE'),
-            body: __.t('ADMIN_CREATE_ERROR_BODY_1'),
-            toasterId: '111111',
-            showCloseButton: true,
-            timeout: 15000,
-          });
-
-          return {
-            performed: false,
-            reason: 'error',
-            data: {
-              error: err,
-            },
-          };
-        });
-
-    } // _createRecordExclusive
-
-    function _createRecordLong(data) {
-
-      console.log('_createRecordLong, data:');
-      console.dir(data);
-
-      var someObj = {};
-
-      _.forEach(data, function (val, key) {
-        someObj['record' + key] = LongService.putLongObject(val);
+        someObj['record' + key] = ShortService.putLongObject(val);
       });
 
       $q.all(someObj)
         .then(function (results) {
 
 /*
-          $log.warn('_createRecordLong, results:');
+          $log.warn(vm.name + ', _createRecordShort, results:');
           console.dir(results);
 */
 
@@ -538,8 +402,6 @@
 
       vm.uploader.clearQueue();
       vm.uploaderMain.clearQueue();
-      vm.uploader_2.clearQueue();
-      vm.uploaderMain_2.clearQueue();
     } // _clear
 
   }
