@@ -66,6 +66,8 @@
                             data-ng-class="{'glyphicon-chevron-up':!p.reverse,'glyphicon-chevron-down':p.reverse}").glyphicon.sort-icon
                           th Адрес объекта
                           th
+                            div.text-center Эксклюзивный объект
+                          th
                             div.text-center Открыт для показа
                           th
                             div.text-center На главной странице
@@ -78,15 +80,20 @@
                           td {{panel.contentObj.city.text}}
                           td {{panel.address}}
                           td
-                           div(data-ng-if="panel.show").text-center
-                             span(aria-hidden="true").glyphicon.glyphicon-ok.admin-text-green
-                           div(data-ng-if="!panel.show").text-center
-                             span(aria-hidden="true").glyphicon.glyphicon-remove.admin-text-red
+                            div(data-ng-if="panel.exclusive").text-center
+                              span(aria-hidden="true").glyphicon.glyphicon-ok.admin-text-green
+                            div(data-ng-if="!panel.exclusive").text-center
+                              span(aria-hidden="true").glyphicon.glyphicon-remove.admin-text-red
                           td
-                           div(data-ng-if="panel.home").text-center
-                             span(aria-hidden="true").glyphicon.glyphicon-ok.admin-text-green
-                           div(data-ng-if="!panel.home").text-center
-                             span(aria-hidden="true").glyphicon.glyphicon-remove.admin-text-red
+                            div(data-ng-if="panel.show").text-center
+                              span(aria-hidden="true").glyphicon.glyphicon-ok.admin-text-green
+                            div(data-ng-if="!panel.show").text-center
+                              span(aria-hidden="true").glyphicon.glyphicon-remove.admin-text-red
+                          td
+                            div(data-ng-if="panel.home").text-center
+                              span(aria-hidden="true").glyphicon.glyphicon-ok.admin-text-green
+                            div(data-ng-if="!panel.home").text-center
+                              span(aria-hidden="true").glyphicon.glyphicon-remove.admin-text-red
                           td
                              button(data-ng-click='p.edit(panel.objNumber)',
                               data-ng-disabled="!admin.long.editObjEnableButton"

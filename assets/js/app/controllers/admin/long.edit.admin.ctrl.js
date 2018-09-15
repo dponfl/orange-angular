@@ -18,6 +18,7 @@
     var _ = lodash;
     var __=GeneralConfigService;
 
+    // var firstImg = true;
     vm.update = _update;
     vm.clear = _clear;
     vm.cancel = _cancel;
@@ -35,16 +36,6 @@
       url: '/file/uploadmain',
       formData: []
     });
-    vm.uploader_2 = new FileUploader({
-      alias: 'someimg2',
-      url: '/file/upload2',
-      formData: []
-    });
-    vm.uploaderMain_2 = new FileUploader({
-      alias: 'someimgmain2',
-      url: '/file/uploadmain2',
-      formData: []
-    });
 
     // FILTERS
 
@@ -56,20 +47,6 @@
       }
     });
     vm.uploaderMain.filters.push({
-      name: 'imageFilter',
-      fn: function(item /*{File|FileLikeObject}*/, options) {
-        var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
-        return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
-      }
-    });
-    vm.uploader_2.filters.push({
-      name: 'imageFilter',
-      fn: function(item /*{File|FileLikeObject}*/, options) {
-        var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
-        return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
-      }
-    });
-    vm.uploaderMain_2.filters.push({
       name: 'imageFilter',
       fn: function(item /*{File|FileLikeObject}*/, options) {
         var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
@@ -92,13 +69,6 @@
         el.formData = [{obj: vm.formData.objnumber + '_long'}];
       });
 
-      vm.uploader_2.queue = _.cloneDeep(vm.uploader.queue);
-      vm.uploader_2.queue.map(function (el) {
-        el.alias = vm.uploader_2.alias;
-        el.url = vm.uploader_2.url;
-        el.formData = [{obj: vm.formData.objnumber + '_long'}];
-        el.uploader = vm.uploader_2;
-      });
 
     };
     vm.uploader.onBeforeUploadItem = function(item) {
@@ -123,8 +93,10 @@
       console.info(ctrlTitle + ', onCompleteItem, uploader:', fileItem, response, status, headers);
       console.info('Response:');
       console.dir(response);
-      vm.formData.imgGallery += (vm.formData.imgGallery.length ? ';' : '' ) +
-        response.files[0].fd.slice(response.files[0].fd.indexOf('img') + 4);
+
+      vm.formData.imgGallery += (vm.formData.imgGallery.length > 0 ? ';' : '' ) +
+        response.url;
+
     };
 
     vm.uploaderMain.onWhenAddingFileFailed = function(item /*{File|FileLikeObject}*/, filter, options) {
@@ -140,13 +112,6 @@
         el.formData = [{obj: vm.formData.objnumber + '_long'}];
       });
 
-      vm.uploaderMain_2.queue = _.cloneDeep(vm.uploaderMain.queue);
-      vm.uploaderMain_2.queue.map(function (el) {
-        el.alias = vm.uploaderMain_2.alias;
-        el.url = vm.uploaderMain_2.url;
-        el.formData = [{obj: vm.formData.objnumber + '_long'}];
-        el.uploader = vm.uploaderMain_2;
-      });
 
     };
     vm.uploaderMain.onBeforeUploadItem = function(item) {
@@ -171,7 +136,9 @@
       console.info(ctrlTitle + ', onCompleteItem, uploaderMain:', fileItem, response, status, headers);
       console.info('Response:');
       console.dir(response);
-      vm.formData.imgMain = response.files[0].fd.slice(response.files[0].fd.indexOf('img') + 4);
+
+      vm.formData.imgMain = response.url;
+
     };
 
     //=============================================
@@ -270,6 +237,7 @@
       vm.formData.tag = vm.tagList[0];
 */
       vm.formData.objnumber = '';
+      vm.formData.exclusive = 'not_exclusive';
       vm.formData.show = 'show';
       vm.formData.home = 'not_home';
       vm.formData.imgMain = '';
@@ -281,7 +249,9 @@
     function _update() {
 
       $log.info(ctrlTitle + ', _update, vm.formData:');
-      console.dir(vm.formData);
+      $log.info(vm.formData);
+
+      _delete_by_tag(vm.formData.objnumber + '_short');
 
       async.parallel({
         uploaderMain: function (cb) {
@@ -306,28 +276,6 @@
             cb(null, {element: 'uploader'});
           };
         },
-        uploaderMain_2: function (cb) {
-          vm.uploaderMain_2.uploadAll();
-          vm.uploaderMain_2.onCompleteAll = function() {
-
-            console.info(ctrlTitle + ', onCompleteAll, uploaderMain_2:');
-            console.info('Queue:');
-            console.dir(vm.uploaderMain_2.queue);
-
-            cb(null, {element: 'uploaderMain_2'});
-          };
-        },
-        uploader_2: function (cb) {
-          vm.uploader_2.uploadAll();
-          vm.uploader_2.onCompleteAll = function() {
-
-            console.info(ctrlTitle + ', onCompleteAll, uploader_2:');
-            console.info('Queue:');
-            console.dir(vm.uploader_2.queue);
-
-            cb(null, {element: 'uploader_2'});
-          };
-        },
       }, function (err, results) {
         console.log(ctrlTitle + ', async.parallel, results:');
         console.dir(results);
@@ -342,7 +290,7 @@
       var createRecords = {};
 
       $log.info(ctrlTitle + ', _write, formData:');
-      console.dir(formData);
+      $log.info(formData);
 
       var useLang = '';
 
@@ -353,6 +301,7 @@
         createRecords[useLang].lang = useLang;
         // createRecords[useLang].deal = 'long_term';
         createRecords[useLang].objnumber = formData.objnumber;
+        createRecords[useLang].exclusive = (formData.exclusive == "exclusive" ? 1 : 0);
         createRecords[useLang].show = (formData.show == "show" ? 1 : 0);
         createRecords[useLang].home = (formData.home == "home" ? 1 : 0);
         createRecords[useLang].tag = (formData.tag.key == 'none' ? null : formData.tag.key);
@@ -486,6 +435,7 @@
       vm.formData.tag = vm.tagList[0];
 */
       vm.formData.objnumber = '';
+      vm.formData.exclusive = 'not_exclusive';
       vm.formData.show = 'show';
       vm.formData.home = 'not_home';
 
@@ -504,8 +454,6 @@
 
       vm.uploader.clearQueue();
       vm.uploaderMain.clearQueue();
-      vm.uploader_2.clearQueue();
-      vm.uploaderMain_2.clearQueue();
     } // _clear
 
     function _cancel() {
@@ -524,11 +472,7 @@
       var getConf = {
         responseType:'blob'
       };
-      var imgUrl = null;
-      var imgSize = null;
-      var imgType = null;
-      var imgFile = null;
-      var imgName = 'none';
+
 
 /*
       var test01 = '';
@@ -540,22 +484,32 @@
       // Main image
 
       url = elemMain.src;
+
+      $log.info('Main image, url:');
+      $log.info(url);
+
       $http.get(url, getConf)
         .then(function (response) {
           // success
           $log.warn(ctrlTitle + ', <<< Main image, Success response >>>');
           console.dir(response);
 
-          imgUrl = response.config.url;
-          imgSize = response.data.size;
-          imgType = response.data.type;
+          var imgName = 'none';
+          var imgNameOld = 'none';
+          var imgUrl = response.config.url;
+          var imgSize = response.data.size;
+          var imgType = response.data.type;
 
           if (imgUrl.indexOf($rootScope.imgFileNameElement)) {
-            imgName = imgUrl.slice(imgUrl.indexOf($rootScope.imgFileNameElement) +
-              $rootScope.imgFileNameElement.length + 1);
+            imgNameOld = imgUrl.slice(imgUrl.indexOf($rootScope.imgFileNameElement) +
+              $rootScope.imgFileNameElement.length + 2);
+
+            $log.info('imgNameOld: ' + imgNameOld);
+
+            imgName = 'main';
           }
 
-          imgFile = new File(
+          var imgFile = new File(
             [response.data],
             imgName,
             {
@@ -583,6 +537,8 @@
 
       // Gallery images
 
+      var imgNum = 0;
+
       _.forEach(obj.en.gallery, function (elem) {
         url = elem.src;
         $http.get(url, getConf)
@@ -591,16 +547,23 @@
             $log.warn(ctrlTitle + ', <<< Gallery images, Success response >>>');
             console.dir(response);
 
-            imgUrl = response.config.url;
-            imgSize = response.data.size;
-            imgType = response.data.type;
+            var imgName = 'none';
+            var imgNameOld = 'none';
+            var imgUrl = response.config.url;
+            var imgSize = response.data.size;
+            var imgType = response.data.type;
 
             if (imgUrl.indexOf($rootScope.imgFileNameElement)) {
-              imgName = imgUrl.slice(imgUrl.indexOf($rootScope.imgFileNameElement) +
-                $rootScope.imgFileNameElement.length + 1);
+              imgNameOld = imgUrl.slice(imgUrl.indexOf($rootScope.imgFileNameElement) +
+                $rootScope.imgFileNameElement.length + 2);
+
+              $log.info('imgNameOld: ' + imgNameOld);
+
+              imgName = 'gallery_' + imgNum;
+              imgNum++;
             }
 
-            imgFile = new File(
+            var imgFile = new File(
               [response.data],
               imgName,
               {
@@ -628,6 +591,31 @@
       });
 
     } // _loadGallery
+
+    function _delete_by_tag(tag) {
+      console.log('_delete_by_tag, tag: ' + tag);
+
+      var reqObj = {
+        tag: tag,
+      };
+
+      $http.post($rootScope.orangeConfig.host + '/file/destroy', reqObj)
+        .then(successCb, errorCb);
+
+      function successCb() {
+        $log.info('ShortEditAdminCtrl::_delete_by_tag, successCb, data:');
+        $log.info(data);
+
+
+      } // successCb
+
+      function errorCb() {
+        $log.info('ShortEditAdminCtrl::_delete_by_tag, errorCb, data:');
+        $log.info(data);
+
+
+      } // errorCb
+    } // _delete_by_tag
 
   }
 })();

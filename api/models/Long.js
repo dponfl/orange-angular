@@ -8,9 +8,8 @@
 module.exports = {
   tableName: 'long',
   attributes: {
-    partner: {
-      type: 'string',
-      size: 255
+    exclusive: {
+      type: 'boolean',
     },
     objnumber: {
       type: 'string',

@@ -79,6 +79,8 @@
     function _updateDataAll() {
       $log.info(ctrlTitle + ', _updateDataAll activated...');
 
+      $rootScope.admin.long.useAll = false;
+
       $rootScope.long.panels = [];
       $rootScope.long.busy = false;
       $rootScope.long.FindActivated = false;
@@ -112,6 +114,8 @@
     function _updateDataEdit() {
       $log.info(ctrlTitle + ', _updateDataAll activated...');
 
+      $rootScope.admin.long.useAll = false;
+
       $rootScope.long.panels = [];
       $rootScope.long.busy = false;
       $rootScope.long.FindActivated = false;
@@ -141,8 +145,6 @@
         });
 
     } // _updateDataEdit
-
-
 
     function _updateData () {
 
@@ -240,6 +242,9 @@
       }
       if (typeof reqParams.room == 'object' && reqParams.room.key != 'any') {
         objReqParams.room = reqParams.room.key;
+      }
+      if (typeof reqParams.exclusive == 'object' && reqParams.exclusive.key != 'any') {
+        objReqParams.exclusive = (reqParams.exclusive.key == 'exclusive');
       }
       if (typeof reqParams.show == 'object' && reqParams.show.key != 'any') {
         objReqParams.show = (reqParams.show.key == 'show' ? '1' : '0');
@@ -363,7 +368,7 @@
       $rootScope.long.busy = true;
 
       var params = {};
-      var objReqParams = {show: 1};
+      var objReqParams = {};
       var objReqPager = {};
 
       if (typeof reqParams.objnumber != 'undefined' && reqParams.objnumber) {
@@ -378,6 +383,17 @@
       if (typeof reqParams.room == 'object' && reqParams.room.key != 'any') {
         objReqParams.room = reqParams.room.key;
       }
+
+      if (typeof reqParams.exclusive == 'object' && reqParams.exclusive.key != 'any') {
+        objReqParams.exclusive = (reqParams.exclusive.key == 'exclusive');
+      }
+      if (typeof reqParams.show == 'object' && reqParams.show.key != 'any') {
+        objReqParams.show = (reqParams.show.key == 'show' ? '1' : '0');
+      }
+      if (typeof reqParams.home == 'object' && reqParams.home.key != 'any') {
+        objReqParams.home = (reqParams.home.key == 'home' ? '1' : '0');
+      }
+
 
       objReqPager.limit = $rootScope.pagerNumRecords*$rootScope.numLang;
       objReqPager.page = $rootScope.long.page;
@@ -504,13 +520,16 @@
             type: oElem.tag,
             badgeText: tagText,
             objNumber: oElem.objNumber,
+            exclusive: oElem.exclusive,
             show: oElem.show,
             home: oElem.home,
             img: {
-              href: '../../img/' + oElem.imgMain,
+              // href: '../../img/' + oElem.imgMain,
+              href: oElem.imgMain,
               dataLightbox: oElem.objNumber,
               dataTitle: '',
-              src: '../../img/' + oElem.imgMain,
+              // src: '../../img/' + oElem.imgMain,
+              src: oElem.imgMain,
             },
             content: [],
             contentObj: {},
@@ -582,12 +601,12 @@
           _gallery = oElem.imgGallery.replace(/^\s+|\s+$/gm,'').split(';');
           _gallery.map(function (el) {
             record.gallery.push({
-              // href: '../../images/' + el,
-              href: '../../img/' + el,
+              // href: '../../img/' + el,
+              href: el,
               dataLightbox: 'gallery-' + oElem.objNumber,
               dataTitle: '',
-              // src: '../../images/' + el,
-              src: '../../img/' + el,
+              // src: '../../img/' + el,
+              src: el,
             });
           });
 /*
