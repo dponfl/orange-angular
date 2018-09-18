@@ -27,9 +27,19 @@
     vm.keys = [];
     vm.objs = [];
 
-    $q.all({keys: ExclusiveService.getAllExclusiveObjectsKeys({show: 1, home: 1}),
-      objs: ExclusiveService.getAllExclusiveObjectsObjs({show: 1, home: 1})})
+    $q.all({keys: ExclusiveService.getAllExclusiveObjectsKeys({
+      show: 1,
+      home: 1
+    }),
+      objs: ExclusiveService.getAllExclusiveObjectsObjs({
+        show: 1,
+        home: 1,
+        exclusive: true
+      })})
       .then(function (results) {
+
+        $log.info('HomeExclusiveCtrl, results:');
+        $log.info(results);
 
         vm.keysAll = results.keys;
         vm.objsAll = results.objs.data;
@@ -79,10 +89,10 @@
           badgetext: tagText,
           objNumber: oElem.objNumber,
           img: {
-            href: '../../img/' + oElem.imgMain,
+            href: oElem.imgMain,
             dataLightbox: oElem.objNumber,
             dataTitle: '',
-            src: '../../img/' + oElem.imgMain,
+            src: oElem.imgMain,
           },
           content: [],
         };

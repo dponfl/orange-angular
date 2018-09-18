@@ -5,6 +5,9 @@
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
 
+const BB = require('bluebird');
+const moduleName = 'ExclusiveController.';
+
 module.exports = {
   find: function (req, res) {
     /*
@@ -27,6 +30,8 @@ module.exports = {
 
     console.log('<== ExclusiveController.js:find ==>');
 
+    const methodName = 'find';
+
     // todo: make parameters validation
     var requestParams = req.allParams();
     // var whereObj = {};
@@ -40,31 +45,112 @@ module.exports = {
     });
 */
 
-    console.log('whereObj:');
+    console.log(moduleName + methodName + ', whereObj:');
     console.dir(whereObj);
 
-    Exclusive.find({
-      where: whereObj,
-    })
-      .exec(function (err, data) {
-        if (err) {
-          return res.serverError(err);
-        }
+    BB.props({
+      short: getShort(),
+      long: getLong(),
+      sale: getSale(),
+    }).then(resolve, reject);
 
-        console.log('data.length: ' + data.length);
+    function resolve(resolveData) {
+      console.log(moduleName + methodName + '.resolve, resolveData:');
+      console.dir(resolveData);
+
+      return res.ok(resolveData);
+
+    } // resolve
+
+    function reject(rejectData) {
+      console.log(moduleName + methodName + '.reject, rejectData:');
+      console.dir(rejectData);
+
+      return res.notFound(rejectData);
+
+    } // reject
+
+    function getShort() {
+      return new BB(function (resolve, reject) {
+        Short.find({
+          where: whereObj,
+        })
+          .exec(function (err, data) {
+            if (err) {
+              return reject(err);
+            }
+
+            console.log('data.length: ' + data.length);
 
 
-        if (data.length == 0) {
-          return res.notFound({
-            code: 404,
-            message: 'Not found'});
-        }
+            if (data.length == 0) {
+              return reject({
+                code: 404,
+                message: 'Not found'});
+            }
 
-        return res.ok({
-          code: 200,
-          message: 'OK',
-          result: data});
+            return resolve({
+              code: 200,
+              message: 'OK',
+              result: data});
+          });
       });
+    } // getShort
+
+    function getLong() {
+      return new BB(function (resolve, reject) {
+        Long.find({
+          where: whereObj,
+        })
+          .exec(function (err, data) {
+            if (err) {
+              return reject(err);
+            }
+
+            console.log('data.length: ' + data.length);
+
+
+            if (data.length == 0) {
+              return reject({
+                code: 404,
+                message: 'Not found'});
+            }
+
+            return resolve({
+              code: 200,
+              message: 'OK',
+              result: data});
+          });
+      });
+    } // getLong
+
+    function getSale() {
+      return new BB(function (resolve, reject) {
+        Sale.find({
+          where: whereObj,
+        })
+          .exec(function (err, data) {
+            if (err) {
+              return reject(err);
+            }
+
+            console.log('data.length: ' + data.length);
+
+
+            if (data.length == 0) {
+              return reject({
+                code: 404,
+                message: 'Not found'});
+            }
+
+            return resolve({
+              code: 200,
+              message: 'OK',
+              result: data});
+          });
+      });
+    } // getSale
+
 
 
   }, // find

@@ -76,48 +76,176 @@
 
       function successCb(data) {
 
-        if (!_.isArray(data.data.result)) {
-          return new Error('Exclusive data is not an array');
-        }
-
-        var response = data.data.result;
-
+        var response = [];
         var __objs = {};
 
-        for (var i = 0; i < response.length; i++) {
 
-          if (!_.isArray(__objs[response[i].lang]))
-            __objs[response[i].lang] = [];
+        $log.info('_getAllExclusiveObjectsObjs, successCb, data:');
+        $log.info(data);
 
-          __objs[response[i].lang].push({
-            objNumber: response[i].objnumber,
-            show: response[i].show,
-            home: response[i].home,
-            tag: response[i].tag,
-            city: response[i].city,
-            address: response[i].address,
-            deal: response[i].deal,
-            obj: response[i].obj,
-            room: response[i].room,
-            bathroom: response[i].bathroom,
-            pool: response[i].pool,
-            price: response[i].price,
-            calendar: response[i].calendar,
-            description: response[i].description,
-            info: response[i].info,
-            googleMap: response[i].maps,
-            imgMain: response[i].imgmain,
-            imgGallery: response[i].imggallery,
-            youtube: response[i].youtube,
-            createdAt: response[i].createdAt,
-            updatedAt: response[i].updatedAt,
-          })
+        if (!_.isNil(data.status)
+          && data.status == 200
+          && !_.isNil(data.data)
+        ) {
+
+          /**
+           * Get data for short term objects
+           */
+
+          if (!_.isNil(data.data.short)
+            && !_.isNil(data.data.short.code)
+            && data.data.short.code == 200
+            && !_.isNil(data.data.short.result)
+            && _.isArray(data.data.short.result)
+          ) {
+            _.forEach(data.data.short.result, function (resElem) {
+              response.push(resElem);
+            })
+
+            $log.info('_getAllExclusiveObjectsObjs, successCb, short, response:');
+            $log.info(response);
+
+            for (var i = 0; i < response.length; i++) {
+
+              if (!_.isArray(__objs[response[i].lang]))
+                __objs[response[i].lang] = [];
+
+              __objs[response[i].lang].push({
+                objNumber: response[i].objnumber,
+                show: response[i].show,
+                home: response[i].home,
+                tag: response[i].tag,
+                city: response[i].city,
+                address: response[i].address,
+                deal: 'short_term',
+                obj: response[i].obj,
+                room: response[i].room,
+                bathroom: response[i].bathroom,
+                pool: response[i].pool,
+                price: response[i].price,
+                calendar: response[i].calendar,
+                description: response[i].description,
+                info: response[i].info,
+                googleMap: response[i].maps,
+                imgMain: response[i].imgmain,
+                imgGallery: response[i].imggallery,
+                youtube: response[i].youtube,
+                createdAt: response[i].createdAt,
+                updatedAt: response[i].updatedAt,
+              })
+            }
+          }
+
+          /**
+           * Get data for long term objects
+           */
+
+          response = [];
+
+          if (!_.isNil(data.data.long)
+            && !_.isNil(data.data.long.code)
+            && data.data.long.code == 200
+            && !_.isNil(data.data.long.result)
+            && _.isArray(data.data.long.result)
+          ) {
+            _.forEach(data.data.long.result, function (resElem) {
+              response.push(resElem);
+            })
+
+            $log.info('_getAllExclusiveObjectsObjs, successCb, long, response:');
+            $log.info(response);
+
+            for (var i = 0; i < response.length; i++) {
+
+              if (!_.isArray(__objs[response[i].lang]))
+                __objs[response[i].lang] = [];
+
+              __objs[response[i].lang].push({
+                objNumber: response[i].objnumber,
+                show: response[i].show,
+                home: response[i].home,
+                tag: response[i].tag,
+                city: response[i].city,
+                address: response[i].address,
+                deal: 'long_term',
+                obj: response[i].obj,
+                room: response[i].room,
+                bathroom: response[i].bathroom,
+                pool: response[i].pool,
+                price: response[i].price,
+                description: response[i].description,
+                info: response[i].info,
+                googleMap: response[i].maps,
+                imgMain: response[i].imgmain,
+                imgGallery: response[i].imggallery,
+                youtube: response[i].youtube,
+                createdAt: response[i].createdAt,
+                updatedAt: response[i].updatedAt,
+              })
+            }
+          }
+
+          /**
+           * Get data for sale objects
+           */
+
+          response = [];
+
+          if (!_.isNil(data.data.sale)
+            && !_.isNil(data.data.sale.code)
+            && data.data.sale.code == 200
+            && !_.isNil(data.data.sale.result)
+            && _.isArray(data.data.sale.result)
+          ) {
+            _.forEach(data.data.sale.result, function (resElem) {
+              response.push(resElem);
+            })
+
+            $log.info('_getAllExclusiveObjectsObjs, successCb, sale, response:');
+            $log.info(response);
+
+            for (var i = 0; i < response.length; i++) {
+
+              if (!_.isArray(__objs[response[i].lang]))
+                __objs[response[i].lang] = [];
+
+              __objs[response[i].lang].push({
+                objNumber: response[i].objnumber,
+                show: response[i].show,
+                home: response[i].home,
+                tag: response[i].tag,
+                city: response[i].city,
+                address: response[i].address,
+                deal: 'sales',
+                obj: response[i].obj,
+                room: response[i].room,
+                bathroom: response[i].bathroom,
+                pool: response[i].pool,
+                price: response[i].price,
+                description: response[i].description,
+                info: response[i].info,
+                googleMap: response[i].maps,
+                imgMain: response[i].imgmain,
+                imgGallery: response[i].imggallery,
+                youtube: response[i].youtube,
+                createdAt: response[i].createdAt,
+                updatedAt: response[i].updatedAt,
+              })
+            }
+          }
+
+
+
+
+
+
         }
 
         return {
           status: 200,
           data: __objs,
         };
+
       }
 
       function errorCb(err) {
