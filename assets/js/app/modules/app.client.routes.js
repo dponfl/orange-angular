@@ -60,6 +60,7 @@
             templateUrl: 'templates/view/exclusive.html',
             controller: ['$scope', '$stateParams', function ($scope, $stateParams) {
               $scope.directLinkObjectNumber = $stateParams.objNumber;
+              $scope.directLinkDeal = $stateParams.deal;
             }],
           },
           footer: {
@@ -69,6 +70,7 @@
         url: '/exclusive',
         params: {
           objNumber: null,
+          deal: null,
         },
       })
       .state('shortterm', {

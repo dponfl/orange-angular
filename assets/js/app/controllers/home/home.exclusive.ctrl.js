@@ -88,6 +88,7 @@
           type: oElem.tag,
           badgetext: tagText,
           objNumber: oElem.objNumber,
+          deal: oElem.deal,
           img: {
             href: oElem.imgMain,
             dataLightbox: oElem.objNumber,

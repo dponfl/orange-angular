@@ -8,6 +8,7 @@
         type: '<',
         badgetext: '<',
         objNumber: '<',
+        deal: '<',
         img: '<',
         content: '<'
       },
