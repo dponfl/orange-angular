@@ -141,7 +141,7 @@
       $rootScope.exclusive.busy = true;
 
       var params = {};
-      var objReqParams = {show: 1};
+      var objReqParams = {show: 1, exclusive: true};
       var objReqPager = {};
 
       if (typeof reqParams.objnumber != 'undefined' && reqParams.objnumber) {
@@ -165,10 +165,12 @@
 
       $rootScope.exclusive.page++;
 
-      return $q.all({keysShort: ShortService.getAllShortObjectsKeys({show: 1}),
+      return $q.all({
+        keysShort: ShortService.getAllShortObjectsKeys({show: 1}),
         keysLong: LongService.getAllLongObjectsKeys({show: 1}),
         keysSale: SaleService.getAllSaleObjectsKeys({show: 1}),
-        objs: ExclusiveService.getAllExclusiveObjectsObjsPager(objReqParams, objReqPager)})
+        objs: ExclusiveService.getAllExclusiveObjectsObjsPager(objReqParams, objReqPager)
+      })
         .then(function (results) {
           $rootScope.exclusive.busy = false;
 
@@ -299,10 +301,10 @@
             objNumber: oElem.objNumber,
             deal: oElem.deal,
             img: {
-              href: '../../img/' + oElem.imgMain,
+              href: oElem.imgMain,
               dataLightbox: oElem.objNumber,
               dataTitle: '',
-              src: '../../img/' + oElem.imgMain,
+              src: oElem.imgMain,
             },
             content: [],
             gallery: [],
@@ -365,10 +367,10 @@
           _gallery = oElem.imgGallery.replace(/^\s+|\s+$/gm,'').split(';');
           _gallery.map(function (el) {
             record.gallery.push({
-              href: '../../img/' + el,
+              href: el,
               dataLightbox: 'gallery-' + oElem.objNumber,
               dataTitle: '',
-              src: '../../img/' + el,
+              src: el,
             });
           });
           record.price = oElem.price;
@@ -406,6 +408,9 @@
 
       $q.when(_performRequest($rootScope.exclusive.FilterData))
         .then(function (res) {
+
+          $log.info('_activateNextPage, res:');
+          $log.info(res);
 
           if (!res.performed &&
             (res.reason == 'notFound' || res.reason == 'serverError')) {

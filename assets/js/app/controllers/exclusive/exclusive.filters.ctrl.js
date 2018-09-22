@@ -30,8 +30,8 @@
     vm.formData.deal = _getDealObj($scope.$parent.directLinkDeal) || $rootScope.orangeConfig.dealList[$rootScope.lang][0];
     vm.formData.city = $rootScope.orangeConfig.cityList[$rootScope.lang][0];
     vm.formData.room = $rootScope.orangeConfig.roomList[$rootScope.lang][0];
-    vm.formData.objnumber = '';
     vm.formData.objnumber = $scope.$parent.directLinkObjectNumber || '';
+    vm.formData.exclusive = true;
 
     $log.info('<<<<<<<< passed params: >>>>>>');
     $log.info('directLinkDeal: ', $scope.$parent.directLinkDeal);
@@ -94,6 +94,7 @@
       vm.formData.city = $rootScope.orangeConfig.cityList[$rootScope.lang][0];
       vm.formData.room = $rootScope.orangeConfig.roomList[$rootScope.lang][0];
       vm.formData.objnumber = '';
+      vm.formData.exclusive = true;
       $rootScope.exclusive.FilterData = vm.formData;
       $rootScope.exclusive.FindActivated = true;
     };

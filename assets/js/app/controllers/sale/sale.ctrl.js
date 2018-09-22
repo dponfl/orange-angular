@@ -582,7 +582,7 @@
               record.content[kElem.group - 1] = [];
             }
 
-            // if (kElem.key !== 'deal') {
+            if (kElem.key !== 'deal') {
               record.content[kElem.group - 1].push({
                 key: kElem.key,
                 label: kElem.label,
@@ -594,7 +594,7 @@
                 label: kElem.label,
                 text:tokenVal,
               };
-            // }
+            }
 
           });
 

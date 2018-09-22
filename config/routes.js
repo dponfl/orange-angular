@@ -100,7 +100,6 @@ module.exports.routes = {
 
   'POST /exclusive/find': 'ExclusiveController.find',
   'POST /exclusive/findp': 'ExclusiveController.findPager',
-  'POST /exclusive/put': 'ExclusiveController.put',
 
   'POST /sreq/create': 'S_reqController.create',
   'POST /sreq/createInfo': 'S_reqController.createInfo',
