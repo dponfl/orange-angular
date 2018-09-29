@@ -20,13 +20,11 @@
 
       var _ = lodash;
 
-      // console.log('OrangeConfiguration...');
-      // console.log(data);
+      console.log('OrangeConfiguration...');
+      console.log(data);
 
       if (_.has(data, 'result') && _.has(data, 'data')) {
-        // console.log('11111111');
         if (data.result == 'ok') {
-          // console.log('2222222222');
           configOrangeProvider.initialize(data.data);
         }
 

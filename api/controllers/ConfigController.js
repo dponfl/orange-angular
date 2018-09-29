@@ -120,6 +120,29 @@ module.exports = {
         return {tagList: tagConfig.tagList};
       });
 
+    /**
+     * Get content
+     */
+
+    var contentHomePromise = Content.find({content_type: 'home', show: true})
+      .then(function (data) {
+
+        var contentHomeConfig = [];
+        contentHomeConfig.contentHomeList = {};
+
+        if (!_.isArray(data)) {
+          // todo: Log error message and get data from Sails config
+          console.log('Home content data is not an array');
+        }
+
+        console.log('contentHome data: ');
+        console.dir(data);
+
+        data.map(_mapContentHomeData, contentHomeConfig);
+
+        return {contentHome: contentHomeConfig.contentHomeList};
+      });
+
     var getHost = function () {
       // todo: change by setting using Sails config
       return {host: process.env.HOST || 'http://localhost:1337'};
@@ -130,6 +153,7 @@ module.exports = {
     }; // getToken
 
     Promise.all([cityPromise, objPromise, dealPromise, roomPromise, tagPromise,
+      contentHomePromise,
       getHost(), getToken()])
       .then(function (data) {
 
@@ -340,6 +364,18 @@ module.exports = {
 
       this.tagList[elem.lang].push({key: elem.key, val: elem.tag})
     } // _mapTagData
+
+    /**
+     * Content Home
+     */
+
+    function _mapContentHomeData(elem) {
+      if (!_.isArray(this.contentHomeList[elem.lang])) {
+        this.contentHomeList[elem.lang] = [];
+      }
+
+      this.contentHomeList[elem.lang] = JSON.parse(elem.content);
+    } // _mapContentHomeData
 
 
 

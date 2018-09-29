@@ -49,6 +49,10 @@
           href: 'admin_sale',
           text: 'NAV_SALES',
         },
+        {
+          href: 'admin_content_home',
+          text: 'NAV_CONTENT_HOME',
+        },
       ];
 
     } // activate

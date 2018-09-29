@@ -244,6 +244,20 @@
           },
         },
         url: '/admin_short',
+      })
+      .state('admin_content_home', {
+        views: {
+          header: {
+            templateUrl: 'templates/view/admin/headerAdmin.html'
+          },
+          main: {
+            templateUrl: 'templates/view/admin/content_home.html',
+          },
+          footer: {
+            templateUrl: 'templates/view/admin/footerAdmin.html',
+          },
+        },
+        url: '/admin_content_home',
       });
 
     // todo: delete
