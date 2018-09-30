@@ -370,11 +370,16 @@ module.exports = {
      */
 
     function _mapContentHomeData(elem) {
+
+      console.log('_mapContentHomeData, elem:');
+      console.dir(elem);
+
       if (!_.isArray(this.contentHomeList[elem.lang])) {
         this.contentHomeList[elem.lang] = [];
       }
 
       this.contentHomeList[elem.lang] = JSON.parse(elem.content);
+      this.contentHomeList[elem.lang][0].imgCarousel = elem.imgcarousel;
     } // _mapContentHomeData
 
 

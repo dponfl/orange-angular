@@ -22,6 +22,9 @@ module.exports = {
     content: {
       type: 'text',
     },
+    imgcarousel: {
+      type: 'text',
+    },
   },
 };
 

@@ -111,6 +111,9 @@ module.exports.routes = {
   'POST /user/logout': 'UserController.logout',
   'POST /user/check': 'UserController.check',
 
+  'POST /content/update': 'ContentController.update',
+
+
   // FileUpload
 
   'POST /file/upload': 'FileController.upload',

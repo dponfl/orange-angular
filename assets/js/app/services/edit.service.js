@@ -14,6 +14,7 @@
     var editLongObject = {};
     var editSaleObject = {};
     var editShortObject = {};
+    var editContentHomeObject = {};
 
     var self = {
       setEditLongObject: _setEditLongObject,
@@ -27,6 +28,10 @@
       setEditShortObject: _setEditShortObject,
       getEditShortObject: _getEditShortObject,
       convertShortObjectData: _convertShortObjectData,
+
+      setEditContentHomeObject: _setEditContentHomeObject,
+      getEditContentHomeObject: _getEditContentHomeObject,
+      convertContentHomeObjectData: _convertContentHomeObjectData,
 
       getIndexByKey: _getIndexByKey,
     };
@@ -252,6 +257,47 @@
 
       return newObj;
     } // _convertShortObjectData
+
+
+    //======================
+    // Content home object
+    //======================
+
+    function _setEditContentHomeObject() {
+
+      editContentHomeObject = $rootScope.orangeConfig.contentHome;
+
+    } // _setEditContentHomeObject
+
+    function _getEditContentHomeObject() {
+
+      return editContentHomeObject;
+
+    } // _getEditContentHomeObject
+
+    function _convertContentHomeObjectData(obj) {
+
+      var langContent = {};
+      var imgCarousel = '';
+
+      _.forEach(obj, function (value, key) {
+        langContent[key] = value;
+        imgCarousel = value.imgCarousel;
+      });
+
+      var newObj = {
+        imgCarousel: imgCarousel,
+        langContent: langContent,
+      };
+
+      console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
+      console.log('_convertContentHomeObjectData, langContent:');
+      console.dir(langContent);
+      console.log('_convertContentHomeObjectData, newObj:');
+      console.dir(newObj);
+
+      return newObj;
+    } // _convertContentHomeObjectData
 
 
 

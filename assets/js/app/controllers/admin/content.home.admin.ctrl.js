@@ -5,12 +5,12 @@
     .module('OrangeClient')
     .controller('ContentHomeAdminCtrl', ContentHomeAdminCtrl);
 
-  ContentHomeAdminCtrl.$inject = ['GeneralConfigService', 'ShortService', 'ExclusiveService',
+  ContentHomeAdminCtrl.$inject = ['GeneralConfigService', 'ContentService',
     'EditObjectService', '$log', '$rootScope', '$scope', '$q',
     'lodash', 'FileUploader', 'toaster', '$timeout', '$http'];
 
   /* @ngInject */
-  function ContentHomeAdminCtrl(GeneralConfigService, ShortService, ExclusiveService,
+  function ContentHomeAdminCtrl(GeneralConfigService, ContentService,
                               EditObjectService, $log, $rootScope, $scope, $q,
                               lodash, FileUploader, toaster, $timeout, $http) {
     var vm = this;
@@ -25,30 +25,15 @@
     vm.deleteInterval = _deleteInterval;
     vm.addInterval = _addInterval;
 
-    // _cancel();
-    _setDataInInitialState();
-
     vm.uploader = new FileUploader({
       alias: 'someimg',
       url: '/file/upload',
-      formData: []
-    });
-    vm.uploaderMain = new FileUploader({
-      alias: 'someimgmain',
-      url: '/file/uploadmain',
       formData: []
     });
 
     // FILTERS
 
     vm.uploader.filters.push({
-      name: 'imageFilter',
-      fn: function(item /*{File|FileLikeObject}*/, options) {
-        var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
-        return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
-      }
-    });
-    vm.uploaderMain.filters.push({
       name: 'imageFilter',
       fn: function(item /*{File|FileLikeObject}*/, options) {
         var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
@@ -68,7 +53,7 @@
       console.info('onAfterAddingAll, uploader:', addedFileItems);
 
       vm.uploader.queue.map(function (el) {
-        el.formData = [{obj: vm.formData.objnumber + '_short'}];
+        el.formData = [{obj: 'home_carousel'}];
       });
 
 
@@ -98,7 +83,7 @@
       // vm.formData.imgGallery += (vm.formData.imgGallery.length > 0 ? ';' : '' ) +
       //   response.files[0].fd.slice(response.files[0].fd.indexOf('img') + 4);
 
-      vm.formData.imgGallery += (vm.formData.imgGallery.length > 0 ? ';' : '' ) +
+      vm.formData.imgCarousel += (vm.formData.imgCarousel.length > 0 ? ';' : '' ) +
         response.url;
 
       /*
@@ -108,89 +93,13 @@
        */
     };
 
-    vm.uploaderMain.onWhenAddingFileFailed = function(item /*{File|FileLikeObject}*/, filter, options) {
-      // console.info('onWhenAddingFileFailed', item, filter, options);
-    };
-    vm.uploaderMain.onAfterAddingFile = function(fileItem) {
-      // console.info('onAfterAddingFile', fileItem);
-    };
-    vm.uploaderMain.onAfterAddingAll = function(addedFileItems) {
-      console.info('onAfterAddingAll, uploaderMain:', addedFileItems);
 
-      vm.uploaderMain.queue.map(function (el) {
-        el.formData = [{obj: vm.formData.objnumber + '_short'}];
-      });
-
-
-    };
-    vm.uploaderMain.onBeforeUploadItem = function(item) {
-      // console.info('onBeforeUploadItem', item);
-    };
-    vm.uploaderMain.onProgressItem = function(fileItem, progress) {
-      // console.info('onProgressItem', fileItem, progress);
-    };
-    vm.uploaderMain.onProgressAll = function(progress) {
-      // console.info('onProgressAll', progress);
-    };
-    vm.uploaderMain.onSuccessItem = function(fileItem, response, status, headers) {
-      // console.info('onSuccessItem', fileItem, response, status, headers);
-    };
-    vm.uploaderMain.onErrorItem = function(fileItem, response, status, headers) {
-      // console.info('onErrorItem', fileItem, response, status, headers);
-    };
-    vm.uploaderMain.onCancelItem = function(fileItem, response, status, headers) {
-      // console.info('onCancelItem', fileItem, response, status, headers);
-    };
-    vm.uploaderMain.onCompleteItem = function(fileItem, response, status, headers) {
-      console.info('onCompleteItem, uploaderMain:', fileItem, response, status, headers);
-      console.info('Response:');
-      console.dir(response);
-      // vm.formData.imgMain = response.files[0].fd.slice(response.files[0].fd.indexOf('img') + 4);
-
-      vm.formData.imgMain = response.url;
-
-    };
-
-    //=============================================
-    // $watch
-    //=============================================
-
-    $rootScope.$watch('admin.short.editObjSelected', function (newVal, oldVal) {
-      if (newVal && !oldVal) {
-        $rootScope.admin.short.editPanelShow = false;
-        $timeout(function () {
-          var obj = EditObjectService.getEditShortObject();
-          $rootScope.admin.short.editObjSelected = false;
-          $rootScope.admin.short.editPanelShow = true;
-
-          $log.warn(name + ', <<<<<< obj >>>>>>>');
-          console.dir(obj);
-
-          vm.formData = EditObjectService.convertShortObjectData(obj);
-
-          $log.warn(name + ', <<<<<< vm.formData >>>>>>>');
-          console.dir(vm.formData);
-
-          _loadGallery(obj);
-
-          /*
-           $rootScope.admin.short.formData.objnumber = obj.objNumber;
-           $rootScope.admin.short.formData.address = obj.contentObj.address.text;
-           vm.passedObject = obj;
-           vm.formData.objnumber = vm.passedObject.objNumber;
-           vm.formData.langContent.en.address = vm.passedObject.contentObj.address.text;
-           vm.formData.langContent.ru.description = vm.passedObject.contentObj.description.text;
-           */
-        }, 500);
-      }
-    });
-
-    /*
      vm.$onInit = function () {
-     var ttt = EditObjectService.getEditShortObject();
-     vm.formData.objnumber = ttt.objNumber;
+       _setDataInInitialState();
+
+       $log.warn(name + ', <<<<<< vm.formData after _setDataInInitialState() >>>>>>>');
+       console.dir(vm.formData);
      };
-     */
 
     function _setDataInInitialState() {
 
@@ -200,7 +109,19 @@
 
       vm.formData = {};
 
-      vm.formData.langContent = [];
+      // vm.formData.langContent = [];
+
+      var obj = EditObjectService.getEditContentHomeObject();
+
+      $log.warn(name + ', <<<<<< obj >>>>>>>');
+      console.dir(obj);
+
+      vm.formData = EditObjectService.convertContentHomeObjectData(obj);
+
+      $log.warn(name + ', <<<<<< vm.formData >>>>>>>');
+      console.dir(vm.formData);
+
+      _loadGallery(obj);
 
       var useLang = '';
 
@@ -226,23 +147,10 @@
          console.dir(vm.langSet[useLang]);
          */
 
-        vm.formData.langContent[useLang] = {};
+        vm.formData.langContent[useLang] = $rootScope.orangeConfig.contentHome[useLang];
       }
 
-      /*
-       vm.formData.obj = vm.objList[0];
-       vm.formData.city = vm.cityList[0];
-       vm.formData.room = vm.roomList[0];
-       vm.formData.tag = vm.tagList[0];
-       */
-      vm.formData.objnumber = '';
-      vm.formData.exclusive = 'not_exclusive';
-      vm.formData.show = 'show';
-      vm.formData.home = 'not_home';
-      vm.formData.imgMain = '';
-      vm.formData.imgGallery = '';
-      vm.formData.maps = '';
-      vm.formData.youtube = '';
+      vm.formData.imgCarousel = '';
     } // _setDataInInitialState
 
     function _update() {
@@ -250,20 +158,9 @@
       $log.info(name + ', _update, vm.formData:');
       $log.info(vm.formData);
 
-      _delete_by_tag(vm.formData.objnumber + '_short');
+      _delete_by_tag('home_carousel');
 
       async.parallel({
-        uploaderMain: function (cb) {
-          vm.uploaderMain.uploadAll();
-          vm.uploaderMain.onCompleteAll = function() {
-
-            console.info('onCompleteAll, uploaderMain:');
-            console.info('Queue:');
-            console.dir(vm.uploaderMain.queue);
-
-            cb(null, {element: 'uploaderMain'});
-          };
-        },
         uploader: function (cb) {
           vm.uploader.uploadAll();
           vm.uploader.onCompleteAll = function() {
@@ -292,27 +189,8 @@
       $log.info(formData);
 
       var useLang = '';
-      var useCalendarRaw = [];
-      var useCalendar = '';
+      var useLangContent = '';
 
-      if (
-        !_.isNil(formData.calendar)
-        && _.isArray(formData.calendar)
-        && formData.calendar.length > 0
-      ) {
-        if (
-          _.trim(formData.calendar[formData.calendar.length - 1].start) == ''
-          || _.trim(formData.calendar[formData.calendar.length - 1].end) == ''
-        ) {
-          formData.calendar.splice(formData.calendar.length - 1, 1);
-        }
-
-        _.forEach(formData.calendar, function (val) {
-          useCalendarRaw.push({start: val.start, end: val.end});
-        });
-
-        useCalendar = JSON.stringify(useCalendarRaw);
-      }
 
 
       for (var i = 0; i < $rootScope.numLang; i++) {
@@ -320,56 +198,63 @@
         useLang = $rootScope.langList[i];
         createRecords[useLang] = {};
         createRecords[useLang].lang = useLang;
-        // createRecords[useLang].deal = 'short';
-        createRecords[useLang].objnumber = formData.objnumber;
-        createRecords[useLang].exclusive = (formData.exclusive == "exclusive" ? 1 : 0);
-        createRecords[useLang].show = (formData.show == "show" ? 1 : 0);
-        createRecords[useLang].home = (formData.home == "home" ? 1 : 0);
-        createRecords[useLang].tag = (formData.tag.key == 'none' ? null : formData.tag.key);
-        createRecords[useLang].obj = formData.obj.key;
-        createRecords[useLang].city = formData.city.key;
-        createRecords[useLang].room = formData.room.key;
-        createRecords[useLang].imggallery = formData.imgGallery;
-        createRecords[useLang].imgmain = formData.imgMain;
-        createRecords[useLang].address = formData.langContent[useLang].address;
-        createRecords[useLang].bathroom = formData.langContent[useLang].bathroom;
-        createRecords[useLang].pool = formData.langContent[useLang].pool;
-        createRecords[useLang].price = formData.langContent[useLang].price;
-        createRecords[useLang].description = formData.langContent[useLang].description;
-        createRecords[useLang].info = formData.langContent[useLang].info;
-        createRecords[useLang].calendar = useCalendar;
 
+        if (
+          !_.isNil(formData.langContent)
+          && _.isArray(formData.langContent[useLang])
+          && formData.langContent[useLang].length > 0
+        ) {
 
-        if (formData.youtube) {
-          createRecords[useLang].youtube = formData.youtube;
+          useLangContent = JSON.stringify(formData.langContent[useLang]);
         }
+
+
+        createRecords[useLang].content = useLangContent;
+        createRecords[useLang].imgcarousel = formData.imgCarousel;
 
       }
 
-      createResult = _updateRecordShort(createRecords);
+      createResult = _updateRecordContent({
+        content_type: 'home',
+        record: createRecords,
+      });
+
+      console.log(name + ', _write, createResult:');
+      console.dir(createResult);
 
     } // _write
 
-    function _updateRecordShort(data) {
+    function _updateRecordContent(data) {
 
-      console.log('_updateRecordShort, data:');
+      console.log('_updateRecordContent, data:');
       console.dir(data);
 
       var someObj = {};
 
-      _.forEach(data, function (val, key) {
-        someObj['record' + key] = ShortService.updateShortObject(val);
+      _.forEach(data.record, function (val, key) {
+        someObj['record_' + key] = ContentService.updateContentObject({
+          content_type: data.content_type,
+          record: val,
+        });
       });
 
       $q.all(someObj)
         .then(function (results) {
 
-          $log.warn(name + ', _updateRecordShort, results:');
+          $log.warn(name + ', _updateRecordContent, results:');
           console.dir(results);
 
-          if (results.recorden.status == 200) {
+          if (results.record_en.status == 200) {
 
-            $rootScope.admin.short.updateEditRecords = true;
+            for (var i = 0; i < $rootScope.numLang; i++) {
+
+              var useLang = $rootScope.langList[i];
+
+              $rootScope.orangeConfig.contentHome[useLang][0].imgCarousel = results.record_en.data.en[0].imgcarousel;
+            }
+
+            _clear();
+            _setDataInInitialState();
 
             toaster.pop({
               type: 'success',
@@ -380,11 +265,6 @@
               timeout: 15000,
             });
 
-            _clear();
-            _setDataInInitialState();
-
-            $rootScope.admin.short.editPanelShow = false;
-            $rootScope.admin.short.editObjEnableButton = true;
 
             return {
               performed: true,
@@ -439,7 +319,7 @@
           };
         });
 
-    } // _updateRecordShort
+    } // _updateRecordContent
 
     function _clear() {
 
@@ -457,33 +337,27 @@
        vm.formData.room = vm.roomList[0];
        vm.formData.tag = vm.tagList[0];
        */
-      vm.formData.objnumber = '';
-      vm.formData.exclusive = 'not_exclusive';
-      vm.formData.show = 'show';
-      vm.formData.home = 'not_home';
-
-      vm.formData.calendar = [];
+      vm.formData = {};
 
 
-      for (var i = 0; i < $rootScope.numLang; i++) {
-
-        useLang = $rootScope.langList[i];
-
-        vm.formData.langContent[useLang] = {};
-        vm.formData.langContent[useLang].address = '';
-        vm.formData.langContent[useLang].bathroom = '';
-        vm.formData.langContent[useLang].pool = '';
-        vm.formData.langContent[useLang].price = '';
-        vm.formData.langContent[useLang].description = '';
-        vm.formData.langContent[useLang].info = '';
-      }
+      // for (var i = 0; i < $rootScope.numLang; i++) {
+      //
+      //   useLang = $rootScope.langList[i];
+      //
+      //   vm.formData.langContent[useLang] = {};
+      //   vm.formData.langContent[useLang].address = '';
+      //   vm.formData.langContent[useLang].bathroom = '';
+      //   vm.formData.langContent[useLang].pool = '';
+      //   vm.formData.langContent[useLang].price = '';
+      //   vm.formData.langContent[useLang].description = '';
+      //   vm.formData.langContent[useLang].info = '';
+      // }
 
       vm.uploader.clearQueue();
-      vm.uploaderMain.clearQueue();
     } // _clear
 
     function _cancel() {
-      _clear();
+      // _clear();
       _setDataInInitialState();
       $rootScope.admin.short.editPanelShow = false;
       $rootScope.admin.short.editObjEnableButton = true;
@@ -536,73 +410,15 @@
       };
 
 
-      /*
-       var test01 = '';
-       var test02 = '';
-       */
 
-      var elemMain = obj.en.img;
-
-      // Main image
-
-      url = elemMain.src;
-
-      $log.info('Main image, url:');
-      $log.info(url);
-
-      $http.get(url, getConf)
-        .then(function (response) {
-          // success
-          $log.info(name + ', <<< Main image, Success response >>>');
-          console.dir(response);
-
-          var imgName = 'none';
-          var imgNameOld = 'none';
-          var imgUrl = response.config.url;
-          var imgSize = response.data.size;
-          var imgType = response.data.type;
-
-          if (imgUrl.indexOf($rootScope.imgFileNameElement)) {
-            imgNameOld = imgUrl.slice(imgUrl.indexOf($rootScope.imgFileNameElement) +
-              $rootScope.imgFileNameElement.length + 2);
-
-            $log.info('imgNameOld: ' + imgNameOld);
-
-            imgName = 'main';
-          }
-
-          var imgFile = new File(
-            [response.data],
-            imgName,
-            {
-              size: imgSize,
-              type: imgType
-            }
-          );
-
-          /*
-           test01 = vm.uploaderMain.isFile(imgFile);
-           test02 = vm.uploaderMain.isFileLikeObject(imgFile);
-
-           $log.warn(name + ', imgFile check results:');
-           console.log('isFile: ' + test01);
-           console.log('isFileLikeObject: ' + test02);
-           */
-
-          vm.uploaderMain.addToQueue(imgFile);
-
-        }, function (response) {
-          // error
-          $log.error(name + ', <<< Main image, Error response >>>');
-          console.dir(response);
-        });
-
-      // Gallery images
+      // Carousel images
 
       var imgNum = 0;
 
-      _.forEach(obj.en.gallery, function (elem) {
-        url = elem.src;
+      // todo: try to replace forEach by for in order to keep the pics order
+
+      _.forEach(obj.en[0].imgCarousel.replace(/^\s+|\s+$/gm,'').split(';'), function (elem) {
+        url = elem;
         $http.get(url, getConf)
           .then(function (response) {
             // success
@@ -621,7 +437,7 @@
 
               $log.info('imgNameOld: ' + imgNameOld);
 
-              imgName = 'gallery_' + imgNum;
+              imgName = 'carousel_' + imgNum;
               imgNum++;
             }
 
@@ -664,16 +480,16 @@
       $http.post($rootScope.orangeConfig.host + '/file/destroy', reqObj)
         .then(successCb, errorCb);
 
-      function successCb() {
+      function successCb(data) {
         $log.info('ContentHomeAdminCtrl::_delete_by_tag, successCb, data:');
         $log.info(data);
 
 
       } // successCb
 
-      function errorCb() {
+      function errorCb(err) {
         $log.info('ContentHomeAdminCtrl::_delete_by_tag, errorCb, data:');
-        $log.info(data);
+        $log.info(err);
 
 
       } // errorCb

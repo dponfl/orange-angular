@@ -101,7 +101,7 @@
                         .col-sm-9
                           input(type="text",
                           placeholder="{{'OBJ_SLIDE_01_TITLE_PLACEHOLDER' | translate}}",
-                          data-ng-model='ctrl.formData.langContent[lang.lang].slide_01_title'
+                          data-ng-model='ctrl.formData.langContent[lang.lang][0].slide_01_title'
                           ).form-control#slide_01_title
 
                       .form-group.clearfix
@@ -109,7 +109,7 @@
                         .col-sm-9
                           textarea(type="text",
                           placeholder="{{'OBJ_SLIDE_01_TEXT_PLACEHOLDER' | translate}}",
-                          data-ng-model='ctrl.formData.langContent[lang.lang].slide_01_text'
+                          data-ng-model='ctrl.formData.langContent[lang.lang][0].slide_01_text'
                           ).form-control#slide_01_text
 
                       .form-group.clearfix
@@ -117,7 +117,7 @@
                         .col-sm-9
                           input(type="text",
                           placeholder="{{'OBJ_SLIDE_02_TITLE_PLACEHOLDER' | translate}}",
-                          data-ng-model='ctrl.formData.langContent[lang.lang].slide_02_title'
+                          data-ng-model='ctrl.formData.langContent[lang.lang][0].slide_02_title'
                           ).form-control#slide_02_title
 
                       .form-group.clearfix
@@ -125,7 +125,7 @@
                         .col-sm-9
                           textarea(type="text",
                           placeholder="{{'OBJ_SLIDE_02_TEXT_PLACEHOLDER' | translate}}",
-                          data-ng-model='ctrl.formData.langContent[lang.lang].slide_02_text'
+                          data-ng-model='ctrl.formData.langContent[lang.lang][0].slide_02_text'
                           ).form-control#slide_02_text
 
                       .form-group.clearfix
@@ -133,7 +133,7 @@
                         .col-sm-9
                           input(type="text",
                           placeholder="{{'OBJ_SLIDE_03_TITLE_PLACEHOLDER' | translate}}",
-                          data-ng-model='ctrl.formData.langContent[lang.lang].slide_03_title'
+                          data-ng-model='ctrl.formData.langContent[lang.lang][0].slide_03_title'
                           ).form-control#slide_03_title
 
                       .form-group.clearfix
@@ -141,7 +141,7 @@
                         .col-sm-9
                           textarea(type="text",
                           placeholder="{{'OBJ_SLIDE_03_TEXT_PLACEHOLDER' | translate}}",
-                          data-ng-model='ctrl.formData.langContent[lang.lang].slide_03_text'
+                          data-ng-model='ctrl.formData.langContent[lang.lang][0].slide_03_text'
                           ).form-control#slide_03_text
 
 
@@ -151,7 +151,7 @@
                   .col-lg-7.col-lg-offset-2.col-md-offset-1.col-sm-offset-1
                     button(type='submit',
                     translate='BTN_ADMIN_CREATE',
-                    data-ng-disabled="!(ctrl.uploader.getNotUploadedItems().length && ctrl.uploaderMain.getNotUploadedItems().length)"
+                    data-ng-disabled="!(ctrl.uploader.getNotUploadedItems().length == 3)"
                     ).btn.btn-success.btn-lg.btn-margin
                     button(data-ng-click='ctrl.clear()',
                     translate='BTN_CLR'

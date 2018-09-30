@@ -43,7 +43,7 @@ module.exports = {
 
       fileName = result.files[0].fd.slice(result.files[0].fd.indexOf('assets')).split('\\').join('/');
 
-      // console.log('Transformed file name: ' + fileName);
+      console.log('Transformed file name: ' + fileName);
 
       cloud.v2.uploader.upload(fileName, {
         use_filename: true,

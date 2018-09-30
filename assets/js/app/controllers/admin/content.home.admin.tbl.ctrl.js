@@ -6,11 +6,11 @@
     .controller('ContentHomeAdminTblCtrl', ContentHomeAdminTblCtrl);
 
   ContentHomeAdminTblCtrl.$inject = ['GeneralConfigService', '$rootScope',
-    '$scope', '$log','lodash'];
+    'EditObjectService', '$scope', '$log','lodash'];
 
   /* @ngInject */
   function ContentHomeAdminTblCtrl(GeneralConfigService, $rootScope,
-                             $scope, $log, lodash) {
+                                   EditObjectService, $scope, $log, lodash) {
     var _ = lodash;
     var __=GeneralConfigService;
     var vm = this;
@@ -45,6 +45,8 @@
 
       vm.activeTabMain = 'new_obj';
       vm.activeTabEdit = 'lang_eng';
+
+      EditObjectService.setEditContentHomeObject();
 
     } // activate()
 
