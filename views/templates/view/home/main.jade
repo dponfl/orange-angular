@@ -11,9 +11,9 @@
     .carousel-inner
       div(data-ng-repeat='slide in carousel.slides', data-ng-class="{'active': slide.active}").item
         img(data-ng-src='{{slide.image}}').carousel-img
-        .carousel-caption
-          h4(translate='{{slide.title}}')
-          p(translate='{{slide.text}}')
+        div(data-ng-show="slide.title != '' || slide.text != ''").carousel-caption
+          h4 {{slide.title}}
+          p {{slide.text}}
 
     //- Controls
     a(data-slide="prev", href="#mainCarousel", role="button").left.carousel-control
