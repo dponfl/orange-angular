@@ -1,5 +1,6 @@
 #longterm
-  .row#longtermCallout
+  div(data-ng-controller='HomeLongCtrl as homeLongCtrl',
+  data-ng-show="homeLongCtrl.showLong").row#longtermCallout
     .cal-12
       .well
         .page-header.page-primary
@@ -8,7 +9,7 @@
         .page-body#block-exclusive
           .row
             .col-sm-12
-              div(data-ng-controller='HomeLongCtrl as homeLongCtrl').row
+              .row
                 div(data-ng-repeat='group in homeLongCtrl.panelGroups').row
                   .col-sm-4(data-ng-repeat='panel in group')
                     small-panel-long(badge='panel.badge',

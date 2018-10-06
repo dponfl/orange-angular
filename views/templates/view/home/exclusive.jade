@@ -1,5 +1,6 @@
 #exclusive
-  .row#exclusiveCallout
+  div(data-ng-controller='HomeExclusiveCtrl as homeExclCtrl',
+  data-ng-show="homeExclCtrl.showExclusive").row#exclusiveCallout
     .cal-12
       .well
         .page-header.page-primary
@@ -12,7 +13,7 @@
               h2(translate='EXCLUSIVE_PAGE_BODY_H2').text-center
           .row
             .col-sm-12
-              div(data-ng-controller='HomeExclusiveCtrl as homeExclCtrl').row
+              .row
                 div(data-ng-repeat='group in homeExclCtrl.panelGroups').row
                   .col-sm-4(data-ng-repeat='panel in group')
                     small-panel-exclusive(badge='panel.badge',

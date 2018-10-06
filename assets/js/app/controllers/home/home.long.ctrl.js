@@ -17,6 +17,7 @@
     vm.tagList = $rootScope.orangeConfig.tagList[$rootScope.lang];
 
 
+    vm.showLong = false;
     vm.panelGroups = [];
     vm.innerGroup = [];
     vm.panels = [];
@@ -30,13 +31,24 @@
       objs: LongService.getAllLongObjectsObjs({show: 1, home: 1})})
       .then(function (results) {
 
+        $log.info('HomeLongCtrl, results:');
+        $log.info(results);
+
         vm.keysAll = results.keys;
-        vm.objsAll = results.objs.data;
+
+        if (!_.isNil(results.objs.status)
+          && results.objs.status == 200
+          && !_.isNil(results.objs.data)
+        ) {
+          vm.showLong = true;
+          vm.objsAll = results.objs.data;
+        }
 
       })
       .then(function () {
-
-        $rootScope.$watch('lang', update);
+        if (vm.showLong) {
+          $rootScope.$watch('lang', update);
+        }
       })
       .catch(function (err) {
         // todo: change by Log

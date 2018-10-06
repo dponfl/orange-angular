@@ -18,6 +18,7 @@
     vm.tagList = $rootScope.orangeConfig.tagList[$rootScope.lang];
 
 
+    vm.showExclusive = false;
     vm.panelGroups = [];
     vm.innerGroup = [];
     vm.panels = [];
@@ -42,18 +43,24 @@
         $log.info(results);
 
         vm.keysAll = results.keys;
-        vm.objsAll = results.objs.data;
 
+        if (!_.isNil(results.objs.status)
+          && results.objs.status == 200
+          && !_.isNil(results.objs.data)
+        ) {
+          vm.showExclusive = true;
+          vm.objsAll = results.objs.data;
+        }
       })
       .then(function () {
-
-        $rootScope.$watch('lang', update);
+        if (vm.showExclusive) {
+          $rootScope.$watch('lang', update);
+        }
       })
       .catch(function (err) {
         // todo: change by Log
         $log.warn('Error...');
         $log.error(err);
-        return;
       });
 
 
@@ -70,7 +77,6 @@
       _buildPanel();
       _buildPanelGroups();
     }
-
 
     function _buildPanel() {
       vm.panels = [];

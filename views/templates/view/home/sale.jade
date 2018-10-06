@@ -1,5 +1,6 @@
 #sale
-  .row#saleCallout
+  div(data-ng-controller='HomeSaleCtrl as homeSaleCtrl',
+  data-ng-show="homeSaleCtrl.showSale").row#saleCallout
     .cal-12
       .well
         .page-header.page-primary
@@ -8,7 +9,7 @@
         .page-body#block-exclusive
           .row
             .col-sm-12
-              div(data-ng-controller='HomeSaleCtrl as homeSaleCtrl').row
+              .row
                 div(data-ng-repeat='group in homeSaleCtrl.panelGroups').row
                   .col-sm-4(data-ng-repeat='panel in group')
                     small-panel-sale(badge='panel.badge',
