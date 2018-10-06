@@ -322,37 +322,7 @@
     } // _updateRecordContent
 
     function _clear() {
-
-      var useLang = '';
-
-      /*
-       $log.info(name + ', !!!!!!!!! $rootScope.admin.short.formData:');
-       console.dir($rootScope.admin.short.formData);
-       console.dir(vm);
-       */
-
-      /*
-       vm.formData.obj = vm.objList[0];
-       vm.formData.city = vm.cityList[0];
-       vm.formData.room = vm.roomList[0];
-       vm.formData.tag = vm.tagList[0];
-       */
       vm.formData = {};
-
-
-      // for (var i = 0; i < $rootScope.numLang; i++) {
-      //
-      //   useLang = $rootScope.langList[i];
-      //
-      //   vm.formData.langContent[useLang] = {};
-      //   vm.formData.langContent[useLang].address = '';
-      //   vm.formData.langContent[useLang].bathroom = '';
-      //   vm.formData.langContent[useLang].pool = '';
-      //   vm.formData.langContent[useLang].price = '';
-      //   vm.formData.langContent[useLang].description = '';
-      //   vm.formData.langContent[useLang].info = '';
-      // }
-
       vm.uploader.clearQueue();
     } // _clear
 
