@@ -25,15 +25,15 @@
       span(aria-hidden="true").glyphicon.glyphicon-chevron-right
       span.sr-only Next
 
-  .row#mainCallout
+  div(data-ng-controller="HomeGeneralCtrl as home",
+  data-ng-show="home.home.home_title != '' && (home.home.home_body_lead != '' || home.home.home_body_p_1 != '')").row#mainCallout
     .cal-12
       .well
         .page-header.page-primary
-          h1 {{'HOME_TITLE_H1' | translate}}
-            small(translate='HOME_SUBTITLE')
+          h1 {{home.home.home_title}}
 
         .page-body
-          p(translate='HOME_PAGE_BODY_LEAD').lead
-          p(translate='HOME_PAGE_BODY_P_1')
-          p(translate='HOME_PAGE_BODY_P_2')
-          p(translate='HOME_PAGE_BODY_P_3')
+          p.lead {{home.home.home_body_lead}}
+          p {{home.home.home_body_p_1}}
+          p {{home.home.home_body_p_2}}
+          p {{home.home.home_body_p_3}}

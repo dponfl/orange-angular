@@ -144,6 +144,47 @@
                           data-ng-model='ctrl.formData.langContent[lang.lang][0].slide_03_text'
                           ).form-control#slide_03_text
 
+                      .form-group.clearfix
+                        label(for='home_title', translate='LBL_HOME_TITLE').col-sm-2.control-label.text-right
+                        .col-sm-9
+                          input(type="text",
+                          placeholder="{{'OBJ_HOME_TITLE_PLACEHOLDER' | translate}}",
+                          data-ng-model='ctrl.formData.langContent[lang.lang][0].home_title'
+                          ).form-control#home_title
+
+                      .form-group.clearfix
+                        label(for='home_body_lead', translate='LBL_HOME_BODY_LEAD').col-sm-2.control-label.text-right
+                        .col-sm-9
+                          textarea(type="text",
+                          placeholder="{{'OBJ_HOME_BODY_LEAD_PLACEHOLDER' | translate}}",
+                          data-ng-model='ctrl.formData.langContent[lang.lang][0].home_body_lead'
+                          ).form-control#home_body_lead
+
+                      .form-group.clearfix
+                        label(for='home_body_p_1', translate='LBL_HOME_BODY_P_1').col-sm-2.control-label.text-right
+                        .col-sm-9
+                          textarea(type="text",
+                          placeholder="{{'OBJ_HOME_BODY_P_1_PLACEHOLDER' | translate}}",
+                          data-ng-model='ctrl.formData.langContent[lang.lang][0].home_body_p_1'
+                          ).form-control#home_body_p_1
+
+                      .form-group.clearfix
+                        label(for='home_body_p_2', translate='LBL_HOME_BODY_P_2').col-sm-2.control-label.text-right
+                        .col-sm-9
+                          textarea(type="text",
+                          placeholder="{{'OBJ_HOME_BODY_P_2_PLACEHOLDER' | translate}}",
+                          data-ng-model='ctrl.formData.langContent[lang.lang][0].home_body_p_2'
+                          ).form-control#home_body_p_2
+
+                      .form-group.clearfix
+                        label(for='home_body_p_3', translate='LBL_HOME_BODY_P_3').col-sm-2.control-label.text-right
+                        .col-sm-9
+                          textarea(type="text",
+                          placeholder="{{'OBJ_HOME_BODY_P_3_PLACEHOLDER' | translate}}",
+                          data-ng-model='ctrl.formData.langContent[lang.lang][0].home_body_p_3'
+                          ).form-control#home_body_p_3
+
+
 
 
 
