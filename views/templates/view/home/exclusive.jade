@@ -4,13 +4,12 @@
     .cal-12
       .well
         .page-header.page-primary
-          h1 {{'EXCLUSIVE_PAGE_HEADER_TITLE' | translate}}
-            small(translate='EXCLUSIVE_PAGE_HEADER_SUBTITLE')
+          h1 {{homeExclCtrl.homeExclusive.home_exclusive_title}}
         .page-body#block-exclusive
           .row
             .col-sm-12
-              h1(translate='EXCLUSIVE_PAGE_BODY_H1').text-center
-              h2(translate='EXCLUSIVE_PAGE_BODY_H2').text-center
+              h1.text-center {{homeExclCtrl.homeExclusive.home_exclusive_body_h1}}
+              h2.text-center {{homeExclCtrl.homeExclusive.home_exclusive_body_h2}}
           .row
             .col-sm-12
               .row
@@ -24,5 +23,5 @@
                     img='panel.img',
                     content='panel.content')
               hr
-              a(data-ui-sref='exclusive', translate='EXCLUSIVE_PAGE_MORE_OBJ').col-xs-12.btn.btn-info.btn-lg.btn-margin.center-block.link-and-scroll
+              a(data-ui-sref='exclusive').col-xs-12.btn.btn-info.btn-lg.btn-margin.center-block.link-and-scroll {{homeExclCtrl.homeExclusive.home_exclusive_body_more}}
 

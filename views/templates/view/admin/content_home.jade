@@ -184,7 +184,37 @@
                           data-ng-model='ctrl.formData.langContent[lang.lang][0].home_body_p_3'
                           ).form-control#home_body_p_3
 
+                      .form-group.clearfix
+                        label(for='home_exclusive_title', translate='LBL_HOME_EXCLUSIVE_TITLE').col-sm-2.control-label.text-right
+                        .col-sm-9
+                          input(type="text",
+                          placeholder="{{'OBJ_HOME_EXCLUSIVE_TITLE_PLACEHOLDER' | translate}}",
+                          data-ng-model='ctrl.formData.langContent[lang.lang][0].home_exclusive_title'
+                          ).form-control#home_exclusive_title
 
+                      .form-group.clearfix
+                        label(for='home_exclusive_body_h1', translate='LBL_HOME_EXCLUSIVE_H1').col-sm-2.control-label.text-right
+                        .col-sm-9
+                          input(type="text",
+                          placeholder="{{'OBJ_HOME_EXCLUSIVE_H1_PLACEHOLDER' | translate}}",
+                          data-ng-model='ctrl.formData.langContent[lang.lang][0].home_exclusive_body_h1'
+                          ).form-control#home_exclusive_body_h1
+
+                      .form-group.clearfix
+                        label(for='home_exclusive_body_h2', translate='LBL_HOME_EXCLUSIVE_H2').col-sm-2.control-label.text-right
+                        .col-sm-9
+                          input(type="text",
+                          placeholder="{{'OBJ_HOME_EXCLUSIVE_H2_PLACEHOLDER' | translate}}",
+                          data-ng-model='ctrl.formData.langContent[lang.lang][0].home_exclusive_body_h2'
+                          ).form-control#home_exclusive_body_h2
+
+                      .form-group.clearfix
+                        label(for='home_exclusive_body_more', translate='LBL_HOME_EXCLUSIVE_MORE').col-sm-2.control-label.text-right
+                        .col-sm-9
+                          input(type="text",
+                          placeholder="{{'OBJ_HOME_EXCLUSIVE_MORE_PLACEHOLDER' | translate}}",
+                          data-ng-model='ctrl.formData.langContent[lang.lang][0].home_exclusive_body_more'
+                          ).form-control#home_exclusive_body_more
 
 
 
@@ -192,7 +222,7 @@
                   .col-lg-7.col-lg-offset-2.col-md-offset-1.col-sm-offset-1
                     button(type='submit',
                     translate='BTN_ADMIN_CREATE',
-                    data-ng-disabled="!(ctrl.uploader.getNotUploadedItems().length == 3)"
+                    data-ng-disabled="ctrl.uploader.queue.length < 3"
                     ).btn.btn-success.btn-lg.btn-margin
                     button(data-ng-click='ctrl.clear()',
                     translate='BTN_CLR'

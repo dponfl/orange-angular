@@ -22,6 +22,7 @@
     vm.panelGroups = [];
     vm.innerGroup = [];
     vm.panels = [];
+    vm.homeExclusive = {};
 
     vm.keysAll = [];
     vm.objsAll = [];
@@ -70,6 +71,13 @@
       vm.cityList = $rootScope.orangeConfig.cityList[$rootScope.lang];
       vm.roomList = $rootScope.orangeConfig.roomList[$rootScope.lang];
       vm.tagList = $rootScope.orangeConfig.tagList[$rootScope.lang];
+
+      vm.homeExclusive = {
+        home_exclusive_title: $rootScope.orangeConfig.contentHome[$rootScope.lang][0].home_exclusive_title || '',
+        home_exclusive_body_h1: $rootScope.orangeConfig.contentHome[$rootScope.lang][0].home_exclusive_body_h1 || '',
+        home_exclusive_body_h2: $rootScope.orangeConfig.contentHome[$rootScope.lang][0].home_exclusive_body_h2 || '',
+        home_exclusive_body_more: $rootScope.orangeConfig.contentHome[$rootScope.lang][0].home_exclusive_body_more || '',
+      };
 
       vm.keys = vm.keysAll[$rootScope.lang];
       vm.objs = vm.objsAll[$rootScope.lang];
