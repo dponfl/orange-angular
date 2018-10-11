@@ -58,9 +58,17 @@
           },
           main: {
             templateUrl: 'templates/view/exclusive.html',
-            controller: ['$scope', '$stateParams', function ($scope, $stateParams) {
+            controller: ['$scope', '$stateParams', '$rootScope', function ($scope, $stateParams, $rootScope) {
               $scope.directLinkObjectNumber = $stateParams.objNumber;
               $scope.directLinkDeal = $stateParams.deal;
+
+              _update();
+
+              $rootScope.$watch('lang', _update);
+
+              function _update() {
+                $scope.title = $rootScope.orangeConfig.contentHome[$rootScope.lang][0].home_exclusive_title;
+              } // _update
             }],
           },
           footer: {
