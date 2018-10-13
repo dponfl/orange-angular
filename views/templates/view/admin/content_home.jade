@@ -96,6 +96,9 @@
                     bs-pane
                     )
 
+                      .clearfix
+                        h4 СЛАЙДЕР
+
                       .form-group.clearfix.top-element
                         label(for='slide_01_title', translate='LBL_SLIDE_01_TITLE').col-sm-2.control-label.text-right
                         .col-sm-9
@@ -144,6 +147,9 @@
                           data-ng-model='ctrl.formData.langContent[lang.lang][0].slide_03_text'
                           ).form-control#slide_03_text
 
+                      .clearfix
+                        h4 ПЕРВЫЙ БЛОК
+
                       .form-group.clearfix
                         label(for='home_title', translate='LBL_HOME_TITLE').col-sm-2.control-label.text-right
                         .col-sm-9
@@ -184,6 +190,9 @@
                           data-ng-model='ctrl.formData.langContent[lang.lang][0].home_body_p_3'
                           ).form-control#home_body_p_3
 
+                      .clearfix
+                        h4 ЭКСКЛЮЗИВНЫЕ ОБЪЕКТЫ
+
                       .form-group.clearfix
                         label(for='home_exclusive_title', translate='LBL_HOME_EXCLUSIVE_TITLE').col-sm-2.control-label.text-right
                         .col-sm-9
@@ -215,6 +224,25 @@
                           placeholder="{{'OBJ_HOME_EXCLUSIVE_MORE_PLACEHOLDER' | translate}}",
                           data-ng-model='ctrl.formData.langContent[lang.lang][0].home_exclusive_body_more'
                           ).form-control#home_exclusive_body_more
+
+                      .clearfix
+                        h4 ПОСУТОЧНАЯ АРЕНДА
+
+                      .form-group.clearfix
+                        label(for='home_short_title', translate='LBL_HOME_SHORT_TITLE').col-sm-2.control-label.text-right
+                        .col-sm-9
+                          input(type="text",
+                          placeholder="{{'OBJ_HOME_SHORT_TITLE_PLACEHOLDER' | translate}}",
+                          data-ng-model='ctrl.formData.langContent[lang.lang][0].home_short_title'
+                          ).form-control#home_short_title
+
+                      .form-group.clearfix
+                        label(for='home_short_body_more', translate='LBL_HOME_SHORT_MORE').col-sm-2.control-label.text-right
+                        .col-sm-9
+                          input(type="text",
+                          placeholder="{{'OBJ_HOME_SHORT_MORE_PLACEHOLDER' | translate}}",
+                          data-ng-model='ctrl.formData.langContent[lang.lang][0].home_short_body_more'
+                          ).form-control#home_short_body_more
 
 
 

@@ -63,6 +63,11 @@
       vm.roomList = $rootScope.orangeConfig.roomList[$rootScope.lang];
       vm.tagList = $rootScope.orangeConfig.tagList[$rootScope.lang];
 
+      vm.homeShort = {
+        home_short_title: $rootScope.orangeConfig.contentHome[$rootScope.lang][0].home_short_title || '',
+        home_short_body_more: $rootScope.orangeConfig.contentHome[$rootScope.lang][0].home_short_body_more || '',
+      };
+
       vm.keys = vm.keysAll[$rootScope.lang];
       vm.objs = vm.objsAll[$rootScope.lang];
 
