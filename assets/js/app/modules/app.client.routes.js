@@ -144,8 +144,16 @@
           },
           main: {
             templateUrl: 'templates/view/sale.html',
-            controller: ['$scope', '$stateParams', function ($scope, $stateParams) {
+            controller: ['$scope', '$stateParams', '$rootScope', function ($scope, $stateParams, $rootScope) {
               $scope.directLinkObjectNumber = $stateParams.objNumber;
+
+              _update();
+
+              $rootScope.$watch('lang', _update);
+
+              function _update() {
+                $scope.title = $rootScope.orangeConfig.contentHome[$rootScope.lang][0].home_sale_title;
+              } // _update
             }],
           },
           footer: {

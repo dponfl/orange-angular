@@ -258,8 +258,8 @@
 
             toaster.pop({
               type: 'success',
-              title: __.t('ADMIN_CREATE_SUCCESS_TITLE'),
-              body: __.t('ADMIN_CREATE_SUCCESS_BODY_1'),
+              title: __.t('ADMIN_HOME_SUCCESS_TITLE'),
+              body: __.t('ADMIN_HOME_SUCCESS_BODY_1'),
               toasterId: '111111',
               showCloseButton: true,
               timeout: 15000,
@@ -280,8 +280,8 @@
 
             toaster.pop({
               type: 'error',
-              title: __.t('ADMIN_CREATE_ERROR_TITLE'),
-              body: __.t('ADMIN_CREATE_ERROR_BODY_1'),
+              title: __.t('ADMIN_HOME_ERROR_TITLE'),
+              body: __.t('ADMIN_HOME_ERROR_BODY_1'),
               toasterId: '111111',
               showCloseButton: true,
               timeout: 15000,
@@ -303,8 +303,8 @@
 
           toaster.pop({
             type: 'error',
-            title: __.t('ADMIN_CREATE_ERROR_TITLE'),
-            body: __.t('ADMIN_CREATE_ERROR_BODY_1'),
+            title: __.t('ADMIN_HOME_ERROR_TITLE'),
+            body: __.t('ADMIN_HOME_ERROR_BODY_1'),
             toasterId: '111111',
             showCloseButton: true,
             timeout: 15000,

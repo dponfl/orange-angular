@@ -67,6 +67,13 @@
           'ADMIN_DELETE_ERROR_TITLE': 'Delete record request',
           'ADMIN_DELETE_ERROR_BODY_1': 'was NOT performed',
 
+          'ADMIN_HOME_SUCCESS_TITLE': 'Home page update',
+          'ADMIN_HOME_SUCCESS_BODY_1': 'was successfully performed',
+
+          'ADMIN_HOME_ERROR_TITLE': 'Home page update',
+          'ADMIN_HOME_ERROR_BODY_1': 'was NOT performed',
+
+
         },
         ru: {
           'BOOKING_SUCCESS_TITLE': 'Благодарим за бронирование!',
@@ -103,6 +110,12 @@
 
           'ADMIN_DELETE_ERROR_TITLE': 'Удаление объекта',
           'ADMIN_DELETE_ERROR_BODY_1': 'НЕ БЫЛО выполнено',
+
+          'ADMIN_HOME_SUCCESS_TITLE': 'Редактирование главной страницы',
+          'ADMIN_HOME_SUCCESS_BODY_1': 'было успешно выполнено',
+
+          'ADMIN_HOME_ERROR_TITLE': 'Редактирование главной страницы',
+          'ADMIN_HOME_ERROR_BODY_1': 'НЕ БЫЛО выполнено',
 
         },
       }

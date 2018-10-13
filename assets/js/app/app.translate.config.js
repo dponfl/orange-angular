@@ -346,6 +346,11 @@ function translateConfig ($translateProvider) {
     'LBL_HOME_LONG_MORE': 'Долгосрочная аренда: Кнопка',
     'OBJ_HOME_LONG_MORE_PLACEHOLDER': 'Долгосрочная аренда: Кнопка',
 
+    'LBL_HOME_SALE_TITLE': 'Продажа: Заголовок',
+    'OBJ_HOME_SALE_TITLE_PLACEHOLDER': 'Продажа: Заголовок',
+    'LBL_HOME_SALE_MORE': 'Продажа: Кнопка',
+    'OBJ_HOME_SALE_MORE_PLACEHOLDER': 'Продажа: Кнопка',
+
     'LBL_SLIDE_01_TITLE': 'Слайд 1: заголовок',
     'OBJ_SLIDE_01_TITLE_PLACEHOLDER': 'Заголовок слайда 1',
     'LBL_SLIDE_01_TEXT': 'Слайд 1: текст',
