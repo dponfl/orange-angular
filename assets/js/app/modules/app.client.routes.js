@@ -116,8 +116,16 @@
           },
           main: {
             templateUrl: 'templates/view/longterm.html',
-            controller: ['$scope', '$stateParams', function ($scope, $stateParams) {
+            controller: ['$scope', '$stateParams', '$rootScope', function ($scope, $stateParams, $rootScope) {
               $scope.directLinkObjectNumber = $stateParams.objNumber;
+
+              _update();
+
+              $rootScope.$watch('lang', _update);
+
+              function _update() {
+                $scope.title = $rootScope.orangeConfig.contentHome[$rootScope.lang][0].home_long_title;
+              } // _update
             }],
           },
           footer: {

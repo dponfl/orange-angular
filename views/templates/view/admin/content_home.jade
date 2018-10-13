@@ -245,6 +245,26 @@
                           ).form-control#home_short_body_more
 
 
+                      .clearfix
+                        h4 ДОЛГОСРОЧНАЯ АРЕНДА
+
+                      .form-group.clearfix
+                        label(for='home_long_title', translate='LBL_HOME_LONG_TITLE').col-sm-2.control-label.text-right
+                        .col-sm-9
+                          input(type="text",
+                          placeholder="{{'OBJ_HOME_LONG_TITLE_PLACEHOLDER' | translate}}",
+                          data-ng-model='ctrl.formData.langContent[lang.lang][0].home_long_title'
+                          ).form-control#home_long_title
+
+                      .form-group.clearfix
+                        label(for='home_long_body_more', translate='LBL_HOME_LONG_MORE').col-sm-2.control-label.text-right
+                        .col-sm-9
+                          input(type="text",
+                          placeholder="{{'OBJ_HOME_LONG_MORE_PLACEHOLDER' | translate}}",
+                          data-ng-model='ctrl.formData.langContent[lang.lang][0].home_long_body_more'
+                          ).form-control#home_long_body_more
+
+
 
                 .form-group.clearfix
                   .col-lg-7.col-lg-offset-2.col-md-offset-1.col-sm-offset-1

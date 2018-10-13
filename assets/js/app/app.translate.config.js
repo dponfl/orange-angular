@@ -315,6 +315,7 @@ function translateConfig ($translateProvider) {
     'HEADER_LOGOUT': 'Выйти',
     'NAV_CONTENT_HOME': 'Главная страница',
     'CONTENT_HOME_PAGE_HEADER_TITLE': 'Редактирование главной страницы',
+
     'LBL_HOME_TITLE': 'Заголовок',
     'OBJ_HOME_TITLE_PLACEHOLDER': 'Заголовок',
     'LBL_HOME_BODY_LEAD': 'Ведущий параграф',
@@ -325,6 +326,7 @@ function translateConfig ($translateProvider) {
     'OBJ_HOME_BODY_P_2_PLACEHOLDER': '2-ой параграф',
     'LBL_HOME_BODY_P_3': '3-ий параграф',
     'OBJ_HOME_BODY_P_3_PLACEHOLDER': '3-ий параграф',
+
     'LBL_HOME_EXCLUSIVE_TITLE': 'Эксклюзивные объекты: Заголовок',
     'OBJ_HOME_EXCLUSIVE_TITLE_PLACEHOLDER': 'Эксклюзивные объекты: Заголовок',
     'LBL_HOME_EXCLUSIVE_H1': 'Эксклюзивные объекты: Подзаголовок 1',
@@ -338,6 +340,11 @@ function translateConfig ($translateProvider) {
     'OBJ_HOME_SHORT_TITLE_PLACEHOLDER': 'Посуточная аренда: Заголовок',
     'LBL_HOME_SHORT_MORE': 'Посуточная аренда: Кнопка',
     'OBJ_HOME_SHORT_MORE_PLACEHOLDER': 'Посуточная аренда: Кнопка',
+
+    'LBL_HOME_LONG_TITLE': 'Долгосрочная аренда: Заголовок',
+    'OBJ_HOME_LONG_TITLE_PLACEHOLDER': 'Долгосрочная аренда: Заголовок',
+    'LBL_HOME_LONG_MORE': 'Долгосрочная аренда: Кнопка',
+    'OBJ_HOME_LONG_MORE_PLACEHOLDER': 'Долгосрочная аренда: Кнопка',
 
     'LBL_SLIDE_01_TITLE': 'Слайд 1: заголовок',
     'OBJ_SLIDE_01_TITLE_PLACEHOLDER': 'Заголовок слайда 1',

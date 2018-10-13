@@ -4,8 +4,7 @@
     .cal-12
       .well
         .page-header.page-primary
-          h1 {{'LONGTERM_PAGE_HEADER_TITLE' | translate}}
-            small(translate='LONGTERM_PAGE_HEADER_SUBTITLE')
+          h1 {{homeLongCtrl.homeLong.home_long_title}}
         .page-body#block-exclusive
           .row
             .col-sm-12
@@ -19,5 +18,5 @@
                     img='panel.img',
                     content='panel.content')
               hr
-              a(data-ui-sref='longterm', translate='LONGTERM_PAGE_MORE_OBJ').col-xs-12.btn.btn-info.btn-lg.btn-margin.center-block.link-and-scroll
+              a(data-ui-sref='longterm').col-xs-12.btn.btn-info.btn-lg.btn-margin.center-block.link-and-scroll {{homeLongCtrl.homeLong.home_long_body_more}}
 
