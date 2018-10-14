@@ -171,7 +171,17 @@
             templateUrl: 'templates/view/header/headerClient.html'
           },
           main: {
-            templateUrl: 'templates/view/qa.html'
+            templateUrl: 'templates/view/qa.html',
+            controller: ['$scope', '$rootScope', function ($scope, $rootScope) {
+
+              _update();
+
+              $rootScope.$watch('lang', _update);
+
+              function _update() {
+                $scope.title = $rootScope.orangeConfig.contentQA[$rootScope.lang].title;
+              } // _update
+            }],
           },
           footer: {
             templateUrl: 'templates/view/footer/footerClient.html'

@@ -11,5 +11,18 @@
     .cal-12
       .well
         .page-header.page-primary
-          h1 {{'QA_PAGE_HEADER_TITLE' | translate}}
-            small(translate='QA_PAGE_HEADER_SUBTITLE')
+          h1 {{title}}
+
+        div(data-ng-controller="QAGeneralCtrl as qa",
+        data-ng-show="qa.qa.title != ''").page-body
+          div(data-ng-repeat="elem in qa.qa.body").well
+            .page-header.page-info
+              h3
+                strong &nbsp{{'LBL_Q' | translate}}
+                cite {{elem.q | translate}}
+
+            .page-body.padding-top-0
+              hr.wsp-well-hr
+              h4
+                strong {{'LBL_A' | translate}}
+                p.wsp-margin-top-20 {{elem.a | translate}}

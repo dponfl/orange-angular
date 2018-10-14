@@ -70,6 +70,12 @@ function translateConfig ($translateProvider) {
 
     'CONTENT_QA_PAGE_HEADER_TITLE': 'Q&A content editor',
 
+    'LBL_Q': 'Question:',
+    'LBL_A': 'Answer:',
+    'LBL_QA_Q': 'Question',
+    'LBL_QA_A': 'Answer',
+
+
     // Footer
     'FOOTER_ABOUT_COMPANY_TITLE': 'About us',
     'FOOTER_ABOUT_COMPANY_TEXT': '[En]Лорем ипсум долор сит амет, не дицит легере еос, ' +
@@ -384,6 +390,12 @@ function translateConfig ($translateProvider) {
     'CONTENT_QA_PAGE_HEADER_TITLE': 'Редактирование страницы Вопрос-ответ',
     'LBL_QA_TITLE': 'Заголовок',
     'OBJ_QA_TITLE_PLACEHOLDER': 'Введите заголовок',
+    'BTN_ADD_ELEMENT': 'Добавить',
+    'BTN_DEL_ELEMENT': 'Удалить',
+    'LBL_Q': 'Вопрос:',
+    'LBL_A': 'Ответ:',
+    'LBL_QA_Q': 'Вопрос',
+    'LBL_QA_A': 'Ответ',
 
 
 

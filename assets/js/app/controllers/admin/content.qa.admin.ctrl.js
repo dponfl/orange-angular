@@ -22,8 +22,8 @@
     vm.update = _update;
     vm.clear = _clear;
     vm.cancel = _cancel;
-    vm.deleteInterval = _deleteInterval;
-    vm.addInterval = _addInterval;
+    vm.deleteElement = _deleteElement;
+    vm.addElement = _addElement;
 
      vm.$onInit = function () {
 
@@ -236,44 +236,20 @@
     } // _clear
 
     function _cancel() {
-      // _clear();
       _setDataInInitialState();
     } // _cancel
 
-    function _deleteInterval(ind) {
-      vm.formData.calendar.splice(ind, 1);
-    } // _deleteInterval
+    function _deleteElement(ind, useLang) {
+      vm.formData.langContent[useLang].body.splice(ind, 1);
+    } // _deleteElement
 
-    function _addInterval() {
-      var tempCalendar = vm.formData.calendar;
+    function _addElement(ind, useLang) {
 
-      // console.log('calendar before sort:');
-      // console.dir(tempCalendar);
+      $log.info('_addElement, useLang:' + useLang);
 
-      if (
-        vm.formData.calendar.length > 0
-        && !_.isNil(vm.formData.calendar[vm.formData.calendar.length - 1])
-        && _.trim(vm.formData.calendar[vm.formData.calendar.length - 1].start) != ''
-      ) {
-        vm.formData.calendar = _.sortBy(tempCalendar, [function (o) {
-          return o.start;
-        }]);
-      }
+      vm.formData.langContent[useLang].body.splice(ind + 1, 0, {q: '', a: ''});
 
-
-      // console.log('calendar after sort:');
-      // console.dir(vm.formData.calendar);
-
-      if (
-        vm.formData.calendar.length > 0
-        && !_.isNil(vm.formData.calendar[vm.formData.calendar.length - 1])
-        && _.trim(vm.formData.calendar[vm.formData.calendar.length - 1].start) != ''
-      ) {
-        vm.formData.calendar.push({start: '', end: ''});
-      } else if (vm.formData.calendar.length == 0) {
-        vm.formData.calendar.push({start: '', end: ''});
-      }
-    } // _addInterval
+    } // _addElement
 
   }
 })();

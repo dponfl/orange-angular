@@ -272,6 +272,14 @@ body {
    -------------------------------------- */
 
 
+.wsp-well-hr {
+  border-top: 2px solid slategray !important;
+}
 
+.padding-top-0 {
+    padding-top: 0 !important;
+}
 
-
+.wsp-margin-top-20 {
+    margin-top: 20px !important;
+}
