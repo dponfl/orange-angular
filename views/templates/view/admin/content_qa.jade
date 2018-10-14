@@ -1,0 +1,79 @@
+#short
+  .row#shortCallout
+    .cal-12
+      .well
+        .page-header.page-primary
+          h1 {{'CONTENT_QA_PAGE_HEADER_TITLE' | translate}}
+
+        div(data-ng-controller='ContentQAAdminTblCtrl').page-body#block-long
+
+          //=================
+          // Home content edit
+          //=================
+
+          div(data-ng-controller='ContentQAAdminCtrl as ctrl')
+            form(novalidate='novalidate',
+            data-ng-submit='ctrl.update()').form-horisontal
+
+              .row
+                  div(bs-active-pane="ctrl.activeTab", bs-tabs).edit-lang-container
+
+                    div(data-ng-repeat="lang in ctrl.langSet",
+                    data-title="{{lang.activeTabTitle}}",
+                    name="{{lang.activeTab}}",
+                    bs-pane
+                    )
+
+                      .clearfix
+                        h4 ЗАГОЛОВОК
+
+                      .form-group.clearfix.top-element
+                        label(for='qa_title', translate='LBL_QA_TITLE').col-sm-2.control-label.text-right
+                        .col-sm-9
+                          input(type="text",
+                          placeholder="{{'OBJ_QA_TITLE_PLACEHOLDER' | translate}}",
+                          data-ng-model='ctrl.formData.langContent[lang.lang].title'
+                          ).form-control#qa_title
+
+
+                      .clearfix
+                        h4 СОДЕРЖАНИЕ
+
+                      code {{ctrl.formData.langContent[lang.lang]}}
+
+                      fieldset
+
+                        .form-group.clearfix
+                          label(for='qa_q', translate='LBL_QA_Q').col-sm-2.control-label.text-right
+                          .col-sm-9
+                            input(type="text",
+                            placeholder="{{'OBJ_QA_Q_PLACEHOLDER' | translate}}",
+                            data-ng-model='ctrl.formData.langContent[lang.lang].body[0].q'
+                            ).form-control#qa_q
+
+                        .form-group.clearfix
+                          label(for='qa_a', translate='LBL_QA_A').col-sm-2.control-label.text-right
+                          .col-sm-9
+                            textarea(type="text",
+                            placeholder="{{'OBJ_QA_A_PLACEHOLDER' | translate}}",
+                            data-ng-model='ctrl.formData.langContent[lang.lang].body[0].a'
+                            ).form-control#qa_a
+
+
+
+
+                .form-group.clearfix
+                  .col-lg-7.col-lg-offset-2.col-md-offset-1.col-sm-offset-1
+                    button(type='submit',
+                    translate='BTN_ADMIN_CREATE',
+                    ).btn.btn-success.btn-lg.btn-margin
+                    button(type='button',
+                    data-ng-click='ctrl.clear()',
+                    translate='BTN_CLR'
+                    ).btn.btn-warning.btn-lg.btn-margin
+
+  toaster-container(data-toaster-options="{'toaster-id': '111111'}")
+
+
+
+

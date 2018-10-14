@@ -290,6 +290,20 @@
           },
         },
         url: '/admin_content_home',
+      })
+      .state('admin_content_qa', {
+        views: {
+          header: {
+            templateUrl: 'templates/view/admin/headerAdmin.html'
+          },
+          main: {
+            templateUrl: 'templates/view/admin/content_qa.html',
+          },
+          footer: {
+            templateUrl: 'templates/view/admin/footerAdmin.html',
+          },
+        },
+        url: '/admin_content_qa',
       });
 
     // todo: delete

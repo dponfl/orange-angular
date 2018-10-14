@@ -53,6 +53,10 @@
           href: 'admin_content_home',
           text: 'NAV_CONTENT_HOME',
         },
+        {
+          href: 'admin_content_qa',
+          text: 'NAV_CONTENT_QA',
+        },
       ];
 
     } // activate

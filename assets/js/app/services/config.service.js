@@ -73,6 +73,12 @@
           'ADMIN_HOME_ERROR_TITLE': 'Home page update',
           'ADMIN_HOME_ERROR_BODY_1': 'was NOT performed',
 
+          'ADMIN_QA_SUCCESS_TITLE': 'Q&A page update',
+          'ADMIN_QA_SUCCESS_BODY_1': 'was successfully performed',
+
+          'ADMIN_QA_ERROR_TITLE': 'Q&A page update',
+          'ADMIN_QA_ERROR_BODY_1': 'was NOT performed',
+
 
         },
         ru: {
@@ -116,6 +122,12 @@
 
           'ADMIN_HOME_ERROR_TITLE': 'Редактирование главной страницы',
           'ADMIN_HOME_ERROR_BODY_1': 'НЕ БЫЛО выполнено',
+
+          'ADMIN_QA_SUCCESS_TITLE': 'Редактирование страницы вопрос-ответ',
+          'ADMIN_QA_SUCCESS_BODY_1': 'было успешно выполнено',
+
+          'ADMIN_QA_ERROR_TITLE': 'Редактирование страницы вопрос-ответ',
+          'ADMIN_QA_ERROR_BODY_1': 'НЕ БЫЛО выполнено',
 
         },
       }

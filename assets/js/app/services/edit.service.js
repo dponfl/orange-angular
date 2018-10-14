@@ -15,6 +15,7 @@
     var editSaleObject = {};
     var editShortObject = {};
     var editContentHomeObject = {};
+    var editContentQAObject = {};
 
     var self = {
       setEditLongObject: _setEditLongObject,
@@ -32,6 +33,10 @@
       setEditContentHomeObject: _setEditContentHomeObject,
       getEditContentHomeObject: _getEditContentHomeObject,
       convertContentHomeObjectData: _convertContentHomeObjectData,
+
+      setEditContentQAObject: _setEditContentQAObject,
+      getEditContentQAObject: _getEditContentQAObject,
+      convertContentQAObjectData: _convertContentQAObjectData,
 
       getIndexByKey: _getIndexByKey,
     };
@@ -298,6 +303,47 @@
 
       return newObj;
     } // _convertContentHomeObjectData
+
+
+
+
+    //======================
+    // Content Q&A object
+    //======================
+
+    function _setEditContentQAObject() {
+
+      editContentQAObject = $rootScope.orangeConfig.contentQA;
+
+    } // _setEditContentQAObject
+
+    function _getEditContentQAObject() {
+
+      return editContentQAObject;
+
+    } // _getEditContentQAObject
+
+    function _convertContentQAObjectData(obj) {
+
+      var langContent = {};
+
+      _.forEach(obj, function (value, key) {
+        langContent[key].title = value.title;
+        langContent[key].body = value.body;
+      });
+
+      var newObj = {
+        langContent: langContent,
+      };
+
+      console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
+      console.log('_convertContentQAObjectData, langContent:');
+      console.dir(langContent);
+      console.log('_convertContentQAObjectData, newObj:');
+      console.dir(newObj);
+
+      return newObj;
+    } // _convertContentQAObjectData
 
 
 

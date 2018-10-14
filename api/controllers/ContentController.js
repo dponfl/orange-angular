@@ -49,6 +49,10 @@ module.exports = {
           findCriteria.content_type = newRecordParams.content_type;
           findCriteria.lang = newRecordParams.record.lang;
           break;
+        case 'qa':
+          findCriteria.content_type = newRecordParams.content_type;
+          findCriteria.lang = newRecordParams.record.lang;
+          break;
         default:
           return res.notFound(controllerName + methodName + ': Content_type is not correct');
       }

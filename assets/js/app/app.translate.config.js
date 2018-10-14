@@ -44,7 +44,10 @@ function translateConfig ($translateProvider) {
     'HEADER_USER': 'User:',
     'HEADER_LOGOUT': 'Logout',
     'NAV_CONTENT_HOME': 'Home page',
+
     'CONTENT_HOME_PAGE_HEADER_TITLE': 'Home page editor',
+
+
     'LBL_HOME_TITLE': 'Home page: Title',
     'OBJ_HOME_TITLE_PLACEHOLDER': 'Home page: Title',
     'LBL_HOME_BODY_LEAD': 'Home page: Lead paragraph',
@@ -55,6 +58,7 @@ function translateConfig ($translateProvider) {
     'OBJ_HOME_BODY_P_2_PLACEHOLDER': 'Home page: 2nd paragraph',
     'LBL_HOME_BODY_P_3': 'Home page: 3rd paragraph',
     'OBJ_HOME_BODY_P_3_PLACEHOLDER': 'Home page: 3rd paragraph',
+
     'LBL_HOME_EXCLUSIVE_TITLE': 'Home, exclusive: Title',
     'OBJ_HOME_EXCLUSIVE_TITLE_PLACEHOLDER': 'Home, exclusive: Title',
     'LBL_HOME_EXCLUSIVE_H1': 'Home, exclusive: Sub-title 1',
@@ -63,6 +67,8 @@ function translateConfig ($translateProvider) {
     'OBJ_HOME_EXCLUSIVE_H2_PLACEHOLDER': 'Home, exclusive: Sub-title 2',
     'LBL_HOME_EXCLUSIVE_MORE': 'Home, exclusive: Button',
     'OBJ_HOME_EXCLUSIVE_MORE_PLACEHOLDER': 'Home, exclusive: Button',
+
+    'CONTENT_QA_PAGE_HEADER_TITLE': 'Q&A content editor',
 
     // Footer
     'FOOTER_ABOUT_COMPANY_TITLE': 'About us',
@@ -314,7 +320,25 @@ function translateConfig ($translateProvider) {
     'HEADER_USER': 'Пользователь:',
     'HEADER_LOGOUT': 'Выйти',
     'NAV_CONTENT_HOME': 'Главная страница',
+
+    /**
+     * Home page edit block
+     */
+
     'CONTENT_HOME_PAGE_HEADER_TITLE': 'Редактирование главной страницы',
+
+    'LBL_SLIDE_01_TITLE': 'Слайд 1: заголовок',
+    'OBJ_SLIDE_01_TITLE_PLACEHOLDER': 'Заголовок слайда 1',
+    'LBL_SLIDE_01_TEXT': 'Слайд 1: текст',
+    'OBJ_SLIDE_01_TEXT_PLACEHOLDER': 'Текст слайда 1',
+    'LBL_SLIDE_02_TITLE': 'Слайд 2: заголовок',
+    'OBJ_SLIDE_02_TITLE_PLACEHOLDER': 'Заголовок слайда 2',
+    'LBL_SLIDE_02_TEXT': 'Слайд 2: текст',
+    'OBJ_SLIDE_02_TEXT_PLACEHOLDER': 'Текст слайда 2',
+    'LBL_SLIDE_03_TITLE': 'Слайд 3: заголовок',
+    'OBJ_SLIDE_03_TITLE_PLACEHOLDER': 'Заголовок слайда 3',
+    'LBL_SLIDE_03_TEXT': 'Слайд 3: текст',
+    'OBJ_SLIDE_03_TEXT_PLACEHOLDER': 'Текст слайда 3',
 
     'LBL_HOME_TITLE': 'Заголовок',
     'OBJ_HOME_TITLE_PLACEHOLDER': 'Заголовок',
@@ -351,18 +375,16 @@ function translateConfig ($translateProvider) {
     'LBL_HOME_SALE_MORE': 'Продажа: Кнопка',
     'OBJ_HOME_SALE_MORE_PLACEHOLDER': 'Продажа: Кнопка',
 
-    'LBL_SLIDE_01_TITLE': 'Слайд 1: заголовок',
-    'OBJ_SLIDE_01_TITLE_PLACEHOLDER': 'Заголовок слайда 1',
-    'LBL_SLIDE_01_TEXT': 'Слайд 1: текст',
-    'OBJ_SLIDE_01_TEXT_PLACEHOLDER': 'Текст слайда 1',
-    'LBL_SLIDE_02_TITLE': 'Слайд 2: заголовок',
-    'OBJ_SLIDE_02_TITLE_PLACEHOLDER': 'Заголовок слайда 2',
-    'LBL_SLIDE_02_TEXT': 'Слайд 2: текст',
-    'OBJ_SLIDE_02_TEXT_PLACEHOLDER': 'Текст слайда 2',
-    'LBL_SLIDE_03_TITLE': 'Слайд 3: заголовок',
-    'OBJ_SLIDE_03_TITLE_PLACEHOLDER': 'Заголовок слайда 3',
-    'LBL_SLIDE_03_TEXT': 'Слайд 3: текст',
-    'OBJ_SLIDE_03_TEXT_PLACEHOLDER': 'Текст слайда 3',
+    /**
+     * Q&A edit block
+     */
+
+    'NAV_CONTENT_QA': 'Вопрос-ответ',
+
+    'CONTENT_QA_PAGE_HEADER_TITLE': 'Редактирование страницы Вопрос-ответ',
+    'LBL_QA_TITLE': 'Заголовок',
+    'OBJ_QA_TITLE_PLACEHOLDER': 'Введите заголовок',
+
 
 
     // Footer

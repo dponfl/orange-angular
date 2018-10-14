@@ -121,14 +121,14 @@ module.exports = {
       });
 
     /**
-     * Get content
+     * Get content home
      */
 
     var contentHomePromise = Content.find({content_type: 'home', show: true})
       .then(function (data) {
 
         var contentHomeConfig = [];
-        contentHomeConfig.contentHomeList = {};
+        contentHomeConfig.contentHomeList = {en: [], ru: []};
 
         if (!_.isArray(data)) {
           // todo: Log error message and get data from Sails config
@@ -143,6 +143,29 @@ module.exports = {
         return {contentHome: contentHomeConfig.contentHomeList};
       });
 
+    /**
+     * Get content Q&A
+     */
+
+    var contentQAPromise = Content.find({content_type: 'qa', show: true})
+      .then(function (data) {
+
+        var contentQAConfig = [];
+        contentQAConfig.contentQAList = {en: {title: '', body: []}, ru: {title: '', body: []}};
+
+        if (!_.isArray(data)) {
+          // todo: Log error message and get data from Sails config
+          console.log('QA content data is not an array');
+        }
+
+        console.log('contentQA data: ');
+        console.dir(data);
+
+        data.map(_mapContentQAData, contentQAConfig);
+
+        return {contentQA: contentQAConfig.contentQAList};
+      });
+
     var getHost = function () {
       // todo: change by setting using Sails config
       return {host: process.env.HOST || 'http://localhost:1337'};
@@ -153,7 +176,7 @@ module.exports = {
     }; // getToken
 
     Promise.all([cityPromise, objPromise, dealPromise, roomPromise, tagPromise,
-      contentHomePromise,
+      contentHomePromise, contentQAPromise,
       getHost(), getToken()])
       .then(function (data) {
 
@@ -381,6 +404,21 @@ module.exports = {
       this.contentHomeList[elem.lang] = JSON.parse(elem.content);
       this.contentHomeList[elem.lang][0].imgCarousel = elem.imgcarousel;
     } // _mapContentHomeData
+
+
+    /**
+     * Content Q&A
+     */
+
+    function _mapContentQAData(elem) {
+
+      console.log('_mapContentQAData, elem:');
+      console.dir(elem);
+
+      if (!_.isNil(elem.content) && elem.content != '') {
+        this.contentQAList[elem.lang] = JSON.parse(elem.content);
+      }
+    } // _mapContentQAData
 
 
 
