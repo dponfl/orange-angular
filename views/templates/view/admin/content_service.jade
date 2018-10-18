@@ -1,0 +1,97 @@
+#short
+  .row#shortCallout
+    .cal-12
+      .well
+        .page-header.page-primary
+          h1 {{'CONTENT_SERVICE_PAGE_HEADER_TITLE' | translate}}
+
+        div(data-ng-controller='ContentServiceAdminTblCtrl').page-body#block-long
+
+          //=================
+          // Home content edit
+          //=================
+
+          div(data-ng-controller='ContentServiceAdminCtrl as ctrl')
+            form(novalidate='novalidate',
+            data-ng-submit='ctrl.update()').form-horisontal
+
+              .row
+                  div(bs-active-pane="ctrl.activeTab", bs-tabs).edit-lang-container
+
+                    div(data-ng-repeat="lang in ctrl.langSet",
+                    data-title="{{lang.activeTabTitle}}",
+                    name="{{lang.activeTab}}",
+                    bs-pane
+                    )
+
+                      .clearfix
+                        h4 ЗАГОЛОВОК
+
+                      .form-group.clearfix.top-element
+                        label(for='qa_title', translate='LBL_SERVICE_TITLE').col-sm-2.control-label.text-right
+                        .col-sm-9
+                          input(type="text",
+                          placeholder="{{'OBJ_SERVICE_TITLE_PLACEHOLDER' | translate}}",
+                          data-ng-model='ctrl.formData.langContent[lang.lang].title'
+                          ).form-control#qa_title
+
+
+                      .clearfix
+                        h4 СОДЕРЖАНИЕ
+
+                      div(data-ng-repeat='elem in ctrl.formData.langContent[lang.lang].body').form-group.clearfix
+
+                        fieldset
+
+                          .form-group.clearfix
+                            label(for='service_name', translate='LBL_SERVICE_NAME').col-sm-2.control-label.text-right
+                            .col-sm-9
+                              textarea(type="text",
+                              placeholder="{{'OBJ_SERVICE_NAME_PLACEHOLDER' | translate}}",
+                              data-ng-model='elem.name'
+                              ).form-control#service_name
+
+                          .form-group.clearfix
+                            label(for='service_subname', translate='LBL_SERVICE_SUBNAME').col-sm-2.control-label.text-right
+                            .col-sm-6
+                              textarea(type="text",
+                              placeholder="{{'OBJ_SERVICE_SUBNAME_PLACEHOLDER' | translate}}",
+                              data-ng-model='elem.subname'
+                              ).form-control#service_subname
+
+                          .form-group.clearfix
+                            label(for='service_desc', translate='LBL_SERVICE_DESC').col-sm-2.control-label.text-right
+                            .col-sm-6
+                              textarea(type="text",
+                              placeholder="{{'OBJ_SERVICE_DESC_PLACEHOLDER' | translate}}",
+                              data-ng-model='elem.desc'
+                              ).form-control#service_desc
+
+                            .col-sm-2
+                              button(type='button',
+                              data-ng-click='ctrl.addElement($index, lang.lang)',
+                              translate='BTN_ADD_ELEMENT').btn.btn-success.btn-sm.btn-margin
+
+                            .col-sm-2
+                              button(type='button',
+                              data-ng-click='ctrl.deleteElement($index, lang.lang)',
+                              translate='BTN_DEL_ELEMENT').btn.btn-success.btn-sm.btn-margin
+
+
+
+
+                .form-group.clearfix
+                  .col-lg-7.col-lg-offset-2.col-md-offset-1.col-sm-offset-1
+                    button(type='submit',
+                    translate='BTN_ADMIN_CREATE',
+                    ).btn.btn-success.btn-lg.btn-margin
+                    button(type='button',
+                    data-ng-click='ctrl.clear()',
+                    translate='BTN_CLR'
+                    ).btn.btn-warning.btn-lg.btn-margin
+
+  toaster-container(data-toaster-options="{'toaster-id': '111111'}")
+
+
+
+

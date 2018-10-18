@@ -79,6 +79,12 @@
           'ADMIN_QA_ERROR_TITLE': 'Q&A page update',
           'ADMIN_QA_ERROR_BODY_1': 'was NOT performed',
 
+          'ADMIN_SERVICE_SUCCESS_TITLE': 'Service page update',
+          'ADMIN_SERVICE_SUCCESS_BODY_1': 'was successfully performed',
+
+          'ADMIN_SERVICE_ERROR_TITLE': 'Service page update',
+          'ADMIN_SERVICE_ERROR_BODY_1': 'was NOT performed',
+
 
         },
         ru: {
@@ -128,6 +134,12 @@
 
           'ADMIN_QA_ERROR_TITLE': 'Редактирование страницы вопрос-ответ',
           'ADMIN_QA_ERROR_BODY_1': 'НЕ БЫЛО выполнено',
+
+          'ADMIN_SERVICE_SUCCESS_TITLE': 'Редактирование страницы Доп. услуги',
+          'ADMIN_SERVICE_SUCCESS_BODY_1': 'было успешно выполнено',
+
+          'ADMIN_SERVICE_ERROR_TITLE': 'Редактирование страницы Доп. услуги',
+          'ADMIN_SERVICE_ERROR_BODY_1': 'НЕ БЫЛО выполнено',
 
         },
       }

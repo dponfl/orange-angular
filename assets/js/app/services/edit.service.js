@@ -16,6 +16,7 @@
     var editShortObject = {};
     var editContentHomeObject = {};
     var editContentQAObject = {};
+    var editContentServiceObject = {};
 
     var self = {
       setEditLongObject: _setEditLongObject,
@@ -37,6 +38,10 @@
       setEditContentQAObject: _setEditContentQAObject,
       getEditContentQAObject: _getEditContentQAObject,
       convertContentQAObjectData: _convertContentQAObjectData,
+
+      setEditContentServiceObject: _setEditContentServiceObject,
+      getEditContentServiceObject: _getEditContentServiceObject,
+      convertContentServiceObjectData: _convertContentServiceObjectData,
 
       getIndexByKey: _getIndexByKey,
     };
@@ -327,7 +332,11 @@
 
       var langContent = {};
 
+      $log.error('_convertContentQAObjectData, obj:');
+      $log.info(obj);
+
       _.forEach(obj, function (value, key) {
+        langContent[key] = {};
         langContent[key].title = value.title;
         langContent[key].body = value.body;
       });
@@ -344,6 +353,46 @@
 
       return newObj;
     } // _convertContentQAObjectData
+
+
+    //======================
+    // Content Service object
+    //======================
+
+    function _setEditContentServiceObject() {
+
+      editContentServiceObject = $rootScope.orangeConfig.contentService;
+
+    } // _setEditContentServiceObject
+
+    function _getEditContentServiceObject() {
+
+      return editContentServiceObject;
+
+    } // _getEditContentQAObject
+
+    function _convertContentServiceObjectData(obj) {
+
+      var langContent = {};
+
+      _.forEach(obj, function (value, key) {
+        langContent[key] = {};
+        langContent[key].title = value.title;
+        langContent[key].body = value.body;
+      });
+
+      var newObj = {
+        langContent: langContent,
+      };
+
+      console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
+      console.log('_convertContentServiceObjectData, langContent:');
+      console.dir(langContent);
+      console.log('_convertContentServiceObjectData, newObj:');
+      console.dir(newObj);
+
+      return newObj;
+    } // _convertContentServiceObjectData
 
 
 

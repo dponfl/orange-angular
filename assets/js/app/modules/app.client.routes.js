@@ -195,7 +195,17 @@
             templateUrl: 'templates/view/header/headerClient.html'
           },
           main: {
-            templateUrl: 'templates/view/services.html'
+            templateUrl: 'templates/view/services.html',
+            controller: ['$scope', '$rootScope', function ($scope, $rootScope) {
+
+              _update();
+
+              $rootScope.$watch('lang', _update);
+
+              function _update() {
+                $scope.title = $rootScope.orangeConfig.contentService[$rootScope.lang].title;
+              } // _update
+            }],
           },
           footer: {
             templateUrl: 'templates/view/footer/footerClient.html'
@@ -314,6 +324,20 @@
           },
         },
         url: '/admin_content_qa',
+      })
+      .state('admin_content_service', {
+        views: {
+          header: {
+            templateUrl: 'templates/view/admin/headerAdmin.html'
+          },
+          main: {
+            templateUrl: 'templates/view/admin/content_service.html',
+          },
+          footer: {
+            templateUrl: 'templates/view/admin/footerAdmin.html',
+          },
+        },
+        url: '/admin_content_service',
       });
 
     // todo: delete

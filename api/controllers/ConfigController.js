@@ -166,6 +166,29 @@ module.exports = {
         return {contentQA: contentQAConfig.contentQAList};
       });
 
+    /**
+     * Get content Service
+     */
+
+    var contentServicePromise = Content.find({content_type: 'service', show: true})
+      .then(function (data) {
+
+        var contentServiceConfig = [];
+        contentServiceConfig.contentServiceList = {en: {title: '', body: []}, ru: {title: '', body: []}};
+
+        if (!_.isArray(data)) {
+          // todo: Log error message and get data from Sails config
+          console.log('Service content data is not an array');
+        }
+
+        console.log('contentService data: ');
+        console.dir(data);
+
+        data.map(_mapContentServiceData, contentServiceConfig);
+
+        return {contentService: contentServiceConfig.contentServiceList};
+      });
+
     var getHost = function () {
       // todo: change by setting using Sails config
       return {host: process.env.HOST || 'http://localhost:1337'};
@@ -176,7 +199,7 @@ module.exports = {
     }; // getToken
 
     Promise.all([cityPromise, objPromise, dealPromise, roomPromise, tagPromise,
-      contentHomePromise, contentQAPromise,
+      contentHomePromise, contentQAPromise, contentServicePromise,
       getHost(), getToken()])
       .then(function (data) {
 
@@ -417,6 +440,20 @@ module.exports = {
 
       if (!_.isNil(elem.content) && elem.content != '') {
         this.contentQAList[elem.lang] = JSON.parse(elem.content);
+      }
+    } // _mapContentQAData
+
+    /**
+     * Content Service
+     */
+
+    function _mapContentServiceData(elem) {
+
+      console.log('_mapContentServiceData, elem:');
+      console.dir(elem);
+
+      if (!_.isNil(elem.content) && elem.content != '') {
+        this.contentServiceList[elem.lang] = JSON.parse(elem.content);
       }
     } // _mapContentQAData
 

@@ -3,18 +3,18 @@
 
   angular
     .module('OrangeClient')
-    .controller('ContentQAAdminTblCtrl', ContentQAAdminTblCtrl);
+    .controller('ContentServiceAdminTblCtrl', ContentServiceAdminTblCtrl);
 
-  ContentQAAdminTblCtrl.$inject = ['GeneralConfigService', '$rootScope',
+  ContentServiceAdminTblCtrl.$inject = ['GeneralConfigService', '$rootScope',
     'EditObjectService', '$scope', '$log','lodash'];
 
   /* @ngInject */
-  function ContentQAAdminTblCtrl(GeneralConfigService, $rootScope,
+  function ContentServiceAdminTblCtrl(GeneralConfigService, $rootScope,
                                    EditObjectService, $scope, $log, lodash) {
     var _ = lodash;
     var __=GeneralConfigService;
     var vm = this;
-    vm.title = 'ContentQAAdminTblCtrl';
+    vm.title = 'ContentServiceAdminTblCtrl';
 
     activate();
 
@@ -27,7 +27,7 @@
       vm.activeTabMain = 'new_obj';
       vm.activeTabEdit = 'lang_eng';
 
-      EditObjectService.setEditContentQAObject();
+      EditObjectService.setEditContentServiceObject();
 
     } // activate()
 

@@ -11,5 +11,23 @@
     .cal-12
       .well
         .page-header.page-primary
-          h1 {{'SERVICES_PAGE_HEADER_TITLE' | translate}}
-            small(translate='SERVICES_PAGE_HEADER_SUBTITLE')
+          h1 {{title}}
+
+        div(data-ng-controller="ServiceGeneralCtrl as service",
+        data-ng-show="service.service.title != ''").page-body
+          div(data-ng-repeat="elem in service.service.body").well
+            div(data-ng-show="elem.name != ''").page-header.page-info
+              h2
+                strong &nbsp
+                  cite {{elem.name | translate}}
+
+            div(data-ng-show="elem.name != ''").page-body.padding-top-0
+              hr.wsp-well-hr
+              h3
+                strong
+                  p.wsp-margin-top-20 {{elem.subname | translate}}
+
+              h4
+                p.wsp-margin-top-20 {{elem.desc | translate}}
+
+

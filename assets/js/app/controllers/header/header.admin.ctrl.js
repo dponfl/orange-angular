@@ -57,6 +57,10 @@
           href: 'admin_content_qa',
           text: 'NAV_CONTENT_QA',
         },
+        {
+          href: 'admin_content_service',
+          text: 'NAV_CONTENT_SERVICE',
+        },
       ];
 
     } // activate

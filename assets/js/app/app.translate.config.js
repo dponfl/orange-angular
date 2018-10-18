@@ -75,6 +75,9 @@ function translateConfig ($translateProvider) {
     'LBL_QA_Q': 'Question',
     'LBL_QA_A': 'Answer',
 
+    'CONTENT_SERVICE_PAGE_HEADER_TITLE': 'Service content editor',
+
+
 
     // Footer
     'FOOTER_ABOUT_COMPANY_TITLE': 'About us',
@@ -389,7 +392,7 @@ function translateConfig ($translateProvider) {
 
     'CONTENT_QA_PAGE_HEADER_TITLE': 'Редактирование страницы Вопрос-ответ',
     'LBL_QA_TITLE': 'Заголовок',
-    'OBJ_QA_TITLE_PLACEHOLDER': 'Введите заголовок',
+    'OBJ_QA_TITLE_PLACEHOLDER': 'Введите заголовок страницы',
     'BTN_ADD_ELEMENT': 'Добавить',
     'BTN_DEL_ELEMENT': 'Удалить',
     'LBL_Q': 'Вопрос:',
@@ -397,6 +400,22 @@ function translateConfig ($translateProvider) {
     'LBL_QA_Q': 'Вопрос',
     'LBL_QA_A': 'Ответ',
 
+    /**
+     * Service edit block
+     */
+
+    'NAV_CONTENT_SERVICE': 'Доп. услуги',
+
+    'CONTENT_SERVICE_PAGE_HEADER_TITLE': 'Редактирование страницы Доп. услуги',
+
+    'LBL_SERVICE_TITLE': 'Заголовок',
+    'OBJ_SERVICE_TITLE_PLACEHOLDER': 'Введите заголовок страницы',
+    'LBL_SERVICE_NAME': 'Наименование',
+    'OBJ_SERVICE_NAME_PLACEHOLDER': 'Введите наименование услуги',
+    'LBL_SERVICE_SUBNAME': 'Подзаголовок',
+    'OBJ_SERVICE_SUBNAME_PLACEHOLDER': 'Введите подзаголовок услуги',
+    'LBL_SERVICE_DESC': 'Описание',
+    'OBJ_SERVICE_DESC_PLACEHOLDER': 'Введите описание услуги',
 
 
     // Footer
