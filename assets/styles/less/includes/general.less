@@ -1,19 +1,12 @@
-/*
-
-General CSS
-=============
-
-Author:  iStudioDTD.com
-Updated: January 2017
-Notes:	 Hand coded for Orange Holiday Villas
-
-*/
-
 /* --------------------------------------
    Global Styles
    -------------------------------------- */
 
 .menu-active {
+    /*
+    color: #555 !important;
+    background-color: #e7e7e7 !important;
+    */
     color: #555 !important;
     background-color: #e7e7e7 !important;
 }
@@ -85,22 +78,22 @@ body {
 }
 */
 
-/*.modal-backdrop.am-fade {*/
-    /*opacity: .7;*/
-    /*transition: opacity .15s linear;*/
-    /*&.ng-enter {*/
-         /*opacity: 0;*/
-    /*&.ng-enter-active {*/
-         /*opacity: .7;*/
-     /*}*/
-    /*}*/
-    /*&.ng-leave {*/
-         /*opacity: .7;*/
-    /*&.ng-leave-active {*/
-         /*opacity: 0;*/
-     /*}*/
-    /*}*/
-/*}*/
+.modal-backdrop.am-fade {
+    opacity: .7;
+    transition: opacity .15s linear;
+    &.ng-enter {
+         opacity: 0;
+    &.ng-enter-active {
+         opacity: .7;
+     }
+    }
+    &.ng-leave {
+         opacity: .7;
+    &.ng-leave-active {
+         opacity: 0;
+     }
+    }
+}
 
 /* Go from 0% to 100% opacity (see-through) and specify the percentage from when to slide in the element along the Y-axis */
 @keyframes slide {
@@ -272,14 +265,6 @@ body {
    -------------------------------------- */
 
 
-.wsp-well-hr {
-  border-top: 2px solid slategray !important;
-}
 
-.padding-top-0 {
-    padding-top: 0 !important;
-}
 
-.wsp-margin-top-20 {
-    margin-top: 20px !important;
-}
+
