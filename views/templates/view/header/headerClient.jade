@@ -40,7 +40,7 @@ data-offset-top="200").navbar.navbar-default
           li(data-ng-repeat='elem in hc.navMeny')
             a(data-ui-sref="{{elem.href}}",
               data-ui-sref-active="menu-active",
-              translate='{{elem.text}}')
+              translate='{{elem.text}}').link-and-scroll
 
           li.dropdown
             button(data-toggle="dropdown").dropdown-toggle.btn.btn-danger.btn-margin-header
