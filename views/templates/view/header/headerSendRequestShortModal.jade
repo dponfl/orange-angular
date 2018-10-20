@@ -87,33 +87,10 @@ role="dialog").modal.book-object-modal
                 data-ng-model='hc.formData.phone').form-control#clientPhone
 
             .form-group.clearfix
-              label(for='clientSkype', translate='LBL_FIELD_SKYPE').col-sm-4.control-label.text-right
-              .col-sm-8
-                input(type="text",
-                data-ng-model='hc.formData.skype').form-control#clientSkype
-
-            .form-group.clearfix
-              label(for='clientWhatsapp', translate='LBL_FIELD_WHATSAPP').col-sm-4.control-label.text-right
-              .col-sm-8
-                input(type="text",
-                data-ng-model='hc.formData.whatsapp').form-control#clientWhatsapp
-
-            .form-group.clearfix
-              label(for='clientTelegram', translate='LBL_FIELD_TELEGRAM').col-sm-4.control-label.text-right
-              .col-sm-8
-                input(type="text",
-                data-ng-model='hc.formData.telegram').form-control#clientTelegram
-
-            .form-group.clearfix
-              label(for='clientViber', translate='LBL_FIELD_VIBER').col-sm-4.control-label.text-right
-              .col-sm-8
-                input(type="text",
-                data-ng-model='hc.formData.viber').form-control#clientViber
-
-            .form-group.clearfix
               label(for='clientInfo', translate='LBL_FIELD_ADDINFO').col-sm-4.control-label.text-right
               .col-sm-8
                 textarea(type="text",
+                rows="5",
                 data-ng-model='hc.formData.additionalInfo').form-control#clientInfo
 
           .modal-footer
