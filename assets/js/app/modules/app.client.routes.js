@@ -36,15 +36,6 @@
           sale: {
             templateUrl: 'templates/view/home/sale.html'
           },
-          qa: {
-            templateUrl: 'templates/view/home/qa.html'
-          },
-          services: {
-            templateUrl: 'templates/view/home/services.html'
-          },
-          contacts: {
-            templateUrl: 'templates/view/home/contacts.html'
-          },
           footer: {
             templateUrl: 'templates/view/footer/footerClient.html'
           },
