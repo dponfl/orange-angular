@@ -29,8 +29,8 @@
 
       oShortKey.find(reqObj, function (data) {
 
-        $log.info('_getAllShortObjectsKeys, successCb, data:');
-        $log.info(data);
+        // $log.info('_getAllShortObjectsKeys, successCb, data:');
+        // $log.info(data);
 
         var sortedData = {};
         var __keys = {};
@@ -82,8 +82,8 @@
 
       function successCb(data) {
 
-        $log.info('_getAllShortObjectsObjs, successCb, data:');
-        $log.info(data);
+        // $log.info('_getAllShortObjectsObjs, successCb, data:');
+        // $log.info(data);
 
         if (!_.isArray(data.data.result)) {
           return new Error('Short data is not an array');
@@ -148,8 +148,8 @@
 
       function successCb(data) {
 
-        $log.info('_getAllShortObjectsObjsPager, successCb, data:');
-        $log.info(data);
+        // $log.info('_getAllShortObjectsObjsPager, successCb, data:');
+        // $log.info(data);
 
         if (!_.isArray(data.data.result)) {
           return new Error('Short data is not an array');
@@ -213,8 +213,8 @@
 
       function successCb(data) {
 
-        $log.info(name + ', _putShortObject, successCb, data:');
-        $log.info(data);
+        // $log.info(name + ', _putShortObject, successCb, data:');
+        // $log.info(data);
 
         if (!_.isNumber(data.data.result.id)) {
           return new Error(name + ', _putShortObject: Short data has wrong format');
@@ -268,8 +268,8 @@
 
     function _updateShortObject(reqObj) {
 
-      $log.info('_updateShortObject, reqObj:');
-      console.dir(reqObj);
+      // $log.info('_updateShortObject, reqObj:');
+      // console.dir(reqObj);
 
       // todo: return object having result code (200, 404, etc.) and data
 
@@ -278,8 +278,8 @@
 
       function successCb(data) {
 
-        $log.info('_updateShortObject, successCb, data:');
-        $log.info(data);
+        // $log.info('_updateShortObject, successCb, data:');
+        // $log.info(data);
 
         if (!_.isNumber(data.data.result[0].id)) {
           return new Error('Short data has wrong format');

@@ -300,11 +300,11 @@
         langContent: langContent,
       };
 
-      console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
-      console.log('_convertContentHomeObjectData, langContent:');
-      console.dir(langContent);
-      console.log('_convertContentHomeObjectData, newObj:');
-      console.dir(newObj);
+      // console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
+      // console.log('_convertContentHomeObjectData, langContent:');
+      // console.dir(langContent);
+      // console.log('_convertContentHomeObjectData, newObj:');
+      // console.dir(newObj);
 
       return newObj;
     } // _convertContentHomeObjectData
@@ -332,8 +332,8 @@
 
       var langContent = {};
 
-      $log.error('_convertContentQAObjectData, obj:');
-      $log.info(obj);
+      // $log.error('_convertContentQAObjectData, obj:');
+      // $log.info(obj);
 
       _.forEach(obj, function (value, key) {
         langContent[key] = {};
@@ -345,11 +345,11 @@
         langContent: langContent,
       };
 
-      console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
-      console.log('_convertContentQAObjectData, langContent:');
-      console.dir(langContent);
-      console.log('_convertContentQAObjectData, newObj:');
-      console.dir(newObj);
+      // console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
+      // console.log('_convertContentQAObjectData, langContent:');
+      // console.dir(langContent);
+      // console.log('_convertContentQAObjectData, newObj:');
+      // console.dir(newObj);
 
       return newObj;
     } // _convertContentQAObjectData
@@ -385,11 +385,11 @@
         langContent: langContent,
       };
 
-      console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
-      console.log('_convertContentServiceObjectData, langContent:');
-      console.dir(langContent);
-      console.log('_convertContentServiceObjectData, newObj:');
-      console.dir(newObj);
+      // console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
+      // console.log('_convertContentServiceObjectData, langContent:');
+      // console.dir(langContent);
+      // console.log('_convertContentServiceObjectData, newObj:');
+      // console.dir(newObj);
 
       return newObj;
     } // _convertContentServiceObjectData

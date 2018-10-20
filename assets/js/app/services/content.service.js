@@ -23,8 +23,8 @@
 
     function _updateContentObject(reqObj) {
 
-      $log.info('_updateContentObject, reqObj:');
-      console.dir(reqObj);
+      // $log.info('_updateContentObject, reqObj:');
+      // console.dir(reqObj);
 
       // todo: return object having result code (200, 404, etc.) and data
 
@@ -33,8 +33,8 @@
 
       function successCb(data) {
 
-        $log.info('_updateContentObject, successCb, data:');
-        $log.info(data);
+        // $log.info('_updateContentObject, successCb, data:');
+        // $log.info(data);
 
         if (!_.isNumber(data.data.result[0].id)) {
           return new Error('Short data has wrong format');

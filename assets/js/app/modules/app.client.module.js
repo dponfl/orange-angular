@@ -15,7 +15,7 @@
 
 
     // todo: delete
-    $log.info('OrangeClient');
+    // $log.info('OrangeClient');
 
 
     //Generale
@@ -120,8 +120,8 @@
     $rootScope.admin.short.FindActivated = false;
 
 
-    $log.info('OrangeClient, $rootScope:');
-    $log.info($rootScope);
+    // $log.info('OrangeClient, $rootScope:');
+    // $log.info($rootScope);
   }
 
 })();

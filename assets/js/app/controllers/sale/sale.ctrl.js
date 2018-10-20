@@ -77,7 +77,7 @@
     });
 
     function _updateDataAll() {
-      $log.info(ctrlTitle + ', _updateDataAll activated...');
+      // $log.info(ctrlTitle + ', _updateDataAll activated...');
 
       $rootScope.admin.sale.useAll = false;
 
@@ -112,7 +112,7 @@
     } // _updateDataAll
 
     function _updateDataEdit() {
-      $log.info(ctrlTitle + ', _updateDataAll activated...');
+      // $log.info(ctrlTitle + ', _updateDataAll activated...');
 
       $rootScope.admin.sale.useAll = false;
 
@@ -305,8 +305,8 @@
         })
         .catch(function (err) {
           // todo: change by Log
-          $log.warn(ctrlTitle + ', Error...');
-          $log.error(err);
+          // $log.warn(ctrlTitle + ', Error...');
+          // $log.error(err);
 
           return {
             performed: false,
@@ -452,8 +452,8 @@
         })
         .catch(function (err) {
           // todo: change by Log
-          $log.warn(ctrlTitle + ', Error...');
-          $log.error(err);
+          // $log.warn(ctrlTitle + ', Error...');
+          // $log.error(err);
 
           return {
             performed: false,

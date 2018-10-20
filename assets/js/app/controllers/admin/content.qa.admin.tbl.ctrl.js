@@ -22,7 +22,7 @@
 
     function activate() {
 
-      $log.info(vm.title + ', activate...');
+      // $log.info(vm.title + ', activate...');
 
       vm.activeTabMain = 'new_obj';
       vm.activeTabEdit = 'lang_eng';

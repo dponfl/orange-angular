@@ -33,10 +33,10 @@
     vm.formData.objnumber = $scope.$parent.directLinkObjectNumber || '';
     vm.formData.exclusive = true;
 
-    $log.info('<<<<<<<< passed params: >>>>>>');
-    $log.info('directLinkDeal: ', $scope.$parent.directLinkDeal);
-    $log.info('directLinkObjectNumber: ', $scope.$parent.directLinkObjectNumber);
-    $log.info('dealList: ', $rootScope.orangeConfig.dealList[$rootScope.lang]);
+    // $log.info('<<<<<<<< passed params: >>>>>>');
+    // $log.info('directLinkDeal: ', $scope.$parent.directLinkDeal);
+    // $log.info('directLinkObjectNumber: ', $scope.$parent.directLinkObjectNumber);
+    // $log.info('dealList: ', $rootScope.orangeConfig.dealList[$rootScope.lang]);
 
 
     $rootScope.exclusive.FilterData = vm.formData;

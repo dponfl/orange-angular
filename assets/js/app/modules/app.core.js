@@ -37,7 +37,7 @@
   function errorMsgResolver(defaultErrorMessageResolver) {
 
     // todo: delete
-    console.log('app.core');
+    // console.log('app.core');
 
     defaultErrorMessageResolver.getErrorMessages().then(errorMsgFunction);
   }

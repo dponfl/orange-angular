@@ -25,8 +25,8 @@
         body: $rootScope.orangeConfig.contentService[vm.useLang].body || [],
       };
 
-      $log.info("ServiceGeneralCtrl, vm.qa:");
-      $log.info(vm.service);
+      // $log.info("ServiceGeneralCtrl, vm.qa:");
+      // $log.info(vm.service);
 
     } // _update
 

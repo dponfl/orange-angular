@@ -14,7 +14,7 @@
 
 
     // todo: delete
-    console.log('GeneralConfigService');
+    // console.log('GeneralConfigService');
 
 
     var _ = lodash;

@@ -201,8 +201,8 @@
 
       function successCb(data) {
 
-        $log.info('_putLongObject, successCb, data:');
-        $log.info(data);
+        // $log.info('_putLongObject, successCb, data:');
+        // $log.info(data);
 
         if (!_.isNumber(data.data.result.id)) {
           return new Error('Long data has wrong format');
@@ -256,8 +256,8 @@
 
     function _updateLongObject(reqObj) {
 
-      $log.info('_updateLongObject, reqObj:');
-      console.dir(reqObj);
+      // $log.info('_updateLongObject, reqObj:');
+      // console.dir(reqObj);
 
       // todo: return object having result code (200, 404, etc.) and data
 
@@ -266,8 +266,8 @@
 
       function successCb(data) {
 
-        $log.info('_updateLongObject, successCb, data:');
-        $log.info(data);
+        // $log.info('_updateLongObject, successCb, data:');
+        // $log.info(data);
 
         if (!_.isNumber(data.data.result[0].id)) {
           return new Error('Long data has wrong format');

@@ -131,8 +131,8 @@
     function _activateModal(param) {
 
       // todo: delete
-      $log.info('header, _activateModal...');
-      $log.info(param);
+      // $log.info('header, _activateModal...');
+      // $log.info(param);
 
       vm.modalType = param;
 

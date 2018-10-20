@@ -134,7 +134,7 @@
       // console.info('onAfterAddingFile, uploader:', fileItem);
     };
     vm.uploader.onAfterAddingAll = function(addedFileItems) {
-      console.info(vm.name + ', onAfterAddingAll, uploader:', addedFileItems);
+      // console.info(vm.name + ', onAfterAddingAll, uploader:', addedFileItems);
 
       vm.uploader.queue.map(function (el) {
         el.formData = [{obj: vm.formData.objnumber + '_short'}];
@@ -160,9 +160,9 @@
       // console.info('onCancelItem', fileItem, response, status, headers);
     };
     vm.uploader.onCompleteItem = function(fileItem, response, status, headers) {
-      console.info(vm.name + ', onCompleteItem, uploader:', fileItem, response, status, headers);
-      console.info('Response:');
-      console.dir(response);
+      // console.info(vm.name + ', onCompleteItem, uploader:', fileItem, response, status, headers);
+      // console.info('Response:');
+      // console.dir(response);
       // vm.formData.imgGallery += (!firstImg ? ';' : '' ) +
       //   response.files[0].fd.slice(response.files[0].fd.indexOf('img') + 4);
 
@@ -181,7 +181,7 @@
       // console.info('onAfterAddingFile', fileItem);
     };
     vm.uploaderMain.onAfterAddingAll = function(addedFileItems) {
-      console.info(vm.name + ', onAfterAddingAll, uploaderMain:', addedFileItems);
+      // console.info(vm.name + ', onAfterAddingAll, uploaderMain:', addedFileItems);
 
       vm.uploaderMain.queue.map(function (el) {
         el.formData = [{obj: vm.formData.objnumber + '_short'}];
@@ -207,26 +207,26 @@
       // console.info('onCancelItem', fileItem, response, status, headers);
     };
     vm.uploaderMain.onCompleteItem = function(fileItem, response, status, headers) {
-      console.info(vm.name + ', onCompleteItem, uploaderMain:', fileItem, response, status, headers);
-      console.info('Response:');
-      console.dir(response);
+      // console.info(vm.name + ', onCompleteItem, uploaderMain:', fileItem, response, status, headers);
+      // console.info('Response:');
+      // console.dir(response);
       // vm.formData.imgMain = response.files[0].fd.slice(response.files[0].fd.indexOf('img') + 4);
       vm.formData.imgMain = response.url;
     };
 
     function _create() {
 
-      $log.info(vm.name + ', _create, vm.formData:');
-      $log.info(vm.formData);
+      // $log.info(vm.name + ', _create, vm.formData:');
+      // $log.info(vm.formData);
 
       async.parallel({
         uploaderMain: function (cb) {
           vm.uploaderMain.uploadAll();
           vm.uploaderMain.onCompleteAll = function() {
 
-            console.info(vm.name + ', onCompleteAll, uploaderMain:');
-            console.info('Queue:');
-            console.dir(vm.uploaderMain.queue);
+            // console.info(vm.name + ', onCompleteAll, uploaderMain:');
+            // console.info('Queue:');
+            // console.dir(vm.uploaderMain.queue);
 
             cb(null, {element: 'uploaderMain'});
           };
@@ -235,16 +235,16 @@
           vm.uploader.uploadAll();
           vm.uploader.onCompleteAll = function() {
 
-            console.info(vm.name + ', onCompleteAll, uploader:');
-            console.info('Queue:');
-            console.dir(vm.uploader.queue);
+            // console.info(vm.name + ', onCompleteAll, uploader:');
+            // console.info('Queue:');
+            // console.dir(vm.uploader.queue);
 
             cb(null, {element: 'uploader'});
           };
         },
       }, function (err, results) {
-        console.log(vm.name + ', async.parallel results:');
-        console.dir(results);
+        // console.log(vm.name + ', async.parallel results:');
+        // console.dir(results);
 
         _write(vm.formData);
       });
@@ -255,8 +255,8 @@
 
       var createRecords = {};
 
-      $log.info(vm.name + ', _write, formData:');
-      $log.info(formData);
+      // $log.info(vm.name + ', _write, formData:');
+      // $log.info(formData);
 
       var useLang = '';
       var useCalendarRaw = [];
@@ -320,8 +320,8 @@
 
     function _createRecordShort(data) {
 
-      $log.info(vm.name + ', _createRecordShort, data:');
-      console.dir(data);
+      // $log.info(vm.name + ', _createRecordShort, data:');
+      // console.dir(data);
 
       var someObj = {};
 
@@ -361,8 +361,8 @@
             };
           } else {
             // todo: change by Log
-            $log.warn('Error...');
-            $log.error(err);
+            // $log.warn('Error...');
+            // $log.error(err);
 
             toaster.pop({
               type: 'error',
@@ -384,8 +384,8 @@
         })
         .catch(function (err) {
           // todo: change by Log
-          $log.warn('Error...');
-          $log.error(err);
+          // $log.warn('Error...');
+          // $log.error(err);
 
           toaster.pop({
             type: 'error',

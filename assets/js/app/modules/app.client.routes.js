@@ -12,7 +12,7 @@
 
 
     // todo: delete
-    console.log('app.client.routes: OrangeClientRoutesConfig');
+    // console.log('app.client.routes: OrangeClientRoutesConfig');
 
 
     $stateProvider
@@ -332,7 +332,7 @@
       });
 
     // todo: delete
-    console.log('app.client.routes: OrangeClientRoutes');
+    // console.log('app.client.routes: OrangeClientRoutes');
 
     $urlRouterProvider
       .otherwise('/');
