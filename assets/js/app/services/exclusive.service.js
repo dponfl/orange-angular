@@ -79,8 +79,8 @@
         var __objs = {};
 
 
-        $log.info('_getAllExclusiveObjectsObjs, successCb, data:');
-        $log.info(data);
+        // $log.info('_getAllExclusiveObjectsObjs, successCb, data:');
+        // $log.info(data);
 
         if (!_.isNil(data.status)
           && data.status == 200
@@ -101,8 +101,8 @@
               response.push(resElem);
             })
 
-            $log.info('_getAllExclusiveObjectsObjs, successCb, short, response:');
-            $log.info(response);
+            // $log.info('_getAllExclusiveObjectsObjs, successCb, short, response:');
+            // $log.info(response);
 
             for (var i = 0; i < response.length; i++) {
 
@@ -151,8 +151,8 @@
               response.push(resElem);
             })
 
-            $log.info('_getAllExclusiveObjectsObjs, successCb, long, response:');
-            $log.info(response);
+            // $log.info('_getAllExclusiveObjectsObjs, successCb, long, response:');
+            // $log.info(response);
 
             for (var i = 0; i < response.length; i++) {
 
@@ -200,8 +200,8 @@
               response.push(resElem);
             })
 
-            $log.info('_getAllExclusiveObjectsObjs, successCb, sale, response:');
-            $log.info(response);
+            // $log.info('_getAllExclusiveObjectsObjs, successCb, sale, response:');
+            // $log.info(response);
 
             for (var i = 0; i < response.length; i++) {
 
@@ -270,8 +270,8 @@
         var __objs = {};
 
 
-        $log.info('_getAllExclusiveObjectsObjsPager, successCb, data:');
-        $log.info(data);
+        // $log.info('_getAllExclusiveObjectsObjsPager, successCb, data:');
+        // $log.info(data);
 
         if (!_.isNil(data.status)
           && data.status == 200
@@ -292,8 +292,8 @@
               response.push(resElem);
             })
 
-            $log.info('_getAllExclusiveObjectsObjsPager, successCb, short, response:');
-            $log.info(response);
+            // $log.info('_getAllExclusiveObjectsObjsPager, successCb, short, response:');
+            // $log.info(response);
 
             for (var i = 0; i < response.length; i++) {
 
@@ -342,8 +342,8 @@
               response.push(resElem);
             })
 
-            $log.info('_getAllExclusiveObjectsObjsPager, successCb, long, response:');
-            $log.info(response);
+            // $log.info('_getAllExclusiveObjectsObjsPager, successCb, long, response:');
+            // $log.info(response);
 
             for (var i = 0; i < response.length; i++) {
 
@@ -391,8 +391,8 @@
               response.push(resElem);
             })
 
-            $log.info('_getAllExclusiveObjectsObjsPager, successCb, sale, response:');
-            $log.info(response);
+            // $log.info('_getAllExclusiveObjectsObjsPager, successCb, sale, response:');
+            // $log.info(response);
 
             for (var i = 0; i < response.length; i++) {
 

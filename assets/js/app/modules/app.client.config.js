@@ -35,12 +35,12 @@
     var _ = lodash;
     var configData;
 
-    console.log('configOrange...');
+    // console.log('configOrange...');
 
     this.initialize = function (data) {
 
-      console.log('configOrange.initialize...');
-      console.log(data);
+      // console.log('configOrange.initialize...');
+      // console.log(data);
 
       configData = _.assign(configData, data);
     };

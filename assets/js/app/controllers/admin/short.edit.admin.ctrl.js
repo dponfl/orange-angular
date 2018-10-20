@@ -59,13 +59,13 @@
     // CALLBACKS
 
     vm.uploader.onWhenAddingFileFailed = function(item /*{File|FileLikeObject}*/, filter, options) {
-      console.info('onWhenAddingFileFailed, uploader:', item, filter, options);
+      // console.info('onWhenAddingFileFailed, uploader:', item, filter, options);
     };
     vm.uploader.onAfterAddingFile = function(fileItem) {
-      console.info('onAfterAddingFile, uploader:', fileItem);
+      // console.info('onAfterAddingFile, uploader:', fileItem);
     };
     vm.uploader.onAfterAddingAll = function(addedFileItems) {
-      console.info('onAfterAddingAll, uploader:', addedFileItems);
+      // console.info('onAfterAddingAll, uploader:', addedFileItems);
 
       vm.uploader.queue.map(function (el) {
         el.formData = [{obj: vm.formData.objnumber + '_short'}];
@@ -92,9 +92,9 @@
       // console.info('onCancelItem', fileItem, response, status, headers);
     };
     vm.uploader.onCompleteItem = function(fileItem, response, status, headers) {
-      console.info('onCompleteItem, uploader:', fileItem, response, status, headers);
-      console.info('Response:');
-      console.dir(response);
+      // console.info('onCompleteItem, uploader:', fileItem, response, status, headers);
+      // console.info('Response:');
+      // console.dir(response);
       // vm.formData.imgGallery += (vm.formData.imgGallery.length > 0 ? ';' : '' ) +
       //   response.files[0].fd.slice(response.files[0].fd.indexOf('img') + 4);
 
@@ -115,7 +115,7 @@
       // console.info('onAfterAddingFile', fileItem);
     };
     vm.uploaderMain.onAfterAddingAll = function(addedFileItems) {
-      console.info('onAfterAddingAll, uploaderMain:', addedFileItems);
+      // console.info('onAfterAddingAll, uploaderMain:', addedFileItems);
 
       vm.uploaderMain.queue.map(function (el) {
         el.formData = [{obj: vm.formData.objnumber + '_short'}];
@@ -142,9 +142,9 @@
       // console.info('onCancelItem', fileItem, response, status, headers);
     };
     vm.uploaderMain.onCompleteItem = function(fileItem, response, status, headers) {
-      console.info('onCompleteItem, uploaderMain:', fileItem, response, status, headers);
-      console.info('Response:');
-      console.dir(response);
+      // console.info('onCompleteItem, uploaderMain:', fileItem, response, status, headers);
+      // console.info('Response:');
+      // console.dir(response);
       // vm.formData.imgMain = response.files[0].fd.slice(response.files[0].fd.indexOf('img') + 4);
 
       vm.formData.imgMain = response.url;
@@ -163,13 +163,13 @@
           $rootScope.admin.short.editObjSelected = false;
           $rootScope.admin.short.editPanelShow = true;
 
-          $log.warn(name + ', <<<<<< obj >>>>>>>');
-          console.dir(obj);
+          // $log.warn(name + ', <<<<<< obj >>>>>>>');
+          // console.dir(obj);
 
           vm.formData = EditObjectService.convertShortObjectData(obj);
 
-          $log.warn(name + ', <<<<<< vm.formData >>>>>>>');
-          console.dir(vm.formData);
+          // $log.warn(name + ', <<<<<< vm.formData >>>>>>>');
+          // console.dir(vm.formData);
 
           _loadGallery(obj);
 
@@ -260,8 +260,8 @@
 
     function _update() {
 
-      $log.info(name + ', _update, vm.formData:');
-      $log.info(vm.formData);
+      // $log.info(name + ', _update, vm.formData:');
+      // $log.info(vm.formData);
 
       _delete_by_tag(vm.formData.objnumber + '_short');
 
@@ -270,9 +270,9 @@
           vm.uploaderMain.uploadAll();
           vm.uploaderMain.onCompleteAll = function() {
 
-            console.info('onCompleteAll, uploaderMain:');
-            console.info('Queue:');
-            console.dir(vm.uploaderMain.queue);
+            // console.info('onCompleteAll, uploaderMain:');
+            // console.info('Queue:');
+            // console.dir(vm.uploaderMain.queue);
 
             cb(null, {element: 'uploaderMain'});
           };
@@ -281,16 +281,16 @@
           vm.uploader.uploadAll();
           vm.uploader.onCompleteAll = function() {
 
-            console.info('onCompleteAll, uploader:');
-            console.info('Queue:');
-            console.dir(vm.uploader.queue);
+            // console.info('onCompleteAll, uploader:');
+            // console.info('Queue:');
+            // console.dir(vm.uploader.queue);
 
             cb(null, {element: 'uploader'});
           };
         },
       }, function (err, results) {
-        console.log('async.parallel results:');
-        console.dir(results);
+        // console.log('async.parallel results:');
+        // console.dir(results);
 
         _write(vm.formData);
       });
@@ -301,8 +301,8 @@
 
       var createRecords = {};
 
-      $log.info(name + ', _write, formData:');
-      $log.info(formData);
+      // $log.info(name + ', _write, formData:');
+      // $log.info(formData);
 
       var useLang = '';
       var useCalendarRaw = [];
@@ -365,8 +365,8 @@
 
     function _updateRecordShort(data) {
 
-      console.log('_updateRecordShort, data:');
-      console.dir(data);
+      // console.log('_updateRecordShort, data:');
+      // console.dir(data);
 
       var someObj = {};
 
@@ -377,8 +377,8 @@
       $q.all(someObj)
         .then(function (results) {
 
-          $log.warn(name + ', _updateRecordShort, results:');
-          console.dir(results);
+          // $log.warn(name + ', _updateRecordShort, results:');
+          // console.dir(results);
 
           if (results.recorden.status == 200) {
 
@@ -408,8 +408,8 @@
             };
           } else {
             // todo: change by Log
-            $log.warn(name + ', Error...');
-            $log.error(err);
+            // $log.warn(name + ', Error...');
+            // $log.error(err);
 
             toaster.pop({
               type: 'error',
@@ -431,8 +431,8 @@
         })
         .catch(function (err) {
           // todo: change by Log
-          $log.warn(name + ', Error...');
-          $log.error(err);
+          // $log.warn(name + ', Error...');
+          // $log.error(err);
 
           toaster.pop({
             type: 'error',
@@ -541,7 +541,7 @@
     // Load gallery images to file uploader queue
     function _loadGallery(obj) {
 
-      $log.info(name + ', _loadGallery...');
+      // $log.info(name + ', _loadGallery...');
 
       var url = '';
       var getConf = {
@@ -560,14 +560,14 @@
 
       url = elemMain.src;
 
-      $log.info('Main image, url:');
-      $log.info(url);
+      // $log.info('Main image, url:');
+      // $log.info(url);
 
       $http.get(url, getConf)
         .then(function (response) {
           // success
-          $log.info(name + ', <<< Main image, Success response >>>');
-          console.dir(response);
+          // $log.info(name + ', <<< Main image, Success response >>>');
+          // console.dir(response);
 
           var imgName = 'none';
           var imgNameOld = 'none';
@@ -579,7 +579,7 @@
             imgNameOld = imgUrl.slice(imgUrl.indexOf($rootScope.imgFileNameElement) +
               $rootScope.imgFileNameElement.length + 2);
 
-            $log.info('imgNameOld: ' + imgNameOld);
+            // $log.info('imgNameOld: ' + imgNameOld);
 
             imgName = 'main';
           }
@@ -606,8 +606,8 @@
 
         }, function (response) {
           // error
-          $log.error(name + ', <<< Main image, Error response >>>');
-          console.dir(response);
+          // $log.error(name + ', <<< Main image, Error response >>>');
+          // console.dir(response);
         });
 
       // Gallery images
@@ -619,8 +619,8 @@
         $http.get(url, getConf)
           .then(function (response) {
             // success
-            $log.info(name + ', <<< Gallery images, Success response >>>');
-            console.dir(response);
+            // $log.info(name + ', <<< Gallery images, Success response >>>');
+            // console.dir(response);
 
             var imgName = 'none';
             var imgNameOld = 'none';
@@ -632,7 +632,7 @@
               imgNameOld = imgUrl.slice(imgUrl.indexOf($rootScope.imgFileNameElement) +
                 $rootScope.imgFileNameElement.length + 2);
 
-              $log.info('imgNameOld: ' + imgNameOld);
+              // $log.info('imgNameOld: ' + imgNameOld);
 
               imgName = 'gallery_' + imgNum;
               imgNum++;
@@ -660,15 +660,15 @@
 
           }, function (response) {
             // error
-            $log.error(name + ', <<< Gallery images, Error response >>>');
-            console.dir(response);
+            // $log.error(name + ', <<< Gallery images, Error response >>>');
+            // console.dir(response);
           });
       });
 
     } // _loadGallery
 
     function _delete_by_tag(tag) {
-      console.log('_delete_by_tag, tag: ' + tag);
+      // console.log('_delete_by_tag, tag: ' + tag);
 
       var reqObj = {
         tag: tag,
@@ -678,15 +678,15 @@
         .then(successCb, errorCb);
 
       function successCb() {
-        $log.info('ShortEditAdminCtrl::_delete_by_tag, successCb, data:');
-        $log.info(data);
+        // $log.info('ShortEditAdminCtrl::_delete_by_tag, successCb, data:');
+        // $log.info(data);
 
 
       } // successCb
 
       function errorCb() {
-        $log.info('ShortEditAdminCtrl::_delete_by_tag, errorCb, data:');
-        $log.info(data);
+        // $log.info('ShortEditAdminCtrl::_delete_by_tag, errorCb, data:');
+        // $log.info(data);
 
 
       } // errorCb

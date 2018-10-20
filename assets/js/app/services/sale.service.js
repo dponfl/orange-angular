@@ -201,8 +201,8 @@
 
       function successCb(data) {
 
-        $log.info(name + ', _putSaleObject, successCb, data:');
-        $log.info(data);
+        // $log.info(name + ', _putSaleObject, successCb, data:');
+        // $log.info(data);
 
         if (!_.isNumber(data.data.result.id)) {
           return new Error(name + ', _putSaleObject: Sale data has wrong format');
@@ -263,8 +263,8 @@
 
       function successCb(data) {
 
-        $log.info('_updateSaleObject, successCb, data:');
-        $log.info(data);
+        // $log.info('_updateSaleObject, successCb, data:');
+        // $log.info(data);
 
         if (!_.isNumber(data.data.result[0].id)) {
           return new Error('Sale data has wrong format');

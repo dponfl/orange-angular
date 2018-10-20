@@ -225,8 +225,8 @@
         })
         .catch(function (err) {
           // todo: change by Log
-          $log.warn('Error...');
-          $log.error(err);
+          // $log.warn('Error...');
+          // $log.error(err);
 
           return {
             performed: false,
@@ -264,10 +264,10 @@
       $rootScope.langList.map(function (elem) {
 
         // todo: delete
-        $log.info('requestResult.data.objs[elem]:');
-        $log.info(requestResult.data.objs[elem]);
-        $log.info('requestResult.data.keys:');
-        $log.info(requestResult.data.keys);
+        // $log.info('requestResult.data.objs[elem]:');
+        // $log.info(requestResult.data.objs[elem]);
+        // $log.info('requestResult.data.keys:');
+        // $log.info(requestResult.data.keys);
 
 
         result[elem] = __buildPanelOneLang(requestResult.data.keys,
@@ -398,8 +398,8 @@
       $rootScope.exclusive.panels = $rootScope.exclusive.panelsAllLangs[$rootScope.lang];
 
       // todo: delete
-      $log.info('$rootScope.exclusive.panels:');
-      $log.info($rootScope.exclusive.panels);
+      // $log.info('$rootScope.exclusive.panels:');
+      // $log.info($rootScope.exclusive.panels);
 
     } // update
 
@@ -409,8 +409,8 @@
       $q.when(_performRequest($rootScope.exclusive.FilterData))
         .then(function (res) {
 
-          $log.info('_activateNextPage, res:');
-          $log.info(res);
+          // $log.info('_activateNextPage, res:');
+          // $log.info(res);
 
           if (!res.performed &&
             (res.reason == 'notFound' || res.reason == 'serverError')) {

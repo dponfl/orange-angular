@@ -78,7 +78,7 @@
     });
 
     function _updateDataAll() {
-      $log.info(ctrlTitle + ', _updateDataAll activated...');
+      // $log.info(ctrlTitle + ', _updateDataAll activated...');
 
       $rootScope.admin.short.useAll = false;
 
@@ -113,7 +113,7 @@
     } // _updateDataAll
 
     function _updateDataEdit() {
-      $log.info(ctrlTitle + ', _updateDataAll activated...');
+      // $log.info(ctrlTitle + ', _updateDataAll activated...');
 
       $rootScope.admin.short.useAll = false;
 
@@ -306,8 +306,8 @@
         })
         .catch(function (err) {
           // todo: change by Log
-          $log.warn(ctrlTitle + ', Error...');
-          $log.error(err);
+          // $log.warn(ctrlTitle + ', Error...');
+          // $log.error(err);
 
           return {
             performed: false,
@@ -453,8 +453,8 @@
         })
         .catch(function (err) {
           // todo: change by Log
-          $log.warn('Error...');
-          $log.error(err);
+          // $log.warn('Error...');
+          // $log.error(err);
 
           return {
             performed: false,
@@ -476,9 +476,9 @@
 
     function _buildPanel(requestResult) {
 
-      $log.info(ctrlTitle + ', _buildPanel');
-      $log.info('requestResult:');
-      console.dir(requestResult);
+      // $log.info(ctrlTitle + ', _buildPanel');
+      // $log.info('requestResult:');
+      // console.dir(requestResult);
 
       if (!requestResult.performed) {
 
@@ -505,11 +505,11 @@
 
       function __buildPanelOneLang(panelKeys, panelObjs, lang) {
 
-        $log.info(ctrlTitle + ', __buildPanelOneLang');
-        $log.info('panelKeys:');
-        console.dir(panelKeys);
-        $log.info('panelObjs:');
-        console.dir(panelObjs);
+        // $log.info(ctrlTitle + ', __buildPanelOneLang');
+        // $log.info('panelKeys:');
+        // console.dir(panelKeys);
+        // $log.info('panelObjs:');
+        // console.dir(panelObjs);
 
         var panels = [];
         var record = {};

@@ -25,8 +25,8 @@
         body: $rootScope.orangeConfig.contentQA[vm.useLang].body || [],
       };
 
-      $log.info("QAGeneralCtrl, vm.qa:");
-      $log.info(vm.qa);
+      // $log.info("QAGeneralCtrl, vm.qa:");
+      // $log.info(vm.qa);
 
     } // _update
 

@@ -20,8 +20,8 @@
 
       var _ = lodash;
 
-      console.log('OrangeConfiguration...');
-      console.log(data);
+      // console.log('OrangeConfiguration...');
+      // console.log(data);
 
       if (_.has(data, 'result') && _.has(data, 'data')) {
         if (data.result == 'ok') {

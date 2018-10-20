@@ -89,7 +89,7 @@
     }
 
     function _book() {
-      $log.info('sale _book() activated...');
+      // $log.info('sale _book() activated...');
 
       vm.busyBook = true;
 
@@ -157,7 +157,7 @@
     } // _book
 
     function _clear() {
-      $log.info('sale _clear() activated...');
+      // $log.info('sale _clear() activated...');
       vm.formData.name = '';
       vm.formData.email = '';
       vm.formData.phone = '';

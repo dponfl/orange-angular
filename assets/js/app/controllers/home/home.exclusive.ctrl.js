@@ -40,8 +40,8 @@
       })})
       .then(function (results) {
 
-        $log.info('HomeExclusiveCtrl, results:');
-        $log.info(results);
+        // $log.info('HomeExclusiveCtrl, results:');
+        // $log.info(results);
 
         vm.keysAll = results.keys;
 
@@ -60,8 +60,8 @@
       })
       .catch(function (err) {
         // todo: change by Log
-        $log.warn('Error...');
-        $log.error(err);
+        // $log.warn('Error...');
+        // $log.error(err);
       });
 
 

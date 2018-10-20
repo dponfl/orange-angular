@@ -17,15 +17,15 @@
     vm.title = 'SalePanelAdminTblCtrl';
 
     this.$onInit = function () {
-      $log.info(vm.title + ', $onInit...');
-      $log.info('$scope:');
-      $log.info($scope);
-      $log.info('vm.index:');
-      $log.info(vm.index);
-      $log.info('vm.panel');
-      $log.info(vm.panel);
-      $log.info('$rootScope.sale.panels:');
-      $log.info($rootScope.sale.panels);
+      // $log.info(vm.title + ', $onInit...');
+      // $log.info('$scope:');
+      // $log.info($scope);
+      // $log.info('vm.index:');
+      // $log.info(vm.index);
+      // $log.info('vm.panel');
+      // $log.info(vm.panel);
+      // $log.info('$rootScope.sale.panels:');
+      // $log.info($rootScope.sale.panels);
       vm.data = $rootScope.sale.panels;
     };
 
@@ -35,7 +35,7 @@
 
     function activate() {
 
-      $log.info(vm.title + ', activate...');
+      // $log.info(vm.title + ', activate...');
       vm.sort = _sort;
       vm.clearSort = _clearSort;
       vm.edit = _edit;
@@ -64,11 +64,11 @@
 
       EditObjectService.setEditSaleObject(objNumb);
 
-      $log.warn(vm.title + ', _edit, Edit record button was pressed...');
+      // $log.warn(vm.title + ', _edit, Edit record button was pressed...');
     } // _edit
 
     function _delete(objNumb) {
-      $log.warn(vm.title + ', _delete, Delete record button was pressed...');
+      // $log.warn(vm.title + ', _delete, Delete record button was pressed...');
     } // _delete
   }
 

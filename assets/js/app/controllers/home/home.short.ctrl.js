@@ -31,8 +31,8 @@
       objs: ShortService.getAllShortObjectsObjs({show: 1, home: 1})})
       .then(function (results) {
 
-        $log.info('HomeShortCtrl, results:');
-        $log.info(results);
+        // $log.info('HomeShortCtrl, results:');
+        // $log.info(results);
 
         vm.keysAll = results.keys;
 
@@ -51,8 +51,8 @@
       })
       .catch(function (err) {
         // todo: change by Log
-        $log.warn('Error...');
-        $log.error(err);
+        // $log.warn('Error...');
+        // $log.error(err);
         return;
       });
 

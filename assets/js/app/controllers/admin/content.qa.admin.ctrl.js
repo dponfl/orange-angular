@@ -31,8 +31,8 @@
          _setDataInInitialState();
          initiated = true;
 
-         $log.warn(name + ', <<<<<< vm.formData after _setDataInInitialState() >>>>>>>');
-         console.dir(vm.formData);
+         // $log.warn(name + ', <<<<<< vm.formData after _setDataInInitialState() >>>>>>>');
+         // console.dir(vm.formData);
 
        }
      };
@@ -49,13 +49,13 @@
 
       var obj = EditObjectService.getEditContentQAObject();
 
-      $log.warn(name + ', <<<<<< obj >>>>>>>');
-      console.dir(obj);
+      // $log.warn(name + ', <<<<<< obj >>>>>>>');
+      // console.dir(obj);
 
       vm.formData = EditObjectService.convertContentQAObjectData(obj);
 
-      $log.warn(name + ', <<<<<< vm.formData >>>>>>>');
-      console.dir(vm.formData);
+      // $log.warn(name + ', <<<<<< vm.formData >>>>>>>');
+      // console.dir(vm.formData);
 
       var useLang = '';
 
@@ -88,8 +88,8 @@
 
     function _update() {
 
-      $log.info(name + ', _update, vm.formData:');
-      $log.info(vm.formData);
+      // $log.info(name + ', _update, vm.formData:');
+      // $log.info(vm.formData);
 
       _write(vm.formData);
 
@@ -100,8 +100,8 @@
 
       var createRecords = {};
 
-      $log.info(name + ', _write, formData:');
-      $log.info(formData);
+      // $log.info(name + ', _write, formData:');
+      // $log.info(formData);
 
       var useLang = '';
       var useLangContent = '';
@@ -136,15 +136,15 @@
         record: createRecords,
       });
 
-      console.log(name + ', _write, createResult:');
-      console.dir(createResult);
+      // console.log(name + ', _write, createResult:');
+      // console.dir(createResult);
 
     } // _write
 
     function _updateRecordContent(data) {
 
-      console.log('_updateRecordContent, data:');
-      console.dir(data);
+      // console.log('_updateRecordContent, data:');
+      // console.dir(data);
 
       var someObj = {};
 
@@ -158,8 +158,8 @@
       $q.all(someObj)
         .then(function (results) {
 
-          $log.warn(name + ', _updateRecordContent, results:');
-          console.dir(results);
+          // $log.warn(name + ', _updateRecordContent, results:');
+          // console.dir(results);
 
           if (results.record_en.status == 200) {
 
@@ -185,8 +185,8 @@
             };
           } else {
             // todo: change by Log
-            $log.warn(name + ', Error...');
-            $log.error(err);
+            // $log.warn(name + ', Error...');
+            // $log.error(err);
 
             toaster.pop({
               type: 'error',
@@ -208,8 +208,8 @@
         })
         .catch(function (err) {
           // todo: change by Log
-          $log.warn(name + ', Error...');
-          $log.error(err);
+          // $log.warn(name + ', Error...');
+          // $log.error(err);
 
           toaster.pop({
             type: 'error',
@@ -245,7 +245,7 @@
 
     function _addElement(ind, useLang) {
 
-      $log.info('_addElement, useLang:' + useLang);
+      // $log.info('_addElement, useLang:' + useLang);
 
       vm.formData.langContent[useLang].body.splice(ind + 1, 0, {q: '', a: ''});
 

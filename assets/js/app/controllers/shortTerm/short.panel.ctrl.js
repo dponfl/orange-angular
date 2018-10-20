@@ -204,7 +204,7 @@
     }
 
     function _book() {
-      $log.info('short _book() activated...');
+      // $log.info('short _book() activated...');
 
       vm.busyBook = true;
 
@@ -272,7 +272,7 @@
     } // _book
 
     function _clear() {
-      $log.info('short _clear() activated...');
+      // $log.info('short _clear() activated...');
       vm.formData.period_start = '';
       vm.formData.pariod_end = '';
       vm.formData.name = '';
