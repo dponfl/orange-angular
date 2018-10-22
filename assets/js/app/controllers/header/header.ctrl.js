@@ -186,12 +186,32 @@
 
       var formDataToSend = vm.formData;
 
-      if (param != 'general') {
-        formDataToSend.obj = vm.formData.obj.val;
-        formDataToSend.city = vm.formData.city.val;
-        formDataToSend.room = vm.formData.room.val;
-      } else {
-        formDataToSend = _.omit(formDataToSend, ['obj', 'city', 'room']);
+      // if (param != 'general') {
+      //   formDataToSend.obj = vm.formData.obj.val;
+      //   formDataToSend.city = vm.formData.city.val;
+      //   formDataToSend.room = vm.formData.room.val;
+      // } else {
+      //   formDataToSend = _.omit(formDataToSend, ['obj', 'city', 'room']);
+      // }
+
+      switch (param) {
+        case 'short':
+          break;
+        case 'sell':
+          formDataToSend = _.omit(formDataToSend, ['period_start', 'pariod_end']);
+          break;
+        case 'long':
+          formDataToSend = _.omit(formDataToSend, ['pariod_end']);
+          break;
+        case 'let':
+          formDataToSend = _.omit(formDataToSend, ['pariod_end']);
+          break;
+        case 'buy':
+          formDataToSend = _.omit(formDataToSend, ['period_start', 'pariod_end']);
+          break;
+        case 'general':
+          formDataToSend = _.omit(formDataToSend, ['obj', 'city', 'room', 'period_start', 'pariod_end']);
+          break;
       }
 
       vm.busyBook = true;
