@@ -186,13 +186,13 @@
 
       var formDataToSend = vm.formData;
 
-      // if (param != 'general') {
-      //   formDataToSend.obj = vm.formData.obj.val;
-      //   formDataToSend.city = vm.formData.city.val;
-      //   formDataToSend.room = vm.formData.room.val;
-      // } else {
-      //   formDataToSend = _.omit(formDataToSend, ['obj', 'city', 'room']);
-      // }
+      if (param != 'general') {
+        formDataToSend.obj = vm.formData.obj.val;
+        formDataToSend.city = vm.formData.city.val;
+        formDataToSend.room = vm.formData.room.val;
+      } else {
+        formDataToSend = _.omit(formDataToSend, ['obj', 'city', 'room']);
+      }
 
       switch (param) {
         case 'short':
