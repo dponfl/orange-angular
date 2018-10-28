@@ -13,8 +13,8 @@ module.exports = {
     var domain = process.env.MAILGUN_DOMAIN || 'none';
 
     var data = {
-      from: 'order@orangevillas.com',
-      to: 'dshchfl@gmail.com',
+      from: 'info@webstudiopro.info',
+      to: 'nataliatyra@hotmail.com',
       subject: subject,
       html: html,
     };
