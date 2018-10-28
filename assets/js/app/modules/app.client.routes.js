@@ -232,6 +232,20 @@
         },
         url: '/login',
       })
+      .state('signup', {
+        views: {
+          header: {
+            templateUrl: 'templates/view/header/headerClient.html'
+          },
+          main: {
+            templateUrl: 'templates/view/admin/signup.html',
+          },
+          footer: {
+            templateUrl: 'templates/view/footer/footerClient.html'
+          },
+        },
+        url: '/signup',
+      })
       .state('admin', {
         views: {
           header: {

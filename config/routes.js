@@ -68,7 +68,7 @@ module.exports.routes = {
     view: 'index'
   },
 
-  '/account': {
+  '/signup': {
     view: 'index'
   },
 

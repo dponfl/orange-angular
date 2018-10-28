@@ -169,7 +169,7 @@
         // console.log('<<<<<<<<<<< errorCb >>>>>>>>>>>');
         // console.dir(err);
 
-        if (!_.isNil(err) && !_.isNil(err.status) && err.status == 404) {
+        if (!_.isNil(err) && !_.isNil(err.status)) {
           deferred.resolve(err);
         } else {
           deferred.reject(err);

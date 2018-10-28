@@ -128,11 +128,10 @@
                 }
                 break;
 
-              case 404:
+              default:
 
                 vm.userNotFound = true;
                 vm.password = '';
-                break;
             }
           }
 
