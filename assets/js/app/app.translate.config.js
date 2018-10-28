@@ -264,11 +264,11 @@ function translateConfig ($translateProvider) {
     // Contacts
     'CONTACTS_PAGE_HEADER_TITLE': 'Contacts',
     'CONTACTS_PAGE_HEADER_SUBTITLE': '[En]Несколько слов...',
-    'HOME_TITLE_07': 'Our offices',
+    'HOME_TITLE_07': 'Our office',
     'HOME_SUBTITLE_07_02': 'Mosfilion, Kalellia Court, 8574, Kissonerga, Paphos',
     'LBL_CONTACT_FORM_OFFICE_PHONE': 'Office',
     'LBL_CONTACT_FORM_OFFICE_FAX': 'Fax',
-    'LBL_CONTACT_FORM_OFFICE_MOBILE_1': 'Mob-1',
+    'LBL_CONTACT_FORM_OFFICE_MOBILE_1': 'Mob',
     'LBL_CONTACT_FORM_OFFICE_MOBILE_2': 'Mob-2',
 
   });
@@ -624,11 +624,11 @@ function translateConfig ($translateProvider) {
     // Contacts
     'CONTACTS_PAGE_HEADER_TITLE': 'Наши контакты',
     'CONTACTS_PAGE_HEADER_SUBTITLE': 'Несколько слов...',
-    'HOME_TITLE_07': 'Наши офисы',
+    'HOME_TITLE_07': 'Наш офис',
     'HOME_SUBTITLE_07_02': 'Mosfilion, Kalellia Court, 8574, Kissonerga, Paphos',
     'LBL_CONTACT_FORM_OFFICE_PHONE': 'Офис',
     'LBL_CONTACT_FORM_OFFICE_FAX': 'Факс',
-    'LBL_CONTACT_FORM_OFFICE_MOBILE_1': 'Моб-1',
+    'LBL_CONTACT_FORM_OFFICE_MOBILE_1': 'Моб',
     'LBL_CONTACT_FORM_OFFICE_MOBILE_2': 'Моб-2',
 
   });
