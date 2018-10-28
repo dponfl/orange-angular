@@ -15,14 +15,14 @@ div(data-ng-controller='FooterCtrl as fc').container
           a(data-ui-sref="{{elem.href}}",
           translate='{{elem.text}}').link-and-scroll
 
-    .col-sm-2
-      h6 {{'FOOTER_SUBSCRIBE_TITLE' | translate}}
-      ul.list-unstyled
-        li(data-ng-repeat='elem in fc.subscription')
-          a(href="{{elem.href}}",
-          target="_blank")
-            img(data-ng-src="{{elem.img}}").wsp-footer-socials-img
-            span(translate="{{elem.text}}")
+    //.col-sm-2
+    //  h6 {{'FOOTER_SUBSCRIBE_TITLE' | translate}}
+    //  ul.list-unstyled
+    //    li(data-ng-repeat='elem in fc.subscription')
+    //      a(href="{{elem.href}}",
+    //      target="_blank")
+    //        img(data-ng-src="{{elem.img}}").wsp-footer-socials-img
+    //        span(translate="{{elem.text}}")
     .col-sm-8.developer
       h6 Copyright &copy; 2018
       span {{'FOOTER_DEVELOPER' | translate}}
