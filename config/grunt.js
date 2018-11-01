@@ -1,5 +1,5 @@
 "use strict";
 
 module.exports.grunt = {
-  _hookTimeout: 60000
+  _hookTimeout: 180000
 };
