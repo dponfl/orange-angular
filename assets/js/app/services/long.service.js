@@ -73,7 +73,7 @@
 
       // todo: return object having result code (200, 404, etc.) and data
 
-      return $http.post('/long/find', reqObj)
+      return $http.post($rootScope.orangeConfig.host + '/long/find', reqObj)
         .then(successCb, errorCb);
 
       function successCb(data) {
@@ -132,7 +132,7 @@
 
     function _getAllLongObjectsObjsPager(reqObj, pager) {
 
-      return $http.post('/long/findp', {
+      return $http.post($rootScope.orangeConfig.host + '/long/findp', {
         conditions: reqObj,
         pager: pager
       } )
