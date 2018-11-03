@@ -417,7 +417,7 @@ function translateConfig ($translateProvider) {
 
     'LBL_SERVICE_TITLE': 'Заголовок',
     'OBJ_SERVICE_TITLE_PLACEHOLDER': 'Введите заголовок страницы',
-    'LBL_SERVICE_NAME': 'Наименование',
+    'LBL_SERVICE_NAME': 'Описание услуги',
     'OBJ_SERVICE_NAME_PLACEHOLDER': 'Введите наименование услуги',
     'LBL_SERVICE_SUBNAME': 'Подзаголовок',
     'OBJ_SERVICE_SUBNAME_PLACEHOLDER': 'Введите подзаголовок услуги',

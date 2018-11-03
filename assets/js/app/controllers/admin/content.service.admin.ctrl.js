@@ -27,6 +27,29 @@
 
      vm.$onInit = function () {
 
+       vm.summernoteConfig = {
+         toolbar: [
+           // [groupName, [list of button]]
+           ['style', ['bold', 'italic', 'underline', 'clear']],
+           ['font', ['strikethrough', 'superscript', 'subscript']],
+           ['fontsize', ['fontsize']],
+           ['color', ['color']],
+           ['para', ['ul', 'ol', 'paragraph']],
+           ['height', ['height']],
+           ['insert', ['picture', 'link', 'hr']],
+         ],
+         popover: {
+           image: [
+             ['imagesize', ['imageSize100', 'imageSize50', 'imageSize25', 'imageSize10', 'imageSize5']],
+             ['float', ['floatLeft', 'floatRight', 'floatNone']],
+             ['remove', ['removeMedia']]
+           ],
+           link: [
+             ['link', ['linkDialogShow', 'unlink']]
+           ]
+         }
+       };
+
        if (!initiated) {
          _setDataInInitialState();
          initiated = true;

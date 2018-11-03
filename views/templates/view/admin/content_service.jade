@@ -41,41 +41,24 @@
 
                       div(data-ng-repeat='elem in ctrl.formData.langContent[lang.lang].body').form-group.clearfix
 
-                        fieldset
+                        .well
+                          .page-body
+                            fieldset
 
-                          .form-group.clearfix
-                            label(for='service_name', translate='LBL_SERVICE_NAME').col-sm-2.control-label.text-right
-                            .col-sm-9
-                              textarea(type="text",
-                              placeholder="{{'OBJ_SERVICE_NAME_PLACEHOLDER' | translate}}",
-                              data-ng-model='elem.name'
-                              ).form-control#service_name
+                              .form-group.clearfix
+                                label(translate='LBL_SERVICE_NAME').col-sm-2.control-label.text-right
+                                .col-sm-9
+                                  summernote(config="ctrl.summernoteConfig", data-ng-model='elem.body')
 
-                          .form-group.clearfix
-                            label(for='service_subname', translate='LBL_SERVICE_SUBNAME').col-sm-2.control-label.text-right
-                            .col-sm-6
-                              textarea(type="text",
-                              placeholder="{{'OBJ_SERVICE_SUBNAME_PLACEHOLDER' | translate}}",
-                              data-ng-model='elem.subname'
-                              ).form-control#service_subname
 
-                          .form-group.clearfix
-                            label(for='service_desc', translate='LBL_SERVICE_DESC').col-sm-2.control-label.text-right
-                            .col-sm-6
-                              textarea(type="text",
-                              placeholder="{{'OBJ_SERVICE_DESC_PLACEHOLDER' | translate}}",
-                              data-ng-model='elem.desc'
-                              ).form-control#service_desc
+                              .clearfix.col-sm-offset-2.col-sm-4
+                                button(type='button',
+                                data-ng-click='ctrl.addElement($index, lang.lang)',
+                                translate='BTN_ADD_ELEMENT').btn.btn-success.btn-sm.btn-margin
 
-                            .col-sm-2
-                              button(type='button',
-                              data-ng-click='ctrl.addElement($index, lang.lang)',
-                              translate='BTN_ADD_ELEMENT').btn.btn-success.btn-sm.btn-margin
-
-                            .col-sm-2
-                              button(type='button',
-                              data-ng-click='ctrl.deleteElement($index, lang.lang)',
-                              translate='BTN_DEL_ELEMENT').btn.btn-success.btn-sm.btn-margin
+                                button(type='button',
+                                data-ng-click='ctrl.deleteElement($index, lang.lang)',
+                                translate='BTN_DEL_ELEMENT').btn.btn-danger.btn-sm.btn-margin
 
 
 
@@ -83,7 +66,7 @@
                 .form-group.clearfix
                   .col-lg-7.col-lg-offset-2.col-md-offset-1.col-sm-offset-1
                     button(type='submit',
-                    translate='BTN_ADMIN_CREATE',
+                    translate='BTN_ADMIN_SAVE',
                     ).btn.btn-success.btn-lg.btn-margin
                     button(type='button',
                     data-ng-click='ctrl.clear()',
