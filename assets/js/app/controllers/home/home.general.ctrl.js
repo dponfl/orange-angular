@@ -4,8 +4,8 @@
   angular.module('OrangeClient')
     .controller('HomeGeneralCtrl',HomeGeneralCtrl);
 
-  HomeGeneralCtrl.$inject = ['$rootScope'];
-  function HomeGeneralCtrl($rootScope) {
+  HomeGeneralCtrl.$inject = ['$rootScope', '$sce'];
+  function HomeGeneralCtrl($rootScope, $sce) {
 
     var vm = this;
 
@@ -22,10 +22,7 @@
 
       vm.home = {
         home_title: $rootScope.orangeConfig.contentHome[vm.useLang][0].home_title || '',
-        home_body_lead: $rootScope.orangeConfig.contentHome[vm.useLang][0].home_body_lead || '',
-        home_body_p_1: $rootScope.orangeConfig.contentHome[vm.useLang][0].home_body_p_1 || '',
-        home_body_p_2: $rootScope.orangeConfig.contentHome[vm.useLang][0].home_body_p_2 || '',
-        home_body_p_3: $rootScope.orangeConfig.contentHome[vm.useLang][0].home_body_p_3 || '',
+        home_body:  $sce.trustAsHtml($rootScope.orangeConfig.contentHome[vm.useLang][0].home_body || ''),
       };
     } // _update
 

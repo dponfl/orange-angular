@@ -16,6 +16,7 @@
       'angularUtils.directives.dirPagination',
       'angularFileUpload',
       'angularMoment',
+      'summernote',
     ])
     .run(errorMsgResolver);
 

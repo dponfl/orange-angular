@@ -32,8 +32,4 @@
         .page-header.page-primary
           h1 {{home.home.home_title}}
 
-        .page-body
-          p.lead {{home.home.home_body_lead}}
-          p {{home.home.home_body_p_1}}
-          p {{home.home.home_body_p_2}}
-          p {{home.home.home_body_p_3}}
+        div(ng-bind-html="home.home.home_body").page-body

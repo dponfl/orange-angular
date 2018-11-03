@@ -24,6 +24,7 @@ var cssFilesToInject = [
   'styles/**/*.css',
   'vendor/ladda/dist/ladda-themeless.min.css',
   'vendor/AngularJS-Toaster/toaster.css',
+  'vendor/summernote/dist/summernote.css',
 ];
 
 // Modernizr files injection
@@ -102,6 +103,11 @@ var jsFilesToInject = [
 
   // Load async
   'vendor/async/dist/async.js',
+
+  // Load summernote
+  'vendor/summernote/dist/summernote.js',
+  'vendor/angular-summernote/dist/angular-summernote.js',
+
 
   'js/dependencies/Other/**/*.js',
 
