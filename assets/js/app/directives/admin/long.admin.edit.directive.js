@@ -15,7 +15,7 @@
       controllerAs: 'vm',
       link: _link,
       restrict: 'AE',
-      score: true,
+      scope: true,
       templateUrl: 'templates/view/admin/longPanelEditDirective.html'
     };
     return directive;

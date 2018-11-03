@@ -5,10 +5,10 @@
     .controller('ShortCtrl', ShortCtrl);
 
   ShortCtrl.$inject = ['GeneralConfigService', 'ShortService',
-    '$log', '$rootScope', '$scope', 'lodash', '$q', '$alert'];
+    '$log', '$rootScope', '$scope', 'lodash', '$q', '$alert', '$sce'];
 
   function ShortCtrl(GeneralConfigService, ShortService,
-                     $log, $rootScope, $scope, lodash, $q, $alert) {
+                     $log, $rootScope, $scope, lodash, $q, $alert, $sce) {
     var _ = lodash;
     var ctrlTitle = 'ShortCtrl';
     var shortBusyAlert = $alert({
@@ -598,13 +598,13 @@
               record.content[kElem.group - 1].push({
                 key: kElem.key,
                 label: kElem.label,
-                text:tokenVal,
+                text: $sce.trustAsHtml(tokenVal),
               });
 
               record.contentObj[kElem.key] = {
                 key: keyVal,
                 label: kElem.label,
-                text:tokenVal,
+                text: $sce.trustAsHtml(tokenVal),
               };
             }
 
@@ -646,6 +646,9 @@
       $rootScope.tagList = $rootScope.orangeConfig.tagList[$rootScope.lang];
 
       $rootScope.short.panels = $rootScope.short.panelsAllLangs[$rootScope.lang];
+
+      // $log.info('$rootScope.short.panels:');
+      // $log.info($rootScope.short.panels);
 
     } // update
 

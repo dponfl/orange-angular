@@ -48,7 +48,8 @@
                               .form-group.clearfix
                                 label(translate='LBL_SERVICE_NAME').col-sm-2.control-label.text-right
                                 .col-sm-9
-                                  summernote(config="ctrl.summernoteConfig", data-ng-model='elem.body')
+                                  summernote(config="ctrl.summernoteConfig",
+                                  data-ng-model='elem.body').form-control
 
 
                               .clearfix.col-sm-offset-2.col-sm-4

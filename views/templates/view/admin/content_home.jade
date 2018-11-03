@@ -161,7 +161,8 @@
                       .form-group.clearfix
                         label(translate='LBL_HOME_BODY').col-sm-2.control-label.text-right
                         .col-sm-9
-                          summernote(config="ctrl.summernoteConfig", data-ng-model='ctrl.formData.langContent[lang.lang][0].home_body')
+                          summernote(config="ctrl.summernoteConfig",
+                          data-ng-model='ctrl.formData.langContent[lang.lang][0].home_body').form-control
 
 
 

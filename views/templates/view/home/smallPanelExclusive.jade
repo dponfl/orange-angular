@@ -18,7 +18,7 @@
           div(data-ng-repeat='elem in $ctrl.content').form-group.form-group-sm.main-panel
             label.col-sm-4.control-label {{elem.label}}
             .col-sm-8
-              p.form-control-static.form-control-static-text {{elem.text}}
+              div(ng-bind-html="elem.text").form-control-static.form-control-static-text
       hr
       a(data-ui-sref='exclusive({objNumber: "{{$ctrl.objNumber}}", deal: "{{$ctrl.deal}}"})',
       translate='GENERAL_ELEM_MORE_DETAILS').col-xs-12.btn.btn-success.btn-sm

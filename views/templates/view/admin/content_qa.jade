@@ -56,7 +56,8 @@
                               .form-group.clearfix
                                 label(translate='LBL_QA_A').col-sm-2.control-label.text-right
                                 .col-sm-9
-                                  summernote(config="ctrl.summernoteConfig", data-ng-model='elem.a')
+                                  summernote(config="ctrl.summernoteConfig",
+                                  data-ng-model='elem.a').form-control
 
                               .clearfix.col-sm-offset-2.col-sm-4
                                 button(type='button',

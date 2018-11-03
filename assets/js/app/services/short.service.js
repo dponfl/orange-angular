@@ -9,7 +9,8 @@
     'oShort', 'lodash', '$q'];
 
   /* @ngInject */
-  function ShortService(GeneralConfigService, $rootScope, $http, $log, oShortKey, oShort, lodash, $q) {
+  function ShortService(GeneralConfigService, $rootScope, $http, $log, oShortKey,
+                        oShort, lodash, $q) {
     var _ = lodash;
     var name = 'ShortService';
     var self = {

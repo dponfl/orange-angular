@@ -15,18 +15,14 @@
       controllerAs: 'vm',
       link: _link,
       restrict: 'AE',
-      score: true,
+      scope: true,
       templateUrl: 'templates/view/admin/shortPanelEditDirective.html'
     };
     return directive;
 
     function _link(scope, element, attrs) {
-/*
-      $log.info('<<< !!! >>> shortAdminEditDirective, _link, scope:');
-      console.log(scope);
-*/
-
-
+      // $log.info('<<< !!! >>> shortAdminEditDirective, _link, scope:');
+      // console.log(scope);
     } // _link
   }
 
