@@ -23,8 +23,8 @@
 
       vm.useLang = $rootScope.lang;
 
-      $log.info('$rootScope.orangeConfig.contentQA[vm.useLang].body:');
-      $log.info($rootScope.orangeConfig.contentQA[vm.useLang].body);
+      // $log.info('$rootScope.orangeConfig.contentQA[vm.useLang].body:');
+      // $log.info($rootScope.orangeConfig.contentQA[vm.useLang].body);
 
       _.forEach($rootScope.orangeConfig.contentQA[vm.useLang].body, function (val) {
         useBody.push({
