@@ -50,7 +50,7 @@ function translateConfig ($translateProvider) {
 
     'LBL_HOME_TITLE': 'Home page: Title',
     'OBJ_HOME_TITLE_PLACEHOLDER': 'Home page: Title',
-    'LBL_HOME_BODY_LEAD': 'Home page: Lead paragraph',
+    'LBL_HOME_BODY': 'Home page: Main block',
     'OBJ_HOME_BODY_LEAD_PLACEHOLDER': 'Home page: Lead paragraph',
     'LBL_HOME_BODY_P_1': 'Home page: 1st paragraph',
     'OBJ_HOME_BODY_P_1_PLACEHOLDER': 'Home page: 1st paragraph',
@@ -356,7 +356,7 @@ function translateConfig ($translateProvider) {
 
     'LBL_HOME_TITLE': 'Заголовок',
     'OBJ_HOME_TITLE_PLACEHOLDER': 'Заголовок',
-    'LBL_HOME_BODY_LEAD': 'Ведущий параграф',
+    'LBL_HOME_BODY': 'Основной блок',
     'OBJ_HOME_BODY_LEAD_PLACEHOLDER': 'Ведущий параграф',
     'LBL_HOME_BODY_P_1': '1-ый параграф',
     'OBJ_HOME_BODY_P_1_PLACEHOLDER': '1-ый параграф',
