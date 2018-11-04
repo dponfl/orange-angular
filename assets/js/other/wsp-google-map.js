@@ -39,8 +39,12 @@ function camelDriveMaps() {
 
   var infowindow02 = new google.maps.InfoWindow({
     content:"<h4>Orange Holiday Villas</h4>" +
-    "<h5></h5>" +
-    "<h6>Часы работы/Working hours: 09:00 - 19:00</h6>"
+    "<h5>Часы работы:</h5>" +
+    "<h6>пн-сб: 09:00 - 18:00</h6>" +
+    "<h6>вс: выходной</h6>" +
+    "<h5>Working hours:</h5>" +
+    "<h6>Monday - Saturday: 09:00 - 18:00</h6>" +
+    "<h6>Sunday: day off</h6>"
   });
 
   // google.maps.event.addListener(marker01, 'click', function() {
