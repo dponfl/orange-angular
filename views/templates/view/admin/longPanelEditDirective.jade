@@ -259,12 +259,10 @@ data-ng-submit='vm.update()').form-horisontal
         )
 
           .form-group.clearfix.top-element
-            label(for='address', translate='LBL_ADDRESS').col-sm-2.control-label.text-right
+            label(translate='LBL_ADDRESS').col-sm-2.control-label.text-right
             .col-sm-9
-              textarea(type="text",
-              placeholder="{{'OBJ_ADDRESS_PLACEHOLDER' | translate}}",
-              data-ng-model='vm.formData.langContent[lang.lang].address'
-              ).form-control#address
+              summernote(config="vm.summernoteConfig",
+              data-ng-model='vm.formData.langContent[lang.lang].address').form-control
 
           .form-group.clearfix
             label(for='bathroom', translate='LBL_BATHROOM').col-sm-2.control-label.text-right
@@ -291,20 +289,16 @@ data-ng-submit='vm.update()').form-horisontal
               ).form-control#price
 
           .form-group.clearfix
-            label(for='description', translate='LBL_DESCRIPTION').col-sm-2.control-label.text-right
+            label(translate='LBL_DESCRIPTION').col-sm-2.control-label.text-right
             .col-sm-9
-              textarea(type="text",
-              placeholder="{{'OBJ_DESCRIPTION_PLACEHOLDER' | translate}}",
-              data-ng-model='vm.formData.langContent[lang.lang].description'
-              ).form-control#description
+              summernote(config="vm.summernoteConfig",
+              data-ng-model='vm.formData.langContent[lang.lang].description').form-control
 
           .form-group.clearfix
-            label(for='info', translate='LBL_INFO').col-sm-2.control-label.text-right
+            label(translate='LBL_INFO').col-sm-2.control-label.text-right
             .col-sm-9
-              textarea(type="text",
-              placeholder="{{'OBJ_INFO_PLACEHOLDER' | translate}}",
-              data-ng-model='vm.formData.langContent[lang.lang].info'
-              ).form-control#info
+              summernote(config="vm.summernoteConfig",
+              data-ng-model='vm.formData.langContent[lang.lang].info').form-control
 
 
 

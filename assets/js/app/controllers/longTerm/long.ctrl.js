@@ -5,10 +5,10 @@
     .controller('LongCtrl', LongCtrl);
 
   LongCtrl.$inject = ['GeneralConfigService', 'LongService',
-    '$log', '$rootScope', '$scope', 'lodash', '$q', '$alert'];
+    '$log', '$rootScope', '$scope', 'lodash', '$q', '$alert', '$sce'];
 
   function LongCtrl(GeneralConfigService, LongService,
-                     $log, $rootScope, $scope, lodash, $q, $alert) {
+                     $log, $rootScope, $scope, lodash, $q, $alert, $sce) {
     var _ = lodash;
     var ctrlTitle = 'LongCtrl';
     var longBusyAlert = $alert({
@@ -586,13 +586,13 @@
               record.content[kElem.group - 1].push({
                 key: kElem.key,
                 label: kElem.label,
-                text:tokenVal,
+                text: $sce.trustAsHtml(tokenVal),
               });
 
               record.contentObj[kElem.key] = {
                 key: keyVal,
                 label: kElem.label,
-                text:tokenVal,
+                text: $sce.trustAsHtml(tokenVal),
               };
             }
 
