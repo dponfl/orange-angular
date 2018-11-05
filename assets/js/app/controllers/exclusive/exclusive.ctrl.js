@@ -6,11 +6,11 @@
 
   ExclusiveCtrl.$inject = ['GeneralConfigService', 'ExclusiveService',
     'ShortService', 'LongService', 'SaleService',
-    '$log', '$rootScope', '$scope', 'lodash', '$q', '$alert'];
+    '$log', '$rootScope', '$scope', 'lodash', '$q', '$alert', '$sce'];
 
   function ExclusiveCtrl(GeneralConfigService, ExclusiveService,
                          ShortService, LongService, SaleService,
-                     $log, $rootScope, $scope, lodash, $q, $alert) {
+                     $log, $rootScope, $scope, lodash, $q, $alert, $sce) {
     var _ = lodash;
     var exclusiveBusyAlert = $alert({title: 'Title',
       content: 'Content',
@@ -360,7 +360,7 @@
             record.content[kElem.group - 1].push({
               key: kElem.key,
               label: kElem.label,
-              text:tokenVal,
+              text: $sce.trustAsHtml(tokenVal),
             })
           });
 

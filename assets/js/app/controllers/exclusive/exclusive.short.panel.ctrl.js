@@ -149,19 +149,21 @@
 
       var unavailableDates = [];
 
-      var periods = _.split(vm.panel.calendar, ';');
-      var periodsElems = [];
-      var periodElem= {};
+      // var periods = _.split(vm.panel.calendar, ';');
+      // var periodsElems = [];
+      // var periodElem= {};
+      //
+      // for (var i = 0; i < periods.length; i++) {
+      //
+      //     periodsElems = _.split(periods[i], '=>');
+      //
+      //     unavailableDates[i] = {
+      //       start: periodsElems[0],
+      //       end: periodsElems[1]
+      //     };
+      // }
 
-      for (var i = 0; i < periods.length; i++) {
-
-          periodsElems = _.split(periods[i], '=>');
-
-          unavailableDates[i] = {
-            start: periodsElems[0],
-            end: periodsElems[1]
-          };
-      }
+      unavailableDates = JSON.parse(vm.panel.calendar);
 
       calendarBlock.availabilityCalendar(unavailableDates, $rootScope.lang);
 
