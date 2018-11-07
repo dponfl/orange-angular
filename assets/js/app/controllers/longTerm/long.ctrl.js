@@ -368,7 +368,7 @@
       $rootScope.long.busy = true;
 
       var params = {};
-      var objReqParams = {};
+      var objReqParams = {show: 1};
       var objReqPager = {};
 
       if (typeof reqParams.objnumber != 'undefined' && reqParams.objnumber) {
