@@ -105,7 +105,7 @@ function translateConfig ($translateProvider) {
     'NAV_REQ_BUTTON': 'Make request',
 
     // Request button dropdown menu items
-    'NAV_REQ_DAILY': 'Daily rent',
+    'NAV_REQ_DAILY': 'Short term rent',
     'NAV_REQ_LONG_TERM': 'Long term rent',
     'NAV_REQ_LET_PROP': 'Let property',
     'NAV_REQ_BUY_PROP': 'Buy property',
@@ -119,7 +119,7 @@ function translateConfig ($translateProvider) {
     'LBL_EXCLUSIVE': 'Exclusive object',
     'LBL_HOME': 'Place at home page',
     'LBL_CITY': 'City',
-    'LBL_ROOM': 'Number of rooms',
+    'LBL_ROOM': 'Number of bedrooms',
     'LBL_OBJ_NUM': 'Object number',
     'LBL_YOUTUBE': 'YouTube',
     'LBL_CALENDAR': 'Calendar',
@@ -199,6 +199,7 @@ function translateConfig ($translateProvider) {
     'GENERAL_FOUND_NOTHING_HEADER': 'Nothing found...',
     'GENERAL_FOUND_NOTHING': 'Nothing found. Change search criteria and try again.',
     'GENERAL_LOADING_SPINNER': 'Loading...',
+    'GALLERY': 'PHOTO GALLERY',
 
     // Exclusive
     'EXCLUSIVE_PAGE_HEADER_TITLE': '[En]Эксклюзивные объекты',
@@ -464,7 +465,7 @@ function translateConfig ($translateProvider) {
     'LBL_EXCLUSIVE': 'Эксклюзивный объект',
     'LBL_HOME': 'Размещать на главной странице',
     'LBL_CITY': 'Город',
-    'LBL_ROOM': 'Кол-во комнат',
+    'LBL_ROOM': 'Кол-во спален',
     'LBL_OBJ_NUM': 'Номер объекта',
     'LBL_YOUTUBE': 'YouTube',
     'LBL_CALENDAR': 'Календарь',
@@ -560,6 +561,7 @@ function translateConfig ($translateProvider) {
     'GENERAL_FOUND_NOTHING_HEADER': 'Ничего не найдено...',
     'GENERAL_FOUND_NOTHING': 'По вашему запросу ничего не найдено. Измените условия и повторите поиск.',
     'GENERAL_LOADING_SPINNER': 'Информация загружается...',
+    'GALLERY': 'ФОТОГАЛЕРЕЯ',
 
 
 
