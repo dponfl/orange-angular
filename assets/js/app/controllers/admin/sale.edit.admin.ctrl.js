@@ -337,10 +337,7 @@
         createRecords[useLang].price = formData.langContent[useLang].price;
         createRecords[useLang].description = formData.langContent[useLang].description;
         createRecords[useLang].info = formData.langContent[useLang].info;
-
-        if (formData.youtube) {
-          createRecords[useLang].youtube = formData.youtube;
-        }
+        createRecords[useLang].youtube = formData.youtube;
 
       }
 
