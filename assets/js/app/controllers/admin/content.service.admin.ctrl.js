@@ -133,6 +133,8 @@
 
       for (var i = 0; i < $rootScope.numLang; i++) {
 
+        var useBody = [];
+
         useLang = $rootScope.langList[i];
         createRecords[useLang] = {};
         createRecords[useLang].lang = useLang;
@@ -143,6 +145,12 @@
           && formData.langContent[useLang].title != ''
           && !_.isNil(formData.langContent[useLang].body)
         ) {
+
+          _.forEach(formData.langContent[useLang].body, function (elem) {
+            useBody.push(_.pick(elem, ['body']));
+          });
+
+          formData.langContent[useLang].body = useBody;
 
           useLangContent = JSON.stringify(formData.langContent[useLang]);
         }

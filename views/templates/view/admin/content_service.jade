@@ -58,6 +58,7 @@
                                 translate='BTN_ADD_ELEMENT').btn.btn-success.btn-sm.btn-margin
 
                                 button(type='button',
+                                data-ng-show="$index > 0",
                                 data-ng-click='ctrl.deleteElement($index, lang.lang)',
                                 translate='BTN_DEL_ELEMENT').btn.btn-danger.btn-sm.btn-margin
 
