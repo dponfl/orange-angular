@@ -31,7 +31,7 @@
                 div(ng-bind-html="elem.text").form-control-static.form-control-static-text
 
       .col-sm-12
-        h2.text-center Фотогалерея
+        h2.text-center {{'GALLERY' | translate}}
         ul.col-sm-10.col-sm-offset-1.list-inline.text-center#gallery-30593
           li(data-ng-repeat='elem in esalepc.gallery')
             a(href='{{elem.href}}',
